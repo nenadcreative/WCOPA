@@ -18,7 +18,7 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     react(),
     sanity({
-      projectId: "g3tuqi0r",
+      projectId: "s0esc5z3",
       dataset: "production",
       // Set useCdn to false if you're building statically.
       useCdn: false,

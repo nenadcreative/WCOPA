@@ -11,5 +11,5 @@ const { data: home } = await loadQuery<SanityDocument>({
 ---
 
 <BaseLayout title="Welcome to Astro.">
-  <h1>{home.title}</h1>
+  <h1>{home?.title} - Title</h1>
 </BaseLayout>

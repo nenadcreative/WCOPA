@@ -31,5 +31,21 @@ export const pageType = defineType({
       type: "seo",
       group: "seo",
     }),
+
+    defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      options: {
+        list: [
+          { title: "How To Enter", value: "how-to-enter" },
+          { title: "Event", value: "event" },
+          { title: "Resources", value: "resources" },
+          { title: "About", value: "about" },
+          { title: "Contact", value: "contact" },
+          { title: "Legal", value: "legal" },
+        ],
+      },
+    }),
   ],
 });

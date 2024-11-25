@@ -14,8 +14,8 @@ const singletonTypes = new Set(["home", "settings"]);
 export default defineConfig({
   name: "project-name",
   title: "Project Name",
-  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-  dataset: import.meta.env.PUBLIC_SANITY_PROJECT_DATASET,
+  projectId: "s0esc5z3",
+  dataset: "production",
   plugins: isDev
     ? [
         structureTool({
@@ -37,9 +37,17 @@ export default defineConfig({
                       .documentId("132f2662-58c6-4916-886d-d1a517f675f9")
                   ),
                 S.divider(),
+                S.documentTypeListItem("page").title("All Pages"),
 
                 // Regular document types
-                S.documentTypeListItem("page").title("Pages"),
+                S.listItem()
+                  .title("ABout Pages")
+                  .child(
+                    S.documentList()
+                      .id("about-pages")
+                      .schemaType("page")
+                      .filter('category == "about"')
+                  ),
 
                 S.divider(),
                 S.listItem()
