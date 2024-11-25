@@ -1,0 +1,39 @@
+---
+import type { SanityDocument } from "@sanity/client";
+import { loadQuery } from "../sanity/lib/load-query";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageQuery, pagesQuery } from "../sanity/lib/queries";
+
+export async function getStaticPaths() {
+  const { data: pages } = await loadQuery<SanityDocument[]>({
+    query: pageQuery,
+  });
+
+  return pages.map(({ slug }) => {
+    return {
+      params: {
+        slug: slug.current,
+      },
+    };
+  });
+}
+
+const { params } = Astro;
+
+const { data: page } = await loadQuery<SanityDocument>({
+  query: pagesQuery,
+  params,
+});
+
+const notFound = page === null;
+---
+
+{
+  notFound ? (
+    <p>Page not found</p>
+  ) : (
+    <BaseLayout title={page.title}>
+      <h1>A post about {page.title}</h1>
+    </BaseLayout>
+  )
+}

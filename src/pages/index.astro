@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import type { SanityDocument } from "@sanity/client";
+import { loadQuery } from "../sanity/lib/load-query";
+import { homeQuery } from "../sanity/lib/queries";
+
+const { data: home } = await loadQuery<SanityDocument>({
+  query: homeQuery,
+});
+---
+
+<BaseLayout title="Welcome to Astro.">
+  <h1>{home.title}</h1>
+</BaseLayout>
