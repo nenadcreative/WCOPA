@@ -6,8 +6,22 @@ interface Props {
 import "../styles/tailwind.css";
 import Header from "@globals/Header.astro";
 import Footer from "@globals/Footer.astro";
+import type { SanityDocument } from "@sanity/client";
+import { loadQuery } from "@sanity/lib/load-query";
+import { settingsQuery } from "@sanity/lib/queries";
 
 const { title } = Astro.props;
+
+const { data: settings } = await loadQuery<SanityDocument>({
+  query: settingsQuery,
+});
+
+const footerData = {
+  footerText: settings?.footerText,
+  footerHowToEnter: settings?.footerHowToEnter,
+  footerAbout: settings?.footerAbout,
+  footerContact: settings?.footerContact,
+};
 ---
 
 <!doctype html>
@@ -23,6 +37,6 @@ const { title } = Astro.props;
   <body>
     <Header />
     <main class="min-h-[80vh]"><slot /></main>
-    <Footer />
+    <Footer footerData={footerData} />
   </body>
 </html>

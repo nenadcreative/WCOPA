@@ -12,8 +12,8 @@ const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 const singletonTypes = new Set(["home", "settings"]);
 
 export default defineConfig({
-  name: "project-name",
-  title: "Project Name",
+  name: "wcopa",
+  title: "WCOPA",
   projectId: "s0esc5z3",
   dataset: "production",
   plugins: isDev
@@ -41,10 +41,11 @@ export default defineConfig({
 
                 // Regular document types
                 S.listItem()
-                  .title("ABout Pages")
+                  .title("About Pages")
                   .child(
                     S.documentList()
                       .id("about-pages")
+                      .title("About Pages")
                       .schemaType("page")
                       .filter('category == "about"')
                   ),

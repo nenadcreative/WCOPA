@@ -1,1 +1,11 @@
-<footer class="bg-green-200 h-96">I'm Footer</footer>
+---
+import Container from "@globals/Container.astro";
+import NewsletterForm from "./NewsletterForm.astro";
+const { footerData } = Astro.props;
+const { footerText } = footerData;
+---
+
+<footer class="bg-green-200 h-96">
+  <NewsletterForm />
+  <Container> I'm Footer {footerText}</Container>
+</footer>

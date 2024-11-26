@@ -29,6 +29,12 @@ export const settingsType = defineType({
     }),
 
     defineField({
+      name: "footerText",
+      title: "Footer Text",
+      description: 'Text after "Copyright" and "Year" in footer',
+      type: "string",
+    }),
+    defineField({
       name: "footerHowToEnter",
       title: "How To Enter Menu",
       type: "array",
