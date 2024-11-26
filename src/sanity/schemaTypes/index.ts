@@ -7,6 +7,9 @@ import { seoType } from "./objects/seo";
 import simpleLinkType from "./objects/simpleLink";
 import LinkType from "./objects/Link";
 
+import mediaSectionType from "./sections/media";
+import randomSectionType from "./sections/random";
+
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     pageType,
@@ -16,5 +19,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     seoType,
     simpleLinkType,
     LinkType,
+
+    mediaSectionType,
+    randomSectionType,
   ],
 };

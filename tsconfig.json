@@ -9,6 +9,7 @@
       "@assets/*": ["src/assets/*"],
       "@globals/*": ["src/components/global/*"],
       "@sanity/*": ["src/sanity/*"],
+      "@sections/*":["src/sections/*"]
     }
 
   }

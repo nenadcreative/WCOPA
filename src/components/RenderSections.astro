@@ -1,0 +1,20 @@
+---
+import Media from "@sections/Media.astro";
+import Random from "@sections/Random.astro";
+
+const Sections = {
+  media: Media,
+  random: Random,
+};
+
+const { sections } = Astro.props;
+---
+
+{
+  sections &&
+    sections.map((section) => {
+      const { _type } = section;
+      const Component = Sections[_type];
+      return <Component section={section} />;
+    })
+}

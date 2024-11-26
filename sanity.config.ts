@@ -1,6 +1,8 @@
 import { defineConfig, isDev } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
+import { ptString } from "sanity-plugin-pt-string";
+
 import { schema } from "./src/sanity/schemaTypes";
 import { CogIcon } from "@sanity/icons";
 import { HomeIcon } from "@sanity/icons";
@@ -66,8 +68,9 @@ export default defineConfig({
               ]),
         }),
         visionTool(),
+        ptString(),
       ]
-    : [structureTool()],
+    : [structureTool(), ptString()],
 
   schema: {
     types: schema.types,

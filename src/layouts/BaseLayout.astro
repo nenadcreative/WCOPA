@@ -10,8 +10,6 @@ import type { SanityDocument } from "@sanity/client";
 import { loadQuery } from "@sanity/lib/load-query";
 import { settingsQuery } from "@sanity/lib/queries";
 
-const { title } = Astro.props;
-
 const { data: settings } = await loadQuery<SanityDocument>({
   query: settingsQuery,
 });
@@ -22,6 +20,8 @@ const footerData = {
   footerAbout: settings?.footerAbout,
   footerContact: settings?.footerContact,
 };
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>

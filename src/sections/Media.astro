@@ -1,0 +1,16 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@globals/Container.astro";
+const { section } = Astro.props;
+const { title } = section;
+
+console.log(title);
+---
+
+<section class="py-20 bg-emerald-400">
+  <Container>
+    <h2 class="[&>p]:text-5xl">
+      <PortableText portableText={title} />
+    </h2></Container
+  >
+</section>

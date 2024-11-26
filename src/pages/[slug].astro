@@ -3,10 +3,11 @@ import type { SanityDocument } from "@sanity/client";
 import { loadQuery } from "../sanity/lib/load-query";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { pageQuery, pagesQuery } from "../sanity/lib/queries";
+import RenderSections from "@components/RenderSections.astro";
 
 export async function getStaticPaths() {
   const { data: pages } = await loadQuery<SanityDocument[]>({
-    query: pageQuery,
+    query: pagesQuery,
   });
 
   return pages.map(({ slug }) => {
@@ -21,19 +22,16 @@ export async function getStaticPaths() {
 const { params } = Astro;
 
 const { data: page } = await loadQuery<SanityDocument>({
-  query: pagesQuery,
+  query: pageQuery,
   params,
 });
 
-const notFound = page === null;
+if (!page) return Astro.redirect("/404");
 ---
 
-{
-  notFound ? (
-    <p>Page not found</p>
-  ) : (
-    <BaseLayout title={page.title}>
-      <h1>A post about {page.title}</h1>
-    </BaseLayout>
-  )
-}
+<BaseLayout title={page?.title}>
+  <h1>A post about {page?.title}</h1>
+  <RenderSections sections={page?.content} />
+</BaseLayout>
+)
+

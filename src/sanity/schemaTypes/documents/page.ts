@@ -47,5 +47,12 @@ export const pageType = defineType({
         ],
       },
     }),
+
+    defineField({
+      name: "content",
+      title: "Content",
+      type: "array",
+      of: [{ type: "media" }, { type: "random" }],
+    }),
   ],
 });

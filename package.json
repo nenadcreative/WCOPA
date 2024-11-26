@@ -29,6 +29,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sanity": "^3.59.0",
+    "sanity-plugin-pt-string": "^0.0.7",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2"
   }
