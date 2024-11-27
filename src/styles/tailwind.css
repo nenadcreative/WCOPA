@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  @apply font-body text-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  @apply font-display;
+}
+
+@layer base {
+  h2 {
+    @apply text-5xl;
+  }
+}
