@@ -1,7 +1,7 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-  name: "Link",
+  name: "link",
   title: "Link",
   description:
     "You can use this to create links to other pages or external sites.",

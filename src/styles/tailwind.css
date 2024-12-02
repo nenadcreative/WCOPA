@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  @apply font-body text-sm;
+  @apply font-body;
 }
 
 h1,

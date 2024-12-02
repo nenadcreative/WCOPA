@@ -5,6 +5,17 @@ export default defineType({
   name: "media",
   title: "Media Section",
   type: "object",
+  fieldsets: [
+    {
+      name: "cta",
+      title: "CTA",
+      options: {
+        collapsible: true,
+        collapsed: false,
+      },
+    },
+  ],
+
   fields: [
     defineField({
       name: "title",
@@ -27,6 +38,24 @@ export default defineType({
           { title: "Dark", value: "dark" },
         ],
       },
+    }),
+    defineField({
+      name: "cards",
+      title: "Cards",
+      type: "array",
+      of: [{ type: "mediaCard" }],
+    }),
+    defineField({
+      name: "ctaText",
+      title: "CTA Text",
+      type: "simpleBlockContent",
+      fieldset: "cta",
+    }),
+    defineField({
+      name: "ctaLink",
+      title: "Link",
+      type: "link",
+      fieldset: "cta",
     }),
   ],
   preview: {

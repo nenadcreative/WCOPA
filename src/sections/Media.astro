@@ -1,8 +1,11 @@
 ---
 import PortableText from "@components/atoms/PortableText.astro";
+import MediaCard from "@components/molecules/MediaCard.astro";
 import Container from "@globals/Container.astro";
+import ButtonLink from "@ui/ButtonLink.astro";
 const { section } = Astro.props;
-const { title, subtitle, variation } = section;
+const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
+console.log(section);
 ---
 
 <section
@@ -22,6 +25,21 @@ const { title, subtitle, variation } = section;
     >
       <PortableText portableText={title} />
     </h2>
-    <PortableText portableText={subtitle} />
+    <div class="mb-16">
+      <PortableText portableText={subtitle} />
+    </div>
+    <div class="mb-16 grid md:grid-cols-3 gap-8">
+      {
+        cards &&
+          cards.map((card) => {
+            return <MediaCard variation={variation} card={card} />;
+          })
+      }
+    </div>
+
+    <div class="text-sm mb-6">
+      <PortableText portableText={ctaText} />
+    </div>
+    <ButtonLink buttonLink={ctaLink} />
   </Container>
 </section>

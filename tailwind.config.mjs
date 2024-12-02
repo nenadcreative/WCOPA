@@ -29,6 +29,7 @@ export default {
           1: "#050006",
           2: "#240727",
         },
+        offwhite: "#F8F6F8",
         indigo: "#4E30C5",
         yellow: "#F4CA51",
       },
