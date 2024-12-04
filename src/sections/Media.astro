@@ -40,6 +40,11 @@ console.log(section);
     <div class="text-sm mb-6">
       <PortableText portableText={ctaText} />
     </div>
-    <ButtonLink buttonLink={ctaLink} />
+    <ButtonLink
+      buttonLink={ctaLink}
+      variation={variation === "light"
+        ? "primary-light-indigo"
+        : "primary-dark"}
+    />
   </Container>
 </section>
