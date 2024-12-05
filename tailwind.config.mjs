@@ -32,6 +32,10 @@ export default {
         offwhite: "#F8F6F8",
         indigo: "#4E30C5",
         yellow: "#F4CA51",
+        lavander: "#EDEAF9",
+      },
+      listStyleImage: {
+        star: 'url("/icons/list-icon.svg")',
       },
     },
   },

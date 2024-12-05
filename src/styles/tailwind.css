@@ -13,11 +13,11 @@ h3,
 h4,
 h5,
 h5 {
-  @apply font-display;
+  @apply font-display leading-tight;
 }
 
 @layer base {
   h2 {
-    @apply text-5xl;
+    @apply text-4xl xl:text-5xl;
   }
 }

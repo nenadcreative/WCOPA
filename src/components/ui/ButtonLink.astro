@@ -55,7 +55,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
     </a>
   ) : (
     <a
-      href={internalLink.slug.current}
+      href={internalLink.slug?.current}
       target="_self"
       class:list={[
         "relative overflow-hidden  group button font-body font-semibold capitalize inline-flex",
