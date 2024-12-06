@@ -55,7 +55,12 @@ console.log(section);
       <div class="md:w-1/2 flex justify-center">
         {
           image && (
-            <Image src={urlForImage(image).url()} inferSize alt={title} />
+            <Image
+              class="mask"
+              src={urlForImage(image).url()}
+              inferSize
+              alt={title}
+            />
           )
         }
       </div>
@@ -88,3 +93,12 @@ console.log(section);
     </div>
   </Container>
 </section>
+
+<style>
+  .mask {
+    mask-image: url("/mask-test2.svg");
+    mask-size: 100% 100%;
+    mask-position: center;
+    mask-repeat: no-repeat;
+  }
+</style>
