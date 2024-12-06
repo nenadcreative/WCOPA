@@ -5,6 +5,7 @@ import patternImage from "@assets/pattern.svg";
 import { urlForImage } from "@sanity/lib/urlForImage";
 import PortableText from "@components/atoms/PortableText.astro";
 import ButtonLink from "@components/ui/ButtonLink.astro";
+import star from "@assets/icons/star.svg";
 
 const { section } = Astro.props;
 const {
@@ -52,26 +53,73 @@ console.log(section);
         layout === "textImage" && " md:flex-row-reverse",
       ]}
     >
-      <div class="md:w-1/2 flex justify-center">
+      <div
+        class:list={[
+          "md:w-1/2 flex",
+          layout === "imageText" && "justify-start",
+          layout === "textImage" && "justify-center",
+        ]}
+      >
         {
           image && (
-            <Image
-              class="mask"
-              src={urlForImage(image).url()}
-              inferSize
-              alt={title}
-            />
+            <div class="w-[506px] h-[771px] relative">
+              <Image
+                class="mask w-[506px] h-[771px] object-cover "
+                src={urlForImage(image).url()}
+                width={506}
+                height={771}
+                alt={title}
+              />
+              <Image
+                src="/mask-1.png"
+                class="absolute -top-2 -right-10 -z-10 w-[506px] h-[771px] object-cover"
+                width={506}
+                height={771}
+                alt=""
+              />
+            </div>
           )
         }
       </div>
       <div class="md:w-1/2">
-        <span>{tagline}</span>
-        <h2><PortableText portableText={title} /></h2>
+        <span
+          class:list={[
+            "uppercase font-medium text-indigo mb-3",
+            variation === "dark" && "text-yellow",
+          ]}>{tagline}</span
+        >
+        <h2
+          class:list={[
+            "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-6",
+            variation === "dark" && "text-white [&>p>strong]:text-yellow",
+          ]}
+        >
+          <PortableText portableText={title} />
+        </h2>
 
-        <PortableText portableText={subtitle} />
-        <div class="[&>ul]:list-outside pl-7 [&>ul]:list-image-star">
-          <PortableText portableText={list} />
+        <div class="mb-8 text-md font-semibold">
+          <PortableText portableText={subtitle} />
         </div>
+
+        {
+          list && (
+            <ul class="mb-8">
+              {list.map((item) => (
+                <li class="mb-3 flex gap-2 items-start">
+                  <Image
+                    src={star}
+                    width={24}
+                    height={24}
+                    alt=""
+                    class="mt-0.5 flex-1 h-6 w-6"
+                  />
+                  <PortableText portableText={item.text} />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+
         {
           ctaText && (
             <div class="text-sm mb-6">
@@ -96,8 +144,8 @@ console.log(section);
 
 <style>
   .mask {
-    mask-image: url("/mask-test2.svg");
-    mask-size: 100% 100%;
+    mask-image: url("/mask-1.png");
+    mask-size: 506px 771px;
     mask-position: center;
     mask-repeat: no-repeat;
   }

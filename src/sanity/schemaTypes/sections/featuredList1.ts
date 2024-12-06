@@ -77,7 +77,7 @@ export default defineType({
       description:
         "Make sure you are only using bulleted list in order to properly render this on the frontend.",
       type: "array",
-      of: [{ type: "block" }],
+      of: [{ type: "simpleListItem" }],
     }),
 
     defineField({

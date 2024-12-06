@@ -8,6 +8,7 @@ import { seoType } from "./objects/seo";
 import mediaCardType from "./objects/mediaCard";
 import simpleLinkType from "./objects/simpleLink";
 import linkType from "./objects/link";
+import { simpleListItemType } from "./objects/simpleListItem";
 
 import mediaSectionType from "./sections/media";
 import randomSectionType from "./sections/random";
@@ -24,6 +25,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     mediaCardType,
     simpleLinkType,
     linkType,
+    simpleListItemType,
 
     mediaSectionType,
     randomSectionType,
