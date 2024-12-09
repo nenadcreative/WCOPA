@@ -12,6 +12,12 @@ export const pageQuery = groq`*[_type=='page' && slug.current=='example'][0]{...
     'internalLink':internalLink->{slug}}
   },
   
+  (_type == 'featuredList2')=>{
+  ...,
+    'ctaLink':ctaLink{..., 
+    'internalLink':internalLink->{slug}}
+  },
+  
   (_type == 'media')=>{
      ...,
      'ctaLink': ctaLink{
