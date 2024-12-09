@@ -2,17 +2,21 @@ import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
 
 export default defineType({
-  name: "featuredList1",
-  title: "Featured List 1 Section",
+  name: "featuredList2",
+  title: "Featured List 2 Section",
   type: "object",
-  fieldsets: [
+  groups: [
     {
-      name: "cta",
-      title: "CTA",
-      options: {
-        collapsible: true,
-        collapsed: false,
-      },
+      name: "card",
+      title: "Card",
+    },
+    {
+      name: "content",
+      title: "Content",
+    },
+    {
+      name: "design",
+      title: "Design",
     },
   ],
 
@@ -21,22 +25,41 @@ export default defineType({
       name: "tagline",
       title: "Tagline",
       type: "string",
+      group: "content",
     }),
     defineField({
       name: "title",
       title: "Title",
       type: "pt-string",
+      group: "content",
     }),
     defineField({
       name: "subtitle",
       title: "Subtitle",
       type: "pt-string",
+      group: "content",
     }),
+    defineField({
+      name: "paragraph",
+      title: "Paragraph",
+      type: "simpleBlockContent",
+      group: "content",
+    }),
+    defineField({
+      name: "ctaLink",
+      title: "Link",
+      type: "link",
+      group: "content",
+    }),
+
     defineField({
       name: "variation",
       title: "Variation",
+      description:
+        "Variation of the section. Mainly influences the color scheme.",
       type: "string",
       initialValue: "white",
+      group: "design",
       options: {
         list: [
           { title: "White", value: "white" },
@@ -44,13 +67,24 @@ export default defineType({
           { title: "Lavander", value: "lavander" },
           { title: "Gradient", value: "gradient" },
           { title: "Dark", value: "dark" },
+          { title: "Image", value: "image" },
         ],
       },
+    }),
+    defineField({
+      name: "bgImage",
+      title: "Background Image",
+      type: "image",
+      group: "design",
+      hidden: ({ parent }) => parent?.variation !== "image",
     }),
     defineField({
       name: "pattern",
       title: "Pattern",
       type: "boolean",
+      group: "design",
+      hidden: ({ parent }) =>
+        parent?.variation === "image" || parent?.variation === "dark",
     }),
     defineField({
       name: "layout",
@@ -58,37 +92,33 @@ export default defineType({
       type: "string",
       options: {
         list: [
-          { title: "Image - Text", value: "imageText" },
-          { title: "Text - Image", value: "textImage" },
+          { title: "Card - Text", value: "cardText" },
+          { title: "Text - Card", value: "textImage" },
         ],
       },
-      initialValue: "imageText",
+      initialValue: "cardText",
+      group: "design",
     }),
 
     defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
+      name: "cardTitle",
+      title: "Card Title",
+      type: "string",
+      group: "card",
     }),
-
     defineField({
       name: "list",
-      title: "List",
+      title: "Card List",
       type: "array",
       of: [{ type: "simpleListItem" }],
+      group: "card",
     }),
 
     defineField({
-      name: "ctaText",
-      title: "CTA Text",
+      name: "cardCTA",
+      title: "Card CTA",
       type: "simpleBlockContent",
-      fieldset: "cta",
-    }),
-    defineField({
-      name: "ctaLink",
-      title: "Link",
-      type: "link",
-      fieldset: "cta",
+      group: "card",
     }),
   ],
   preview: {
@@ -99,8 +129,8 @@ export default defineType({
     prepare(selection) {
       const { title } = selection;
       return {
-        title: stringFromPortableText(title) || "Featured List 1 Section Title",
-        subtitle: "Featured List 1 Section",
+        title: stringFromPortableText(title) || "Featured List 2 Section Title",
+        subtitle: "Featured List 2 Section",
       };
     },
   },

@@ -62,19 +62,19 @@ console.log(section);
       >
         {
           image && (
-            <div class="w-[506px] h-[771px] relative">
+            <div class="w-[300px] h-[458px] sm:w-[486px] sm:h-[660px]  relative">
               <Image
-                class="mask w-[506px] h-[771px] object-cover "
+                class="mask w-[300px] h-[458px] sm:w-[486px] sm:h-[660px] object-cover "
                 src={urlForImage(image).url()}
-                width={506}
-                height={771}
+                width={486}
+                height={660}
                 alt={title}
               />
               <Image
                 src="/mask-1.png"
-                class="absolute -top-2 -right-10 -z-10 w-[506px] h-[771px] object-cover"
-                width={506}
-                height={771}
+                class="absolute -top-2 -right-4 sm:-right-10 -z-10 w-[300px] h-[408px] sm:w-[486px] sm:h-[660px] "
+                width={486}
+                height={660}
                 alt=""
               />
             </div>
@@ -132,7 +132,7 @@ console.log(section);
             <ButtonLink
               buttonLink={ctaLink}
               variation={
-                variation === "light" ? "primary-light-indigo" : "primary-dark"
+                variation === "dark" ? "primary-light-yellow" : "primary-dark"
               }
             />
           )
@@ -145,8 +145,16 @@ console.log(section);
 <style>
   .mask {
     mask-image: url("/mask-1.png");
-    mask-size: 506px 771px;
+    mask-size: 300px 458px;
     mask-position: center;
     mask-repeat: no-repeat;
+  }
+  @media screen and (min-width: 640px) {
+    .mask {
+      mask-image: url("/mask-1.png");
+      mask-size: 486px 660px;
+      mask-position: center;
+      mask-repeat: no-repeat;
+    }
   }
 </style>

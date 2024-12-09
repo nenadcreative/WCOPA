@@ -52,7 +52,12 @@ export const pageType = defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "media" }, { type: "random" }, { type: "featuredList1" }],
+      of: [
+        { type: "media" },
+        { type: "random" },
+        { type: "featuredList1" },
+        { type: "featuredList2" },
+      ],
     }),
   ],
 });

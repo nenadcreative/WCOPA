@@ -17,6 +17,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
           "bg-dark-1 text-white hover:text-dark-1",
         variation === "primary-light-indigo" &&
           "bg-white text-dark-1 hover:text-white",
+        variation === "primary-light-yellow" && "bg-white text-dark-1 ",
       ]}
     >
       <span
@@ -24,6 +25,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
           "button-decor ",
           variation === "primary-dark" && "bg-yellow",
           variation === "primary-light-indigo" && "bg-indigo",
+          variation === "primary-light-yellow" && "bg-yellow",
         ]}
       />
       <div class="button-content">
@@ -32,6 +34,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
             "px-3 py-2.5",
             variation === "primary-dark" && "bg-yellow",
             variation === "primary-light-indigo" && "bg-indigo",
+            variation === "primary-light-yellow" && "bg-yellow",
           ]}
         >
           <div
@@ -39,6 +42,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
               " h-6 w-6 relative group-hover:rotate-90 transition-transform duration-300 rounded-full",
               variation === "primary-dark" && "bg-dark-1",
               variation === "primary-light-indigo" && "bg-white",
+              variation === "primary-light-yellow" && "bg-dark-1",
             ]}
           >
             <Image
@@ -48,7 +52,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
             />
           </div>
         </div>
-        <div>
+        <div class="flex justify-center items-center">
           <span class="button__text">{linkText}</span>
         </div>
       </div>
@@ -63,6 +67,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
           "bg-dark-1 text-white hover:text-dark-1",
         variation === "primary-light-indigo" &&
           "bg-white text-dark-1 hover:text-white",
+        variation === "primary-light-yellow" && "bg-white text-dark-1 ",
       ]}
     >
       <span
@@ -70,6 +75,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
           "button-decor ",
           variation === "primary-dark" && "bg-yellow",
           variation === "primary-light-indigo" && "bg-indigo",
+          variation === "primary-light-yellow" && "bg-yellow",
         ]}
       />
       <div class="button-content">
@@ -78,6 +84,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
             "px-3 py-2.5",
             variation === "primary-dark" && "bg-yellow",
             variation === "primary-light-indigo" && "bg-indigo",
+            variation === "primary-light-yellow" && "bg-yellow",
           ]}
         >
           <div
@@ -85,6 +92,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
               " h-6 w-6 relative group-hover:rotate-90 transition-transform duration-300 rounded-full",
               variation === "primary-dark" && "bg-dark-1",
               variation === "primary-light-indigo" && "bg-white",
+              variation === "primary-light-yellow" && "bg-dark-1",
             ]}
           >
             <Image
@@ -94,7 +102,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
             />
           </div>
         </div>
-        <div>
+        <div class="flex justify-center items-center">
           <span class="button__text">{linkText}</span>
         </div>
       </div>

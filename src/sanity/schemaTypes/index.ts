@@ -13,6 +13,7 @@ import { simpleListItemType } from "./objects/simpleListItem";
 import mediaSectionType from "./sections/media";
 import randomSectionType from "./sections/random";
 import featuredList1Type from "./sections/featuredList1";
+import featuredList2Type from "./sections/featuredList2";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -30,5 +31,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     mediaSectionType,
     randomSectionType,
     featuredList1Type,
+    featuredList2Type,
   ],
 };
