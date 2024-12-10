@@ -36,6 +36,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
     variation === "gradient" &&
       "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
     variation === "dark" && "bg-dark-2 text-white",
+    variation === "image" && "bg-dark-2 text-white",
   ]}
 >
   <Image
@@ -104,6 +105,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
           variation === "lavander" && "bg-white",
           variation === "gradient" && "bg-white",
           variation === "dark" && "bg-white text-dark-1",
+          variation === "image" && "bg-white text-dark-1",
         ]}
       >
         <h3 class:list={["font-bold text-sm text-indigo mb-6 "]}>
@@ -146,12 +148,14 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
           class:list={[
             "uppercase font-medium text-indigo mb-3",
             variation === "dark" && "text-yellow",
+            variation === "image" && "text-yellow",
           ]}>{tagline}</span
         >
         <h2
           class:list={[
             "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-6",
             variation === "dark" && "text-white [&>p>strong]:text-yellow",
+            variation === "image" && "text-white [&>p>strong]:text-yellow",
           ]}
         >
           <PortableText portableText={title} />
