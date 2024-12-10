@@ -39,7 +39,11 @@ export default {
         star: 'url("/icons/list-icon.svg")',
       },
       borderRadius: {
+        xs: "0.125rem",
         sm: "0.25rem",
+      },
+      spacing: {
+        18: "4.5rem",
       },
     },
   },

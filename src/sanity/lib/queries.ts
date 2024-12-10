@@ -17,6 +17,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
     'ctaLink':ctaLink{..., 
     'internalLink':internalLink->{slug}}
   },
+  (_type == 'steps')=>{...},
   
   (_type == 'media')=>{
      ...,

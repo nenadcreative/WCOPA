@@ -1,0 +1,69 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import StepsCard from "@components/molecules/StepsCard.astro";
+import Container from "@globals/Container.astro";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import { Image } from "astro:assets";
+
+const { section } = Astro.props;
+const {
+  variation,
+  pattern,
+  title,
+  subtitle,
+  bgImage,
+  steps,
+  ctaText,
+  ctaLinks,
+} = section;
+const bgImageUrl = urlForImage(bgImage)?.url();
+---
+
+<section
+  class:list={[
+    "py-28 relative",
+    variation === "white" && " text-dark-1",
+    variation === "offwhite" && "bg-offwhite text-dark-1",
+    variation === "lavander" && "bg-lavander text-dark-1",
+    variation === "gradient" &&
+      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "dark" && "bg-dark-2 text-white",
+  ]}
+>
+  <Container>
+    <div class="relative pt-20 px-2 md:px-16 min-h-96">
+      <div
+        class="absolute top-0 right-0 w-full bg-indigo h-1/3 md:h-96 rounded-sm overflow-hidden"
+      >
+        <Image
+          src={bgImageUrl}
+          inferSize
+          alt=""
+          class="w-full h-full object-cover"
+        />
+        <div class="w-full h-full bg-indigo/70 absolute top-0 right-0"></div>
+      </div>
+      <div class="relative z-20 text-white">
+        <h2 class="font-bold [&>p>strong]:text-yellow text-center mb-6">
+          <PortableText portableText={title} />
+        </h2>
+        <div
+          class="text-center [&>p>em]:text-xl [&>p>em]:not-italic [&>p>em]:font-medium mb-16"
+        >
+          <PortableText portableText={subtitle} />
+        </div>
+        {
+          steps && (
+            <div class="flex flex-wrap xl:grid xl:grid-cols-3 justify-center gap-10">
+              {steps.map((step, index) => {
+                return (
+                  <StepsCard step={step} index={index} variation={variation} />
+                );
+              })}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>

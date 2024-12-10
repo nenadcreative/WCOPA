@@ -57,6 +57,7 @@ export const pageType = defineType({
         { type: "random" },
         { type: "featuredList1" },
         { type: "featuredList2" },
+        { type: "steps" },
       ],
     }),
   ],
