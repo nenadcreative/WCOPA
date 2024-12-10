@@ -34,8 +34,12 @@ export default {
         yellow: "#F4CA51",
         lavander: "#EDEAF9",
       },
+
       listStyleImage: {
         star: 'url("/icons/list-icon.svg")',
+      },
+      borderRadius: {
+        sm: "0.25rem",
       },
     },
   },

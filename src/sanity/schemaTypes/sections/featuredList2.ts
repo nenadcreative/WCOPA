@@ -93,7 +93,7 @@ export default defineType({
       options: {
         list: [
           { title: "Card - Text", value: "cardText" },
-          { title: "Text - Card", value: "textImage" },
+          { title: "Text - Card", value: "textCard" },
         ],
       },
       initialValue: "cardText",

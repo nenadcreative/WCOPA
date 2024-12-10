@@ -20,4 +20,8 @@ h5 {
   h2 {
     @apply text-4xl xl:text-5xl;
   }
+
+  h3{
+    @apply text-3xl xl:text-4xl
+  }
 }

@@ -26,6 +26,7 @@ const { data: page } = await loadQuery<SanityDocument>({
   params,
 });
 
+console.log(page);
 if (!page) return Astro.redirect("/404");
 export const prerender = true;
 ---

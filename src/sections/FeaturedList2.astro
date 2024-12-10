@@ -1,3 +1,181 @@
-<section>
-  <h2>Featured List 2</h2>
+---
+import Container from "@globals/Container.astro";
+import { Image } from "astro:assets";
+import patternImage from "@assets/pattern.svg";
+import decoration1 from "@assets/decoration1.svg";
+import decoration2 from "@assets/decoration2.svg";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import PortableText from "@components/atoms/PortableText.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import star from "@assets/icons/star.svg";
+import starPurple from "@assets/icons/list-icon-purple.svg";
+const { section } = Astro.props;
+const {
+  variation,
+  layout,
+  pattern,
+  bgImage,
+  tagline,
+  title,
+  subtitle,
+  paragraph,
+  ctaLink,
+  cardTitle,
+  list,
+  cardCTA,
+} = section;
+const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
+---
+
+<section
+  class:list={[
+    "py-24 relative",
+    variation === "white" && " text-dark-1",
+    variation === "offwhite" && "bg-offwhite text-dark-1",
+    variation === "lavander" && "bg-lavander text-dark-1",
+    variation === "gradient" &&
+      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "dark" && "bg-dark-2 text-white",
+  ]}
+>
+  <Image
+    src={patternImage}
+    alt=""
+    class:list={[
+      "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+      pattern && "block",
+      !pattern && "hidden",
+      variation === "white" && " ",
+      variation === "gradient" && "opacity-80 ",
+      variation === "dark" && "hidden",
+      variation === "image" && "hidden",
+    ]}
+  />
+
+  {
+    variation === "dark" && layout === "cardText" && (
+      <Image
+        src={decoration1}
+        alt=""
+        class:list={["absolute bottom-0 right-0  z-10"]}
+      />
+    )
+  }
+  {
+    variation === "dark" && layout === "textCard" && (
+      <Image
+        src={decoration2}
+        alt=""
+        class:list={["absolute bottom-0 right-0  z-10"]}
+      />
+    )
+  }
+
+  {
+    bgImageUrl && variation === "image" && (
+      <div class="w-full h-full ">
+        <Image
+          src={bgImageUrl}
+          alt=""
+          inferSize
+          class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+          ]}
+        />
+        <div class="w-full h-full bg-indigo/70 absolute top-0 left-0 " />
+      </div>
+    )
+  }
+
+  <Container>
+    <div
+      class:list={[
+        "flex flex-col justify-center items-center gap-16 md:gap-24 relative z-10",
+        layout === "cardText" && "flex-col-reverse md:flex-row",
+        layout === "textCard" && "flex-col-reverse md:flex-row-reverse",
+      ]}
+    >
+      <div
+        class:list={[
+          "p-5 md:8 pb-6 md:pb-10 w-full md:w-1/2 rounded-sm",
+          variation === "white" && !pattern && "bg-offwhite",
+          variation === "white" && pattern && "bg-lavander",
+          variation === "offwhite" && "bg-white",
+          variation === "lavander" && "bg-white",
+          variation === "gradient" && "bg-white",
+          variation === "dark" && "bg-white text-dark-1",
+        ]}
+      >
+        <h3 class:list={["font-bold text-sm text-indigo mb-6 "]}>
+          {cardTitle}
+        </h3>
+
+        {
+          list && list.length > 0 && (
+            <ul class="mb-8">
+              {list.map((item, index) => (
+                <li class="mb-3 flex gap-2 items-start">
+                  {index % 2 === 0 ? (
+                    <Image
+                      src={star}
+                      width={24}
+                      height={24}
+                      alt=""
+                      class="mt-0.5 flex-1 h-6 w-6"
+                    />
+                  ) : (
+                    <Image
+                      src={starPurple}
+                      width={24}
+                      height={24}
+                      alt=""
+                      class="mt-0.5 flex-1 h-6 w-6"
+                    />
+                  )}
+
+                  <PortableText portableText={item.text} />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        <PortableText portableText={cardCTA} />
+      </div>
+      <div class="w-full md:w-1/2">
+        <span
+          class:list={[
+            "uppercase font-medium text-indigo mb-3",
+            variation === "dark" && "text-yellow",
+          ]}>{tagline}</span
+        >
+        <h2
+          class:list={[
+            "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-6",
+            variation === "dark" && "text-white [&>p>strong]:text-yellow",
+          ]}
+        >
+          <PortableText portableText={title} />
+        </h2>
+
+        <div class="mb-3 text-md font-semibold">
+          <PortableText portableText={subtitle} />
+        </div>
+
+        <div class="mb-12">
+          <PortableText portableText={paragraph} />
+        </div>
+
+        {
+          ctaLink && (
+            <ButtonLink
+              buttonLink={ctaLink}
+              variation={
+                variation === "dark" ? "primary-light-yellow" : "primary-dark"
+              }
+            />
+          )
+        }
+      </div>
+    </div>
+  </Container>
 </section>
