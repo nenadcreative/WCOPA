@@ -18,6 +18,8 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
         variation === "primary-light-indigo" &&
           "bg-white text-dark-1 hover:text-white",
         variation === "primary-light-yellow" && "bg-white text-dark-1 ",
+        variation === "secondary-dark" && " text-dark-1 hover:text-indigo",
+        variation === "secondary-light" && "text-white hover:text-yellow",
       ]}
     >
       <span
@@ -26,6 +28,8 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
           variation === "primary-dark" && "bg-yellow",
           variation === "primary-light-indigo" && "bg-indigo",
           variation === "primary-light-yellow" && "bg-yellow",
+          variation === "secondary-dark" && "bg-transparent",
+          variation === "secondary-light" && "bg-transparent",
         ]}
       />
       <div class="button-content">
@@ -43,6 +47,8 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
               variation === "primary-dark" && "bg-dark-1",
               variation === "primary-light-indigo" && "bg-white",
               variation === "primary-light-yellow" && "bg-dark-1",
+              variation === "secondary-dark" && "bg-indigo",
+              variation === "secondary-light" && "bg-white",
             ]}
           >
             <Image
@@ -68,6 +74,8 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
         variation === "primary-light-indigo" &&
           "bg-white text-dark-1 hover:text-white",
         variation === "primary-light-yellow" && "bg-white text-dark-1 ",
+        variation === "secondary-dark" && " text-dark-1 hover:text-indigo",
+        variation === "secondary-light" && "text-white hover:text-yellow",
       ]}
     >
       <span
@@ -85,6 +93,8 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
             variation === "primary-dark" && "bg-yellow",
             variation === "primary-light-indigo" && "bg-indigo",
             variation === "primary-light-yellow" && "bg-yellow",
+            variation === "secondary-dark" && "px-0",
+            variation === "secondary-light" && "px-0",
           ]}
         >
           <div
@@ -93,6 +103,8 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
               variation === "primary-dark" && "bg-dark-1",
               variation === "primary-light-indigo" && "bg-white",
               variation === "primary-light-yellow" && "bg-dark-1",
+              variation === "secondary-dark" && "bg-indigo",
+              variation === "secondary-light" && "bg-white",
             ]}
           >
             <Image
@@ -118,7 +130,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
     border-radius: 1.5rem;
     overflow: hidden;
     position: relative;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05);
+
     border: none;
     cursor: pointer;
   }

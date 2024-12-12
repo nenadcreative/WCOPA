@@ -1,6 +1,7 @@
 ---
 import PortableText from "@components/atoms/PortableText.astro";
 import StepsCard from "@components/molecules/StepsCard.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
 import Container from "@globals/Container.astro";
 import { urlForImage } from "@sanity/lib/urlForImage";
 import { Image } from "astro:assets";
@@ -54,10 +55,43 @@ const bgImageUrl = urlForImage(bgImage)?.url();
         </div>
         {
           steps && (
-            <div class="flex flex-wrap xl:grid xl:grid-cols-3 justify-center gap-10">
+            <div class="flex flex-wrap xl:grid xl:grid-cols-3 justify-center gap-10 mb-14">
               {steps.map((step, index) => {
                 return (
                   <StepsCard step={step} index={index} variation={variation} />
+                );
+              })}
+            </div>
+          )
+        }
+
+        {
+          ctaText && (
+            <div class="text-center max-w-3xl mx-auto text-sm font-bold mb-6">
+              <PortableText portableText={ctaText} />
+            </div>
+          )
+        }
+
+        {
+          ctaLinks && (
+            <div class="flex flex-wrap justify-center gap-6 sm:gap-10">
+              {ctaLinks.map((link, index) => {
+                return (
+                  <ButtonLink
+                    buttonLink={link}
+                    variation={
+                      index === 0
+                        ? variation === "dark"
+                          ? "primary-light-yellow"
+                          : "primary-dark"
+                        : index === 1
+                          ? variation === "dark"
+                            ? "secondary-light"
+                            : "secondary-dark"
+                          : "primary-dark" // default value
+                    }
+                  />
                 );
               })}
             </div>
