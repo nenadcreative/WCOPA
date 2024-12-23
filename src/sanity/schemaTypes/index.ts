@@ -17,6 +17,7 @@ import randomSectionType from "./sections/random";
 import featuredList1Type from "./sections/featuredList1";
 import featuredList2Type from "./sections/featuredList2";
 import stepsType from "./sections/steps";
+import centeredText from "./sections/centeredText";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -39,5 +40,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     featuredList1Type,
     featuredList2Type,
     stepsType,
+    centeredText,
   ],
 };

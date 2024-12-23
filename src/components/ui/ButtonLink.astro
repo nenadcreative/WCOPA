@@ -35,10 +35,12 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
       <div class="button-content">
         <div
           class:list={[
-            "px-3 py-2.5",
-            variation === "primary-dark" && "bg-yellow",
-            variation === "primary-light-indigo" && "bg-indigo",
-            variation === "primary-light-yellow" && "bg-yellow",
+            " py-2.5",
+            variation === "primary-dark" && "bg-yellow px-3",
+            variation === "primary-light-indigo" && "bg-indigo px-3",
+            variation === "primary-light-yellow" && "bg-yellow px-3",
+            variation === "secondary-dark" && "px-0",
+            variation === "secondary-light" && "px-0",
           ]}
         >
           <div
@@ -89,10 +91,10 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
       <div class="button-content">
         <div
           class:list={[
-            "px-3 py-2.5",
-            variation === "primary-dark" && "bg-yellow",
-            variation === "primary-light-indigo" && "bg-indigo",
-            variation === "primary-light-yellow" && "bg-yellow",
+            " py-2.5",
+            variation === "primary-dark" && "bg-yellow px-3",
+            variation === "primary-light-indigo" && "bg-indigo px-3",
+            variation === "primary-light-yellow" && "bg-yellow px-3",
             variation === "secondary-dark" && "px-0",
             variation === "secondary-light" && "px-0",
           ]}
