@@ -9,6 +9,7 @@ import mediaCardType from "./objects/mediaCard";
 import simpleLinkType from "./objects/simpleLink";
 import linkType from "./objects/link";
 import { simpleListItemType } from "./objects/simpleListItem";
+import { listItemType } from "./objects/listItem";
 import stepsCard from "./objects/stepsCard";
 
 import mediaSectionType from "./sections/media";
@@ -29,7 +30,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     stepsCard,
     simpleLinkType,
     linkType,
+
     simpleListItemType,
+    listItemType,
 
     mediaSectionType,
     randomSectionType,

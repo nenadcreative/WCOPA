@@ -101,16 +101,27 @@ export default defineType({
     }),
 
     defineField({
+      name: "cardVariation",
+      title: "Card Variation",
+      type: "string",
+      options: {
+        list: ["card1", "card2", "card3", "card4"],
+      },
+      group: "card",
+    }),
+    defineField({
       name: "cardTitle",
       title: "Card Title",
       type: "string",
       group: "card",
+      hidden: ({ parent }) => parent?.cardVariation === "card2",
     }),
     defineField({
       name: "list",
       title: "Card List",
       type: "array",
       of: [{ type: "simpleListItem" }],
+      hidden: ({ parent }) => parent?.cardVariation === "card2",
       group: "card",
     }),
 
@@ -118,6 +129,16 @@ export default defineType({
       name: "cardCTA",
       title: "Card CTA",
       type: "simpleBlockContent",
+      hidden: ({ parent }) => parent?.cardVariation === "card2",
+      group: "card",
+    }),
+
+    defineField({
+      name: "card2Content",
+      title: "Card Content",
+      type: "array",
+      of: [{ type: "listItem" }],
+      hidden: ({ parent }) => parent?.cardVariation !== "card2",
       group: "card",
     }),
   ],

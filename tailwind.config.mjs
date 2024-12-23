@@ -31,6 +31,7 @@ export default {
         },
         offwhite: "#F8F6F8",
         indigo: "#4E30C5",
+        purple: "#743089",
         yellow: "#F4CA51",
         lavander: "#EDEAF9",
       },
