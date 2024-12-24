@@ -7,7 +7,7 @@ import { simpleBlockContentType } from "./objects/simpleBlockContent";
 import { seoType } from "./objects/seo";
 import mediaCardType from "./objects/mediaCard";
 import simpleLinkType from "./objects/simpleLink";
-import linkType from "./objects/link";
+import { linkType } from "./objects/link";
 import { simpleListItemType } from "./objects/simpleListItem";
 import { listItemType } from "./objects/listItem";
 import stepsCard from "./objects/stepsCard";
