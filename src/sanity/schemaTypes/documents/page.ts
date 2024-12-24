@@ -54,11 +54,12 @@ export const pageType = defineType({
       type: "array",
       of: [
         { type: "media" },
-        { type: "random" },
+
         { type: "featuredList1" },
         { type: "featuredList2" },
         { type: "steps" },
         { type: "centeredText" },
+        { type: "hero" },
       ],
     }),
   ],

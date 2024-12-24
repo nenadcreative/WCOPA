@@ -1,0 +1,38 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+import type { PortableTextBlock } from "sanity";
+import type { Image as SanityImage } from "sanity";
+
+interface Section {
+  tagline: string;
+  title: PortableTextBlock; // Adjust the type according to your data structure
+  variation: "gradient" | "pattern" | "dark" | "logo" | "image"; // Adjust the type according to your data structure
+  description: PortableTextBlock; // Adjust the type according to your data structure
+  image: SanityImage;
+}
+interface Props {
+  section: Section;
+}
+
+const { section }: Props = Astro.props;
+const { title, tagline, description, variation, image } = section;
+---
+
+<section
+  class:list={[
+    "pt-18 pb-28",
+    variation === "gradient" &&
+      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+  ]}
+>
+  <Container
+    size={`${variation === "logo" || variation === "image" ? "medium" : "small"}`}
+  >
+    <div>
+      <span>{tagline}</span>
+      <h1><PortableText portableText={title} /></h1>
+      <div><PortableText portableText={description} /></div>
+    </div>
+  </Container>
+</section>

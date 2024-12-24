@@ -1,18 +1,20 @@
 ---
 import Media from "@sections/Media.astro";
-import Random from "@sections/Random.astro";
+
 import FeaturedList1 from "@sections/FeaturedList1.astro";
 import FeaturedList2 from "@sections/FeaturedList2.astro";
 import Steps from "@sections/Steps.astro";
 import CenteredText from "@sections/CenteredText.astro";
+import Hero from "@sections/Hero.astro";
 
 const Sections = {
   media: Media,
-  random: Random,
+
   featuredList1: FeaturedList1,
   featuredList2: FeaturedList2,
   steps: Steps,
   centeredText: CenteredText,
+  hero: Hero,
 };
 
 const { sections } = Astro.props;
