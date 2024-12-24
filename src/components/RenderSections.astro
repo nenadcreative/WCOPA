@@ -4,6 +4,7 @@ import Random from "@sections/Random.astro";
 import FeaturedList1 from "@sections/FeaturedList1.astro";
 import FeaturedList2 from "@sections/FeaturedList2.astro";
 import Steps from "@sections/Steps.astro";
+import CenteredText from "@sections/CenteredText.astro";
 
 const Sections = {
   media: Media,
@@ -11,6 +12,7 @@ const Sections = {
   featuredList1: FeaturedList1,
   featuredList2: FeaturedList2,
   steps: Steps,
+  centeredText: CenteredText,
 };
 
 const { sections } = Astro.props;
@@ -21,6 +23,10 @@ const { sections } = Astro.props;
     sections.map((section) => {
       const { _type } = section;
       const Component = Sections[_type];
+      if (!Component) {
+        console.error(`Component for type "${_type}" is not defined.`);
+        return null;
+      }
       return <Component section={section} />;
     })
 }

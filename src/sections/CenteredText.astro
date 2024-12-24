@@ -1,0 +1,107 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import patternImage from "@assets/pattern.svg";
+import decoration from "@assets/decoration3.png";
+
+import type { Image as SanityImage, PortableTextBlock } from "sanity";
+interface Section {
+  title: PortableTextBlock; // Adjust the type according to your data structure
+  variation:
+    | "white"
+    | "offwhite"
+    | "lavander"
+    | "gradient"
+    | "dark"
+    | "pattern"
+    | "image"; // Adjust the type according to your data structure
+  text: PortableTextBlock; // Adjust the type according to your data structure
+  bgImage: SanityImage;
+}
+
+interface Props {
+  section: Section;
+}
+
+const { section }: Props = Astro.props;
+const { title, variation, text, bgImage } = section;
+const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
+---
+
+<section
+  class:list={[
+    "pt-24 pb-28",
+    variation === "offwhite" && "bg-offwhite text-dark-1",
+    variation === "lavander" && "bg-lavander text-dark-1",
+    variation === "gradient" &&
+      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "dark" && "bg-dark-2 relative text-white",
+    variation === "pattern" && "relative",
+    variation === "image" && "bg-dark-2 relative text-white",
+  ]}
+>
+  <Image
+    src={patternImage}
+    alt=""
+    class:list={[
+      "",
+      variation !== "pattern" && "hidden",
+      variation === "pattern" &&
+        "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+    ]}
+  />
+  {
+    variation === "dark" && (
+      <Image
+        src={decoration}
+        alt=""
+        class:list={["absolute top-0 right-0  z-10"]}
+      />
+    )
+  }
+  {
+    bgImageUrl && variation === "image" && (
+      <div class="w-full h-full ">
+        <Image
+          src={bgImageUrl}
+          alt=""
+          inferSize
+          class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+          ]}
+        />
+        <div class="w-full h-full bg-indigo/70 absolute top-0 left-0 " />
+      </div>
+    )
+  }
+  <Container
+    size="small"
+    classes={`${variation === "pattern" || variation === "image" ? "relative z-10" : ""}`}
+  >
+    <h2
+      class:list={[
+        "font-bold  [&>p>strong]:font-bold mb-7",
+        variation === "white" && "text-dark-1 [&>p>strong]:text-indigo",
+        variation === "offwhite" && "text-dark-1 [&>p>strong]:text-indigo",
+        variation === "lavander" && "text-dark-1 [&>p>strong]:text-indigo",
+        variation === "gradient" && "text-dark-1 [&>p>strong]:text-indigo",
+        variation === "dark" && "text-white [&>p>strong]:text-yellow",
+        variation === "pattern" && "text-dark-1 [&>p>strong]:text-indigo",
+        variation === "image" && "text-white [&>p>strong]:text-yellow",
+      ]}
+    >
+      <PortableText portableText={title} />
+    </h2>
+    <div
+      class:list={[
+        "prose prose-headings:my-1 prose-p:mb-4",
+        variation === "dark" && "text-white prose-headings:text-white",
+        variation === "image" && "text-white prose-headings:text-white",
+      ]}
+    >
+      <PortableText portableText={text} />
+    </div>
+  </Container>
+</section>

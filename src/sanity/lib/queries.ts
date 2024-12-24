@@ -18,6 +18,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
     'internalLink':internalLink->{slug}}
   },
   (_type == 'steps')=>{...},
+  (_type == 'centeredText')=>{...},
   
   (_type == 'media')=>{
      ...,

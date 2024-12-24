@@ -17,7 +17,7 @@ const {
   ctaText,
   ctaLinks,
 } = section;
-const bgImageUrl = urlForImage(bgImage)?.url();
+const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
 ---
 
 <section
