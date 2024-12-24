@@ -3,6 +3,11 @@ import PortableText from "@components/atoms/PortableText.astro";
 import Container from "@components/global/Container.astro";
 import type { PortableTextBlock } from "sanity";
 import type { Image as SanityImage } from "sanity";
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import decoration from "@assets/decoration4.png";
+import patternImage from "@assets/pattern.png";
+import logo from "@assets/logo.png";
 
 interface Section {
   tagline: string;
@@ -17,22 +22,126 @@ interface Props {
 
 const { section }: Props = Astro.props;
 const { title, tagline, description, variation, image } = section;
+const imageUrl = image ? urlForImage(image)?.url() : null;
 ---
 
 <section
   class:list={[
-    "pt-18 pb-28",
+    "pt-18 pb-28 overflow-hidden",
     variation === "gradient" &&
       "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "pattern" &&
+      "relative bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "logo" &&
+      "relative bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+
+    variation === "dark" && "bg-dark-2 relative",
+    variation === "image" &&
+      "relative bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
   ]}
 >
+  <Image
+    src={patternImage}
+    alt=""
+    class:list={[
+      "",
+      variation === "pattern" &&
+        "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+      variation === "dark" && "hidden",
+      variation === "logo" &&
+        "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+
+      variation === "image" &&
+        "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+    ]}
+  />
+
+  {
+    variation === "dark" && (
+      <Image
+        src={decoration}
+        alt=""
+        class:list={["absolute bottom-0 right-0  z-10"]}
+      />
+    )
+  }
   <Container
+    classes={`${variation === "pattern" || variation === "image" || variation === "logo" ? "relative z-10" : ""}`}
     size={`${variation === "logo" || variation === "image" ? "medium" : "small"}`}
   >
-    <div class:list={[""]}>
-      <span>{tagline}</span>
-      <h1><PortableText portableText={title} /></h1>
-      <div><PortableText portableText={description} /></div>
+    <div
+      class:list={[
+        "",
+        variation === "logo" && "flex flex-col md:flex-row gap-4 xl:gap-20 ",
+        variation === "image" && "flex flex-col md:flex-row gap-4 xl:gap-20",
+      ]}
+    >
+      <div
+        class:list={[
+          "max-w-3.5xl",
+          variation === "gradient" && "text-center",
+          variation === "pattern" && "text-center",
+          variation === "dark" && "text-center",
+          variation === "logo" && "text-left",
+          variation === "image" && "text-left",
+        ]}
+      >
+        <span
+          class:list={[
+            "uppercase  font-medium mb-1",
+            variation !== "dark" && "text-indigo",
+            variation === "dark" && "text-yellow",
+          ]}>{tagline}</span
+        >
+        <h1
+          class:list={[
+            variation === "gradient" &&
+              "text-dark-1 mb-5 [&>p>strong]:text-indigo",
+            variation === "dark" && "text-white mb-5 [&>p>strong]:text-yellow",
+            variation === "pattern" &&
+              "text-dark-1 mb-5 [&>p>strong]:text-indigo",
+            variation === "logo" && "text-dark-1 mb-7 [&>p>strong]:text-yellow",
+            variation === "image" &&
+              "text-dark-1 mb-7 [&>p>strong]:text-yellow",
+          ]}
+        >
+          <PortableText portableText={title} />
+        </h1>
+        <div
+          class:list={[
+            "text-sm",
+            variation !== "dark" && "text-dark-2 [&>p>strong]:text-indigo",
+            variation === "dark" && "text-white [&>p>strong]:text-yellow",
+          ]}
+        >
+          <PortableText portableText={description} />
+        </div>
+      </div>
+
+      <div class="flex shrink-0 justify-center items-center">
+        {
+          variation === "logo" && (
+            <Image
+              alt="logo"
+              src={logo}
+              width={368}
+              height={388}
+              class="xl:w-full h-auto"
+            />
+          )
+        }
+        {
+          variation === "image" && imageUrl && (
+            <Image
+              alt=""
+              src={imageUrl}
+              width={368}
+              height={388}
+              class="xl:w-full h-auto"
+            />
+          )
+        }
+      </div>
     </div>
   </Container>
 </section>
