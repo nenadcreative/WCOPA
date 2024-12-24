@@ -69,7 +69,6 @@ export default defineConfig({
     }),
     visionTool(),
     ptString(),
-    media(),
   ],
 
   schema: {

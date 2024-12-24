@@ -3,7 +3,7 @@ import Image from "astro/components/Image.astro";
 import { urlForImage } from "@sanity/lib/urlForImage";
 import PortableText from "@components/atoms/PortableText.astro";
 const { card, variation } = Astro.props;
-const { quote, logo, company, name, link } = card;
+const { quote, logo, company, name } = card;
 
 const logoUrl = urlForImage(logo).url();
 ---
