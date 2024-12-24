@@ -19,60 +19,58 @@ export default defineConfig({
   title: "WCOPA",
   projectId: "s0esc5z3",
   dataset: "production",
-  plugins: isDev
-    ? [
-        structureTool({
-          structure: (S) =>
-            S.list()
-              .title("Content")
-              .items([
-                // Our singleton type has a list item with a custom child
-                S.listItem()
-                  .title("Home")
-                  .id("132f2662-58c6-4916-886d-d1a517f675f9")
-                  .icon(HomeIcon)
-                  .child(
-                    // Instead of rendering a list of documents, we render a single
-                    // document, specifying the `documentId` manually to ensure
-                    // that we're editing the single instance of the document
-                    S.document()
-                      .schemaType("home")
-                      .documentId("132f2662-58c6-4916-886d-d1a517f675f9")
-                  ),
-                S.divider(),
-                S.documentTypeListItem("page").title("All Pages"),
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title("Content")
+          .items([
+            // Our singleton type has a list item with a custom child
+            S.listItem()
+              .title("Home")
+              .id("132f2662-58c6-4916-886d-d1a517f675f9")
+              .icon(HomeIcon)
+              .child(
+                // Instead of rendering a list of documents, we render a single
+                // document, specifying the `documentId` manually to ensure
+                // that we're editing the single instance of the document
+                S.document()
+                  .schemaType("home")
+                  .documentId("132f2662-58c6-4916-886d-d1a517f675f9")
+              ),
+            S.divider(),
+            S.documentTypeListItem("page").title("All Pages"),
 
-                // Regular document types
-                S.listItem()
+            // Regular document types
+            S.listItem()
+              .title("About Pages")
+              .child(
+                S.documentList()
+                  .id("about-pages")
                   .title("About Pages")
-                  .child(
-                    S.documentList()
-                      .id("about-pages")
-                      .title("About Pages")
-                      .schemaType("page")
-                      .filter('category == "about"')
-                  ),
+                  .schemaType("page")
+                  .filter('category == "about"')
+              ),
 
-                S.divider(),
-                S.listItem()
-                  .title("Website Settings")
-                  .id("65e93031-3a43-4907-8bf9-1bd2ff2d9b08")
-                  .icon(CogIcon)
-                  .child(
-                    // Instead of rendering a list of documents, we render a single
-                    // document, specifying the `documentId` manually to ensure
-                    // that we're editing the single instance of the document
-                    S.document()
-                      .schemaType("settings")
-                      .documentId("65e93031-3a43-4907-8bf9-1bd2ff2d9b08")
-                  ),
-              ]),
-        }),
-        visionTool(),
-        ptString(),
-        media(),
-      ]
-    : [structureTool(), ptString(), media()],
+            S.divider(),
+            S.listItem()
+              .title("Website Settings")
+              .id("65e93031-3a43-4907-8bf9-1bd2ff2d9b08")
+              .icon(CogIcon)
+              .child(
+                // Instead of rendering a list of documents, we render a single
+                // document, specifying the `documentId` manually to ensure
+                // that we're editing the single instance of the document
+                S.document()
+                  .schemaType("settings")
+                  .documentId("65e93031-3a43-4907-8bf9-1bd2ff2d9b08")
+              ),
+          ]),
+    }),
+    visionTool(),
+    ptString(),
+    media(),
+  ],
 
   schema: {
     types: schema.types,
