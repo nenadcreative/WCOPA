@@ -2,7 +2,7 @@ import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
 
 export default defineType({
-  name: "media",
+  name: "mediaSection",
   title: "Media Section",
   type: "object",
   fieldsets: [

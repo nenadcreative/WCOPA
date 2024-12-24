@@ -53,7 +53,7 @@ export const pageType = defineType({
       title: "Content",
       type: "array",
       of: [
-        { type: "media" },
+        { type: "mediaSection" },
 
         { type: "featuredList1" },
         { type: "featuredList2" },
