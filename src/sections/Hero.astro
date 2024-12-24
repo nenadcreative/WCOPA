@@ -29,7 +29,7 @@ const { title, tagline, description, variation, image } = section;
   <Container
     size={`${variation === "logo" || variation === "image" ? "medium" : "small"}`}
   >
-    <div>
+    <div class:list={[""]}>
       <span>{tagline}</span>
       <h1><PortableText portableText={title} /></h1>
       <div><PortableText portableText={description} /></div>
