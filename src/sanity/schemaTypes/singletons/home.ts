@@ -22,9 +22,5 @@ export const homeType = defineType({
       type: "seo",
       group: "seo",
     }),
-    defineField({
-      name: "media",
-      type: "media",
-    }),
   ],
 });
