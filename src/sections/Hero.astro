@@ -43,6 +43,7 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
   <Image
     src={patternImage}
     alt=""
+    priority
     class:list={[
       "",
       variation === "pattern" &&
@@ -60,6 +61,7 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
     variation === "dark" && (
       <Image
         src={decoration}
+        priority
         alt=""
         class:list={["absolute bottom-0 right-0  z-10"]}
       />
@@ -123,6 +125,7 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
           variation === "logo" && (
             <Image
               alt="logo"
+              priority
               src={logo}
               width={368}
               height={388}
@@ -134,6 +137,7 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
           variation === "image" && imageUrl && (
             <Image
               alt=""
+              priority
               src={imageUrl}
               width={368}
               height={388}
