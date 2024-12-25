@@ -19,7 +19,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
   },
   (_type == 'steps')=>{...},
   (_type == 'centeredText')=>{...},
-  
+  (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'media')=>{
      ...,
      'ctaLink': ctaLink{

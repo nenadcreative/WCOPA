@@ -1,0 +1,115 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+import EventCard from "@components/molecules/EventCard.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import type { PortableTextBlock } from "sanity";
+import decorationOffwhite from "@assets/decorationOffwhite.png";
+import decorationLavander from "@assets/decorationLavander.png";
+import { Image } from "astro:assets";
+
+interface Section {
+  title: PortableTextBlock; // Adjust the type according to your data structure
+  subtitle: PortableTextBlock;
+  variation: "whiteDefault" | "whiteOffwhite" | "darkLavander" | "darkOffwhite";
+  events: Array<any>;
+  ctaText: PortableTextBlock; // Adjust the type according to your data structure
+  ctaLink;
+}
+
+interface Props {
+  section: Section;
+}
+const { section }: Props = Astro.props;
+const { title, subtitle, variation, events, ctaText, ctaLink } = section;
+---
+
+<section
+  class:list={[
+    "pt-24 pb-28 relative",
+    variation === "whiteDefault" && "bg-white",
+    variation === "whiteOffwhite" && "bg-white",
+    variation === "darkLavander" && "bg-dark-2 text-white",
+    variation === "darkOffwhite" && "bg-dark-2 text-white",
+  ]}
+>
+  {
+    variation === "darkLavander" || variation === "whiteDefault" ? (
+      <Image
+        src={decorationLavander}
+        alt=""
+        class="absolute top-0 right-0 w-64 lg:w-[591px]"
+      />
+    ) : null
+  }
+  {
+    variation === "darkOffwhite" || variation === "whiteOffwhite" ? (
+      <Image
+        src={decorationOffwhite}
+        alt=""
+        class="absolute top-0 right-0 w-64 lg:w-[591px]"
+      />
+    ) : null
+  }
+  <Container>
+    <div class="max-w-2xl xl:ml-0 mx-auto text-center xl:text-left">
+      <h2
+        class:list={[
+          "font-bold  [&>p>strong]:font-bold mb-6",
+          variation === "whiteDefault" &&
+            "text-dark-1 [&>p>strong]:text-indigo",
+          variation === "whiteOffwhite" &&
+            "text-dark-1 [&>p>strong]:text-indigo",
+          variation === "darkLavander" && "text-white [&>p>strong]:text-yellow",
+          variation === "darkOffwhite" && "text-white [&>p>strong]:text-yellow",
+        ]}
+      >
+        <PortableText portableText={title} />
+      </h2>
+      <span class="text-sm mb-16 block">
+        <PortableText portableText={subtitle} />
+      </span>
+    </div>
+    {
+      events && (
+        <div class="flex flex-wrap xl:justify-between justify-center gap-8 mb-16">
+          {events.map((event) => {
+            return (
+              <EventCard
+                card={event}
+                variation={
+                  variation === "whiteDefault" || variation === "whiteOffwhite"
+                    ? "lavander"
+                    : "white"
+                }
+              />
+            );
+          })}
+        </div>
+      )
+    }
+
+    {
+      ctaText && (
+        <div class="text-center max-w-3xl mx-auto text-sm font-semibold mb-6">
+          <PortableText portableText={ctaText} />
+        </div>
+      )
+    }
+
+    {
+      ctaLink && (
+        <div class="flex flex-wrap justify-center ">
+          <ButtonLink
+            buttonLink={ctaLink}
+            variation={
+              variation === "whiteDefault" || variation === "whiteOffwhite"
+                ? "primary-dark"
+                : "primary-light-indigo"
+            }
+          />
+        </div>
+      )
+    }
+  </Container>
+</section>
