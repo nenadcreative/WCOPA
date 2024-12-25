@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 
 import sanity from "@sanity/astro";
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 import robotsTxt from "astro-robots-txt";
 
