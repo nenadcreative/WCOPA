@@ -69,6 +69,7 @@ export default defineConfig({
     }),
     visionTool(),
     ptString(),
+    //@ts-ignore
     media(),
   ],
 
