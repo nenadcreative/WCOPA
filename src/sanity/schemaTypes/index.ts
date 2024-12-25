@@ -12,7 +12,7 @@ import { simpleListItemType } from "./objects/simpleListItem";
 import { listItemType } from "./objects/listItem";
 import stepsCard from "./objects/stepsCard";
 
-import mediaSectionType from "./sections/media";
+import mediaSectionType from "./sections/mediaSection";
 import featuredList1Type from "./sections/featuredList1";
 import featuredList2Type from "./sections/featuredList2";
 import stepsType from "./sections/steps";
