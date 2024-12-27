@@ -37,7 +37,7 @@ export default {
       },
 
       listStyleImage: {
-        star: 'url("/icons/list-icon.svg")',
+        star: 'url("/icons/star.svg")',
       },
       borderRadius: {
         xs: "0.125rem",

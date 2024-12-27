@@ -19,6 +19,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
   },
   (_type == 'steps')=>{...},
   (_type == 'centeredText')=>{...},
+  (_type == 'centeredCard')=>{...},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'media')=>{
      ...,

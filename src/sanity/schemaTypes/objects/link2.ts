@@ -8,6 +8,12 @@ export const linkType = defineType({
   type: "object",
   fields: [
     defineField({
+      name: "hide",
+      title: "Hide Link",
+      type: "boolean",
+      initialValue: false,
+    }),
+    defineField({
       name: "linkText",
       title: "Link Text",
       type: "string",

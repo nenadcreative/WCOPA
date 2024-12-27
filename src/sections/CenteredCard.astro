@@ -1,0 +1,140 @@
+---
+import Container from "@components/global/Container.astro";
+import PortableText from "@components/atoms/PortableText.astro";
+import type { Image as SanityImage, PortableTextBlock } from "sanity";
+import ContentCard from "@components/molecules/ContentCard.astro";
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import decoration from "@assets/decoration5.png";
+import patternImage from "@assets/pattern.png";
+
+interface Section {
+  title: PortableTextBlock; // Adjust the type according to your data structure
+  subtitle: PortableTextBlock;
+  variation:
+    | "white"
+    | "offwhite"
+    | "lavander"
+    | "gradient"
+    | "dark"
+    | "pattern"
+    | "image";
+  card: any;
+  ctaText: PortableTextBlock; // Adjust the type according to your data structure
+  bgImage: SanityImage;
+}
+
+interface Props {
+  section: Section;
+}
+const { section }: Props = Astro.props;
+const { title, subtitle, card, ctaText, variation, bgImage } = section;
+const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
+---
+
+<section
+  class:list={[
+    "pt-24 pb-28 relative overflow-hidden",
+    variation === "white" && "bg-white text-dark-1",
+    variation === "offwhite" && "bg-offwhite text-dark-1",
+    variation === "lavander" && "bg-lavander text-dark-1",
+    variation === "gradient" &&
+      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "dark" && "bg-dark-2 text-white",
+    variation === "image" && " text-white bg-dark-2",
+    variation === "pattern" && "bg-offwhite text-dark-1",
+  ]}
+>
+  {
+    variation === "pattern" && (
+      <Image
+        src={patternImage}
+        alt=""
+        class:list={[
+          "absolute top-0 left-0 w-full h-full object-cover object-left z-0",
+        ]}
+      />
+    )
+  }
+  {
+    bgImageUrl && variation === "image" && (
+      <div class="w-full h-full ">
+        <Image
+          src={bgImageUrl}
+          alt=""
+          inferSize
+          class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+          ]}
+        />
+        <div class="w-full h-full bg-indigo/70 absolute top-0 left-0 " />
+      </div>
+    )
+  }
+
+  {
+    variation === "dark" && (
+      <Image
+        src={decoration}
+        priority
+        alt=""
+        class:list={["absolute bottom-0 left-0  z-10"]}
+      />
+    )
+  }
+  <Container
+    size="small"
+    classes={`${variation === "pattern" || variation === "image" ? "relative z-10" : ""}`}
+  >
+    {
+      title && (
+        <h2
+          class:list={[
+            "font-bold max-w-[800px]  [&>p>strong]:font-bold mb-6",
+            variation === "white" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "offwhite" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "lavander" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "gradient" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "dark" && "text-white [&>p>strong]:text-yellow",
+            variation === "pattern" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "image" && "text-white [&>p>strong]:text-yellow",
+          ]}
+        >
+          <PortableText portableText={title} />
+        </h2>
+      )
+    }
+    {
+      subtitle && (
+        <div class="max-w-[800px] text-sm">
+          <PortableText portableText={subtitle} />
+        </div>
+      )
+    }
+
+    {
+      card && (
+        <div class="my-16">
+          <ContentCard
+            card={card}
+            cardVariation={
+              variation === "pattern"
+                ? "lavander"
+                : variation === "white"
+                  ? "offwhite"
+                  : "white"
+            }
+          />
+        </div>
+      )
+    }
+
+    {
+      ctaText && (
+        <div class="max-w-[800px] text-sm">
+          <PortableText portableText={ctaText} />
+        </div>
+      )
+    }
+  </Container>
+</section>

@@ -1,0 +1,40 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+const { card, cardVariation } = Astro.props;
+const { title, titleSize, body, ctaLink } = card;
+---
+
+<article
+  class:list={[
+    "rounded-sm relative px-6 xl:px-16 pt-16 pb-18",
+    cardVariation === "white" && "bg-white text-dark-1",
+    cardVariation === "offwhite" && "bg-offwhite text-dark-1",
+    cardVariation === "lavander" && "bg-lavander text-dark-1",
+  ]}
+>
+  <Image
+    src={star}
+    alt=""
+    class="absolute right-1/2 translate-x-1/2 lg:translate-x-0 lg:-right-12 -top-11 w-24 h-24"
+  />
+  <h3
+    class:list={[
+      "text-indigo font-semibold mb-8",
+      titleSize === "sm" && "text-2xl",
+      titleSize === "md" && "text-3xl",
+      titleSize === "lg" && "text-5xl",
+    ]}
+  >
+    <PortableText portableText={title} />
+  </h3>
+  <div
+    class="[&>ul>li]:mb-4 [&>ul>li]:marker:mt-4 [&>ul]:list-image-star [&>ul]:list-inside"
+  >
+    <PortableText portableText={body} />
+  </div>
+
+  {ctaLink && <ButtonLink butonLink={ctaLink} variation="primary-dark" />}
+</article>

@@ -3,6 +3,8 @@ import { pageType } from "./documents/page";
 import eventType from "./documents/event";
 import { homeType } from "./singletons/home";
 import { settingsType } from "./singletons/settings";
+
+// objects
 import { blockContentType } from "./objects/blockContent";
 import { simpleBlockContentType } from "./objects/simpleBlockContent";
 import { seoType } from "./objects/seo";
@@ -12,6 +14,7 @@ import { linkType } from "./objects/link2";
 import { simpleListItemType } from "./objects/simpleListItem";
 import { listItemType } from "./objects/listItem";
 import stepsCard from "./objects/stepsCard";
+import contentCard from "./objects/contentCard";
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -21,6 +24,7 @@ import stepsType from "./sections/steps";
 import centeredText from "./sections/centeredText";
 import hero from "./sections/hero";
 import featuredEvents from "./sections/featuredEvents";
+import centeredCard from "./sections/centeredCard";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -28,6 +32,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     eventType,
     settingsType,
     homeType,
+
+    //objects
     blockContentType,
     simpleBlockContentType,
     seoType,
@@ -35,9 +41,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     stepsCard,
     simpleLinkType,
     linkType,
-
     simpleListItemType,
     listItemType,
+    contentCard,
 
     //sections
     mediaSectionType,
@@ -45,6 +51,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     featuredList2Type,
     stepsType,
     centeredText,
+    centeredCard,
     hero,
     featuredEvents,
   ],
