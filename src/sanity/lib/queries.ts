@@ -21,6 +21,9 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
   (_type == 'centeredText')=>{...},
   (_type == 'centeredCard')=>{...},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
+  (_type == 'cta1')=>{...,
+    'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'internalLink':internalLink->{slug,title}}}
+  },
   (_type == 'media')=>{
      ...,
      'ctaLink': ctaLink{

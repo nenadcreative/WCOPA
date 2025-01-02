@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import patternImage from "@assets/pattern-big.png";
+import patternImageAlt from "@assets/pattern-big-alt.png";
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+import CtaCard from "@components/molecules/CtaCard.astro";
+const { section } = Astro.props;
+const { tagline, title, subtitle, videoLink, ctaCards, variation } = section;
+---
+
+<section
+  class:list={[
+    "pt-16 pb-18 sm:pt-24 sm:pb-28 relative overflow-hidden",
+    variation === "white" && "bg-white text-dark-1",
+    variation === "offwhite" && "bg-offwhite text-dark-1",
+    variation === "lavander" && "bg-lavander text-dark-1",
+    variation === "gradient" &&
+      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "dark" && "bg-dark-2 text-white",
+  ]}
+>
+  <Image
+    src={patternImage}
+    alt=""
+    class:list={[
+      "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+      variation === "white" && " ",
+      variation === "offwhite" && "hidden",
+      variation === "gradient" && "hidden",
+      variation === "dark" && "invert opacity-50",
+      variation === "image" && "hidden",
+    ]}
+  />
+
+  {
+    variation === "offwhite" ||
+      (variation === "gradient" && (
+        <Image
+          src={patternImageAlt}
+          alt=""
+          class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+            variation === "white" && " ",
+            variation === "offwhite" && "",
+            variation === "gradient" && "opacity-80 ",
+            variation === "dark" && "invert opacity-50",
+            variation === "image" && "hidden",
+          ]}
+        />
+      ))
+  }
+
+  <Container classes="grid gap-10 md:grid-cols-2 lg:gap-18 relative z-10">
+    <div>
+      <span
+        class:list={[
+          "uppercase font-medium mb-4 block",
+          variation === "dark" && "text-yellow",
+          variation !== "dark" && "text-indigo",
+        ]}>{tagline}</span
+      >
+      <h2
+        class:list={[
+          "font-bold [&>p>strong]:font-bold mb-4",
+          variation === "white" && "text-dark-1 [&>p>strong]:text-indigo",
+          variation === "offwhite" && "text-dark-1 [&>p>strong]:text-indigo",
+          variation === "lavander" && "text-dark-1 [&>p>strong]:text-indigo",
+          variation === "gradient" && "text-dark-1 [&>p>strong]:text-indigo",
+          variation === "dark" && "text-white [&>p>strong]:text-yellow",
+          variation === "pattern" && "text-dark-1 [&>p>strong]:text-indigo",
+          variation === "image" && "text-white [&>p>strong]:text-yellow",
+        ]}
+      >
+        <PortableText portableText={title} />
+      </h2>
+      <div class="text-sm">
+        <PortableText portableText={subtitle} />
+      </div>
+
+      {/* To Do video */}
+    </div>
+
+    <div class="flex flex-col gap-14 sm:gap-18">
+      {
+        ctaCards &&
+          ctaCards.map((card) => {
+            return <CtaCard ctaCard={card} />;
+          })
+      }
+    </div>
+  </Container>
+</section>

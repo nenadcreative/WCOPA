@@ -15,6 +15,7 @@ import { simpleListItemType } from "./objects/simpleListItem";
 import { listItemType } from "./objects/listItem";
 import stepsCard from "./objects/stepsCard";
 import contentCard from "./objects/contentCard";
+import ctaCard from "./objects/ctaCard";
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -25,6 +26,7 @@ import centeredText from "./sections/centeredText";
 import hero from "./sections/hero";
 import featuredEvents from "./sections/featuredEvents";
 import centeredCard from "./sections/centeredCard";
+import cta1 from "./sections/cta1";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -44,6 +46,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     simpleListItemType,
     listItemType,
     contentCard,
+    ctaCard,
 
     //sections
     mediaSectionType,
@@ -54,5 +57,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     centeredCard,
     hero,
     featuredEvents,
+    cta1,
   ],
 };

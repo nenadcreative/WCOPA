@@ -62,6 +62,7 @@ export const pageType = defineType({
         { type: "centeredCard" },
         { type: "hero" },
         { type: "featuredEvents" },
+        { type: "cta1" },
       ],
     }),
   ],
