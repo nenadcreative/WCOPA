@@ -1,0 +1,55 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+const { section } = Astro.props;
+const { videoLink, tagline, title, description, ctaText, links } = section;
+---
+
+<section>
+  <div style="padding:56.25% 0 0 0;position:relative;">
+    <iframe
+      src="https://player.vimeo.com/video/1046713357?badge=0&autopause=0&player_id=0&app_id=58479"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;"
+      title="hero-video"></iframe>
+  </div><script src="https://player.vimeo.com/api/player.js"></script>
+  <Container classes="pt-6 pb-12">
+    <div class="grid lg:grid-cols-2 gap-4">
+      <div>
+        <span class="block text-lg lg:text-2xl font-medium text-purple mb-3"
+          >{tagline}</span
+        >
+        <h1
+          class="[&>p>strong]:text-indigo [&>p>strong]:font-bold uppercase leading-none"
+        >
+          <PortableText portableText={title} />
+        </h1>
+      </div>
+      <div class="lg:pl-28">
+        <span class="block text-sm font-semibold mb-4"
+          ><PortableText portableText={description} /></span
+        >
+        <span class="text-purple block text-sm mb-5 font-medium"
+          ><PortableText portableText={ctaText} /></span
+        >
+
+        {
+          links && (
+            <div class="flex gap-5">
+              {links.map((link, index) => {
+                return (
+                  <ButtonLink
+                    buttonLink={link}
+                    variation={index === 0 ? "primary-dark" : "secondary-dark"}
+                  />
+                );
+              })}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>

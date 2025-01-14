@@ -1,9 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ReactPlayer from "react-player";
 
 import type { SanityDocument } from "@sanity/client";
 import { loadQuery } from "../sanity/lib/load-query";
 import { homeQuery } from "../sanity/lib/queries";
+import RenderSections from "@components/RenderSections.astro";
 
 const { data: home } = await loadQuery<SanityDocument>({
   query: homeQuery,
@@ -11,6 +13,5 @@ const { data: home } = await loadQuery<SanityDocument>({
 ---
 
 <BaseLayout title="Welcome to Astro.">
-  <h1>{home?.title} - Title</h1>
-  <a href="/example">Example</a>
+  <RenderSections sections={home.content} />
 </BaseLayout>

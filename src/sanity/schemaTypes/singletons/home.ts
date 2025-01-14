@@ -22,5 +22,11 @@ export const homeType = defineType({
       type: "seo",
       group: "seo",
     }),
+    defineField({
+      name: "content",
+      title: "Content",
+      type: "array",
+      of: [{ type: "homeHero" }],
+    }),
   ],
 });
