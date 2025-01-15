@@ -29,7 +29,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
   (_type == 'media')=>{
      ...,
      'ctaLink': ctaLink{
-     ...,'internalLink': internalLink->{slug} }}
-     },
+     ...,'internalLink': internalLink->{slug} }},
+  (_type=='videoTestimonials')=>{...}
+},
 }`;
 export const settingsQuery = groq`*[_type == "settings"][0]`;

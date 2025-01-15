@@ -28,4 +28,7 @@ h5 {
   h3 {
     @apply text-3xl xl:text-4xl;
   }
+  :root {
+    --radius: 0.5rem
+  }
 }

@@ -1,42 +1,40 @@
 import { defineType, defineField } from "sanity";
-import { ExternalLink } from "lucide-react";
+import { FileVideo2 } from "lucide-react";
 import { stringFromPortableText } from "src/utils/stringFromPT";
 
 export default defineType({
-  name: "cta1",
-  title: "CTA 1",
+  name: "videoTestimonials",
+  title: "Video Testimonials",
   type: "object",
-  icon: ExternalLink,
+  icon: FileVideo2,
   fields: [
-    defineField({
-      name: "tagline",
-      title: "Tagline",
-      type: "string",
-    }),
     defineField({
       name: "title",
       title: "Title",
       type: "blockSimple",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "subtitle",
       title: "Subtitle",
-      type: "simpleBlockContent",
+      type: "blockSimple",
+    }),
+    defineField({
+      name: "description",
+      title: "Description",
+      type: "blockSimple",
     }),
 
     defineField({
-      name: "videoLink",
-      title: "Video Link",
-      type: "url",
+      name: "link",
+      title: "Link",
+      type: "link",
     }),
 
     defineField({
-      name: "ctaCards",
-      title: "CTA Cards",
+      name: "testimonials",
+      title: "Testimonials",
       type: "array",
-      of: [{ type: "ctaCard" }],
-      validation: (Rule) => Rule.min(1),
+      of: [{ type: "videoTestimonial" }],
     }),
     defineField({
       name: "variation",
@@ -50,8 +48,21 @@ export default defineType({
           { title: "Lavander", value: "lavander" },
           { title: "Gradient", value: "gradient" },
           { title: "Dark", value: "dark" },
+          { title: "Pattern", value: "pattern" },
         ],
       },
+    }),
+    defineField({
+      name: "layout",
+      title: "Testimonial Layout",
+      type: "string",
+      options: {
+        list: [
+          { title: "Quote - Video", value: "quoteVideo" },
+          { title: "Video - Quote", value: "videoQuote" },
+        ],
+      },
+      initialValue: "quoteVideo",
     }),
   ],
   preview: {
@@ -62,8 +73,8 @@ export default defineType({
     prepare(selection) {
       const { title } = selection;
       return {
-        title: stringFromPortableText(title) || "CTA 1 Section Title",
-        subtitle: "CTA 1 Section",
+        title: stringFromPortableText(title) || "Video Testimonials Title",
+        subtitle: "Video Testimonials Section",
       };
     },
   },

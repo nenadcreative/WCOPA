@@ -63,6 +63,7 @@ export const pageType = defineType({
         { type: "hero" },
         { type: "featuredEvents" },
         { type: "cta1" },
+        { type: "videoTestimonials" },
       ],
     }),
   ],

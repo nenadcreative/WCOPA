@@ -1,0 +1,35 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import Container from "@components/global/Container.astro";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import VideoDialog from "@/components/atoms/VideoDialog.tsx";
+
+const { section } = Astro.props;
+const { title, subtitle, description, link, testimonials } = section;
+---
+
+<section class="pt-24 pb-28">
+  <Container>
+    <div class="grid lg:grid-cols-2 gap-4">
+      <div>
+        <h2><PortableText portableText={title} /></h2>
+        <div><PortableText portableText={subtitle} /></div>
+      </div>
+      <div>
+        <div><PortableText portableText={description} /></div>
+        <ButtonLink buttonLink={link} variation="primary-dark" />
+      </div>
+    </div>
+    <div>
+      <VideoDialog videoUrl={testimonials[0].videoLink} client:load />
+    </div>
+  </Container>
+</section>
