@@ -1,0 +1,39 @@
+---
+import PortableText from "@/components/atoms/PortableText.astro";
+import Container from "@/components/global/Container.astro";
+import ButtonLink from "@/components/ui/ButtonLink.astro";
+import { urlForImage } from "@/sanity/lib/urlForImage";
+import { Image } from "astro:assets";
+const { section } = Astro.props;
+const {
+  title,
+  tagline,
+  description,
+  variation,
+  layout,
+  ctaText,
+  ctaLinks,
+  image,
+} = section;
+
+const imageUrl = urlForImage(image).url() ?? null;
+---
+
+<section>
+  <Container>
+    <span>{tagline}</span>
+    <h2><PortableText portableText={title} /></h2>
+    <div><PortableText portableText={description} /></div>
+    <Image src={imageUrl} alt="" inferSize />
+
+    <div>
+      <PortableText portableText={ctaText} <div div />
+    </div>
+    {
+      ctaLinks &&
+        ctaLinks.map((button) => {
+          return <ButtonLink buttonLink={button} variation="primary-dark" />;
+        })
+    }
+  </Container>
+</section>

@@ -41,6 +41,7 @@ export default defineConfig({
             S.divider(),
             S.documentTypeListItem("page").title("All Pages"),
             S.documentTypeListItem("event").title("Events"),
+            S.documentTypeListItem("faq").title("FAQ's"),
             // Regular document types
             S.listItem()
               .title("About Pages")

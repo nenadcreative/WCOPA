@@ -29,15 +29,20 @@ import hero from "./sections/hero";
 import featuredEvents from "./sections/featuredEvents";
 import centeredCard from "./sections/centeredCard";
 import cta1 from "./sections/cta1";
+import cta2 from "./sections/cta2";
 import homeHero from "./sections/homeHero";
 import videoTestimonials from "./sections/videoTestimonials";
+import faqType from "./documents/faq";
+import faqSection from "./sections/faqSection";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    //documents
     pageType,
     eventType,
     settingsType,
     homeType,
+    faqType,
 
     //objects
     blockContentType,
@@ -53,6 +58,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaCard,
     blockSimple,
     videoTestimonial,
+    faqSection,
 
     //sections
     mediaSectionType,
@@ -64,6 +70,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     hero,
     featuredEvents,
     cta1,
+    cta2,
     homeHero,
     videoTestimonials,
   ],
