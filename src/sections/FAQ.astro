@@ -1,25 +1,122 @@
 ---
 import PortableText from "@/components/atoms/PortableText.astro";
 import Container from "@/components/global/Container.astro";
+// import FAQAccordion from "@/components/molecules/FAQAccordion.astro";
+import FaqAccordion from "@/components/molecules/FaqAccordion.jsx";
+import ButtonLink from "@/components/ui/ButtonLink.astro";
+import patternImage from "@assets/pattern.svg";
+import { Image } from "astro:assets";
 const { section } = Astro.props;
-const { title, tagline, description, variation, layout, faqs } = section;
+const {
+  title,
+  tagline,
+  description,
+  variation,
+  layout,
+  faqs,
+  ctaText,
+  ctaLink,
+  hideCta,
+} = section;
 ---
 
-<section>
+<section
+  class:list={[
+    "py-16 relative overflow-hidden",
+    variation === "white" && " text-dark-1",
+    variation === "offwhite" && "bg-offwhite text-dark-1",
+    variation === "lavander" && "bg-lavander text-dark-1",
+    variation === "gradient" &&
+      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+    variation === "dark" && "bg-dark-2 text-white",
+    variation === "pattern" && "relative",
+  ]}
+>
+  <Image
+    src={patternImage}
+    alt=""
+    class:list={[
+      "",
+      variation !== "pattern" && "hidden",
+      variation === "pattern" &&
+        "absolute top-0 left-0 w-full  object-cover object-center z-0",
+    ]}
+  />
   <Container>
-    <span>{tagline}</span>
-    <h2><PortableText portableText={title} /></h2>
-    <div><PortableText portableText={description} /></div>
+    <div
+      class:list={[
+        "",
+        layout === "title-faq" && "flex md:flex-row flex-col gap-6 md:gap-20",
+        layout === "faq-title" &&
+          "flex md:flex-row-reverse flex-col gap-6 md:gap-20",
+        layout === "centered" &&
+          "flex max-w-[680px] mx-auto text-center flex-col gap-6 ",
 
-    {
-      faqs &&
-        faqs.map((faq) => {
-          return (
-            <div>
-              <PortableText portableText={faq.question} />
+        variation === "pattern" && "relative z-10",
+      ]}
+    >
+      <div class="w-full">
+        {
+          tagline && (
+            <span
+              class:list={[
+                "uppercase font-medium text-indigo mb-1",
+                variation === "dark" && "text-yellow",
+                variation === "image" && "text-yellow",
+              ]}
+            >
+              {tagline}
+            </span>
+          )
+        }
+
+        {
+          title && (
+            <h2
+              class:list={[
+                "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-4",
+                variation === "dark" && "text-white [&>p>strong]:text-yellow",
+                variation === "image" && "text-white [&>p>strong]:text-yellow",
+              ]}
+            >
+              <PortableText portableText={title} />
+            </h2>
+          )
+        }
+        {
+          description && (
+            <div class="text-sm font-semibold text-dark-2">
+              <PortableText portableText={description} />
             </div>
-          );
-        })
-    }
+          )
+        }
+      </div>
+
+      {faqs && <FaqAccordion variation={variation} client:load faqs={faqs} />}
+    </div>
   </Container>
 </section>
+{
+  ctaText && !hideCta && (
+    <section
+      class:list={[
+        "py-16 text-center text-white",
+        variation !== "dark" && "bg-indigo ",
+        variation === "dark" && "bg-purple ",
+      ]}
+    >
+      <Container>
+        <h2
+          class:list={[
+            "text-lg max-w-[800px] mx-auto [&>p>strong]:text-yellow [&>p>a]:text-yellow [&>p>a]:underline mb-8",
+          ]}
+        >
+          <PortableText portableText={ctaText} />
+        </h2>
+        {ctaLink && (
+          <ButtonLink buttonLink={ctaLink} variation="primary-light-yellow" />
+        )}
+      </Container>
+    </section>
+  )
+}

@@ -92,8 +92,8 @@ export default defineType({
       type: "string",
       options: {
         list: [
-          { title: "Title - FAQ's", value: "titleFaq" },
-          { title: "FAQ - Title", value: "faqTitle" },
+          { title: "Title - FAQ's", value: "title-faq" },
+          { title: "FAQ - Title", value: "faq-title" },
           { title: "Centered", value: "centered" },
         ],
       },
