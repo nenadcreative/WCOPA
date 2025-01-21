@@ -1,0 +1,34 @@
+---
+import PortableText from "@/components/atoms/PortableText.astro";
+import Container from "@/components/global/Container.astro";
+
+const { section } = Astro.props;
+const { title, description, schedule, note, variation } = section;
+---
+
+<section>
+  <Container>
+    <h2><PortableText portableText={title} /></h2>
+    <div><PortableText portableText={description} /></div>
+
+    {
+      schedule.map((scheduleItem) => {
+        return (
+          <div>
+            <span>{scheduleItem?.time}</span>
+            <ul>
+              {scheduleItem?.eventList.map((listItem) => {
+                return (
+                  <li>
+                    <PortableText portableText={listItem.text} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })
+    }
+    <span><PortableText portableText={note} /></span>
+  </Container>
+</section>

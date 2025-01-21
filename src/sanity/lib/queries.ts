@@ -33,6 +33,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
   (_type=='videoTestimonials')=>{...},
   (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+  (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 },
 }`;
 export const settingsQuery = groq`*[_type == "settings"][0]`;

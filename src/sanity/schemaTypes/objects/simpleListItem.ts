@@ -9,7 +9,7 @@ export const simpleListItemType = defineType({
     defineField({
       name: "text",
       title: "Text",
-      type: "pt-string",
+      type: "blockSimple",
     }),
   ],
   preview: {
