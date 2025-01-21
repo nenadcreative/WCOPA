@@ -124,7 +124,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                         index === 2 && "text-purple",
                       ]}
                     >
-                      {item.title}
+                      {item?.title}
                     </h3>
                     <div class=" flex gap-2 items-start">
                       <Image
@@ -134,7 +134,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                         alt=""
                         class="mt-0.5 flex-1 h-6 w-6"
                       />
-                      <PortableText portableText={item.text} />
+                      <PortableText portableText={item?.text} />
                     </div>
                   </div>
                 );
@@ -173,7 +173,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                           class="mt-0.5 flex-1 h-6 w-6"
                         />
                       )}
-                      <PortableText portableText={item.text} />
+                      <PortableText portableText={item?.text} />
                     </li>
                   ))}
                 </ul>
@@ -184,30 +184,49 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
         }
       </div>
       <div class="w-full md:w-1/2">
-        <span
-          class:list={[
-            "uppercase font-medium text-indigo mb-3",
-            variation === "dark" && "text-yellow",
-            variation === "image" && "text-yellow",
-          ]}>{tagline}</span
-        >
-        <h2
-          class:list={[
-            "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-6",
-            variation === "dark" && "text-white [&>p>strong]:text-yellow",
-            variation === "image" && "text-white [&>p>strong]:text-yellow",
-          ]}
-        >
-          <PortableText portableText={title} />
-        </h2>
+        {
+          tagline && (
+            <span
+              class:list={[
+                "uppercase font-medium text-indigo mb-3",
+                variation === "dark" && "text-yellow",
+                variation === "image" && "text-yellow",
+              ]}
+            >
+              {tagline}
+            </span>
+          )
+        }
 
-        <div class="mb-3 text-md font-semibold">
-          <PortableText portableText={subtitle} />
-        </div>
+        {
+          title && (
+            <h2
+              class:list={[
+                "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-6",
+                variation === "dark" && "text-white [&>p>strong]:text-yellow",
+                variation === "image" && "text-white [&>p>strong]:text-yellow",
+              ]}
+            >
+              <PortableText portableText={title} />
+            </h2>
+          )
+        }
 
-        <div class="mb-12">
-          <PortableText portableText={paragraph} />
-        </div>
+        {
+          subtitle && (
+            <div class="mb-3 text-md font-semibold">
+              <PortableText portableText={subtitle} />
+            </div>
+          )
+        }
+
+        {
+          paragraph && (
+            <div class="mb-12">
+              <PortableText portableText={paragraph} />
+            </div>
+          )
+        }
 
         {
           ctaLink && (

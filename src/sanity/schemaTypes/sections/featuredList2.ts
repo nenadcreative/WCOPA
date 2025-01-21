@@ -1,10 +1,12 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
+import { ListCollapse } from "lucide-react";
 
 export default defineType({
   name: "featuredList2",
   title: "Featured List 2 Section",
   type: "object",
+  icon: ListCollapse,
   groups: [
     {
       name: "card",
@@ -30,13 +32,13 @@ export default defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
       group: "content",
     }),
     defineField({
       name: "subtitle",
       title: "Subtitle",
-      type: "pt-string",
+      type: "blockSimple",
       group: "content",
     }),
     defineField({
@@ -128,7 +130,7 @@ export default defineType({
     defineField({
       name: "cardCTA",
       title: "Card CTA",
-      type: "simpleBlockContent",
+      type: "blockSimple",
       hidden: ({ parent }) => parent?.cardVariation === "card2",
       group: "card",
     }),
