@@ -81,24 +81,39 @@ const {
         }
       </div>
       <div class="md:w-1/2">
-        <span
-          class:list={[
-            "uppercase font-medium text-indigo mb-3",
-            variation === "dark" && "text-yellow",
-          ]}>{tagline}</span
-        >
-        <h2
-          class:list={[
-            "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-6",
-            variation === "dark" && "text-white [&>p>strong]:text-yellow",
-          ]}
-        >
-          <PortableText portableText={title} />
-        </h2>
+        {
+          tagline && (
+            <span
+              class:list={[
+                "uppercase font-medium text-indigo mb-3",
+                variation === "dark" && "text-yellow",
+              ]}
+            >
+              {tagline}
+            </span>
+          )
+        }
 
-        <div class="mb-8 text-md font-semibold">
-          <PortableText portableText={subtitle} />
-        </div>
+        {
+          title && (
+            <h2
+              class:list={[
+                "font-bold [&>p>strong]:text-indigo [&>p>strong]:font-bold mb-6",
+                variation === "dark" && "text-white [&>p>strong]:text-yellow",
+              ]}
+            >
+              <PortableText portableText={title} />
+            </h2>
+          )
+        }
+
+        {
+          subtitle && (
+            <div class="mb-8 text-md font-semibold">
+              <PortableText portableText={subtitle} />
+            </div>
+          )
+        }
 
         {
           list && (
