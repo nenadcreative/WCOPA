@@ -1,10 +1,12 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
+import { List } from "lucide-react";
 
 export default defineType({
   name: "featuredList1",
   title: "Featured List 1 Section",
   type: "object",
+  icon: List,
   fieldsets: [
     {
       name: "cta",
@@ -25,12 +27,12 @@ export default defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
     }),
     defineField({
       name: "subtitle",
       title: "Subtitle",
-      type: "pt-string",
+      type: "blockSimple",
     }),
     defineField({
       name: "variation",
@@ -81,7 +83,7 @@ export default defineType({
     defineField({
       name: "ctaText",
       title: "CTA Text",
-      type: "simpleBlockContent",
+      type: "blockSimple",
       fieldset: "cta",
     }),
     defineField({

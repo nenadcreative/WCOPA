@@ -4,6 +4,7 @@ import MediaCard from "@components/molecules/MediaCard.astro";
 import Container from "@globals/Container.astro";
 import ButtonLink from "@ui/ButtonLink.astro";
 const { section } = Astro.props;
+
 const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 ---
 
@@ -15,35 +16,54 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
   ]}
 >
   <Container>
-    <h2
-      class:list={[
-        " mb-6",
-        variation === "light" && "[&>p>strong]:text-indigo",
-        variation === "dark" && "[&>p>strong]:text-yellow",
-      ]}
-    >
-      <PortableText portableText={title} />
-    </h2>
-    <div class="mb-16">
-      <PortableText portableText={subtitle} />
-    </div>
-    <div class="mb-16 grid md:grid-cols-3 gap-8">
-      {
-        cards &&
-          cards.map((card) => {
-            return <MediaCard variation={variation} card={card} />;
-          })
-      }
-    </div>
+    {
+      title && (
+        <h2
+          class:list={[
+            " mb-6",
+            variation === "light" && "[&>p>strong]:text-indigo",
+            variation === "dark" && "[&>p>strong]:text-yellow",
+          ]}
+        >
+          <PortableText portableText={title} />
+        </h2>
+      )
+    }
 
-    <div class="text-sm mb-6">
-      <PortableText portableText={ctaText} />
-    </div>
-    <ButtonLink
-      buttonLink={ctaLink}
-      variation={variation === "light"
-        ? "primary-light-indigo"
-        : "primary-dark"}
-    />
+    {
+      subtitle && (
+        <div class="mb-16">
+          <PortableText portableText={subtitle} />
+        </div>
+      )
+    }
+
+    {
+      cards && (
+        <div class="mb-16 grid md:grid-cols-3 gap-8">
+          {cards.map((card) => (
+            <MediaCard variation={variation} card={card} />
+          ))}
+        </div>
+      )
+    }
+
+    {
+      ctaText && (
+        <div class="text-sm mb-6">
+          <PortableText portableText={ctaText} />
+        </div>
+      )
+    }
+    {
+      ctaLink && (
+        <ButtonLink
+          buttonLink={ctaLink}
+          variation={
+            variation === "light" ? "primary-light-indigo" : "primary-dark"
+          }
+        />
+      )
+    }
   </Container>
 </section>
