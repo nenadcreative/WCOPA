@@ -1,23 +1,24 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
-import { BlockElementIcon } from "@sanity/icons";
+
+import { AlignVerticalSpaceAround } from "lucide-react";
 
 export default defineType({
   name: "centeredCard",
   title: "Centered Card",
   type: "object",
-  icon: BlockElementIcon,
+  icon: AlignVerticalSpaceAround,
   fields: [
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
     }),
 
     defineField({
       name: "subtitle",
       title: "Subtitle",
-      type: "simpleBlockContent",
+      type: "blockSimple",
     }),
     defineField({
       name: "card",
@@ -27,7 +28,7 @@ export default defineType({
     defineField({
       name: "ctaText",
       title: "CTA Text",
-      type: "simpleBlockContent",
+      type: "blockSimple",
     }),
     defineField({
       name: "variation",
