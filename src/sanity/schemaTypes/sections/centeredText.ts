@@ -1,15 +1,17 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
+import { AlignCenter } from "lucide-react";
 
 export default defineType({
   name: "centeredText",
   title: "Centered Text",
   type: "object",
+  icon: AlignCenter,
   fields: [
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
     }),
     defineField({
       name: "text",

@@ -80,28 +80,36 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
     size="small"
     classes={`${variation === "pattern" || variation === "image" ? "relative z-10" : ""}`}
   >
-    <h2
-      class:list={[
-        "font-bold  [&>p>strong]:font-bold mb-7",
-        variation === "white" && "text-dark-1 [&>p>strong]:text-indigo",
-        variation === "offwhite" && "text-dark-1 [&>p>strong]:text-indigo",
-        variation === "lavander" && "text-dark-1 [&>p>strong]:text-indigo",
-        variation === "gradient" && "text-dark-1 [&>p>strong]:text-indigo",
-        variation === "dark" && "text-white [&>p>strong]:text-yellow",
-        variation === "pattern" && "text-dark-1 [&>p>strong]:text-indigo",
-        variation === "image" && "text-white [&>p>strong]:text-yellow",
-      ]}
-    >
-      <PortableText portableText={title} />
-    </h2>
-    <div
-      class:list={[
-        "prose prose-headings:my-1 prose-p:mb-4",
-        variation === "dark" && "text-white prose-headings:text-white",
-        variation === "image" && "text-white prose-headings:text-white",
-      ]}
-    >
-      <PortableText portableText={text} />
-    </div>
+    {
+      title && (
+        <h2
+          class:list={[
+            "font-bold  [&>p>strong]:font-bold mb-7",
+            variation === "white" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "offwhite" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "lavander" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "gradient" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "dark" && "text-white [&>p>strong]:text-yellow",
+            variation === "pattern" && "text-dark-1 [&>p>strong]:text-indigo",
+            variation === "image" && "text-white [&>p>strong]:text-yellow",
+          ]}
+        >
+          <PortableText portableText={title} />
+        </h2>
+      )
+    }
+    {
+      text && (
+        <div
+          class:list={[
+            "prose prose-headings:my-1 prose-p:mb-4",
+            variation === "dark" && "text-white prose-headings:text-white",
+            variation === "image" && "text-white prose-headings:text-white",
+          ]}
+        >
+          <PortableText portableText={text} />
+        </div>
+      )
+    }
   </Container>
 </section>
