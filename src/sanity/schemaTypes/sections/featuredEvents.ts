@@ -1,12 +1,12 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
-import { CalendarIcon } from "@sanity/icons";
+import { CalendarClock } from "lucide-react";
 
 export default defineType({
   name: "featuredEvents",
   title: "Featured Events",
   type: "object",
-  icon: CalendarIcon,
+  icon: CalendarClock,
   fieldsets: [
     {
       name: "cta",
@@ -21,12 +21,12 @@ export default defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
     }),
     defineField({
       name: "subtitle",
       title: "Subtitle",
-      type: "pt-string",
+      type: "blockSimple",
     }),
     defineField({
       name: "events",
@@ -37,7 +37,7 @@ export default defineType({
     defineField({
       name: "ctaText",
       title: "CTA Text",
-      type: "simpleBlockContent",
+      type: "blockSimple",
       fieldset: "cta",
     }),
     defineField({

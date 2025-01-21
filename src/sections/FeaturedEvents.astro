@@ -53,22 +53,33 @@ const { title, subtitle, variation, events, ctaText, ctaLink } = section;
   }
   <Container>
     <div class="max-w-2xl xl:ml-0 mx-auto text-center xl:text-left">
-      <h2
-        class:list={[
-          "font-bold  [&>p>strong]:font-bold mb-6",
-          variation === "whiteDefault" &&
-            "text-dark-1 [&>p>strong]:text-indigo",
-          variation === "whiteOffwhite" &&
-            "text-dark-1 [&>p>strong]:text-indigo",
-          variation === "darkLavander" && "text-white [&>p>strong]:text-yellow",
-          variation === "darkOffwhite" && "text-white [&>p>strong]:text-yellow",
-        ]}
-      >
-        <PortableText portableText={title} />
-      </h2>
-      <span class="text-sm mb-16 block">
-        <PortableText portableText={subtitle} />
-      </span>
+      {
+        title && (
+          <h2
+            class:list={[
+              "font-bold  [&>p>strong]:font-bold mb-6",
+              variation === "whiteDefault" &&
+                "text-dark-1 [&>p>strong]:text-indigo",
+              variation === "whiteOffwhite" &&
+                "text-dark-1 [&>p>strong]:text-indigo",
+              variation === "darkLavander" &&
+                "text-white [&>p>strong]:text-yellow",
+              variation === "darkOffwhite" &&
+                "text-white [&>p>strong]:text-yellow",
+            ]}
+          >
+            <PortableText portableText={title} />
+          </h2>
+        )
+      }
+
+      {
+        subtitle && (
+          <span class="text-sm mb-16 block">
+            <PortableText portableText={subtitle} />
+          </span>
+        )
+      }
     </div>
     {
       events && (
