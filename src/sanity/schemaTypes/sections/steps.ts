@@ -1,10 +1,12 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
+import { ClipboardList } from "lucide-react";
 
 export default defineType({
   name: "steps",
   title: "Steps",
   type: "object",
+  icon: ClipboardList,
   groups: [
     { name: "content", title: "Content" },
     { name: "design", title: "Design" },
@@ -24,7 +26,7 @@ export default defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
       group: "content",
       validation: (Rule) => Rule.required(),
     }),
@@ -33,7 +35,7 @@ export default defineType({
       title: "Subtitle",
       description:
         "Marking sentences in Italic will show them in a bigger font on the frontend",
-      type: "simpleBlockContent",
+      type: "blockSimple",
       group: "content",
     }),
     defineField({
@@ -86,7 +88,7 @@ export default defineType({
     defineField({
       name: "ctaText",
       title: "CTA Text",
-      type: "simpleBlockContent",
+      type: "blockSimple",
       fieldset: "cta",
       group: "content",
     }),

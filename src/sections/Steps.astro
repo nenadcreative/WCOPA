@@ -36,23 +36,36 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
       <div
         class="absolute top-0 right-0 w-full bg-indigo h-1/3 md:h-96 rounded-sm overflow-hidden"
       >
-        <Image
-          src={bgImageUrl}
-          inferSize
-          alt=""
-          class="w-full h-full object-cover"
-        />
+        {
+          bgImageUrl && (
+            <Image
+              src={bgImageUrl}
+              inferSize
+              alt=""
+              class="w-full h-full object-cover"
+            />
+          )
+        }
+
         <div class="w-full h-full bg-indigo/70 absolute top-0 right-0"></div>
       </div>
       <div class="relative z-20 text-white">
-        <h2 class="font-bold [&>p>strong]:text-yellow text-center mb-6">
-          <PortableText portableText={title} />
-        </h2>
-        <div
-          class="text-center [&>p>em]:text-xl [&>p>em]:not-italic [&>p>em]:font-medium mb-16"
-        >
-          <PortableText portableText={subtitle} />
-        </div>
+        {
+          title && (
+            <h2 class="font-bold [&>p>strong]:text-yellow text-center mb-6">
+              <PortableText portableText={title} />
+            </h2>
+          )
+        }
+
+        {
+          subtitle && (
+            <div class="text-center [&>p>em]:text-xl [&>p>em]:not-italic [&>p>em]:font-medium mb-16">
+              <PortableText portableText={subtitle} />
+            </div>
+          )
+        }
+
         {
           steps && (
             <div class="flex flex-wrap xl:grid xl:grid-cols-3 justify-center gap-10 mb-14">
