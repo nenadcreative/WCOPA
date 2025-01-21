@@ -54,7 +54,6 @@ export const pageType = defineType({
       type: "array",
       of: [
         { type: "mediaSection" },
-
         { type: "featuredList1" },
         { type: "featuredList2" },
         { type: "steps" },
@@ -67,6 +66,48 @@ export const pageType = defineType({
         { type: "faqSection" },
         { type: "cta2" },
       ],
+      options: {
+        insertMenu: {
+          groups: [
+            {
+              name: "intro",
+              title: "Intro",
+              of: ["hero"],
+            },
+            {
+              name: "storytelling",
+              title: "Storytelling",
+              of: [
+                "centeredText",
+                "centeredCard",
+                "featuredList1",
+                "featuredList2",
+                "faqSection",
+              ],
+            },
+            {
+              name: "engage",
+              title: "Engage",
+              of: [
+                "cta1",
+                "cta2",
+                "featuredEvents",
+                "steps",
+                "videoTestimonials",
+                "mediaSection",
+              ],
+            },
+          ],
+          views: [
+            {
+              name: "grid",
+              previewImageUrl: (schemaTypeName) =>
+                `/static/preview-${schemaTypeName}.png`,
+            },
+            { name: "list" },
+          ],
+        },
+      },
     }),
   ],
 });

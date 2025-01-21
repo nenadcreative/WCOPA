@@ -4,7 +4,7 @@ import { ListCollapse } from "lucide-react";
 
 export default defineType({
   name: "featuredList2",
-  title: "Featured List 2 Section",
+  title: "Featured List 2",
   type: "object",
   icon: ListCollapse,
   groups: [

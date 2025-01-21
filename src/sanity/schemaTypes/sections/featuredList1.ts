@@ -4,7 +4,7 @@ import { List } from "lucide-react";
 
 export default defineType({
   name: "featuredList1",
-  title: "Featured List 1 Section",
+  title: "Featured List 1",
   type: "object",
   icon: List,
   fieldsets: [
