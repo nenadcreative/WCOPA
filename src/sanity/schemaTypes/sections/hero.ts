@@ -1,10 +1,12 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
+import { Monitor } from "lucide-react";
 
 export default defineType({
   name: "hero",
   title: "Hero",
   type: "object",
+  icon: Monitor,
   fields: [
     defineField({
       name: "tagline",
@@ -14,12 +16,12 @@ export default defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
     }),
     defineField({
       name: "description",
       title: "Description",
-      type: "simpleBlockContent",
+      type: "blockSimple",
     }),
     defineField({
       name: "variation",

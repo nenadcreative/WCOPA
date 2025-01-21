@@ -88,36 +88,54 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
           variation === "image" && "text-left",
         ]}
       >
-        <span
-          class:list={[
-            "uppercase  font-medium mb-1",
-            variation !== "dark" && "text-indigo",
-            variation === "dark" && "text-yellow",
-          ]}>{tagline}</span
-        >
-        <h1
-          class:list={[
-            variation === "gradient" &&
-              "text-dark-1 mb-5 [&>p>strong]:text-indigo",
-            variation === "dark" && "text-white mb-5 [&>p>strong]:text-yellow",
-            variation === "pattern" &&
-              "text-dark-1 mb-5 [&>p>strong]:text-indigo",
-            variation === "logo" && "text-dark-1 mb-7 [&>p>strong]:text-yellow",
-            variation === "image" &&
-              "text-dark-1 mb-7 [&>p>strong]:text-yellow",
-          ]}
-        >
-          <PortableText portableText={title} />
-        </h1>
-        <div
-          class:list={[
-            "text-sm",
-            variation !== "dark" && "text-dark-2 [&>p>strong]:text-indigo",
-            variation === "dark" && "text-white [&>p>strong]:text-yellow",
-          ]}
-        >
-          <PortableText portableText={description} />
-        </div>
+        {
+          tagline && (
+            <span
+              class:list={[
+                "uppercase  font-medium mb-1",
+                variation !== "dark" && "text-indigo",
+                variation === "dark" && "text-yellow",
+              ]}
+            >
+              {tagline}
+            </span>
+          )
+        }
+
+        {
+          title && (
+            <h1
+              class:list={[
+                variation === "gradient" &&
+                  "text-dark-1 mb-5 [&>p>strong]:text-indigo",
+                variation === "dark" &&
+                  "text-white mb-5 [&>p>strong]:text-yellow",
+                variation === "pattern" &&
+                  "text-dark-1 mb-5 [&>p>strong]:text-indigo",
+                variation === "logo" &&
+                  "text-dark-1 mb-7 [&>p>strong]:text-yellow",
+                variation === "image" &&
+                  "text-dark-1 mb-7 [&>p>strong]:text-yellow",
+              ]}
+            >
+              <PortableText portableText={title} />
+            </h1>
+          )
+        }
+
+        {
+          description && (
+            <div
+              class:list={[
+                "text-sm",
+                variation !== "dark" && "text-dark-2 [&>p>strong]:text-indigo",
+                variation === "dark" && "text-white [&>p>strong]:text-yellow",
+              ]}
+            >
+              <PortableText portableText={description} />
+            </div>
+          )
+        }
       </div>
 
       <div class="flex shrink-0 justify-center items-center">
