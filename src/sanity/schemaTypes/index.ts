@@ -20,6 +20,7 @@ import blockSimple from "./objects/blockSimple";
 import videoTestimonial from "./objects/videoTestimonial";
 import scheduleItem from "./objects/scheduleItem";
 import simpleCard from "./objects/simpleCard";
+import insightscard from "./objects/insightscard";
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -38,6 +39,7 @@ import faqType from "./documents/faq";
 import faqSection from "./sections/faqSection";
 import scheduleSection from "./sections/scheduleSection";
 import cardsFeature2 from "./sections/cardsFeature2";
+import insights from "./sections/insights";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -65,6 +67,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faqSection,
     scheduleItem,
     simpleCard,
+    insightscard,
+    
 
     //sections
     mediaSectionType,
@@ -81,5 +85,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     videoTestimonials,
     scheduleSection,
     cardsFeature2,
+    insights
   ],
 };

@@ -34,7 +34,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
   (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
-(_type=='cardsFeature2')=>{..., }
+(_type=='cardsFeature2')=>{..., },
+(_type=='insights')=>{...},
 },
 }`;
 export const settingsQuery = groq`*[_type == "settings"][0]`;
