@@ -66,6 +66,7 @@ export const pageType = defineType({
         { type: "faqSection" },
         { type: "cta2" },
         { type: "scheduleSection" },
+        { type: "cardsFeature2" },
       ],
       options: {
         insertMenu: {
@@ -84,6 +85,7 @@ export const pageType = defineType({
                 "featuredList1",
                 "featuredList2",
                 "faqSection",
+                'cardsFeature2'
               ],
             },
             {

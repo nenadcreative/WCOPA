@@ -1,0 +1,21 @@
+---
+import PortableText from "@/components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+const { section } = Astro.props;
+const {title, tagline, description, variation,  cards, subtitle, subDescription} = section;
+---
+
+<section class="bg-red-200">
+    <Container>
+        <span>{tagline}</span>
+        <h2><PortableText portableText={title} /></h2>
+        <div><PortableText portableText={description} /></div>
+        <h3><PortableText portableText={subtitle} /></h3>
+        <div><PortableText portableText={subDescription} /></div>
+
+        {cards && cards.map((card)=>{
+            return <div>{card.title}</div>
+        })}
+        
+    </Container>
+</section>
