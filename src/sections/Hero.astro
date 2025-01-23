@@ -29,15 +29,15 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
   class:list={[
     "pt-18 pb-28 overflow-hidden",
     variation === "gradient" &&
-      "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+      "bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
     variation === "pattern" &&
-      "relative bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+      "relative bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
     variation === "logo" &&
-      "relative bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+      "relative bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
 
     variation === "dark" && "bg-dark-2 relative",
     variation === "image" &&
-      "relative bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+      "relative bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
   ]}
 >
   <Image
