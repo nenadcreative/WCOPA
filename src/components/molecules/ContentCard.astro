@@ -5,6 +5,7 @@ import star from "@assets/icons/star.svg";
 import ButtonLink from "@components/ui/ButtonLink.astro";
 const { card, cardVariation } = Astro.props;
 const { title, titleSize, body, ctaLink } = card;
+console.log(card);
 ---
 
 <article
@@ -36,5 +37,5 @@ const { title, titleSize, body, ctaLink } = card;
     <PortableText portableText={body} />
   </div>
 
-  {ctaLink && <ButtonLink butonLink={ctaLink} variation="primary-dark" />}
+  {ctaLink && <div class="mt-8"><ButtonLink buttonLink={ctaLink} variation="primary-dark" /></div> }
 </article>

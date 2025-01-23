@@ -8,20 +8,10 @@ import decorationOffwhite from "@assets/decorationOffwhite.png";
 import decorationLavander from "@assets/decorationLavander.png";
 import { Image } from "astro:assets";
 
-interface Section {
-  title: PortableTextBlock; // Adjust the type according to your data structure
-  subtitle: PortableTextBlock;
-  variation: "whiteDefault" | "whiteOffwhite" | "darkLavander" | "darkOffwhite";
-  events: Array<any>;
-  ctaText: PortableTextBlock; // Adjust the type according to your data structure
-  ctaLink;
-}
 
-interface Props {
-  section: Section;
-}
-const { section }: Props = Astro.props;
+const { section } = Astro.props;
 const { title, subtitle, variation, events, ctaText, ctaLink } = section;
+
 ---
 
 <section
@@ -107,20 +97,20 @@ const { title, subtitle, variation, events, ctaText, ctaLink } = section;
         </div>
       )
     }
-
-    {
-      ctaLink && (
-        <div class="flex flex-wrap justify-center ">
-          <ButtonLink
-            buttonLink={ctaLink}
-            variation={
-              variation === "whiteDefault" || variation === "whiteOffwhite"
-                ? "primary-dark"
-                : "primary-light-indigo"
-            }
-          />
-        </div>
-      )
-    }
+{
+  ctaLink && (
+    <div class="flex flex-wrap justify-center ">
+      <ButtonLink
+        buttonLink={ctaLink}
+        variation={
+          variation === "whiteDefault" || variation === "whiteOffwhite"
+            ? "primary-dark"
+            : "primary-light-indigo"
+        }
+      />
+    </div>
+  )
+}
+    
   </Container>
 </section>

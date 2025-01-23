@@ -3,7 +3,7 @@ const { buttonLink, variation } = Astro.props;
 import star from "@assets/icons/star.svg";
 import Image from "astro/components/Image.astro";
 
-const { linkText, linkType, internalLink, url, blank } = buttonLink;
+const { linkText='Button', linkType='internal', internalLink, url, blank } = buttonLink;
 ---
 
 {
@@ -61,7 +61,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
           </div>
         </div>
         <div class="flex justify-center items-center">
-          <span class="button__text">{linkText}</span>
+          <span class="button__text">{linkText ? linkText:'Button'}</span>
         </div>
       </div>
     </a>
@@ -117,7 +117,7 @@ const { linkText, linkType, internalLink, url, blank } = buttonLink;
           </div>
         </div>
         <div class="flex justify-center items-center">
-          <span class="button__text">{linkText}</span>
+          <span class="button__text">{linkText ? linkText:'Button'}</span>
         </div>
       </div>
     </a>
