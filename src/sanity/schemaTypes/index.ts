@@ -22,6 +22,8 @@ import scheduleItem from "./objects/scheduleItem";
 import simpleCard from "./objects/simpleCard";
 import insightsCard from "./objects/insightsCard";
 import successCard from "./objects/successCard";
+import videos from "./objects/videos";
+import photos from "./objects/photos";
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -42,6 +44,7 @@ import scheduleSection from "./sections/scheduleSection";
 import cardsFeature2 from "./sections/cardsFeature2";
 import insights from "./sections/insights";
 import success from "./sections/success";
+import gallery from "./sections/gallery";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -71,6 +74,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     simpleCard,
     insightsCard,
     successCard,
+    videos,
+    photos,
 
     //sections
     mediaSectionType,
@@ -88,6 +93,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     scheduleSection,
     cardsFeature2,
     insights,
-    success
+    success,
+    gallery
   ],
 };

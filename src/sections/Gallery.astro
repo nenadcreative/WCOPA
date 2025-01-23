@@ -1,0 +1,21 @@
+---
+import PortableText from "@/components/atoms/PortableText.astro";
+import Container from "@/components/global/Container.astro";
+
+const {section} = Astro.props
+const {tagline, title, description, galleries, videoHighligths} = section
+---
+
+<section>
+    <Container>
+        <span>{tagline}</span>
+        <h2><PortableText portableText={title} /></h2>
+        <div><PortableText portableText={description} /></div>
+
+        {galleries && galleries.map((gallery)=>{
+            return <div><PortableText portableText={gallery.title} /></div>
+        })}
+
+        {videoHighligths && <div>Video Highlights</div>}
+    </Container>
+</section>
