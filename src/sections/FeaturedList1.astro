@@ -24,7 +24,7 @@ const {
 
 <section
   class:list={[
-    "pt-24 pb-28 relative overflow-hidden",
+    "py-14 lg:pt-24 lg:pb-28 relative overflow-hidden",
     variation === "white" && "bg-white text-dark-1",
     variation === "offwhite" && "bg-offwhite text-dark-1",
     variation === "lavander" && "bg-lavander text-dark-1",
@@ -48,22 +48,22 @@ const {
     <div
       class:list={[
         "flex flex-col justify-center items-center gap-8",
-        layout === "imageText" && "md:flex-row",
-        layout === "textImage" && " md:flex-row-reverse",
+        layout === "imageText" && "lg:flex-row",
+        layout === "textImage" && " lg:flex-row-reverse",
       ]}
     >
       <div
         class:list={[
-          "md:w-1/2 flex",
+          "lg:w-1/2 flex",
           layout === "imageText" && "justify-start",
           layout === "textImage" && "justify-center",
         ]}
       >
         {
           image && (
-            <div class="w-[300px] h-[458px] sm:w-[486px] sm:h-[660px]  relative">
+            <div class="w-[300px] h-[458px] lg:w-[486px] lg:h-[660px]  relative">
               <Image
-                class="mask w-[300px] h-[458px] sm:w-[486px] sm:h-[660px] object-cover "
+                class="mask w-[300px] h-[458px] lg:w-[486px] lg:h-[660px] object-cover "
                 src={urlForImage(image).url()}
                 width={486}
                 height={660}
@@ -71,7 +71,7 @@ const {
               />
               <Image
                 src="/mask-1.png"
-                class="absolute -top-2 -right-4 sm:-right-10 -z-10 w-[300px] h-[408px] sm:w-[486px] sm:h-[660px] "
+                class="absolute -top-2 -right-4 sm:-right-10 -z-10 w-[300px] h-[408px] lg:w-[486px] lg:h-[660px] "
                 width={486}
                 height={660}
                 alt=""
@@ -80,7 +80,7 @@ const {
           )
         }
       </div>
-      <div class="md:w-1/2">
+      <div class="lg:w-1/2">
         {
           tagline && (
             <span
@@ -163,7 +163,7 @@ const {
     mask-position: center;
     mask-repeat: no-repeat;
   }
-  @media screen and (min-width: 640px) {
+  @media screen and (min-width: 1024px) {
     .mask {
       mask-image: url("/mask-1.png");
       mask-size: 486px 660px;
