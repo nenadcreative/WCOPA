@@ -45,10 +45,11 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
     class:list={[
       "text-indigo text-sm font-bold mb-3",
       variation === "dark" && "text-yellow",
+      
     ]}
   >
     {title}
   </h3>
-
-  <PortableText portableText={description} />
+  <div class:list={['', variation === "dark" && 'text-white', variation !== "dark" && 'text-dark-2']}><PortableText portableText={description} /></div>
+  
 </div>
