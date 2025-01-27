@@ -10,7 +10,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
 <section
   class:list={[
-    "py-14 lg:pt-24 lg:pb-28 text-center font-bold",
+    "pt-24 pb-28 text-center",
     variation === "light" && "bg-white text-dark-1",
     variation === "dark" && "bg-dark-2 text-white",
   ]}
@@ -20,7 +20,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
       title && (
         <h2
           class:list={[
-            "mb-4 lg:mb-6 ",
+            " mb-6",
             variation === "light" && "[&>p>strong]:text-indigo",
             variation === "dark" && "[&>p>strong]:text-yellow",
           ]}
@@ -32,7 +32,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
     {
       subtitle && (
-        <div class="mb-10 lg:mb-16">
+        <div class="mb-16">
           <PortableText portableText={subtitle} />
         </div>
       )
@@ -40,7 +40,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
     {
       cards && (
-        <div class="mb-16 grid lg:grid-cols-3 gap-8">
+        <div class="mb-16 grid md:grid-cols-3 gap-8">
           {cards.map((card) => (
             <MediaCard variation={variation} card={card} />
           ))}
@@ -50,7 +50,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
     {
       ctaText && (
-        <div class="mb-6">
+        <div class="text-sm mb-6">
           <PortableText portableText={ctaText} />
         </div>
       )
@@ -60,7 +60,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
         <ButtonLink
           buttonLink={ctaLink}
           variation={
-            variation === "light" ? "primary-dark" : "primary-light-indigo"
+            variation === "light" ? "primary-light-indigo" : "primary-dark"
           }
         />
       )
