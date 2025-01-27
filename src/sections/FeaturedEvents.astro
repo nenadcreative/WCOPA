@@ -16,7 +16,7 @@ const { title, subtitle, variation, events, ctaText, ctaLink } = section;
 
 <section
   class:list={[
-    "pt-24 pb-28 relative",
+    "py-14 lg:pt-24 lg:pb-28 relative",
     variation === "whiteDefault" && "bg-white",
     variation === "whiteOffwhite" && "bg-white",
     variation === "darkLavander" && "bg-dark-2 text-white",
@@ -28,7 +28,7 @@ const { title, subtitle, variation, events, ctaText, ctaLink } = section;
       <Image
         src={decorationLavander}
         alt=""
-        class="absolute top-0 right-0 w-64 lg:w-[591px]"
+        class="absolute top-0 right-0 w-64 xl:w-[591px]"
       />
     ) : null
   }
@@ -37,7 +37,7 @@ const { title, subtitle, variation, events, ctaText, ctaLink } = section;
       <Image
         src={decorationOffwhite}
         alt=""
-        class="absolute top-0 right-0 w-64 lg:w-[591px]"
+        class="absolute top-0 right-0 w-64 xl:w-[591px]"
       />
     ) : null
   }
@@ -65,7 +65,7 @@ const { title, subtitle, variation, events, ctaText, ctaLink } = section;
 
       {
         subtitle && (
-          <span class="text-sm mb-16 block">
+          <span class="text-sm mb-8 xl:mb-16 block">
             <PortableText portableText={subtitle} />
           </span>
         )
@@ -73,7 +73,7 @@ const { title, subtitle, variation, events, ctaText, ctaLink } = section;
     </div>
     {
       events && (
-        <div class="flex flex-wrap xl:justify-between justify-center gap-8 mb-16">
+        <div class="flex flex-col items-center md:grid md:grid-cols-2  xl:grid-cols-3 justify-center gap-8 mb-16">
           {events.map((event) => {
             return (
               <EventCard
