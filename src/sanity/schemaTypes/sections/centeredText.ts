@@ -7,16 +7,22 @@ export default defineType({
   title: "Centered Text",
   type: "object",
   icon: AlignCenter,
+  groups: [
+    { title: "Content", name: "content" },
+    { title: "Design", name: "design" },
+  ],
   fields: [
     defineField({
       name: "title",
       title: "Title",
       type: "blockSimple",
+      group:'content'
     }),
     defineField({
       name: "text",
       title: "Text",
       type: "blockContent",
+      group:'content'
     }),
     defineField({
       name: "variation",
@@ -34,12 +40,14 @@ export default defineType({
           { title: "Background Image", value: "image" },
         ],
       },
+      group: "design",
     }),
     defineField({
       name: "bgImage",
       title: "Background Image",
       type: "image",
       hidden: ({ parent }) => parent?.variation !== "image",
+      group:'design'
     }),
   ],
   preview: {

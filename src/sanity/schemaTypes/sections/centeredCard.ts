@@ -8,27 +8,35 @@ export default defineType({
   title: "Centered Card",
   type: "object",
   icon: AlignVerticalSpaceAround,
+  groups: [
+    { title: "Content", name: "content" },
+    { title: "Design", name: "design" },
+  ],
   fields: [
     defineField({
       name: "title",
       title: "Title",
       type: "blockSimple",
+      group:'content'
     }),
 
     defineField({
       name: "subtitle",
       title: "Subtitle",
       type: "blockSimple",
+      group:'content'
     }),
     defineField({
       name: "card",
       title: "Content Card",
       type: "contentCard",
+      group:'content'
     }),
     defineField({
       name: "ctaText",
       title: "CTA Text",
       type: "blockSimple",
+      group:'content'
     }),
     defineField({
       name: "variation",
@@ -46,12 +54,14 @@ export default defineType({
           { title: "Background Image", value: "image" },
         ],
       },
+      group:'design'
     }),
     defineField({
       name: "bgImage",
       title: "Background Image",
       type: "image",
       hidden: ({ parent }) => parent?.variation !== "image",
+      group:'design'
     }),
   ],
   preview: {
