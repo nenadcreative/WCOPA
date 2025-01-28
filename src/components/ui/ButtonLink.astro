@@ -3,11 +3,11 @@ const { buttonLink, variation } = Astro.props;
 import star from "@assets/icons/star.svg";
 import Image from "astro/components/Image.astro";
 
-const { linkText='Button', linkType='internal', internalLink, url, blank } = buttonLink;
+const { linkText='Button', linkType='internal', internalLink, url, blank, hide } = buttonLink;
 ---
 
 {
-  linkType === "external" ? (
+  !hide && (linkType === "external" ? (
     <a
       href={url}
       target={blank ? "_blank" : "_self"}
@@ -121,7 +121,7 @@ const { linkText='Button', linkType='internal', internalLink, url, blank } = but
         </div>
       </div>
     </a>
-  ) : null
+  ) : null)
 }
 
 <style>

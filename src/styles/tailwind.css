@@ -11,19 +11,19 @@
   --font-display: Poppins, ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  --text-3xs: 0.75rem;
-  --text-2xs: 0.875rem;
-  --text-xs: 1rem;
-  --text-sm: 1.125rem;
-  --text-md: 1.25rem;
-  --text-lg: 1.375rem;
-  --text-xl: 1.5rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2rem;
-  --text-4xl: 2.5rem;
-  --text-5xl: 3rem;
-  --text-6xl: 3.25rem;
-  --text-7xl: 4rem;
+  --text-xs: 0.875rem;
+  --text-sm: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+ 
+
+  --text-display-xs:1rem;
+  --text-display-sm:1.125rem;
+  --text-display-md:1.375rem;
+  --text-display-lg:2rem;
+  --text-display-xl:3rem;
+  --text-display-2xl:3.25rem;
 
   --color-dark-1: #050006;
   --color-dark-2: #240727;
@@ -85,7 +85,7 @@
 @layer utilities {
   html {
     scroll-behavior: smooth;
-    @apply font-body text-sm;
+    @apply font-body ;
   }
 
   h1,
@@ -100,15 +100,15 @@
 
 @layer base {
   h1 {
-    @apply text-5xl xl:text-6xl font-bold;
+    @apply  font-bold;
   }
 
   h2 {
-    @apply text-4xl xl:text-5xl;
+    @apply text-display-lg lg:text-display-xl font-bold;
   }
 
   h3 {
-    @apply text-3xl xl:text-4xl;
+    @apply text-display-lg;
   }
   :root {
     --radius: 0.5rem

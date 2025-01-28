@@ -10,8 +10,8 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
 <section
   class:list={[
-    "pt-24 pb-28 text-center",
-    variation === "light" && "bg-white text-dark-1",
+    "py-14 lg:pt-24 lg:pb-28 text-center",
+    variation === "light" && "bg-white text-dark-2",
     variation === "dark" && "bg-dark-2 text-white",
   ]}
 >
@@ -32,7 +32,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
     {
       subtitle && (
-        <div class="mb-16">
+        <div class="text-sm lg:text-lg font-semibold mb-16">
           <PortableText portableText={subtitle} />
         </div>
       )
@@ -60,7 +60,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
         <ButtonLink
           buttonLink={ctaLink}
           variation={
-            variation === "light" ? "primary-light-indigo" : "primary-dark"
+            variation === "light" ? "primary-dark" : "primary-light-indigo"
           }
         />
       )
