@@ -35,7 +35,20 @@ export default defineType({
     defineArrayMember({
       lists: [],
       marks: {
-        annotations: [],
+        annotations: [
+          {
+            title: "URL",
+            name: "link",
+            type: "object",
+            fields: [
+              {
+                title: "URL",
+                name: "href",
+                type: "url",
+              },
+            ],
+          },
+        ],
         decorators: [
           {
             title: "Italic",
