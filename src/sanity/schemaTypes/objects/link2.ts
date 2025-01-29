@@ -27,11 +27,13 @@ export const linkType = defineType({
       type: "string",
       options: {
         list: [
+          { title: "None", value: "none" },
           { title: "External", value: "external" },
           { title: "Internal", value: "internal" },
         ],
         layout: "radio",
       },
+      initialValue:'none'
     }),
     defineField({
       title: "URL",

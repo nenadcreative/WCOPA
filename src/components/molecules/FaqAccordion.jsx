@@ -16,7 +16,7 @@ const FaqAccordion = ({ faqs, variation }) => {
             value={index + 1}
             key={faq._id}
             className={cn(
-              " mb-4 px-4 rounded-sm",
+              " mb-4 px-4 rounded-sm ",
               variation === "white" && "bg-offwhite",
               variation === "offwhite" && "bg-white text-dark-1",
               variation === "lavander" && "bg-white text-dark-1",
@@ -25,7 +25,7 @@ const FaqAccordion = ({ faqs, variation }) => {
               variation === "pattern" && "bg-lavander"
             )}
           >
-            <AccordionTrigger className="text-sm font-semibold text-left items-start data-[state=open]:text-indigo">
+            <AccordionTrigger className="text-sm cursor-pointer font-semibold text-left items-start data-[state=open]:text-indigo">
               <PortableText value={faq.question}></PortableText>
             </AccordionTrigger>
             <AccordionContent className="text-dark-2 pl-7">

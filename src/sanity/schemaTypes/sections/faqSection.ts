@@ -56,7 +56,7 @@ export default defineType({
     defineField({
       name: "ctaText",
       title: "CTA Text",
-      type: "simpleBlockContent",
+      type: "blockSimple",
       fieldset: "cta",
       hidden: ({ parent }) => parent.hideCta,
       group: "content",

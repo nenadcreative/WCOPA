@@ -86,7 +86,7 @@ export default defineType({
       type: "boolean",
       group: "design",
       hidden: ({ parent }) =>
-        parent?.variation === "image" || parent?.variation === "dark",
+        parent?.variation === "image" ,
     }),
     defineField({
       name: "layout",
@@ -107,7 +107,7 @@ export default defineType({
       title: "Card Variation",
       type: "string",
       options: {
-        list: ["card1", "card2", "card3", "card4"],
+        list: ["card1", "card2", "card3", "card4", 'card5'],
       },
       group: "card",
     }),
@@ -116,14 +116,14 @@ export default defineType({
       title: "Card Title",
       type: "string",
       group: "card",
-      hidden: ({ parent }) => parent?.cardVariation === "card2",
+      hidden: ({ parent }) => parent?.cardVariation === "card2" || parent?.cardVariation === "card5",
     }),
     defineField({
       name: "list",
       title: "Card List",
       type: "array",
       of: [{ type: "simpleListItem" }],
-      hidden: ({ parent }) => parent?.cardVariation === "card2",
+      hidden: ({ parent }) => parent?.cardVariation === "card2" || parent?.cardVariation === "card5",
       group: "card",
     }),
 
@@ -131,7 +131,7 @@ export default defineType({
       name: "cardCTA",
       title: "Card CTA",
       type: "blockSimple",
-      hidden: ({ parent }) => parent?.cardVariation === "card2",
+      hidden: ({ parent }) => parent?.cardVariation === "card2" || parent?.cardVariation === "card5",
       group: "card",
     }),
 
@@ -140,7 +140,14 @@ export default defineType({
       title: "Card Content",
       type: "array",
       of: [{ type: "listItem" }],
-      hidden: ({ parent }) => parent?.cardVariation !== "card2",
+      hidden: ({ parent }) => parent?.cardVariation !== "card2" || parent?.cardVariation === "card5",
+      group: "card",
+    }),
+    defineField({
+      name: "card5Content",
+      title: "Card Content",
+      type: "blockContent",
+      hidden: ({ parent }) => parent?.cardVariation !== "card5",
       group: "card",
     }),
   ],

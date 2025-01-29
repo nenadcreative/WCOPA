@@ -100,7 +100,7 @@
 
 @layer base {
   h1 {
-    @apply  font-bold;
+    @apply text-display-lg sm:text-display-xl lg:text-display-2xl font-bold;
   }
 
   h2 {
