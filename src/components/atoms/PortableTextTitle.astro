@@ -2,12 +2,17 @@
 import { PortableText as PortableTextInternal } from "astro-portabletext";
 const { portableText } = Astro.props;
 import PortableTextImage from "./PortableTextImage.astro";
+import SpanBlock from "./SpanBlock.astro";
 const components = {
   type: {
     image: PortableTextImage,
   },
-  
+  block: {
+    normal: SpanBlock,
+    // [node.style]: Component
+  },
 };
+
 ---
 
 <PortableTextInternal value={portableText} components={components} />
