@@ -5,6 +5,7 @@ import Container from "@/components/global/Container.astro";
 import { Image } from "astro:assets";
 import patternImage from "@assets/pattern-big.png";
 import { urlForImage } from "@/sanity/lib/urlForImage";
+import LightboxImage from "@atoms/LightboxImage.jsx";
 
 const { section } = Astro.props;
 const { tagline, title, variation, description, galleries, videoHighligths } =
@@ -68,11 +69,12 @@ const { tagline, title, variation, description, galleries, videoHighligths } =
                                 {gallery.images.map((image) => {
                                     return (
                                         <div class="min-h-64">
-                                            <Image
-                                                src={urlForImage(image).url()}
-                                                alt=""
-                                                inferSize
-                                                class="w-full h-full object-cover rounded-sm"
+                                            <LightboxImage
+                                                client:load
+                                                images={gallery.images}
+                                                imageUrl={urlForImage(
+                                                    image,
+                                                ).url()}
                                             />
                                         </div>
                                     );

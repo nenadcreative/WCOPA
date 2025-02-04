@@ -8,13 +8,27 @@
       "@/*": [
         "./src/*"
       ],
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@globals/*": ["src/components/global/*"],
-      "@sanity/*": ["src/sanity/*"],
-      "@ui/*": ["src/components/ui/*"],
-      "@sections/*":["src/sections/*"]
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@atoms/*": [
+        "src/components/atoms/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@globals/*": [
+        "src/components/global/*"
+      ],
+      "@sanity/*": [
+        "src/sanity/*"
+      ],
+      "@ui/*": [
+        "src/components/ui/*"
+      ],
+      "@sections/*": [
+        "src/sections/*"
+      ]
     }
-
   }
 }
