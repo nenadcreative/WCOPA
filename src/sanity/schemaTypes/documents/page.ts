@@ -70,7 +70,8 @@ export const pageType = defineType({
         { type: 'insights' },
         { type: 'successStories' },
         { type: 'gallery' },
-        { type: 'contactInfo' }
+        { type: 'contactInfo' },
+        { type: 'cardsFeature1' }
       ],
       options: {
         insertMenu: {
@@ -92,7 +93,8 @@ export const pageType = defineType({
                 'cardsFeature2',
                 'insights',
                 'successStories',
-                'gallery'
+                'gallery',
+                'cardsFeature1'
               ],
             },
             {
