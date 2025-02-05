@@ -24,6 +24,7 @@ import insightsCard from "./objects/insightsCard";
 import successCard from "./objects/successCard";
 import videos from "./objects/videos";
 import photos from "./objects/photos";
+import { videoType } from "./objects/video";
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -76,6 +77,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     successCard,
     videos,
     photos,
+    videoType,
 
     //sections
     mediaSectionType,

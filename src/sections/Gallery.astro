@@ -4,19 +4,52 @@ import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import Container from "@/components/global/Container.astro";
 import { Image } from "astro:assets";
 import patternImage from "@assets/pattern-big.png";
+import patternImageAlt from "@assets/pattern-big-alt.png";
 import { urlForImage } from "@/sanity/lib/urlForImage";
 import LightboxImage from "@atoms/LightboxImage.jsx";
+import VideoDialog from "@/components/atoms/VideoDialog";
 
 const { section } = Astro.props;
 const { tagline, title, variation, description, galleries, videoHighligths } =
     section;
+
+const getBackgroundClass = (index: number, variation: string) => {
+    switch (variation) {
+        case "white":
+            return index % 2 === 0
+                ? "bg-indigo text-white"
+                : "bg-lavander text-white";
+        case "offwhite":
+            return index % 2 === 0
+                ? "bg-indigo text-white"
+                : "bg-lavander text-white";
+        case "lavander":
+            return index % 2 === 0
+                ? "bg-indigo text-white"
+                : "bg-white text-dark-2";
+        case "gradient":
+            return index % 2 === 0
+                ? "bg-indigo text-white"
+                : "bg-white text-dark-2";
+        case "dark":
+            return index % 2 === 0
+                ? "bg-indigo text-white"
+                : "bg-white text-dark-2";
+        default:
+            return "bg-gray-500 text-white";
+    }
+};
 ---
 
 <section
     class:list={[
         "py-14 lg:py-28 relative",
         variation === "white" && "bg-white",
-        variation === "dark" && "bg-dark-2",
+        variation === "offwhite" && "bg-offwhite",
+        variation === "dark" && "bg-dark-2 text-white",
+        variation === "lavander" && "bg-lavander",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
     ]}
 >
     <Image
@@ -24,9 +57,21 @@ const { tagline, title, variation, description, galleries, videoHighligths } =
         alt=""
         class:list={[
             "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
-
+            variation === "offwhite" && "hidden",
             variation === "gradient" && "opacity-80 ",
-            variation === "dark" && "opacity-50 invert",
+            variation === "dark" && "invert opacity-50",
+        ]}
+    />
+    <Image
+        src={patternImageAlt}
+        alt=""
+        class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+            variation === "white" && "hidden",
+            variation === "offwhite" && "",
+            variation === "lavander" && "hidden",
+            variation === "gradient" && "hidden",
+            variation === "dark" && "hidden",
         ]}
     />
     <Container classes="relative z-10">
@@ -52,23 +97,78 @@ const { tagline, title, variation, description, galleries, videoHighligths } =
         {
             galleries &&
                 galleries.map((gallery, index) => {
-                    console.log(gallery.images);
                     return (
                         <div class="mb-20">
                             <div
                                 class:list={[
-                                    "rounded-sm text-display-lg font-display font-semibold mb-6 py-8 px-8",
-                                    variation === "white" && index % 2 === 0
-                                        ? "bg-indigo text-white"
-                                        : "bg-lavander text-indigo",
+                                    "rounded-sm text-display-lg font-display flex justify-between items-center  mb-6 py-3 px-3",
+                                    getBackgroundClass(index, variation),
                                 ]}
                             >
-                                <PortableText portableText={gallery.title} />
+                                <div>
+                                    <span
+                                        class:list={[
+                                            "font-semibold leading-none block",
+                                            gallery.description &&
+                                                "text-display-md mb-2",
+                                            variation === "white" &&
+                                            index % 2 === 0
+                                                ? " text-white"
+                                                : " text-indigo",
+                                            variation === "offwhite" &&
+                                            index % 2 === 0
+                                                ? " text-white"
+                                                : " text-indigo",
+                                            variation === "lavander" &&
+                                            index % 2 === 0
+                                                ? " text-white"
+                                                : " text-indigo",
+                                            variation === "gradient" &&
+                                            index % 2 === 0
+                                                ? " text-white"
+                                                : " text-indigo",
+                                            variation === "dark" &&
+                                            index % 2 === 0
+                                                ? " text-white"
+                                                : " text-indigo",
+                                        ]}
+                                    >
+                                        <PortableTextTitle
+                                            portableText={gallery.title}
+                                        />
+                                    </span>
+
+                                    {gallery.description && (
+                                        <span class="block text-sm font-regular max-w-[800px]">
+                                            <PortableTextTitle
+                                                portableText={
+                                                    gallery?.description
+                                                }
+                                            />
+                                        </span>
+                                    )}
+                                </div>
+                                <svg
+                                    width="80"
+                                    height="80"
+                                    viewBox="0 0 80 80"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M40 2.22266L49.9221 30.6258L80 31.2845L56.054 49.4975L64.721 78.3078L40 61.1608L15.279 78.3078L23.946 49.4975L0 31.2845L30.0779 30.6258L40 2.22266Z"
+                                        fill="#F4CA51"
+                                    />
+                                    <path
+                                        d="M80 31.2845L40 44.2819L49.9221 30.6258L80 31.2845ZM40 61.1608V44.2819L15.279 78.3078L40 61.1608ZM40 44.2819L64.721 78.3078L56.054 49.4975L40 44.2819ZM30.0779 30.6258L40 44.2819V2.22266L30.0779 30.6258ZM23.946 49.4975L40 44.2819L0 31.2845L23.946 49.4975Z"
+                                        fill="#A57D24"
+                                    />
+                                </svg>
                             </div>
                             <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4  ">
                                 {gallery.images.map((image) => {
                                     return (
-                                        <div class="min-h-64">
+                                        <div class="min-h-56">
                                             <LightboxImage
                                                 client:load
                                                 images={gallery.images}
@@ -85,6 +185,94 @@ const { tagline, title, variation, description, galleries, videoHighligths } =
                 })
         }
 
-        {videoHighligths && <div>Video Highlights</div>}
+        {
+            videoHighligths && (
+                <div class="mb-20">
+                    <div
+                        class:list={[
+                            "rounded-sm text-display-lg font-display flex justify-between items-center bg-lavander text-indigo mb-6 py-3 px-3",
+                        ]}
+                    >
+                        <div>
+                            <span
+                                class:list={[
+                                    "font-semibold",
+                                    videoHighligths.description &&
+                                        "text-display-md",
+                                    variation === "white" && " text-indigo",
+                                ]}
+                            >
+                                <PortableTextTitle
+                                    portableText={videoHighligths.title}
+                                />
+                            </span>
+
+                            {videoHighligths.description && (
+                                <span class="block text-sm font-regular max-w-[800px]">
+                                    <PortableTextTitle
+                                        portableText={
+                                            videoHighligths?.description
+                                        }
+                                    />
+                                </span>
+                            )}
+                        </div>
+                        <svg
+                            width="80"
+                            height="80"
+                            viewBox="0 0 80 80"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M40 2.22266L49.9221 30.6258L80 31.2845L56.054 49.4975L64.721 78.3078L40 61.1608L15.279 78.3078L23.946 49.4975L0 31.2845L30.0779 30.6258L40 2.22266Z"
+                                fill="#F4CA51"
+                            />
+                            <path
+                                d="M80 31.2845L40 44.2819L49.9221 30.6258L80 31.2845ZM40 61.1608V44.2819L15.279 78.3078L40 61.1608ZM40 44.2819L64.721 78.3078L56.054 49.4975L40 44.2819ZM30.0779 30.6258L40 44.2819V2.22266L30.0779 30.6258ZM23.946 49.4975L40 44.2819L0 31.2845L23.946 49.4975Z"
+                                fill="#A57D24"
+                            />
+                        </svg>
+                    </div>
+                    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4  ">
+                        {videoHighligths.videos.map((video) => {
+                            return (
+                                <div class="min-h-56 relative flex justify-center items-center">
+                                    <VideoDialog
+                                        videoUrl={video?.video}
+                                        client:load
+                                    >
+                                        <div class="absolute w-full h-full bg-dark-2/56" />
+                                        <svg
+                                            width="94"
+                                            height="94"
+                                            viewBox="0 0 94 94"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="absolute z-10 w-16 h-16 lg:w-20 lg:h-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                clip-rule="evenodd"
+                                                d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
+                                                fill="#F4CA51"
+                                            />
+                                        </svg>
+                                        <Image
+                                            src={urlForImage(
+                                                video?.videoThumbnail,
+                                            ).url()}
+                                            alt={video?.title}
+                                            inferSize
+                                            class="w-full h-full object-cover"
+                                        />
+                                    </VideoDialog>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            )
+        }
     </Container>
 </section>

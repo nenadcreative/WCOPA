@@ -16,7 +16,7 @@ export default function LightboxImage({ images, imageUrl }) {
                 className="flex h-full w-full  "
                 onClick={() => setOpen(true)}
             >
-                <img src={imageUrl}></img>
+                <img className="w-full h-full object-cover" src={imageUrl}></img>
             </button>
 
             <Lightbox

@@ -11,12 +11,12 @@ import ReactPlayer from "react-player/lazy";
 
 const VideoDialog = ({ videoUrl, children }) => {
   return (
-    <Dialog>
-      <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent>
+    <Dialog className='w-full h-full '>
+      <DialogTrigger className="
+      w-full h-full relative ">{children}</DialogTrigger>
+      <DialogContent className="min-w-[800px] flex justify-center">
         <DialogTitle className="hidden">Video</DialogTitle>
-        {/* <ReactPlayer url={videoUrl} /> */}
-        This will be a video player
+        {videoUrl ? <ReactPlayer controls url={videoUrl} /> : <p>No video available</p>}
       </DialogContent>
     </Dialog>
   );
