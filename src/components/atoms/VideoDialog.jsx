@@ -15,8 +15,12 @@ const VideoDialog = ({ videoUrl, children }) => {
       <DialogTrigger className="
       w-full h-full relative ">{children}</DialogTrigger>
       <DialogContent className="min-w-[800px] flex justify-center">
-        <DialogTitle className="hidden">Video</DialogTitle>
-        {videoUrl ? <ReactPlayer controls url={videoUrl} /> : <p>No video available</p>}
+        <DialogTitle className="sr-only">Video</DialogTitle>
+        <div className="aspect-video w-full">
+
+          {/* @ts-ignore */}
+          {videoUrl ? <ReactPlayer controls url={videoUrl} /> : <p>No video available</p>}
+        </div>
       </DialogContent>
     </Dialog>
   );
