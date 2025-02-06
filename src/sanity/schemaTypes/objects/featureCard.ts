@@ -21,6 +21,7 @@ export const featureCard = defineType({
         }),
         defineField({
             name: 'description',
+
             title: 'Description',
             type: 'blockContent',
         }),

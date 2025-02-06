@@ -1,0 +1,39 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import star from "@assets/icons/star.svg";
+import { Image } from "astro:assets";
+
+const { card, cardVariation } = Astro.props;
+const { title, description } = card;
+---
+
+<article
+    class:list={[
+        "rounded-sm relative w-full min-w-[244px] max-w-[592px] mx-auto pt-12 px-6 pb-8",
+        cardVariation === "white" && "bg-offwhite text-dark-2",
+        cardVariation === "offwhite" && "bg-white text-dark-2",
+        cardVariation === "lavander" && "bg-white text-dark-2",
+        cardVariation === "gradient" && "bg-white text-dark-2",
+        cardVariation === "dark" && "bg-white text-dark-2",
+        cardVariation === "pattern" && "bg-lavander text-dark-2",
+        cardVariation === "image" && "bg-white text-dark-2",
+    ]}
+>
+    <Image
+        src={star}
+        alt=""
+        class="absolute right-1/2 translate-x-1/2 -top-10 w-18 h-18"
+    />
+    <h3
+        class:list={[
+            " text-indigo text-display-md font-display font-semibold mb-5",
+        ]}
+    >
+        {title}
+    </h3>
+    <div
+        class="[&>ul>li]:mb-2 [&>ul>li]:marker:mt-4 [&>ul]:list-image-star [&>ul]:list-inside [&>p]:mb-2"
+    >
+        <PortableText portableText={description} />
+    </div>
+</article>

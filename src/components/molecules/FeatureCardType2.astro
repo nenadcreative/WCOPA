@@ -1,0 +1,59 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import star from "@assets/icons/star.svg";
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+
+const { card, cardVariation } = Astro.props;
+const { title, description, image } = card;
+const imageUrl = image ? urlForImage(image)?.url() : null;
+---
+
+<article
+    class:list={[
+        " w-full min-w-[280px] max-w-[400px] mx-auto ",
+        // cardVariation === "white" && "bg-offwhite text-dark-2",
+        // cardVariation === "offwhite" && "bg-white text-dark-2",
+        // cardVariation === "lavander" && "bg-white text-dark-2",
+        // cardVariation === "gradient" && "bg-white text-dark-2",
+        // cardVariation === "dark" && "bg-white text-dark-2",
+        // cardVariation === "pattern" && "bg-lavander text-dark-2",
+        // cardVariation === "image" && "bg-white text-dark-2",
+    ]}
+>
+    <div class="w-full h-full rounded-sm overflow-clip">
+        <Image
+            src={imageUrl}
+            alt="w-full h-full object-cover rounded-sm"
+            width={400}
+            height={200}
+        />
+    </div>
+
+    <div
+        class:list={[
+            "mt-6 px-6 pt-8 pb-10 rounded-sm relative",
+            cardVariation === "white" && "bg-offwhite text-dark-2",
+            cardVariation === "offwhite" && "bg-white text-dark-2",
+            cardVariation === "lavander" && "bg-white text-dark-2",
+            cardVariation === "gradient" && "bg-white text-dark-2",
+            cardVariation === "dark" && "bg-white text-dark-2",
+            cardVariation === "pattern" && "bg-lavander text-dark-2",
+            cardVariation === "image" && "bg-white text-dark-2",
+        ]}
+    >
+        <Image src={star} alt="" class="absolute right-2 -top-14 w-18 h-18" />
+        <h3
+            class:list={[
+                " text-indigo text-display-md font-display font-semibold mb-5",
+            ]}
+        >
+            {title}
+        </h3>
+        <div
+            class="[&>ul>li]:mb-2 [&>ul>li]:marker:mt-4 [&>ul]:list-image-star [&>ul]:list-inside [&>p]:mb-2"
+        >
+            <PortableText portableText={description} />
+        </div>
+    </div>
+</article>

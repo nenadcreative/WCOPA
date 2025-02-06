@@ -48,6 +48,7 @@ export const cardsFeature1 = defineType({
             title: 'Cards',
             type: 'array',
             of: [{ type: 'featureCard' }],
+            validation: (Rule) => Rule.min(2),
             group: 'content'
         }),
 
@@ -62,6 +63,7 @@ export const cardsFeature1 = defineType({
             title: "Link",
             type: "array",
             of: [{ type: "link" }],
+            validation: (Rule) => Rule.max(2),
             fieldset: "cta",
         }),
 
@@ -83,6 +85,13 @@ export const cardsFeature1 = defineType({
             },
             group: 'design'
         }),
+        defineField({
+            name: "bgImage",
+            title: "Background Image",
+            type: "image",
+            group: "design",
+            hidden: ({ parent }) => parent?.variation !== "image"
+        })
     ],
     preview: {
         select: {

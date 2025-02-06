@@ -2,22 +2,180 @@
 import Container from "@components/global/Container.astro";
 import PortableText from "@/components/atoms/PortableText.astro";
 import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import FeatureCardType1 from "@/components/molecules/FeatureCardType1.astro";
+import FeatureCardType2 from "@/components/molecules/FeatureCardType2.astro";
+import ButtonLink from "@/components/ui/ButtonLink.astro";
+import patternImage from "@assets/pattern-big-alt.png";
+import decoration from "@assets/decoration4.png";
+import { Image } from "astro:assets";
+import { urlForImage } from "@/sanity/lib/urlForImage";
 const { section } = Astro.props;
-const { tagline, title, description, cards, ctaText, ctaLinks, variation } =
-    section;
+const {
+    tagline,
+    title,
+    description,
+    cards,
+    ctaText,
+    ctaLinks,
+    variation,
+    bgImage,
+} = section;
+
+const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
 ---
 
-<section class="bg-red-200">
-    <Container>
-        <span>{tagline}</span>
-        <h2><PortableText portableText={title} /></h2>
-        <div><PortableText portableText={description} /></div>
+<section
+    class:list={[
+        "py-14 lg:py-24",
+        variation === "white " && "bg-white text-dark-2",
+        variation === "offwhite" && "bg-offwhite text-dark-2",
+        variation === "lavander" && "bg-lavander text-dark-2",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-2",
+        variation === "dark" && "bg-dark-2 relative text-white",
+        variation === "image" && "relative text-white",
+        variation === "pattern" && "relative bg-offwhite",
+    ]}
+>
+    <Image
+        src={patternImage}
+        alt=""
+        class:list={[
+            "",
+            variation !== "pattern" && "hidden",
+            variation === "pattern" &&
+                "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+        ]}
+    />
+    {
+        variation === "dark" && (
+            <Image
+                src={decoration}
+                priority
+                alt=""
+                class:list={["absolute bottom-0 right-0  z-10"]}
+            />
+        )
+    }
+    {
+        bgImageUrl && variation === "image" && (
+            <div class="w-full h-full ">
+                <Image
+                    src={bgImageUrl}
+                    alt=""
+                    inferSize
+                    class:list={[
+                        "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+                    ]}
+                />
+                <div class="w-full h-full bg-indigo/80 absolute top-0 left-0 " />
+            </div>
+        )
+    }
+    <Container classes="relative z-10">
+        <div class="text-center max-w-[800px] mx-auto">
+            <span
+                class:list={[
+                    "uppercase font-medium text-indigo mb-1",
+                    variation === "dark" && "text-yellow",
+                    variation === "image" && "text-yellow",
+                ]}>{tagline}</span
+            >
+            <h2
+                class:list={[
+                    "mb-6 [&>strong]:font-bold",
+                    variation !== "dark" && "[&>strong]:text-indigo",
+                    variation === "dark" &&
+                        " text-white  [&>strong]:text-yellow",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div
+                class:list={[
+                    "text-md mb-16 [&>h3]:mb-4 [&>h3]:text-xl [&>h3]:font-medium   ",
+                ]}
+            >
+                <PortableText portableText={description} />
+            </div>
+        </div>
 
         {
-            cards &&
-                cards.map((card) => {
-                    return <div>{card.title}</div>;
-                })
+            cards && (
+                <div
+                    class:list={[
+                        "mb-16",
+                        cards.length > 4
+                            ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12"
+                            : "flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap items-center justify-center sm:justify-between gap-4 gap-y-12",
+                    ]}
+                >
+                    {cards.map((card) => {
+                        switch (card.cardType) {
+                            case "type1":
+                                return (
+                                    <FeatureCardType1
+                                        card={card}
+                                        cardVariation={variation}
+                                    />
+                                );
+                            case "type2":
+                                return (
+                                    <FeatureCardType2
+                                        card={card}
+                                        cardVariation={variation}
+                                    />
+                                );
+                            // Add other cases here as needed
+                            default:
+                                return <div />;
+                        }
+                    })}
+                </div>
+            )
         }
+
+        <div class="text-center max-w-[760px] mx-auto">
+            {
+                ctaText && (
+                    <div
+                        class:list={[
+                            "text-md  mb-8 [&>h3]:text-indigo [&>h3]:text-display-lg [&>h3]:font-display [&>h3]:font-semibold [&>h3]:mb-4",
+                            variation === "dark" && "[&>h3]:text-yellow",
+                            variation === "image" && "[&>h3]:text-yellow",
+                        ]}
+                    >
+                        <PortableTextTitle portableText={ctaText} />
+                    </div>
+                )
+            }
+
+            {
+                ctaLinks && (
+                    <div class:list={["flex flex-wrap justify-center gap-6"]}>
+                        {ctaLinks.map((button, index) => {
+                            return (
+                                <ButtonLink
+                                    buttonLink={button}
+                                    variation={
+                                        index === 0
+                                            ? variation === "dark" ||
+                                              variation === "image"
+                                                ? "primary-light-yellow"
+                                                : "primary-dark"
+                                            : index === 1
+                                              ? variation === "dark" ||
+                                                variation === "image"
+                                                  ? "secondary-light"
+                                                  : "secondary-dark"
+                                              : "primary-dark" // default value
+                                    }
+                                />
+                            );
+                        })}
+                    </div>
+                )
+            }
+        </div>
     </Container>
 </section>
