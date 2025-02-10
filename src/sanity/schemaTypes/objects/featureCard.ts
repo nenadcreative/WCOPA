@@ -20,8 +20,20 @@ export const featureCard = defineType({
             type: 'string',
         }),
         defineField({
+            name: 'titleSize',
+            title: 'Title Size',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Small', value: 'sm' },
+                    { title: 'Medium', value: 'md' },
+                    { title: 'Large', value: 'lg' },
+                ]
+            },
+            initialValue: 'md'
+        }),
+        defineField({
             name: 'description',
-
             title: 'Description',
             type: 'blockContent',
         }),

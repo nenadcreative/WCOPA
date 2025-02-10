@@ -4,7 +4,7 @@ import star from "@assets/icons/star.svg";
 import { Image } from "astro:assets";
 
 const { card, cardVariation } = Astro.props;
-const { title, description } = card;
+const { title, description, titleSize } = card;
 ---
 
 <article
@@ -26,7 +26,10 @@ const { title, description } = card;
     />
     <h3
         class:list={[
-            " text-indigo text-display-md font-display font-semibold mb-5",
+            " text-indigo  font-display font-semibold mb-5",
+            titleSize === "sm" && "text-display-xs",
+            titleSize === "md" && "text-display-md",
+            titleSize === "lg" && "text-display-lg",
         ]}
     >
         {title}
