@@ -2,27 +2,77 @@
 import PortableText from "@/components/atoms/PortableText.astro";
 import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import Container from "@/components/global/Container.astro";
+import InfoCardType1 from "@/components/molecules/InfoCardType1.astro";
+import InfoCardType2 from "@/components/molecules/InfoCardType2.astro";
 const { section } = Astro.props;
-const { title, description, cards, ctaText } = section;
+const { title, description, cards, ctaText, variation } = section;
 ---
 
-<section>
+<section
+    class:list={[
+        "py-14 lg:py-24",
+        variation === "white " && "bg-white text-dark-2",
+        variation === "offwhite" && "bg-offwhite text-dark-2",
+        variation === "lavander" && "bg-lavander text-dark-2",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-2",
+        variation === "dark" && "bg-dark-2 relative text-white",
+        variation === "image" && "relative text-white",
+        variation === "pattern" && "relative bg-offwhite",
+    ]}
+>
     <Container>
-        <h2><PortableTextTitle portableText={title} /></h2>
-        <div>
-            <PortableText portableText={description} />
+        <div class="text-center max-w-[800px] mx-auto">
+            <h2
+                class:list={[
+                    "mb-6 [&>strong]:font-bold",
+                    variation !== "dark" && "[&>strong]:text-indigo",
+                    variation === "dark" &&
+                        " text-white  [&>strong]:text-yellow",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div
+                class:list={[
+                    "text-md mb-16 [&>h3]:mb-4 [&>h3]:text-xl [&>h3]:font-medium   ",
+                ]}
+            >
+                <PortableText portableText={description} />
+            </div>
         </div>
 
         {
-            cards &&
-                cards.map(() => {
-                    return <div>Card</div>;
-                })
+            cards && (
+                <div class="mb-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {cards.map((card) => {
+                        switch (card.cardType) {
+                            case "type1":
+                                return (
+                                    <InfoCardType1
+                                        card={card}
+                                        cardVariation={variation}
+                                    />
+                                );
+                            case "type2":
+                                return (
+                                    <InfoCardType2
+                                        card={card}
+                                        cardVariation={variation}
+                                    />
+                                );
+                            // Add other cases here as needed
+                            default:
+                                return <div />;
+                        }
+                    })}
+                </div>
+            )
         }
 
         {
             ctaText && (
-                <div>
+                <div class="max-w-[800px] mx-auto text-md font-semibold text-center">
                     <PortableText portableText={ctaText} />
                 </div>
             )

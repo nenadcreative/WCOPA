@@ -22,6 +22,20 @@ export const contactInfoCard = defineType({
         }),
 
         defineField({
+            name: 'titleSize',
+            title: 'Title Size',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Small', value: 'sm' },
+                    { title: 'Medium', value: 'md' },
+
+                ]
+            },
+            initialValue: 'md',
+        }),
+
+        defineField({
             name: 'cardIcon',
             title: 'Card Icon',
             type: 'image',

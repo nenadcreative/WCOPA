@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import PortableTextTitle from "../atoms/PortableTextTitle.astro";
+
+const { card, cardVariation } = Astro.props;
+
+const { title, titleSize, info } = card;
+---
+
+<article
+    class:list={[
+        "mt-10 relative px-5 py-10 rounded-sm flex flex-col justify-between",
+        cardVariation === "white" && "bg-offwhite",
+        cardVariation === "offwhite" && "bg-white",
+        cardVariation === "lavander" && "bg-white",
+        cardVariation === "gradient" && "bg-white",
+        cardVariation === "dark" && "bg-white text-dark-1",
+    ]}
+>
+    <div>
+        <h3
+            class:list={[
+                "text-display-lg font-display font-semibold mb-4 text-indigo",
+                titleSize === "sm" && "text-display-md",
+                titleSize === "md" && "text-display-lg",
+            ]}
+        >
+            <PortableTextTitle portableText={title} />
+        </h3>
+        <div class:list={["mb-10 flex flex-col gap-5"]}>
+            {
+                info &&
+                    info.map((info) => {
+                        const { title, icon, link } = info;
+                        const iconUrl = urlForImage(icon)?.url();
+                        console.log(link);
+                        return (
+                            <div class="flex gap-4 ">
+                                <Image
+                                    src={iconUrl}
+                                    alt=""
+                                    class="w-8 h-8"
+                                    width={32}
+                                    height={32}
+                                />
+                                <div class="flex flex-col">
+                                    <h3 class="font-medium text-lg text-indigo">
+                                        {title}
+                                    </h3>
+
+                                    <a
+                                        class="text-sm font-medium text-dark-2"
+                                        href={link?.href}
+                                    >
+                                        {link.linkText}
+                                    </a>
+                                </div>
+                            </div>
+                        );
+                    })
+            }
+        </div>
+    </div>
+
+    <div class="w-full h-px bg-indigo mt-auto"></div>
+</article>
