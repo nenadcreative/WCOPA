@@ -73,6 +73,7 @@ export const pageType = defineType({
         { type: 'contactInfo' },
         { type: 'cardsFeature1' },
         { type: 'sponsors' },
+        { type: 'featuresSection' }
       ],
       options: {
         insertMenu: {
@@ -95,7 +96,8 @@ export const pageType = defineType({
                 'insights',
                 'successStories',
                 'gallery',
-                'cardsFeature1'
+                'cardsFeature1',
+                'featuresSection'
               ],
             },
             {

@@ -53,6 +53,7 @@ import gallery from "./sections/gallery";
 import { contactInfo } from './sections/contactInfo';
 import { cardsFeature1 } from './sections/cardsFeature1';
 import { sponsorsType } from "./sections/sponsors";
+import { featuresSectionType } from "./sections/features";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -111,5 +112,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactInfo,
     cardsFeature1,
     sponsorsType,
+    featuresSectionType
   ],
 };
