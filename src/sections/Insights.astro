@@ -1,19 +1,118 @@
 ---
 import PortableText from "@/components/atoms/PortableText.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import Container from "@components/global/Container.astro";
 
 const { section } = Astro.props;
-const {title, description, cards, variation} = section
+const { title, description, cards, variation } = section;
 ---
 
+<section
+    class:list={[
+        "py-14",
+        variation === "lavander" && "bg-lavander",
+        variation === "dark" && "bg-dark-2",
+        variation === "gradient" &&
+            "bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
+    ]}
+>
+    <Container>
+        <div class="text-center mx-auto max-w-[800px] mb-24">
+            <h2
+                class:list={[
+                    "[&>strong]:font-bold mb-4",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                    variation !== "dark" && "[&>strong]:text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div><PortableText portableText={description} /></div>
+        </div>
 
-<section>
-    <Container> 
-        <h2><PortableText portableText={title} /></h2>
-        <p><PortableText portableText={description} /></p>
-        {cards && cards.map((card)=>{
-            return <div>{card.title}</div>
-        })}
+        {
+            cards && (
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {cards.map((card) => {
+                        return (
+                            <div class="relative rounded-sm overflow-hidden">
+                                <div
+                                    class:list={[
+                                        "p-4 text-center",
+                                        variation !== "dark" &&
+                                            "bg-indigo text-white",
+                                        variation === "dark" &&
+                                            "bg-yellow text-dark-2",
+                                    ]}
+                                >
+                                    <h3 class="text-display-sm font-bold">
+                                        {card?.title}
+                                    </h3>
+                                </div>
+                                <div class="bg-white px-5 pt-8 pb-10 text-center relative mb-5 rounded-b-sm">
+                                    <div class="mb-3 text-sm">
+                                        <PortableText
+                                            portableText={card?.quote}
+                                        />
+                                    </div>
+                                    <span class="text-sm font-semibold text-indigo">
+                                        {card?.name}
+                                    </span>
+                                    <svg
+                                        width="284"
+                                        height="40"
+                                        viewBox="0 0 284 40"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="absolute bottom-0 right-1/2 z-10 translate-x-1/2 translate-y-1/2"
+                                    >
+                                        <path
+                                            d="M20 1.10938L24.961 15.3109L40 15.6403L28.027 24.7468L32.3605 39.152L20 30.5785L7.63948 39.152L11.973 24.7468L0 15.6403L15.039 15.3109L20 1.10938Z"
+                                            fill="#F4CA51"
+                                        />
+                                        <path
+                                            d="M40 15.6403L20 22.139L24.961 15.3109L40 15.6403ZM20 30.5785V22.139L7.63948 39.152L20 30.5785ZM20 22.139L32.3605 39.152L28.027 24.7468L20 22.139ZM15.039 15.3109L20 22.139V1.10938L15.039 15.3109ZM11.973 24.7468L20 22.139L0 15.6403L11.973 24.7468Z"
+                                            fill="#A57D24"
+                                        />
+                                        <path
+                                            d="M81 1.10938L85.961 15.3109L101 15.6403L89.027 24.7468L93.3605 39.152L81 30.5785L68.6395 39.152L72.973 24.7468L61 15.6403L76.039 15.3109L81 1.10938Z"
+                                            fill="#F4CA51"
+                                        />
+                                        <path
+                                            d="M101 15.6403L81 22.139L85.961 15.3109L101 15.6403ZM81 30.5785V22.139L68.6395 39.152L81 30.5785ZM81 22.139L93.3605 39.152L89.027 24.7468L81 22.139ZM76.039 15.3109L81 22.139V1.10938L76.039 15.3109ZM72.973 24.7468L81 22.139L61 15.6403L72.973 24.7468Z"
+                                            fill="#A57D24"
+                                        />
+                                        <path
+                                            d="M142 1.10938L146.961 15.3109L162 15.6403L150.027 24.7468L154.361 39.152L142 30.5785L129.639 39.152L133.973 24.7468L122 15.6403L137.039 15.3109L142 1.10938Z"
+                                            fill="#F4CA51"
+                                        />
+                                        <path
+                                            d="M162 15.6403L142 22.139L146.961 15.3109L162 15.6403ZM142 30.5785V22.139L129.639 39.152L142 30.5785ZM142 22.139L154.361 39.152L150.027 24.7468L142 22.139ZM137.039 15.3109L142 22.139V1.10938L137.039 15.3109ZM133.973 24.7468L142 22.139L122 15.6403L133.973 24.7468Z"
+                                            fill="#A57D24"
+                                        />
+                                        <path
+                                            d="M203 1.10938L207.961 15.3109L223 15.6403L211.027 24.7468L215.361 39.152L203 30.5785L190.639 39.152L194.973 24.7468L183 15.6403L198.039 15.3109L203 1.10938Z"
+                                            fill="#F4CA51"
+                                        />
+                                        <path
+                                            d="M223 15.6403L203 22.139L207.961 15.3109L223 15.6403ZM203 30.5785V22.139L190.639 39.152L203 30.5785ZM203 22.139L215.361 39.152L211.027 24.7468L203 22.139ZM198.039 15.3109L203 22.139V1.10938L198.039 15.3109ZM194.973 24.7468L203 22.139L183 15.6403L194.973 24.7468Z"
+                                            fill="#A57D24"
+                                        />
+                                        <path
+                                            d="M264 1.10938L268.961 15.3109L284 15.6403L272.027 24.7468L276.361 39.152L264 30.5785L251.639 39.152L255.973 24.7468L244 15.6403L259.039 15.3109L264 1.10938Z"
+                                            fill="#F4CA51"
+                                        />
+                                        <path
+                                            d="M284 15.6403L264 22.139L268.961 15.3109L284 15.6403ZM264 30.5785V22.139L251.639 39.152L264 30.5785ZM264 22.139L276.361 39.152L272.027 24.7468L264 22.139ZM259.039 15.3109L264 22.139V1.10938L259.039 15.3109ZM255.973 24.7468L264 22.139L244 15.6403L255.973 24.7468Z"
+                                            fill="#A57D24"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            )
+        }
     </Container>
-   
 </section>
