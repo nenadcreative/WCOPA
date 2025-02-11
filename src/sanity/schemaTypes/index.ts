@@ -28,6 +28,7 @@ import { videoType } from "./objects/video";
 import { contactInfoCard } from './objects/contactInfoCard';
 import { contactInfoItem } from "./objects/contactInfoItem";
 import { featureCard } from './objects/featureCard';
+import { sponsorType } from './objects/sponsor';
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -51,6 +52,7 @@ import success from "./sections/success";
 import gallery from "./sections/gallery";
 import { contactInfo } from './sections/contactInfo';
 import { cardsFeature1 } from './sections/cardsFeature1';
+import { sponsorsType } from "./sections/sponsors";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -86,6 +88,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactInfoCard,
     contactInfoItem,
     featureCard,
+    sponsorType,
 
     //sections
     mediaSectionType,
@@ -106,6 +109,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     success,
     gallery,
     contactInfo,
-    cardsFeature1
+    cardsFeature1,
+    sponsorsType,
   ],
 };

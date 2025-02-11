@@ -41,7 +41,7 @@
     "sanity": "^3.68.3",
     "sanity-plugin-media": "^2.3.2",
     "sanity-plugin-pt-string": "^0.0.7",
-    "swiper": "^11.2.1",
+    "swiper": "^11.2.2",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^4.0.0",
     "tailwindcss-animate": "^1.0.7",

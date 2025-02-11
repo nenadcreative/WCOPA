@@ -1,0 +1,87 @@
+---
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import { Image } from "astro:assets";
+
+const { section } = Astro.props;
+const { title, sponsors } = section;
+---
+
+<section class="pt-10 pb-12">
+    <Container>
+        <div class="mx-auto">
+            <h2
+                class="text-center font-semibold text-display-lg text-indigo mb-8"
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+
+            <div class="swiper partnersSwiper">
+                <div class="swiper-wrapper">
+                    <!-- <LightBoxImage client:load images={images} /> -->
+                    {
+                        sponsors &&
+                            sponsors.map((sponsor) => {
+                                const imageUrl = urlForImage(
+                                    sponsor?.image,
+                                ).url();
+                                const partnerUrl = sponsor?.link;
+                                return (
+                                    <div class="swiper-slide swiper-slide-partners flex justify-center items-center">
+                                        <a
+                                            class="flex justify-center items-center w-full h-full"
+                                            href={partnerUrl}
+                                            target="_blank"
+                                        >
+                                            <Image
+                                                src={imageUrl}
+                                                inferSize
+                                                class="max-w-full max-h-full  object-cover"
+                                                alt=""
+                                            />
+                                        </a>{" "}
+                                    </div>
+                                );
+                            })
+                    }
+                </div>
+                <div class="flex justify-center items-center mt-8">
+                    <div class="">
+                        <div class="swiper-pagination relative"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation, Autoplay, Pagination } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/pagination";
+
+    var partnersSwiper = new Swiper(".partnersSwiper", {
+        modules: [Autoplay],
+
+        grabCursor: true,
+        speed: 24000,
+        direction: "horizontal",
+        spaceBetween: 80,
+        slidesPerView: "auto",
+        centeredSlides: true,
+        autoplay: {
+            delay: 0,
+        },
+        loop: true,
+    });
+</script>
+
+<style is:inline>
+    .swiper-slide-partners {
+        width: 224px;
+        height: 126px;
+    }
+</style>

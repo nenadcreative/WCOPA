@@ -71,7 +71,8 @@ export const pageType = defineType({
         { type: 'successStories' },
         { type: 'gallery' },
         { type: 'contactInfo' },
-        { type: 'cardsFeature1' }
+        { type: 'cardsFeature1' },
+        { type: 'sponsors' },
       ],
       options: {
         insertMenu: {
@@ -109,7 +110,8 @@ export const pageType = defineType({
                 "mediaSection",
                 "scheduleSection",
                 'gallery',
-                'contactInfo'
+                'contactInfo',
+                'sponsors'
               ],
             },
           ],
