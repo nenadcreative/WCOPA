@@ -6,7 +6,7 @@ export default defineType({
   name: "cardsFeature2",
   title: "Cards Feature 2",
   type: "object",
-  icon:LayoutPanelTop,
+  icon: LayoutPanelTop,
   groups: [
     { title: "Content", name: "content" },
     { title: "Design", name: "design" },
@@ -21,7 +21,7 @@ export default defineType({
       },
     },
   ],
-  fields:[
+  fields: [
     defineField({
       name: "tagline",
       title: "Tagline",
@@ -42,24 +42,24 @@ export default defineType({
     }),
 
     defineField({
-      name:'subtitle',
-      title:'Subtitle',
-      type:'blockSimple',
-      group:'content'
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'blockSimple',
+      group: 'content'
     }),
     defineField({
-      name:'subDescription',
-      title:'Sub Description',
-      type:'blockSimple',
-      group:'content'
+      name: 'subDescription',
+      title: 'Sub Description',
+      type: 'blockSimple',
+      group: 'content'
     }),
 
     defineField({
-      name:'cards',
-      title:'Cards',
-      type:'array',
-      of:[{type:'simpleCard'}],
-      group:'content'
+      name: 'cards',
+      title: 'Cards',
+      type: 'array',
+      of: [{ type: 'simpleCard' }],
+      group: 'content'
     }),
     defineField({
       name: "variation",
@@ -73,7 +73,13 @@ export default defineType({
           { title: "Dark", value: "dark" },
         ],
       },
-      group:'design'
+      group: 'design'
+    }),
+    defineField({
+      name: "ctaText",
+      title: "CTA Text",
+      type: "blockSimple",
+      group: "content",
     }),
   ],
   preview: {

@@ -1,20 +1,122 @@
 ---
 import PortableText from "@/components/atoms/PortableText.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import Container from "@components/global/Container.astro";
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+import ButtonLink from "@components/ui/ButtonLink.astro";
 const { section } = Astro.props;
-const {title, tagline, description, variation,  cards, subtitle, subDescription} = section;
+const {
+    title,
+    tagline,
+    description,
+    variation,
+    cards,
+    subtitle,
+    subDescription,
+    ctaText,
+} = section;
 ---
 
-<section class="bg-red-200">
+<section
+    class:list={[
+        "py-14",
+        variation === "offwhite" && "bg-offwhite text-dark-2",
+        variation === "lavander" && "bg-lavander text-dark-2",
+        variation === "dark" && "bg-dark-2 text-white",
+    ]}
+>
     <Container>
-        <span>{tagline}</span>
-        <h2><PortableText portableText={title} /></h2>
-        <div><PortableText portableText={description} /></div>
-        <h3><PortableText portableText={subtitle} /></h3>
-        <div><PortableText portableText={subDescription} /></div>
+        <div class="flex flex-col md:flex-row gap-6 items-center mb-16">
+            <div class="w-full lg:w-1/2">
+                <span
+                    class:list={[
+                        "mb-1 uppercase font-medium",
+                        variation === "dark" && "text-yellow",
+                        variation !== "dark" && "text-indigo",
+                    ]}>{tagline}</span
+                >
+                <h2
+                    class:list={[
+                        "[&>strong]:font-bold",
+                        variation !== "dark" && "[&>strong]:text-indigo",
+                        variation === "dark" &&
+                            " text-white  [&>strong]:text-yellow",
+                    ]}
+                >
+                    <PortableTextTitle portableText={title} />
+                </h2>
+            </div>
+            <div class="w-full lg:pl-16 lg:w-1/2 text-md font-semibold">
+                <PortableText portableText={description} />
+            </div>
+        </div>
 
-        {cards && cards.map((card)=>{
-            return <div>{card.title}</div>
-        })}
+        <div
+            class:list={[
+                "p-8 rounded-sm flex justify-between items-center mb-14",
+                variation === "lavander" && "bg-offwhite text-dark-2",
+                variation !== "lavander" && "bg-lavander text-dark-2",
+            ]}
+        >
+            <div>
+                <h3
+                    class:list={[
+                        "text-indigo text-display-md font-semibold mb-3",
+                    ]}
+                >
+                    <PortableText portableText={subtitle} />
+                </h3>
+                <div class="text-sm max-w-[612px]">
+                    <PortableTextTitle portableText={subDescription} />
+                </div>
+            </div>
+
+            <Image src={star} alt="" class="w-16 h-16" />
+        </div>
+
+        {
+            cards && (
+                <div
+                    class:list={[
+                        "grid sm:grid-cols-2 xl:grid-cols-4 gap-4 gap-y-12 sm:gap-y-14",
+                        variation === "dark" && "text-dark-2",
+                    ]}
+                >
+                    {cards.map((card) => {
+                        return (
+                            <div class="bg-white text-center pt-12 px-5 pb-10 relative rounded-sm">
+                                <Image
+                                    src={star}
+                                    alt=""
+                                    class="w-14 h-14 absolute right-1/2 translate-x-1/2 -top-7"
+                                />
+                                <h4 class="text-indigo text-display-xs font-semibold mb-3">
+                                    {card.title}
+                                </h4>
+                                <div class="text-sm mb-8">
+                                    <PortableText
+                                        portableText={card.description}
+                                    />
+                                </div>
+                                {card.link && (
+                                    <ButtonLink
+                                        buttonLink={card.link}
+                                        variation="primary-dark"
+                                    />
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            )
+        }
+        {
+            ctaText && (
+                <div class="text-md text-center mt-16 max-w-[800px] mx-auto">
+                    <PortableText portableText={ctaText} />
+                </div>
+            )
+        }
     </Container>
 </section>
