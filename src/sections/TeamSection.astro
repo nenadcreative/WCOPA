@@ -2,21 +2,197 @@
 import Container from "@/components/global/Container.astro";
 import PortableText from "@/components/atoms/PortableText.astro";
 import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import { Image } from "astro:assets";
+import { urlForImage } from "@/sanity/lib/urlForImage";
+import decorationOffwhite from "@assets/decorationOffwhite.png";
+import pattern from "@assets/pattern.png";
+import star from "@assets/icons/star.svg";
 
 const { section } = Astro.props;
 const { title, description, members, variation, layout } = section;
 ---
 
-<section>
-    <Container>
-        <h2><PortableTextTitle portableText={title} /></h2>
-        <div><PortableText portableText={description} /></div>
+<section
+    class:list={[
+        "py-14 lg:py-24 ",
+        variation === "white" && "bg-white",
+        variation === "offwhite" && "bg-offwhite",
+        variation === "dark" && "bg-dark-2 text-white relative",
+        variation === "lavander" && "bg-lavander",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-1",
+        variation === "pattern" && "bg-offwhite relative",
+    ]}
+>
+    {
+        variation === "dark" && (
+            <Image
+                src={decorationOffwhite}
+                alt=""
+                class="absolute top-0 right-0 w-64 xl:w-[591px]"
+            />
+        )
+    }
+    {
+        variation === "pattern" && (
+            <Image
+                src={pattern}
+                alt=""
+                class="absolute top-0 right-0 w-full h-full object-cover"
+            />
+        )
+    }
+
+    <Container classes="relative z-10">
+        <div
+            class:list={[
+                "max-w-[800px] mb-16",
+                layout === "centered" && "text-center mx-auto",
+            ]}
+        >
+            <h2
+                class:list={[
+                    "mb-5 [&>strong]:font-bold",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                    variation !== "dark" && "[&>strong]:text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div class="text-md">
+                <PortableText portableText={description} />
+            </div>
+        </div>
 
         {
-            members &&
-                members.map((member) => {
-                    return <div>{member.name}</div>;
-                })
+            members && (
+                <div
+                    class:list={[
+                        "grid gap-8",
+                        layout === "left" && "sm:grid-cols-2 lg:grid-cols-3",
+                        layout === "centered" &&
+                            "max-w-[800px] mx-auto md:grid-cols-2",
+                    ]}
+                >
+                    {members.map((member) => {
+                        const imageUrl = urlForImage(member?.image).url();
+                        return (
+                            <div>
+                                <Image
+                                    src={imageUrl}
+                                    width={394}
+                                    height={372}
+                                    alt={member?.name}
+                                    class="w-full h-auto rounded-sm mb-4"
+                                />
+                                <div
+                                    class:list={[
+                                        "px-4 py-5 relative rounded-sm",
+                                        variation === "white" && "bg-offwhite",
+                                        variation === "offwhite" && "bg-white",
+                                        variation === "lavander" && "bg-white",
+                                        variation === "gradient" && "bg-white",
+                                        variation === "dark" &&
+                                            "bg-white text-dark-2",
+                                        variation === "pattern" &&
+                                            "bg-lavander ",
+                                    ]}
+                                >
+                                    <Image
+                                        src={star}
+                                        alt=""
+                                        class="w-18 h-18 hidden xl:block absolute -top-13 right-2"
+                                    />
+                                    <h3 class="text-indigo text-display-md font-semibold mb-2">
+                                        {member?.name}
+                                    </h3>
+                                    <div>
+                                        <PortableText
+                                            portableText={member?.bio}
+                                        />
+                                    </div>
+                                    {member?.responsibilities && (
+                                        <div
+                                            class:list={[
+                                                "pt-4 px-3 pb-5 mt-4",
+                                                variation === "white" &&
+                                                    "bg-lavander",
+                                                variation === "offwhite" &&
+                                                    "bg-lavander",
+                                                variation === "lavander" &&
+                                                    "bg-lavander",
+                                                variation === "gradient" &&
+                                                    "bg-lavander",
+                                                variation === "dark" &&
+                                                    "bg-lavander",
+                                                variation === "pattern" &&
+                                                    "bg-white",
+                                            ]}
+                                        >
+                                            <span class="block font-semibold font-display text-display-sm mb-1 text-indigo">
+                                                Responsibilities:
+                                            </span>
+                                            <ul>
+                                                {member?.responsibilities.map(
+                                                    (responsibility, index) => {
+                                                        return (
+                                                            <li class="flex items-top text-sm gap-2 py-2">
+                                                                {index % 2 !==
+                                                                0 ? (
+                                                                    <svg
+                                                                        width="24"
+                                                                        height="25"
+                                                                        viewBox="0 0 24 25"
+                                                                        fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                    >
+                                                                        <path
+                                                                            d="M12 1.16797L14.9766 9.6889L24 9.88651L16.8162 15.3504L19.4163 23.9935L12 18.8494L4.58369 23.9935L7.18379 15.3504L0 9.88651L9.02338 9.6889L12 1.16797Z"
+                                                                            fill="#F4CA51"
+                                                                        />
+                                                                        <path
+                                                                            d="M24 9.88651L12 13.7857L14.9766 9.6889L24 9.88651ZM12 18.8494V13.7857L4.58369 23.9935L12 18.8494ZM12 13.7857L19.4163 23.9935L16.8162 15.3504L12 13.7857ZM9.02338 9.6889L12 13.7857V1.16797L9.02338 9.6889ZM7.18379 15.3504L12 13.7857L0 9.88651L7.18379 15.3504Z"
+                                                                            fill="#A57D24"
+                                                                        />
+                                                                    </svg>
+                                                                ) : (
+                                                                    <svg
+                                                                        width="24"
+                                                                        height="25"
+                                                                        viewBox="0 0 24 25"
+                                                                        fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                    >
+                                                                        <path
+                                                                            d="M12 1.16797L14.9766 9.6889L24 9.88651L16.8162 15.3504L19.4163 23.9935L12 18.8494L4.58369 23.9935L7.18379 15.3504L0 9.88651L9.02338 9.6889L12 1.16797Z"
+                                                                            fill="#743089"
+                                                                        />
+                                                                        <path
+                                                                            d="M24 9.88651L12 13.7857L14.9766 9.6889L24 9.88651ZM12 18.8494V13.7857L4.58369 23.9935L12 18.8494ZM12 13.7857L19.4163 23.9935L16.8162 15.3504L12 13.7857ZM9.02338 9.6889L12 13.7857V1.16797L9.02338 9.6889ZM7.18379 15.3504L12 13.7857L0 9.88651L7.18379 15.3504Z"
+                                                                            fill="#904C95"
+                                                                        />
+                                                                    </svg>
+                                                                )}
+                                                                <span class="">
+                                                                    <PortableText
+                                                                        portableText={
+                                                                            responsibility.text
+                                                                        }
+                                                                    />
+                                                                </span>
+                                                            </li>
+                                                        );
+                                                    },
+                                                )}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            )
         }
     </Container>
 </section>

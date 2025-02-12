@@ -6,6 +6,11 @@ export const memberType = defineType({
     type: 'object',
     fields: [
         defineField({
+            name: 'image',
+            title: 'Image',
+            type: 'image',
+        }),
+        defineField({
             name: 'name',
             title: 'Name',
             type: 'string',
@@ -20,11 +25,13 @@ export const memberType = defineType({
             title: 'Bio',
             type: 'blockSimple',
         }),
+
         defineField({
-            name: 'image',
-            title: 'Image',
-            type: 'image',
-        }),
+            name: 'responsibilities',
+            title: 'Responsibilities',
+            type: 'array',
+            of: [{ type: 'simpleListItem' }]
+        })
 
     ],
     preview: {
