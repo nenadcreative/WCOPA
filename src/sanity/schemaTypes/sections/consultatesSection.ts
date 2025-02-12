@@ -29,6 +29,13 @@ export const consultatesSectionType = defineType({
             type: 'array',
             of: [{ type: 'consultate' }]
         }),
+
+        defineField({
+            name: 'ctaText',
+            title: 'CTA Text',
+            type: 'blockSimple',
+
+        }),
         defineField({
             name: 'variation',
             title: 'Variation',

@@ -1,1 +1,97 @@
-<section>Consultates</section>
+---
+import Container from "@components/global/Container.astro";
+import PortableText from "@components/atoms/PortableText.astro";
+import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import star from "@assets/icons/star.svg";
+import patternImage from "@assets/pattern-big-alt.png";
+const { section } = Astro.props;
+const { title, description, subtitle, variation, consultates, ctaText } =
+    section;
+---
+
+<section
+    class:list={[
+        "relative py-14 xl:py-24",
+        variation === "offwhite" && "bg-offwhite",
+        variation === "dark" && "bg-dark-2 text-white",
+    ]}
+>
+    <Image
+        src={patternImage}
+        alt=""
+        class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+            variation === "dark" && "opacity-50 invert",
+        ]}
+    />
+    <Container classes="relative z-10">
+        <div class="text-center max-w-[800px] mx-auto mb-14 xl:mb-22">
+            <h2
+                class:list={[
+                    "mb-6 [&>strong]:font-bold",
+                    variation === "dark" && "text-white",
+                    variation === "offwhite" && "text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div><PortableText portableText={description} /></div>
+        </div>
+        <div
+            class:list={[
+                "p-6 rounded-sm flex justify-between items-center mb-14 bg-lavander text-dark-2",
+            ]}
+        >
+            <h3 class:list={["text-indigo text-display-lg font-semibold "]}>
+                <PortableText portableText={subtitle} />
+            </h3>
+
+            <Image src={star} alt="" class="w-16 h-16" />
+        </div>
+        {
+            consultates && (
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {consultates.map((consultate) => {
+                        const { image, name } = consultate;
+                        const imageUrl = urlForImage(image).url() || null;
+                        return (
+                            <div>
+                                <Image
+                                    src={imageUrl}
+                                    width={400}
+                                    height={250}
+                                    alt={name}
+                                    class="w-full h-auto max-h-[250px] object-cover rounded-sm mb-4"
+                                />
+                                <div
+                                    class:list={[
+                                        "px-4 py-5 relative rounded-sm bg-lavander",
+                                    ]}
+                                >
+                                    <Image
+                                        src={star}
+                                        alt=""
+                                        class="w-14 h-14 hidden xl:block absolute -top-13 right-2"
+                                    />
+                                    <h3 class="text-indigo text-display-md font-semibold ">
+                                        {name}
+                                    </h3>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            )
+        }
+
+        {
+            ctaText && (
+                <div class="text-center text-md max-w-[800px] mx-auto mt-12">
+                    <PortableText portableText={ctaText} />
+                </div>
+            )
+        }
+    </Container>
+</section>
