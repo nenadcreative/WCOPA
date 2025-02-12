@@ -2,19 +2,144 @@
 import Container from "@components/global/Container.astro";
 import PortableText from "@components/atoms/PortableText.astro";
 import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import { Image } from "astro:assets";
 const { section } = Astro.props;
 const { title, description, sponsorTestimonials, variation } = section;
 ---
 
-<section>
+<section
+    class:list={[
+        "py-14 lg:py-20",
+        variation === "lavander" && "bg-lavander",
+        variation === "dark" && "bg-dark-2 text-white",
+    ]}
+>
     <Container>
-        <h2><PortableTextTitle portableText={title} /></h2>
-        <div><PortableText portableText={description} /></div>
+        <div class="text-center max-w-[800px] mx-auto mb-14 xl:mb-22">
+            <h2
+                class:list={[
+                    "mb-6 [&>strong]:font-bold",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                    variation === "lavander" && "[&>strong]:text-purple",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div><PortableText portableText={description} /></div>
+        </div>
+
         {
             sponsorTestimonials &&
                 sponsorTestimonials.map((sponsorTestimonial) => {
                     return <div>{sponsorTestimonial.name}</div>;
                 })
         }
+        <div class="swiper sponsorTestimonialsSwiper">
+            <div class="swiper-wrapper">
+                <!-- <LightBoxImage client:load images={images} /> -->
+                {
+                    sponsorTestimonials &&
+                        sponsorTestimonials.map((sponsor) => {
+                            const imageUrl = urlForImage(sponsor?.logo).url();
+
+                            return (
+                                <div class="swiper-slide swiper-slide-sponsorTestimonials flex flex-col-reverse lg:flex-row gap-8 lg:gap-20 justify-center items-center">
+                                    <div class="w-full lg:w-1/2 bg-purple text-white text-lg font-semibold px-10 py-16 rounded-sm">
+                                        <svg
+                                            width="116"
+                                            height="20"
+                                            viewBox="0 0 116 20"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="mb-8"
+                                        >
+                                            <g clip-path="url(#clip0_1254_75725)">
+                                                <path
+                                                    d="M9.07088 1.16703C9.41462 0.350572 10.5854 0.350573 10.9291 1.16703L12.9579 5.98592C13.1029 6.33012 13.4306 6.5653 13.8067 6.59509L19.0727 7.01217C19.9649 7.08283 20.3267 8.18282 19.6469 8.75809L15.6348 12.1534C15.3482 12.3959 15.223 12.7765 15.3106 13.139L16.5363 18.2157C16.744 19.0758 15.7969 19.7557 15.033 19.2948L10.5245 16.5742C10.2025 16.3799 9.7975 16.3799 9.47548 16.5742L4.96699 19.2948C4.20311 19.7557 3.25596 19.0758 3.46363 18.2157L4.68942 13.139C4.77698 12.7765 4.65182 12.3959 4.36526 12.1534L0.353062 8.75809C-0.326718 8.18282 0.0350679 7.08283 0.927291 7.01217L6.19336 6.59509C6.5695 6.5653 6.89716 6.33012 7.04207 5.98592L9.07088 1.16703Z"
+                                                    fill="#F4CA51"
+                                                />
+                                                <path
+                                                    d="M33.0709 1.16703C33.4146 0.350572 34.5854 0.350573 34.9291 1.16703L36.9579 5.98592C37.1029 6.33012 37.4306 6.5653 37.8067 6.59509L43.0727 7.01217C43.9649 7.08283 44.3267 8.18282 43.6469 8.75809L39.6348 12.1534C39.3482 12.3959 39.223 12.7765 39.3106 13.139L40.5363 18.2157C40.744 19.0758 39.7969 19.7557 39.033 19.2948L34.5245 16.5742C34.2025 16.3799 33.7975 16.3799 33.4755 16.5742L28.967 19.2948C28.2031 19.7557 27.256 19.0758 27.4636 18.2157L28.6894 13.139C28.777 12.7765 28.6518 12.3959 28.3653 12.1534L24.3531 8.75809C23.6733 8.18282 24.0351 7.08283 24.9273 7.01217L30.1934 6.59509C30.5695 6.5653 30.8972 6.33012 31.0421 5.98592L33.0709 1.16703Z"
+                                                    fill="#F4CA51"
+                                                />
+                                                <path
+                                                    d="M57.0709 1.16703C57.4146 0.350572 58.5854 0.350573 58.9291 1.16703L60.9579 5.98592C61.1029 6.33012 61.4306 6.5653 61.8067 6.59509L67.0727 7.01217C67.9649 7.08283 68.3267 8.18282 67.6469 8.75809L63.6348 12.1534C63.3482 12.3959 63.223 12.7765 63.3106 13.139L64.5363 18.2157C64.744 19.0758 63.7969 19.7557 63.033 19.2948L58.5245 16.5742C58.2025 16.3799 57.7975 16.3799 57.4755 16.5742L52.967 19.2948C52.2031 19.7557 51.256 19.0758 51.4636 18.2157L52.6894 13.139C52.777 12.7765 52.6518 12.3959 52.3653 12.1534L48.3531 8.75809C47.6733 8.18282 48.0351 7.08283 48.9273 7.01217L54.1934 6.59509C54.5695 6.5653 54.8972 6.33012 55.0421 5.98592L57.0709 1.16703Z"
+                                                    fill="#F4CA51"
+                                                />
+                                                <path
+                                                    d="M81.0709 1.16703C81.4146 0.350572 82.5854 0.350573 82.9291 1.16703L84.9579 5.98592C85.1029 6.33012 85.4306 6.5653 85.8067 6.59509L91.0727 7.01217C91.9649 7.08283 92.3267 8.18282 91.6469 8.75809L87.6348 12.1534C87.3482 12.3959 87.223 12.7765 87.3106 13.139L88.5363 18.2157C88.744 19.0758 87.7969 19.7557 87.033 19.2948L82.5245 16.5742C82.2025 16.3799 81.7975 16.3799 81.4755 16.5742L76.967 19.2948C76.2031 19.7557 75.256 19.0758 75.4636 18.2157L76.6894 13.139C76.777 12.7765 76.6518 12.3959 76.3653 12.1534L72.3531 8.75809C71.6733 8.18282 72.0351 7.08283 72.9273 7.01217L78.1934 6.59509C78.5695 6.5653 78.8972 6.33012 79.0421 5.98592L81.0709 1.16703Z"
+                                                    fill="#F4CA51"
+                                                />
+                                                <path
+                                                    d="M105.071 1.16703C105.415 0.350572 106.585 0.350573 106.929 1.16703L108.958 5.98592C109.103 6.33012 109.431 6.5653 109.807 6.59509L115.073 7.01217C115.965 7.08283 116.327 8.18282 115.647 8.75809L111.635 12.1534C111.348 12.3959 111.223 12.7765 111.311 13.139L112.536 18.2157C112.744 19.0758 111.797 19.7557 111.033 19.2948L106.525 16.5742C106.202 16.3799 105.797 16.3799 105.475 16.5742L100.967 19.2948C100.203 19.7557 99.256 19.0758 99.4636 18.2157L100.689 13.139C100.777 12.7765 100.652 12.3959 100.365 12.1534L96.3531 8.75809C95.6733 8.18282 96.0351 7.08283 96.9273 7.01217L102.193 6.59509C102.569 6.5653 102.897 6.33012 103.042 5.98592L105.071 1.16703Z"
+                                                    fill="#F4CA51"
+                                                />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_1254_75725">
+                                                    <rect
+                                                        width="116"
+                                                        height="18.8889"
+                                                        fill="white"
+                                                        transform="translate(0 0.554688)"
+                                                    />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+
+                                        <PortableText
+                                            portableText={sponsor?.quote}
+                                        />
+                                    </div>
+                                    <div class="w-full h-full py-14 lg:py-28 px-4 lg:w-1/2 bg-white flex justify-center items-center rounded-sm">
+                                        <Image
+                                            src={imageUrl}
+                                            inferSize
+                                            class="  object-cover"
+                                            alt=""
+                                        />
+                                    </div>
+                                </div>
+                            );
+                        })
+                }
+            </div>
+            <div class="flex justify-center items-center mt-8">
+                <div class="">
+                    <div class="swiper-pagination relative"></div>
+                </div>
+            </div>
+        </div>
     </Container>
 </section>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation, Autoplay, Pagination } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/pagination";
+
+    var sponsorsSwiper = new Swiper(".sponsorTestimonialsSwiper", {
+        modules: [Autoplay],
+
+        grabCursor: true,
+
+        direction: "horizontal",
+        spaceBetween: 80,
+        slidesPerView: 1,
+        centeredSlides: true,
+        autoplay: {
+            delay: 8000,
+        },
+        loop: true,
+    });
+</script>
+
+<style is:inline>
+    .swiper-slide-sponsorTestimonials {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+</style>
