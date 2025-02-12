@@ -72,6 +72,9 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
 (_type=='gallery')=>{...},
 (_type=='sponsors')=>{...},
 (_type=='featuresSection')=>{...},
+(_type=='teamSection')=>{...},
+(_type=='sponsorTestimonials')=>{...},
+(_type=='consultatesSection')=>{...},
 (_type=='contactInfo')=>{...}
 },
 }`;

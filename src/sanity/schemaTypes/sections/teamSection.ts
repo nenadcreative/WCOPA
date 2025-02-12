@@ -1,12 +1,11 @@
-import { defineType, defineField } from 'sanity';
+import { defineType, defineField } from 'sanity'
+import { Contact } from 'lucide-react';
 import { stringFromPortableText } from 'src/utils/stringFromPT';
-import { Columns2 } from 'lucide-react';
 
-export const featuresSectionType = defineType({
-    name: 'featuresSection',
-    title: 'Features Section',
+export const teamSectionType = defineType({
+    name: 'teamSection',
     type: 'object',
-    icon: Columns2,
+    icon: Contact,
     groups: [
         {
             name: "content",
@@ -19,38 +18,28 @@ export const featuresSectionType = defineType({
     ],
     fields: [
         defineField({
-            name: 'tagline',
-            title: 'Tagline',
-            type: 'string',
-            group: 'content'
-        }),
-        defineField({
             name: 'title',
             title: 'Title',
-            type: 'blockContent',
+            type: 'blockSimple',
             group: 'content'
         }),
         defineField({
             name: 'description',
             title: 'Description',
-            type: 'blockContent',
+            type: 'blockSimple',
             group: 'content'
         }),
-
         defineField({
-            name: 'image',
-            title: 'Image',
-            type: 'image',
+            name: 'members',
+            type: 'array',
+            of: [{ type: 'member' }],
             group: 'content'
         }),
         defineField({
             name: "variation",
             title: "Variation",
-            description:
-                "Variation of the section. Mainly influences the color scheme.",
             type: "string",
             initialValue: "white",
-            group: "design",
             options: {
                 list: [
                     { title: "White", value: "white" },
@@ -58,35 +47,35 @@ export const featuresSectionType = defineType({
                     { title: "Lavander", value: "lavander" },
                     { title: "Gradient", value: "gradient" },
                     { title: "Dark", value: "dark" },
-                    { title: "Pattern", value: "pattern" }
+                    { title: "Pattern", value: "pattern" },
                 ],
             },
+            group: 'design'
         }),
         defineField({
-            name: 'layout',
-            title: 'Layout',
-            type: 'string',
+            name: "layout",
+            title: "Layout",
+            type: "string",
             options: {
                 list: [
-                    { title: 'Image - Text', value: 'image-text' },
-                    { title: 'Text - Image', value: 'text-image' }
-                ]
+                    { title: "Left", value: "left" },
+                    { title: "Centered", value: "centered" },
+                ],
             },
-            initialValue: 'image-text',
-            group: "design",
-        }),
-
+            initialValue: "left",
+            group: 'design'
+        })
     ],
     preview: {
         select: {
             title: 'title',
             subtitle: 'subtitle',
-            media: 'image'
+
         },
         prepare({ title }) {
             return {
-                title: stringFromPortableText(title) || "Features Section Title",
-                subtitle: "Features Section",
+                title: stringFromPortableText(title) || "Team Section Title",
+                subtitle: "Team Section",
             }
         }
     }

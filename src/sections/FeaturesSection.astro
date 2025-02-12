@@ -4,16 +4,73 @@ import PortableText from "@components/atoms/PortableText.astro";
 import Container from "@components/global/Container.astro";
 import { urlForImage } from "@sanity/lib/urlForImage";
 import { Image } from "astro:assets";
+import patternImage from "@assets/pattern.png";
 
 const { section } = Astro.props;
-const { tagline, title, description, image, variation } = section;
+const { tagline, title, description, image, variation, layout } = section;
+const imageUrl = urlForImage(image).url() ?? null;
 ---
 
-<section>
-    <Container>
-        <span>{tagline}</span>
-        <h2><PortableTextTitle portableText={title} /></h2>
-        <div><PortableText portableText={description} /></div>
-        <Image src={urlForImage(image).url()} alt={title} inferSize />
+<section
+    class:list={[
+        "py-14",
+        variation === "white" && "bg-white text-dark-2",
+        variation === "offwhite" && "bg-offwhite text-dark-2",
+        variation === "lavander" && "bg-lavander",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-28% to-lavander to-100%",
+        variation === "dark" && "bg-dark-2 text-white",
+        variation === "pattern" && "bg-offwhite relative",
+    ]}
+>
+    <Image
+        src={patternImage}
+        alt=""
+        class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+
+            variation !== "pattern" && "hidden",
+        ]}
+    />
+    <Container classes="relative z-10">
+        <div
+            class:list={[
+                " items-center gap-4 md:gap-8 xl:gap-20",
+                layout === "image-text" && "flex  flex-col  md:flex-row",
+                layout === "text-image" &&
+                    "flex  flex-col  md:flex-row-reverse",
+            ]}
+        >
+            <div class="w-full md:w-1/2">
+                <Image
+                    src={imageUrl}
+                    alt={title}
+                    inferSize
+                    class="w-full h-full object-cover"
+                />
+            </div>
+
+            <div class="w-full md:w-1/2">
+                <span
+                    class:list={[
+                        "uppercase mb-3 font-medium",
+                        variation === "dark" && "text-yellow",
+                        variation !== "dark" && "text-indigo",
+                    ]}>{tagline}</span
+                >
+                <h2
+                    class:list={[
+                        "mb-6 [&>strong]:font-bold",
+                        variation !== "dark" && "[&>strong]:text-indigo",
+                        variation === "dark" && "[&>strong]:text-yellow",
+                    ]}
+                >
+                    <PortableTextTitle portableText={title} />
+                </h2>
+                <div class="text-sm">
+                    <PortableText portableText={description} />
+                </div>
+            </div>
+        </div>
     </Container>
 </section>

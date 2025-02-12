@@ -1,0 +1,22 @@
+---
+import Container from "@/components/global/Container.astro";
+import PortableText from "@/components/atoms/PortableText.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+
+const { section } = Astro.props;
+const { title, description, members, variation, layout } = section;
+---
+
+<section>
+    <Container>
+        <h2><PortableTextTitle portableText={title} /></h2>
+        <div><PortableText portableText={description} /></div>
+
+        {
+            members &&
+                members.map((member) => {
+                    return <div>{member.name}</div>;
+                })
+        }
+    </Container>
+</section>

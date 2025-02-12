@@ -29,6 +29,9 @@ import { contactInfoCard } from './objects/contactInfoCard';
 import { contactInfoItem } from "./objects/contactInfoItem";
 import { featureCard } from './objects/featureCard';
 import { sponsorType } from './objects/sponsor';
+import { memberType } from './objects/member'
+import { sponsorTestimonialType } from "./objects/sponsorTestimonial";
+import { consultateType } from "./objects/consultate";
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -54,6 +57,9 @@ import { contactInfo } from './sections/contactInfo';
 import { cardsFeature1 } from './sections/cardsFeature1';
 import { sponsorsType } from "./sections/sponsors";
 import { featuresSectionType } from "./sections/features";
+import { teamSectionType } from './sections/teamSection'
+import { sponsorTestimonialsType } from "./sections/sponsorTestimonials";
+import { consultatesSectionType } from "./sections/consultatesSection";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -90,6 +96,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactInfoItem,
     featureCard,
     sponsorType,
+    memberType,
+    sponsorTestimonialType,
+    consultateType,
 
     //sections
     mediaSectionType,
@@ -112,6 +121,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactInfo,
     cardsFeature1,
     sponsorsType,
-    featuresSectionType
+    featuresSectionType,
+    teamSectionType,
+    sponsorTestimonialsType,
+    consultatesSectionType
   ],
 };
