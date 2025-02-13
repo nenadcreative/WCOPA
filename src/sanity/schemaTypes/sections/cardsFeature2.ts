@@ -76,6 +76,19 @@ export default defineType({
       group: 'design'
     }),
     defineField({
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+      options: {
+        list: [
+          { title: "Left", value: "left" },
+          { title: "Centered", value: "centered" },
+        ],
+      },
+      initialValue: "left",
+      group: "design"
+    }),
+    defineField({
       name: "ctaText",
       title: "CTA Text",
       type: "blockSimple",

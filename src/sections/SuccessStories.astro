@@ -67,6 +67,11 @@ const { title, description, testimonials, ctaText, variation } = section;
                                     <div
                                         class:list={[
                                             "flex gap-5 items-top px-5 py-10",
+                                            testimonial?.layout ===
+                                                "vertical" &&
+                                                "flex-col items-center text-center",
+                                            testimonial?.layout !==
+                                                "vertical" && "flex-row",
                                             variation === "white" &&
                                                 "bg-offwhite",
                                             variation === "pattern" &&
@@ -87,15 +92,23 @@ const { title, description, testimonials, ctaText, variation } = section;
                                         />
                                         <div>
                                             <h4 class="text-display-md font-bold text-indigo mb-1">
-                                                {testimonial.name}
+                                                {testimonial?.name}
                                             </h4>
-                                            <div class="mb-2">
-                                                <PortableTextTitle
-                                                    portableText={
-                                                        testimonial.occupation
-                                                    }
-                                                />
-                                            </div>
+                                            {testimonial?.occupation && (
+                                                <div class="mb-2">
+                                                    <PortableTextTitle
+                                                        portableText={
+                                                            testimonial?.occupation
+                                                        }
+                                                    />
+                                                </div>
+                                            )}
+                                            {testimonial?.country && (
+                                                <div class="mb-2">
+                                                    {testimonial?.country}
+                                                </div>
+                                            )}
+
                                             <div class="[&>p]:mb-2 text-sm [&>p:last-child]:mb-0">
                                                 <PortableText
                                                     portableText={

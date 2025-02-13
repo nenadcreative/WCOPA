@@ -14,6 +14,7 @@ const {
     cards,
     subtitle,
     subDescription,
+    layout,
     ctaText,
 } = section;
 ---
@@ -27,15 +28,34 @@ const {
     ]}
 >
     <Container>
-        <div class="flex flex-col md:flex-row gap-6 items-center mb-16">
-            <div class="w-full lg:w-1/2">
-                <span
-                    class:list={[
-                        "mb-1 uppercase font-medium",
-                        variation === "dark" && "text-yellow",
-                        variation !== "dark" && "text-indigo",
-                    ]}>{tagline}</span
-                >
+        <div
+            class:list={[
+                "flex flex-col  gap-6 items-center mb-16",
+                layout !== "centered" && "md:flex-row",
+                layout === "centered" && " text-center",
+            ]}
+        >
+            <div
+                class:list={[
+                    "",
+                    layout !== "centered" && "w-full lg:w-1/2",
+                    layout === "centered" && "max-w-[800px] mx-auto",
+                ]}
+            >
+                {
+                    tagline && (
+                        <span
+                            class:list={[
+                                "mb-1 uppercase font-medium",
+                                variation === "dark" && "text-yellow",
+                                variation !== "dark" && "text-indigo",
+                            ]}
+                        >
+                            {tagline}
+                        </span>
+                    )
+                }
+
                 <h2
                     class:list={[
                         "[&>strong]:font-bold",
@@ -47,33 +67,45 @@ const {
                     <PortableTextTitle portableText={title} />
                 </h2>
             </div>
-            <div class="w-full lg:pl-16 lg:w-1/2 text-md font-semibold">
-                <PortableText portableText={description} />
-            </div>
+            {
+                description && (
+                    <div class="w-full lg:pl-16 lg:w-1/2 text-md font-semibold">
+                        <PortableText portableText={description} />
+                    </div>
+                )
+            }
         </div>
 
-        <div
-            class:list={[
-                "p-8 rounded-sm flex justify-between items-center mb-14",
-                variation === "lavander" && "bg-offwhite text-dark-2",
-                variation !== "lavander" && "bg-lavander text-dark-2",
-            ]}
-        >
-            <div>
-                <h3
+        {
+            subtitle && (
+                <div
                     class:list={[
-                        "text-indigo text-display-md font-semibold mb-3",
+                        "p-8 rounded-sm flex justify-between items-center mb-14",
+                        variation === "lavander" && "bg-offwhite text-dark-2",
+                        variation !== "lavander" && "bg-lavander text-dark-2",
                     ]}
                 >
-                    <PortableText portableText={subtitle} />
-                </h3>
-                <div class="text-sm max-w-[612px]">
-                    <PortableTextTitle portableText={subDescription} />
-                </div>
-            </div>
+                    <div>
+                        <h3
+                            class:list={[
+                                "text-indigo text-display-md font-semibold mb-3",
+                            ]}
+                        >
+                            <PortableText portableText={subtitle} />
+                        </h3>
+                        {subDescription && (
+                            <div class="text-sm max-w-[612px]">
+                                <PortableTextTitle
+                                    portableText={subDescription}
+                                />
+                            </div>
+                        )}
+                    </div>
 
-            <Image src={star} alt="" class="w-16 h-16" />
-        </div>
+                    <Image src={star} alt="" class="w-16 h-16" />
+                </div>
+            )
+        }
 
         {
             cards && (
