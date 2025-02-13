@@ -1,0 +1,109 @@
+---
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import PortableText from "@components/atoms/PortableText.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import Container from "@/components/global/Container.astro";
+import patternImage from "@assets/pattern-alt.svg";
+import { Image } from "astro:assets";
+
+const { section } = Astro.props;
+const { title, description, link, steps, variation } = section;
+---
+
+<section
+    class:list={[
+        "py-14 lg:py-24 relative",
+        variation === "offwhite" && "bg-offwhite text-dark-2",
+        variation === "dark" && "bg-dark-2 text-white",
+    ]}
+>
+    <Image
+        src={patternImage}
+        alt=""
+        class:list={[
+            "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+            variation === "dark" && "opacity-80 invert",
+        ]}
+    />
+    <Container classes="relative z-10 flex flex-col md:flex-row gap-8">
+        <div class="w-full md:w-1/2 md:pr-24">
+            <h2
+                class:list={[
+                    "[&>strong]:font-bold mb-4",
+                    variation === "offwhite" && "[&>strong]:text-indigo",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            {
+                description && (
+                    <div class="[&>p>strong]:block [&>p>strong]:font-bold [&>p>strong]:font-display [&>p>strong]:text-display-md [&>p]:mb-4 mb-8">
+                        <PortableText portableText={description} />
+                    </div>
+                )
+            }
+            {
+                link && (
+                    <ButtonLink
+                        buttonLink={link}
+                        variation={
+                            variation === "dark"
+                                ? "primary-light-yellow"
+                                : "primary-dark"
+                        }
+                    />
+                )
+            }
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col gap-10">
+            {
+                steps &&
+                    steps.map((step, index) => {
+                        return (
+                            <div
+                                class:list={[
+                                    "w-full rounded-sm overflow-clip",
+                                    variation === "offwhite" && "bg-lavander",
+                                    variation === "dark" &&
+                                        "text-dark-2 bg-white",
+                                ]}
+                            >
+                                <div
+                                    class:list={[
+                                        "font-display text-display-md font-bold text-center py-3",
+                                        variation === "offwhite" &&
+                                            "bg-indigo text-white",
+                                        variation === "dark" &&
+                                            "bg-yellow text-dark1",
+                                    ]}
+                                >
+                                    Step {index + 1}
+                                </div>
+                                <div class="px-6 pt-8 pb-12">
+                                    {step?.title && (
+                                        <h3
+                                            class:list={[
+                                                "  font-display font-semibold text-display-md mb-3",
+                                                variation === "offwhite" &&
+                                                    "text-indigo",
+                                            ]}
+                                        >
+                                            {step?.title}
+                                        </h3>
+                                    )}
+                                    {step?.description && (
+                                        <div>
+                                            <PortableText
+                                                portableText={step?.description}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })
+            }
+        </div>
+    </Container>
+</section>
