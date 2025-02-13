@@ -1,0 +1,73 @@
+---
+import Container from "@components/global/Container.astro";
+import PortableText from "@components/atoms/PortableText.astro";
+import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
+import WinnerCard from "@components/molecules/WinnerCard.astro";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import patternImage from "@assets/pattern-big-alt.png";
+import { Image } from "astro:assets";
+const { section } = Astro.props;
+const { tagline, title, description, winnerCard, variation } = section;
+---
+
+<section
+    class:list={[
+        "py-14 lg:py-24",
+        variation === "white" && " text-dark-1",
+        variation === "offwhite" && "bg-offwhite text-dark-1",
+        variation === "lavander" && "bg-lavander text-dark-1",
+        variation === "gradient" &&
+            "bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
+        variation === "dark" && "bg-dark-2 text-white",
+        variation === "pattern" && "relative bg-offwhite",
+    ]}
+>
+    {
+        variation === "pattern" && (
+            <Image
+                src={patternImage}
+                alt=""
+                class="absolute w-full h-full top-0 right-0 object-cover"
+            />
+        )
+    }
+
+    <Container
+        classes="flex flex-col md:flex-row items-center gap-10 relative z-10"
+    >
+        <div class="w-full md:w-2/3 lg:pr-40">
+            {
+                tagline && (
+                    <span
+                        class:list={[
+                            "uppercase font-medium mb-2",
+                            variation === "dark" && "text-yellow",
+                            variation !== "dark" && "text-indigo",
+                        ]}
+                    >
+                        {tagline}
+                    </span>
+                )
+            }
+            <h2
+                class:list={[
+                    "mb-6 [&>strong]:font-bold",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                    variation !== "dark" && "[&>strong]:text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            {
+                description && (
+                    <div>
+                        <PortableText portableText={description} />
+                    </div>
+                )
+            }
+        </div>
+        <div class="w-full md:w-1/3">
+            <WinnerCard winner={winnerCard} variation={variation} />
+        </div>
+    </Container>
+</section>

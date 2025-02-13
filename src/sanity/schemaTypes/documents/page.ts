@@ -77,7 +77,8 @@ export const pageType = defineType({
         { type: 'teamSection' },
         { type: "sponsorTestimonials" },
         { type: 'consultatesSection' },
-        { type: 'steps3' }
+        { type: 'steps3' },
+        { type: 'winners' }
       ],
       options: {
         insertMenu: {
@@ -105,6 +106,7 @@ export const pageType = defineType({
                 'teamSection',
                 'sponsorTestimonials',
                 'consultatesSection',
+                'winners'
               ],
             },
             {

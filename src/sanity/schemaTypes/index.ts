@@ -33,6 +33,7 @@ import { memberType } from './objects/member'
 import { sponsorTestimonialType } from "./objects/sponsorTestimonial";
 import { consultateType } from "./objects/consultate";
 import { steps3CardType } from "./objects/steps3Card";
+import { winnerCardType } from "./objects/winnerCard";
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -62,6 +63,7 @@ import { teamSectionType } from './sections/teamSection'
 import { sponsorTestimonialsType } from "./sections/sponsorTestimonials";
 import { consultatesSectionType } from "./sections/consultatesSection";
 import { steps3Type } from './sections/steps3';
+import { winnersType } from "./sections/winners";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -102,6 +104,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     sponsorTestimonialType,
     consultateType,
     steps3CardType,
+    winnerCardType,
 
     //sections
     mediaSectionType,
@@ -128,6 +131,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     teamSectionType,
     sponsorTestimonialsType,
     consultatesSectionType,
-    steps3Type
+    steps3Type,
+    winnersType
   ],
 };

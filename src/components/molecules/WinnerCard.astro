@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import PortableText from "../atoms/PortableText.astro";
+const { winner, variation } = Astro.props;
+const { image, title, name, country, bio } = winner;
+const imageUrl = image ? urlForImage(image).url() : null;
+---
+
+<article
+    class:list={[
+        "rounded-sm overflow-clip",
+        variation === "dark" && "text-dark-2",
+    ]}
+>
+    <Image
+        src={imageUrl}
+        alt={title}
+        width={400}
+        height={240}
+        class="w-full h-full object-cover"
+    />
+    <div
+        class:list={[
+            "py-3 text-center font-bold bg-indigo text-white flex items-center justify-center gap-2 leading-none",
+        ]}
+    >
+        <svg
+            width="25"
+            height="24"
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <g clip-path="url(#clip0_2107_32238)">
+                <path
+                    d="M12.5 0.667969L15.4766 9.1889L24.5 9.38651L17.3162 14.8504L19.9163 23.4935L12.5 18.3494L5.08369 23.4935L7.68379 14.8504L0.5 9.38651L9.52338 9.1889L12.5 0.667969Z"
+                    fill="#F4CA51"></path>
+                <path
+                    d="M24.5 9.38651L12.5 13.2857L15.4766 9.1889L24.5 9.38651ZM12.5 18.3494V13.2857L5.08369 23.4935L12.5 18.3494ZM12.5 13.2857L19.9163 23.4935L17.3162 14.8504L12.5 13.2857ZM9.52338 9.1889L12.5 13.2857V0.667969L9.52338 9.1889ZM7.68379 14.8504L12.5 13.2857L0.5 9.38651L7.68379 14.8504Z"
+                    fill="#A57D24"></path>
+            </g>
+            <defs>
+                <clipPath id="clip0_2107_32238">
+                    <rect
+                        width="24"
+                        height="24"
+                        fill="white"
+                        transform="translate(0.5)"></rect>
+                </clipPath>
+            </defs>
+        </svg>
+
+        {title}
+        <svg
+            width="25"
+            height="24"
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <g clip-path="url(#clip0_2107_32238)">
+                <path
+                    d="M12.5 0.667969L15.4766 9.1889L24.5 9.38651L17.3162 14.8504L19.9163 23.4935L12.5 18.3494L5.08369 23.4935L7.68379 14.8504L0.5 9.38651L9.52338 9.1889L12.5 0.667969Z"
+                    fill="#F4CA51"></path>
+                <path
+                    d="M24.5 9.38651L12.5 13.2857L15.4766 9.1889L24.5 9.38651ZM12.5 18.3494V13.2857L5.08369 23.4935L12.5 18.3494ZM12.5 13.2857L19.9163 23.4935L17.3162 14.8504L12.5 13.2857ZM9.52338 9.1889L12.5 13.2857V0.667969L9.52338 9.1889ZM7.68379 14.8504L12.5 13.2857L0.5 9.38651L7.68379 14.8504Z"
+                    fill="#A57D24"></path>
+            </g>
+            <defs>
+                <clipPath id="clip0_2107_32238">
+                    <rect
+                        width="24"
+                        height="24"
+                        fill="white"
+                        transform="translate(0.5)"></rect>
+                </clipPath>
+            </defs>
+        </svg>
+    </div>
+    <div
+        class:list={[
+            " px-5 pt-3 pb-4 text-center text-md",
+            variation === "white" && "bg-offwhite",
+            variation === "pattern" && "bg-lavander",
+            variation !== "white" && variation !== "pattern" && "bg-white",
+        ]}
+    >
+        <span class="block text-md font-bold text-indigo">{name}</span>
+        <span class="block text-md font-semibold">{country}</span>
+        {
+            bio && (
+                <div class="mt-1 text-sm">
+                    <PortableText portableText={bio} />
+                </div>
+            )
+        }
+    </div>
+</article>
