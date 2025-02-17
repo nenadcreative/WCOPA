@@ -57,17 +57,13 @@ export default defineType({
       hidden: ({ parent }) => parent.hideCta,
       group: "content",
     }),
-    defineField({
-      name: "hideImage",
-      title: "Hide Image",
-      type: "boolean",
-      initialValue: false,
-    }),
+
     defineField({
       name: "image",
       title: "Image",
       type: "image",
       group: "content",
+      hidden: ({ parent }) => parent.layout === "centered" || parent.layout === "title-text",
     }),
     defineField({
       name: "variation",

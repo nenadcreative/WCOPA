@@ -46,7 +46,7 @@ const imageUrl = urlForImage(image).url() || null;
   <Container>
     <div
       class:list={[
-        "rounded-sm px-2 py-2 lg:px-16 lg:py-16 xl:px-24 xl:py-20 flex gap-6 lg:gap-16",
+        "rounded-sm px-2 py-2 lg:px-10 lg:py-10 xl:px-16 xl:py-16 flex gap-6 lg:gap-10 ",
         {
           "bg-lavander": ["white", "gradient", "pattern"].includes(variation),
           "bg-white": ["offwhite", "lavander", "dark"].includes(variation),
@@ -68,7 +68,7 @@ const imageUrl = urlForImage(image).url() || null;
       >
         <div class:list={["", layout === "title-text" && "md:w-1/2"]}>
           <span class="uppercase font-medium text-indigo mb-1">{tagline}</span>
-          <h2 class:list={["mb-4 [&>strong]:font-bold"]}>
+          <h2 class:list={["mb-4 [&>strong]:font-bold [&>strong]:text-indigo"]}>
             <PortableTextTitle portableText={title} />
           </h2>
         </div>
@@ -107,7 +107,7 @@ const imageUrl = urlForImage(image).url() || null;
 
       <div
         class:list={[
-          " w-full sm:max-w-[380px] ",
+          " w-full h-full max-w-[500px] rounded-xs overflow-clip",
           layout === "centered" && "hidden",
           layout === "title-text" && "hidden",
         ]}
