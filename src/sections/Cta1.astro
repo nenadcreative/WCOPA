@@ -33,23 +33,18 @@ const { tagline, title, subtitle, videoLink, ctaCards, variation } = section;
     ]}
   />
 
-  {
-    variation === "offwhite" ||
-      (variation === "gradient" && (
-        <Image
-          src={patternImageAlt}
-          alt=""
-          class:list={[
-            "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
-            variation === "white" && " ",
-            variation === "offwhite" && "",
-            variation === "gradient" && "opacity-80 ",
-            variation === "dark" && "invert opacity-50",
-            variation === "image" && "hidden",
-          ]}
-        />
-      ))
-  }
+  <Image
+    src={patternImageAlt}
+    alt=""
+    class:list={[
+      "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+      variation === "white" && "hidden",
+      variation === "offwhite" && "",
+      variation === "gradient" && "opacity-80 ",
+      variation === "dark" && "hidden",
+      variation === "image" && "hidden",
+    ]}
+  />
 
   <Container classes="grid gap-10 md:grid-cols-2 lg:gap-18 relative z-10">
     <div>
@@ -74,7 +69,7 @@ const { tagline, title, subtitle, videoLink, ctaCards, variation } = section;
       >
         <PortableText portableText={title} />
       </h2>
-      <div class="text-sm mb-6">
+      <div class="text-sm mb-6 [&>p]:mb-2">
         <PortableText portableText={subtitle} />
       </div>
 
