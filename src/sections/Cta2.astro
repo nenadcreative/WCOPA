@@ -18,7 +18,7 @@ const {
   image,
 } = section;
 
-const imageUrl = urlForImage(image).url() || null;
+const imageUrl = image ? urlForImage(image).url() : null;
 ---
 
 <section

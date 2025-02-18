@@ -14,7 +14,7 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
       <div class="h-[200px] w-full bg-dark-2 relative">
         <Image
           src={imageUrl}
-          alt={title}
+          alt={title ? title : ""}
           height={200}
           width={364}
           class="object-cover w-full h-full"

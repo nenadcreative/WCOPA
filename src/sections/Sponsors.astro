@@ -39,7 +39,11 @@ const { title, sponsors } = section;
                                                 src={imageUrl}
                                                 inferSize
                                                 class="max-w-full max-h-full  object-cover"
-                                                alt=""
+                                                alt={
+                                                    sponsor?.name
+                                                        ? `${sponsor.name} logo`
+                                                        : "Sponsor logo"
+                                                }
                                             />
                                         </a>{" "}
                                     </div>

@@ -61,7 +61,9 @@ const { title, description, testimonials, ctaText, variation } = section;
                     </h3>
                     <div class="grid sm:grid-cols-2 gap-4 lg:gap-20 mb-24">
                         {testimonials.map((testimonial, index) => {
-                            const image = urlForImage(testimonial?.image).url();
+                            const image = testimonial?.image
+                                ? urlForImage(testimonial.image).url()
+                                : null;
                             return (
                                 <div class="rounded-sm overflow-hidden ">
                                     <div
@@ -83,13 +85,19 @@ const { title, description, testimonials, ctaText, variation } = section;
                                                 "text-dark-2",
                                         ]}
                                     >
-                                        <Image
-                                            src={image}
-                                            alt={testimonial?.name}
-                                            width={112}
-                                            height={112}
-                                            class="w-[112px] h-[112px]"
-                                        />
+                                        {image && (
+                                            <Image
+                                                src={image}
+                                                alt={
+                                                    testimonial?.name
+                                                        ? testimonial.name
+                                                        : ""
+                                                }
+                                                width={112}
+                                                height={112}
+                                                class="w-[112px] h-[112px]"
+                                            />
+                                        )}
                                         <div>
                                             <h4 class="text-display-md font-bold text-indigo mb-1">
                                                 {testimonial?.name}

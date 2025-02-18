@@ -1,0 +1,136 @@
+---
+import Container from "@components/global/Container.astro";
+import PortableText from "@components/atoms/PortableText.astro";
+import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
+import WinnerCard from "@components/molecules/WinnerCard.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import patternImageBig from "@assets/pattern-big-alt.png";
+import patternImage from "@assets/pattern.svg";
+import { Image } from "astro:assets";
+const { section } = Astro.props;
+const { tagline, title, description, winners, ctaText, ctaLinks, variation } =
+    section;
+---
+
+<section
+    class:list={[
+        "py-14 lg:py-24",
+        variation === "white" && " text-dark-1",
+        variation === "offwhite" && "bg-offwhite text-dark-1",
+        variation === "lavander" && "bg-lavander text-dark-1",
+        variation === "gradient" &&
+            "bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
+        variation === "dark" && "bg-dark-2 text-white",
+        variation === "pattern" && "relative bg-offwhite",
+    ]}
+>
+    {
+        variation === "pattern" && winners.length < 3 && (
+            <Image
+                src={patternImage}
+                alt=""
+                class="absolute w-full h-full top-0 right-0 object-cover"
+            />
+        )
+    }
+
+    <Container classes=" relative z-10">
+        <div class="max-w-[800px] mx-auto text-center">
+            {
+                tagline && (
+                    <span
+                        class:list={[
+                            "uppercase font-medium mb-2",
+                            variation === "dark" && "text-yellow",
+                            variation !== "dark" && "text-indigo",
+                        ]}
+                    >
+                        {tagline}
+                    </span>
+                )
+            }
+            {
+                title && tagline ? (
+                    <h2
+                        class:list={[
+                            "mb-6 [&>strong]:font-bold",
+                            variation === "dark" &&
+                                "[&>strong]:text-yellow text-red-500",
+                            variation !== "dark" &&
+                                "[&>strong]:text-indigo text-blue-300",
+                        ]}
+                    >
+                        <PortableTextTitle portableText={title} />
+                    </h2>
+                ) : (
+                    <h2
+                        class:list={[
+                            "mb-6 [&>strong]:font-bold",
+
+                            variation === "dark" && "text-yellow",
+                            variation !== "dark" && "text-indigo",
+                        ]}
+                    >
+                        <PortableTextTitle portableText={title} />
+                    </h2>
+                )
+            }
+
+            {
+                description && (
+                    <div>
+                        <PortableText portableText={description} />
+                    </div>
+                )
+            }
+        </div>
+        {
+            winners && winners.length > 0 && (
+                <div
+                    class:list={[
+                        "mt-16 ",
+                        winners.length <= 2 &&
+                            "flex flex-col sm:flex-row gap-4 sm:gap-8 items-center justify-center",
+                        winners.length > 2 &&
+                            "grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8",
+                    ]}
+                >
+                    {winners.map((winner) => (
+                        <div class="w-full ">
+                            <WinnerCard winner={winner} variation={variation} />
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+
+        <div class="max-w-[800px] mx-auto flex flex-col items-center pt-16">
+            {
+                ctaText && (
+                    <div class="text-md font-medium mb-6 [&>p>strong>a]:text-indigo">
+                        <PortableText portableText={ctaText} />
+                    </div>
+                )
+            }
+            {
+                ctaLinks && (
+                    <div class:list={["flex flex-wrap gap-6"]}>
+                        {ctaLinks.map((button) => {
+                            return (
+                                <ButtonLink
+                                    buttonLink={button}
+                                    variation={
+                                        variation === "dark"
+                                            ? "primary-light-yellow"
+                                            : "primary-dark"
+                                    }
+                                />
+                            );
+                        })}
+                    </div>
+                )
+            }
+        </div>
+    </Container>
+</section>

@@ -5,7 +5,6 @@ import star from "@assets/icons/star.svg";
 import ButtonLink from "@components/ui/ButtonLink.astro";
 const { card, cardVariation } = Astro.props;
 const { title, titleSize, body, ctaLink } = card;
-
 ---
 
 <article
@@ -18,7 +17,7 @@ const { title, titleSize, body, ctaLink } = card;
 >
   <Image
     src={star}
-    alt=""
+    alt="Decorative star icon"
     class="absolute right-1/2 translate-x-1/2 lg:translate-x-0 lg:-right-12 -top-11 w-24 h-24"
   />
   <h3
@@ -32,10 +31,16 @@ const { title, titleSize, body, ctaLink } = card;
     <PortableText portableText={title} />
   </h3>
   <div
-    class="[&>ul>li]:mb-4 [&>ul>li]:marker:mt-4 [&>ul]:list-image-star [&>ul]:list-inside [&>p]:mb-2"
+    class="[&>ul>li]:mb-4 [&>ul>li]:marker:mt-4 [&>ul]:list-image-star [&>p>a]:text-indigo [&>p>a]:underline [&>ul]:list-inside [&>p]:mb-2"
   >
     <PortableText portableText={body} />
   </div>
 
-  {ctaLink && <div class="mt-8"><ButtonLink buttonLink={ctaLink} variation="primary-dark" /></div> }
+  {
+    ctaLink && (
+      <div class="mt-8">
+        <ButtonLink buttonLink={ctaLink} variation="primary-dark" />
+      </div>
+    )
+  }
 </article>

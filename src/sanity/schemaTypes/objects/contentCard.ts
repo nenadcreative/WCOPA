@@ -28,7 +28,7 @@ export default defineType({
     defineField({
       name: "body",
       title: "Card Content",
-      type: "simpleBlockContent",
+      type: "blockContent",
     }),
     defineField({
       name: "ctaLink",

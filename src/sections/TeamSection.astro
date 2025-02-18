@@ -100,8 +100,12 @@ const { title, description, members, variation, layout } = section;
                                 >
                                     <Image
                                         src={star}
-                                        alt=""
-                                        class="w-18 h-18 hidden xl:block absolute -top-13 right-2"
+                                        alt="Star icon"
+                                        class:list={[
+                                            "absolute -top-4 left-4",
+                                            variation === "pattern" &&
+                                                "text-indigo",
+                                        ]}
                                     />
                                     <h3 class="text-indigo text-display-md font-semibold mb-2">
                                         {member?.name}

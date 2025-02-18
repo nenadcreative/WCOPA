@@ -86,7 +86,7 @@ const { title, subtitle, description, link, testimonials, variation, layout } =
             testimonials &&
               testimonials.map((testimonial) => {
                 const videoImageUrl = urlForImage(
-                  testimonial?.videoThumbnail
+                  testimonial?.videoThumbnail,
                 ).url();
                 const image = urlForImage(testimonial?.image)
                   .width(56)
@@ -199,7 +199,7 @@ const { title, subtitle, description, link, testimonials, variation, layout } =
                         {image && (
                           <Image
                             src={image}
-                            alt={testimonial.name}
+                            alt={testimonial?.name ? testimonial.name : ""}
                             width={56}
                             height={56}
                             class=" w-[56px] h-[56px]"
@@ -215,7 +215,7 @@ const { title, subtitle, description, link, testimonials, variation, layout } =
                             src={videoImageUrl}
                             width={545}
                             height={377}
-                            alt={title}
+                            alt={title ? title : ""}
                           />
                           <Image
                             src={mask2}

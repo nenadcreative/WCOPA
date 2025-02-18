@@ -44,7 +44,7 @@ const imageUrl = urlForImage(image).url() ?? null;
             <div class="w-full md:w-1/2">
                 <Image
                     src={imageUrl}
-                    alt={title}
+                    alt={title ? title : ""}
                     inferSize
                     class="w-full h-full object-cover rounded-xs"
                 />
