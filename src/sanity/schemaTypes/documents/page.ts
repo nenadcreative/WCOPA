@@ -77,6 +77,7 @@ export const pageType = defineType({
         { type: 'teamSection' },
         { type: "sponsorTestimonials" },
         { type: 'consultatesSection' },
+        { type: 'steps2' },
         { type: 'steps3' },
         { type: 'winners' },
         { type: 'winners2' }
@@ -125,6 +126,7 @@ export const pageType = defineType({
                 'gallery',
                 'contactInfo',
                 'sponsors',
+                'steps2',
                 'steps3'
               ],
             },

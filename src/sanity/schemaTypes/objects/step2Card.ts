@@ -10,7 +10,7 @@ export const step2CardType = defineType({
             title: "Card Type",
             type: 'string',
             options: {
-                list: [{ value: 'type1', title: 'Content Card' }, { value: 'type2', title: 'Image Card' }]
+                list: [{ value: 'type1', title: 'One Column Card' }, { value: 'type2', title: 'Two Column Card' }]
             },
             initialValue: 'type1'
         }),
@@ -20,28 +20,22 @@ export const step2CardType = defineType({
             type: 'string',
         }),
         defineField({
-            name: 'titleSize',
-            title: 'Title Size',
-            type: 'string',
-            options: {
-                list: [
-                    { title: 'Small', value: 'sm' },
-                    { title: 'Medium', value: 'md' },
-                    { title: 'Large', value: 'lg' },
-                ]
-            },
-            initialValue: 'md'
-        }),
-        defineField({
             name: 'description',
             title: 'Description',
             type: 'blockContent',
         }),
 
         defineField({
-            name: 'image',
-            title: 'Image',
-            type: 'image',
+            name: 'listTitle',
+            title: 'List Title',
+            type: 'blockSimple',
+            hidden: ({ parent }) => parent?.cardType !== 'type2'
+        }),
+        defineField({
+            name: 'list',
+            title: 'List Content',
+            type: 'array',
+            of: [{ type: 'simpleListItem' }],
             hidden: ({ parent }) => parent?.cardType !== 'type2'
         }),
     ],

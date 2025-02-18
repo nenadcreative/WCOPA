@@ -75,6 +75,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
 (_type=='teamSection')=>{...},
 (_type=='sponsorTestimonials')=>{...},
 (_type=='consultatesSection')=>{...},
+(_type=='steps2')=>{...},
 (_type=='steps3')=>{...},
 (_type=='winners')=>{...},
 (_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},

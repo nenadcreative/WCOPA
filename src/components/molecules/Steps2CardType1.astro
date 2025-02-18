@@ -1,0 +1,13 @@
+---
+const { step, index } = Astro.props;
+---
+
+<article
+    class:list={[
+        "",
+        index % 2 === 0 && "bg-indigo text-white",
+        index % 2 !== 0 && "bg-lavander text-white",
+    ]}
+>
+    Card
+</article>

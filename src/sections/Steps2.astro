@@ -1,0 +1,69 @@
+---
+import Container from "@components/global/Container.astro";
+import PortableText from "@/components/atoms/PortableText.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import Steps2CardType1 from "@components/molecules/Steps2CardType1.astro";
+import Steps2CardType2 from "@components/molecules/Steps2CardType2.astro";
+const { section } = Astro.props;
+const { title, description, steps, variation } = section;
+---
+
+<section
+    class:list={[
+        "py-14 lg:py-24 relative",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-28% to-lavander to-100% text-dark-1",
+        variation === "dark" && "bg-dark-2 text-white",
+    ]}
+>
+    <Container>
+        <div class="text-center max-w-[800px] mx-auto">
+            <h2
+                class:list={[
+                    "mb-5 [&>strong]:font-bold",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                    variation === "gradient" && "[&>strong]:text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div
+                class:list={[
+                    "text-md [&>strong]:font-regular",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                    variation === "gradient" && "[&>strong]:text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={description} />
+            </div>
+        </div>
+        {
+            steps && (
+                <div>
+                    {steps.map((step, index) => {
+                        switch (step.cardType) {
+                            case "type1":
+                                return (
+                                    <Steps2CardType1
+                                        step={step}
+                                        variation={variation}
+                                        index={index}
+                                    />
+                                );
+                            case "type2":
+                                return (
+                                    <Steps2CardType2
+                                        step={step}
+                                        variation={variation}
+                                        index={index}
+                                    />
+                                );
+                            default:
+                                null;
+                        }
+                    })}
+                </div>
+            )
+        }
+    </Container>
+</section>

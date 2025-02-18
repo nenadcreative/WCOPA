@@ -22,7 +22,7 @@ export const steps2Type = defineType({
             name: "steps",
             title: "Steps",
             type: "array",
-            of: [{ type: "step" }],
+            of: [{ type: "step2Card" }],
         }),
         defineField({
             name: 'variation',
@@ -36,5 +36,18 @@ export const steps2Type = defineType({
                 ],
             },
         })
-    ]
+    ],
+    preview: {
+        select: {
+            title: "title",
+            subtitle: "subtitle",
+        },
+        prepare(selection) {
+            const { title } = selection;
+            return {
+                title: stringFromPortableText(title) || "Steps 2 Section Title",
+                subtitle: "Steps 2 Section",
+            };
+        },
+    },
 })
