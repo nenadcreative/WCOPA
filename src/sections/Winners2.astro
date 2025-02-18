@@ -6,7 +6,7 @@ import WinnerCard from "@components/molecules/WinnerCard.astro";
 import ButtonLink from "@components/ui/ButtonLink.astro";
 import { urlForImage } from "@sanity/lib/urlForImage";
 import patternImageBig from "@assets/pattern-big-alt.png";
-import patternImage from "@assets/pattern.svg";
+import patternImage from "@assets/pattern-alt.png";
 import { Image } from "astro:assets";
 const { section } = Astro.props;
 const { tagline, title, description, winners, ctaText, ctaLinks, variation } =
@@ -34,6 +34,15 @@ const { tagline, title, description, winners, ctaText, ctaLinks, variation } =
             />
         )
     }
+    {
+        variation === "pattern" && winners.length >= 3 && (
+            <Image
+                src={patternImageBig}
+                alt=""
+                class="absolute w-full h-full top-0 right-0 object-cover"
+            />
+        )
+    }
 
     <Container classes=" relative z-10">
         <div class="max-w-[800px] mx-auto text-center">
@@ -55,10 +64,8 @@ const { tagline, title, description, winners, ctaText, ctaLinks, variation } =
                     <h2
                         class:list={[
                             "mb-6 [&>strong]:font-bold",
-                            variation === "dark" &&
-                                "[&>strong]:text-yellow text-red-500",
-                            variation !== "dark" &&
-                                "[&>strong]:text-indigo text-blue-300",
+                            variation === "dark" && "[&>strong]:text-yellow ",
+                            variation !== "dark" && "[&>strong]:text-indigo",
                         ]}
                     >
                         <PortableTextTitle portableText={title} />
@@ -79,7 +86,7 @@ const { tagline, title, description, winners, ctaText, ctaLinks, variation } =
 
             {
                 description && (
-                    <div>
+                    <div class="text-md">
                         <PortableText portableText={description} />
                     </div>
                 )
