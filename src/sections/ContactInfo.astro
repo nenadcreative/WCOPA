@@ -4,6 +4,8 @@ import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import Container from "@/components/global/Container.astro";
 import InfoCardType1 from "@/components/molecules/InfoCardType1.astro";
 import InfoCardType2 from "@/components/molecules/InfoCardType2.astro";
+import { Image } from "astro:assets";
+import patternImage from "@assets/pattern.svg";
 const { section } = Astro.props;
 const { title, description, cards, ctaText, variation } = section;
 ---
@@ -21,6 +23,16 @@ const { title, description, cards, ctaText, variation } = section;
         variation === "pattern" && "relative bg-offwhite",
     ]}
 >
+    <Image
+        src={patternImage}
+        alt=""
+        class:list={[
+            "",
+            variation !== "pattern" && "hidden",
+            variation === "pattern" &&
+                "absolute top-0 left-0 w-full h-full object-cover object-center z-0",
+        ]}
+    />
     <Container>
         <div class="text-center max-w-[800px] mx-auto">
             <h2

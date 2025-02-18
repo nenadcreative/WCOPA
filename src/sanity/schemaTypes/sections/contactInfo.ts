@@ -54,6 +54,7 @@ export const contactInfo = defineType({
                     { title: "Lavander", value: "lavander" },
                     { title: "Gradient", value: "gradient" },
                     { title: "Dark", value: "dark" },
+                    { title: 'Pattern', value: 'pattern' }
                 ],
             },
             initialValue: "white",
