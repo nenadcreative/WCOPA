@@ -112,75 +112,79 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
           variation === "image" && "bg-white text-dark-1",
         ]}
       >
-        {(() => {
-          switch (cardVariation) {
-            case "card2":
-              return (
-                <div>
-                  {card2Content.map((item, index) => (
-                    <div class="mb-4">
-                      <h3
-                        class:list={[
-                          "font-bold text-sm mb-4",
-                          index === 0 && "text-lg",
-                          index === 1 && "text-indigo",
-                          index === 2 && "text-purple",
-                        ]}
-                      >
-                        {item?.title}
-                      </h3>
-                      <div class="flex gap-2 items-start">
-                        <Image
-                          src={star}
-                          width={24}
-                          height={24}
-                          alt=""
-                          class="mt-0.5 flex-1 h-6 w-6"
-                        />
-                        <PortableText portableText={item?.text} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              );
-            case "card5":
-              return <div class='text-md [&>ul]:list-image-star [&>ul]:list-inside [&>ul]:columns-3 [&>ul>li]:mb-2  [&>ul]:my-4'>
-                <PortableText portableText={card5Content} />
-              </div>;
-            default:
-              return (
-                <div>
-                  <h3
-                    class:list={[
-                      "font-bold text-indigo mb-6",
-                      cardVariation === "card1" && "text-sm",
-                      cardVariation === "card3" && "text-lg",
-                      cardVariation === "card4" && "text-3xl",
-                    ]}
-                  >
-                    {cardTitle}
-                  </h3>
-                  {list && list.length > 0 && (
-                    <ul class="mb-8">
-                      {list.map((item, index) => (
-                        <li class="mb-3 flex gap-2 items-start">
+        {
+          (() => {
+            switch (cardVariation) {
+              case "card2":
+                return (
+                  <div>
+                    {card2Content.map((item, index) => (
+                      <div class="mb-4">
+                        <h3
+                          class:list={[
+                            "font-bold text-sm mb-4",
+                            index === 0 && "text-lg",
+                            index === 1 && "text-indigo",
+                            index === 2 && "text-purple",
+                          ]}
+                        >
+                          {item?.title}
+                        </h3>
+                        <div class="flex gap-2 items-start">
                           <Image
-                            src={index % 2 === 0 ? star : starPurple}
+                            src={star}
                             width={24}
                             height={24}
                             alt=""
                             class="mt-0.5 flex-1 h-6 w-6"
                           />
                           <PortableText portableText={item?.text} />
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  <PortableText portableText={cardCTA} />
-                </div>
-              );
-          }
-        })()}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              case "card5":
+                return (
+                  <div class="text-md [&>ul]:list-image-star [&>ul]:list-inside [&>ul]:columns-3 [&>ul>li]:mb-2  [&>ul]:my-4">
+                    <PortableText portableText={card5Content} />
+                  </div>
+                );
+              default:
+                return (
+                  <div>
+                    <h3
+                      class:list={[
+                        "font-bold text-indigo mb-6",
+                        cardVariation === "card1" && "text-sm",
+                        cardVariation === "card3" && "text-lg",
+                        cardVariation === "card4" && "text-3xl",
+                      ]}
+                    >
+                      {cardTitle}
+                    </h3>
+                    {list && list.length > 0 && (
+                      <ul class="mb-8">
+                        {list.map((item, index) => (
+                          <li class="mb-3 flex gap-2 items-start">
+                            <Image
+                              src={index % 2 === 0 ? star : starPurple}
+                              width={24}
+                              height={24}
+                              alt=""
+                              class="mt-0.5 flex-1 h-6 w-6"
+                            />
+                            <PortableText portableText={item?.text} />
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <PortableText portableText={cardCTA} />
+                  </div>
+                );
+            }
+          })()
+        }
       </div>
       <div class="w-full md:w-1/2">
         {
@@ -221,7 +225,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
 
         {
           paragraph && (
-            <div class="mb-4 lg:mb-12">
+            <div class="mb-4 lg:mb-12 [&>ul]:list-image-star [&>ul]:list-inside [&>ul]:my-2 [&>ul>li]:my-2">
               <PortableText portableText={paragraph} />
             </div>
           )
