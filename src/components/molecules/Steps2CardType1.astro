@@ -1,13 +1,36 @@
 ---
+import PortableText from "../atoms/PortableText.astro";
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+
 const { step, index } = Astro.props;
 ---
 
 <article
     class:list={[
-        "",
-        index % 2 === 0 && "bg-indigo text-white",
-        index % 2 !== 0 && "bg-lavander text-white",
+        "md:py-16 px-4 py-4 rounded-sm text-dark-2 relative",
+        index % 2 !== 0 && "bg-lavander ",
+        index % 2 === 0 && "bg-white",
     ]}
 >
-    Card
+    <Image
+        src={star}
+        alt=""
+        class="w-20 h-20 hidden xl:block absolute -top-10 -right-10"
+    />
+    <div
+        class:list={[
+            "max-w-[1000px] mx-auto pt-4 px-6 pb-6 md:pt-24 md:px-28 md:pb-25",
+            index % 2 !== 0 && "bg-white",
+            index % 2 === 0 && "bg-lavander",
+        ]}
+    >
+        <span class="uppercase text-dark-1 mb-2">Step {index + 1}</span>
+        <h3 class="text-display-lg font-bold mb-4 text-indigo">
+            {step?.title}
+        </h3>
+        <div class="text-md">
+            <PortableText portableText={step?.description} />
+        </div>
+    </div>
 </article>

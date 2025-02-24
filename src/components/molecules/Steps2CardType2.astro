@@ -1,1 +1,96 @@
-<div>Type 2</div>
+---
+import PortableText from "../atoms/PortableText.astro";
+import PortableTextTitle from "../atoms/PortableTextTitle.astro";
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+
+const { step, index, variation } = Astro.props;
+---
+
+<article
+    class:list={[
+        "xl:py-16 py-6 px-4 xl:px-12 text-dark-2 flex flex-col md:flex-row gap-6 md:gap-0 rounded-sm relative",
+        variation === "gradient" && "bg-lavander ",
+        variation === "dark" && "bg-white",
+    ]}
+>
+    <Image
+        src={star}
+        alt=""
+        class="w-20 h-20 hidden xl:block absolute -top-10 -right-10"
+    />
+    <div class="md:w-1/2 md:pr-16">
+        <span class="uppercase text-dark-1 mb-2">Step {index + 1}</span>
+        <h3 class="text-display-lg font-bold mb-4 text-indigo">
+            {step?.title}
+        </h3>
+        <div class="text-md">
+            <PortableText portableText={step?.description} />
+        </div>
+    </div>
+    <div
+        class:list={[
+            " md:w-1/2 p-4 py-6 rounded-sm",
+            variation === "gradient" && "bg-white",
+            variation === "dark" && "bg-lavander",
+        ]}
+    >
+        <h4 class="text-display-md font-semibold mb-4 text-indigo">
+            <PortableTextTitle portableText={step?.listTitle} />
+        </h4>
+        {
+            step?.list && (
+                <ul>
+                    {step.list.map((item, index) => {
+                        return (
+                            <li class="flex items-top text-sm gap-2 py-2">
+                                {index % 2 === 0 ? (
+                                    <svg
+                                        width="24"
+                                        height="25"
+                                        viewBox="0 0 24 25"
+                                        class="w-6 h-6 shrink-0"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M12 1.16797L14.9766 9.6889L24 9.88651L16.8162 15.3504L19.4163 23.9935L12 18.8494L4.58369 23.9935L7.18379 15.3504L0 9.88651L9.02338 9.6889L12 1.16797Z"
+                                            fill="#F4CA51"
+                                        />
+                                        <path
+                                            d="M24 9.88651L12 13.7857L14.9766 9.6889L24 9.88651ZM12 18.8494V13.7857L4.58369 23.9935L12 18.8494ZM12 13.7857L19.4163 23.9935L16.8162 15.3504L12 13.7857ZM9.02338 9.6889L12 13.7857V1.16797L9.02338 9.6889ZM7.18379 15.3504L12 13.7857L0 9.88651L7.18379 15.3504Z"
+                                            fill="#A57D24"
+                                        />
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        width="24"
+                                        height="25"
+                                        viewBox="0 0 24 25"
+                                        fill="none"
+                                        class="w-6 h-6  shrink-0"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M12 1.16797L14.9766 9.6889L24 9.88651L16.8162 15.3504L19.4163 23.9935L12 18.8494L4.58369 23.9935L7.18379 15.3504L0 9.88651L9.02338 9.6889L12 1.16797Z"
+                                            fill="#743089"
+                                        />
+                                        <path
+                                            d="M24 9.88651L12 13.7857L14.9766 9.6889L24 9.88651ZM12 18.8494V13.7857L4.58369 23.9935L12 18.8494ZM12 13.7857L19.4163 23.9935L16.8162 15.3504L12 13.7857ZM9.02338 9.6889L12 13.7857V1.16797L9.02338 9.6889ZM7.18379 15.3504L12 13.7857L0 9.88651L7.18379 15.3504Z"
+                                            fill="#904C95"
+                                        />
+                                    </svg>
+                                )}
+                                <span class="mt-0">
+                                    <PortableTextTitle
+                                        portableText={item?.text}
+                                    />
+                                </span>
+                            </li>
+                        );
+                    })}
+                </ul>
+            )
+        }
+    </div>
+</article>

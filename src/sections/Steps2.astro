@@ -39,7 +39,7 @@ const { title, description, steps, variation } = section;
         </div>
         {
             steps && (
-                <div>
+                <div class="flex flex-col gap-10 md:gap-20 mt-20">
                     {steps.map((step, index) => {
                         switch (step.cardType) {
                             case "type1":
