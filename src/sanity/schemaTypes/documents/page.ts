@@ -81,7 +81,10 @@ export const pageType = defineType({
         { type: 'steps3' },
         { type: 'winners' },
         { type: 'winners2' },
-        { type: 'contactForm' }
+        { type: 'contactForm' },
+        { type: 'judges' },
+        { type: 'industryTestimonials' },
+        { type: 'auditionForm' }
       ],
       options: {
         insertMenu: {
@@ -108,9 +111,10 @@ export const pageType = defineType({
                 'featuresSection',
                 'teamSection',
                 'sponsorTestimonials',
+                'industryTestimonials',
                 'consultatesSection',
                 'winners',
-                'winners2'
+                'winners2',
               ],
             },
             {
@@ -129,7 +133,8 @@ export const pageType = defineType({
                 'sponsors',
                 'steps2',
                 'steps3',
-                'contactForm'
+                'contactForm',
+                'auditionForm'
               ],
             },
           ],

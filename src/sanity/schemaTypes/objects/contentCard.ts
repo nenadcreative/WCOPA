@@ -8,7 +8,7 @@ export default defineType({
     defineField({
       name: "title",
       title: "Title",
-      type: "pt-string",
+      type: "blockSimple",
     }),
 
     defineField({

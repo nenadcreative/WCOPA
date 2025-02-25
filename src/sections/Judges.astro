@@ -1,0 +1,42 @@
+---
+import Container from "@components/global/Container.astro";
+import PortableText from "@components/atoms/PortableText.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import star from "@assets/icons/star.svg";
+import starPurple from "@assets/icons/star-purple.svg";
+import { Image } from "astro:assets";
+
+const { section } = Astro.props;
+const { tagline, title, description, contentCard, judges, variation } = section;
+console.log(contentCard.title);
+---
+
+<section>
+    <Container>
+        {tagline && <span>{tagline}</span>}
+        <h2 class="[&>strong]:font-bold [&>strong]:text-indigo mb-6">
+            <PortableTextTitle portableText={title} />
+        </h2>
+        <div><PortableText portableText={description} /></div>
+
+        <div>
+            <h3 class:list={["font-bold text-indigo mb-6"]}>
+                <PortableTextTitle portableText={contentCard.title} />
+            </h3>
+            {
+                contentCard.body && (
+                    <div>
+                        <PortableText portableText={contentCard.body} />
+                    </div>
+                )
+            }
+            <PortableText portableText={contentCard.cta} />
+        </div>
+
+        {judges && <div>
+            {judges.map((judge) => {
+                return <div>{judge.name}</div>
+            })}
+        </div>}
+    </Container>
+</section>

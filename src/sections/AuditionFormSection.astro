@@ -1,0 +1,15 @@
+---
+import AuditionForm from "@/components/molecules/AuditionForm.astro";
+import Container from "@components/global/Container.astro";
+
+const { section } = Astro.props;
+---
+
+<section>
+    <Container>
+        <h2>Audition Form</h2>
+        <div>
+            <AuditionForm />
+        </div>
+    </Container>
+</section>

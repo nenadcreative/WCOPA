@@ -35,6 +35,9 @@ import { consultateType } from "./objects/consultate";
 import { step2CardType } from "./objects/step2Card";
 import { steps3CardType } from "./objects/steps3Card";
 import { winnerCardType } from "./objects/winnerCard";
+import { socialLinkType } from "./objects/socialLink";
+import { judgeCardType } from "./objects/judgeCard";
+import { industryTestimonialType } from './objects/industryTestimonial'
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -68,6 +71,9 @@ import { steps3Type } from './sections/steps3';
 import { winnersType } from "./sections/winners";
 import { winners2Type } from "./sections/winners2";
 import { contactFormType } from "./sections/contactForm";
+import { judgesType } from "./sections/judges";
+import { industryTestimonialsType } from "./sections/industryTestimonials";
+import { auditionFormType } from "./sections/auditionForm";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -110,6 +116,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     step2CardType,
     steps3CardType,
     winnerCardType,
+    judgeCardType,
+    socialLinkType,
+    industryTestimonialType,
 
     //sections
     mediaSectionType,
@@ -140,6 +149,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     steps3Type,
     winnersType,
     winners2Type,
-    contactFormType
+    contactFormType,
+    judgesType,
+    industryTestimonialsType,
+    auditionFormType
   ],
 };
