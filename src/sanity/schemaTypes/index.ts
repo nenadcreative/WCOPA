@@ -67,6 +67,7 @@ import { steps2Type } from './sections/steps2';
 import { steps3Type } from './sections/steps3';
 import { winnersType } from "./sections/winners";
 import { winners2Type } from "./sections/winners2";
+import { contactFormType } from "./sections/contactForm";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -138,6 +139,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     steps2Type,
     steps3Type,
     winnersType,
-    winners2Type
+    winners2Type,
+    contactFormType
   ],
 };

@@ -80,7 +80,8 @@ export const pageType = defineType({
         { type: 'steps2' },
         { type: 'steps3' },
         { type: 'winners' },
-        { type: 'winners2' }
+        { type: 'winners2' },
+        { type: 'contactForm' }
       ],
       options: {
         insertMenu: {
@@ -127,7 +128,8 @@ export const pageType = defineType({
                 'contactInfo',
                 'sponsors',
                 'steps2',
-                'steps3'
+                'steps3',
+                'contactForm'
               ],
             },
           ],

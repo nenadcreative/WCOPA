@@ -79,7 +79,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
 (_type=='steps3')=>{...},
 (_type=='winners')=>{...},
 (_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
-(_type=='contactInfo')=>{...}
+(_type=='contactInfo')=>{...},
+(_type=='contactForm')=>{...},
 },
 }`;
 export const settingsQuery = groq`*[_type == "settings"][0]`;

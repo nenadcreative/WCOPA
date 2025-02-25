@@ -1,0 +1,25 @@
+---
+import PortableText from "@/components/atoms/PortableText.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import Container from "@components/global/Container.astro";
+import BasicContactForm from "@/components/molecules/BasicContactForm.astro";
+
+const { section } = Astro.props;
+const { title, description } = section;
+---
+
+<section
+    class="py-14 lg:py-20 bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-2"
+>
+    <Container classes="max-w-[800px] mx-auto">
+        <h2 class="[&>strong]:font-bold [&>strong]:text-indigo mb-6">
+            <PortableTextTitle portableText={title} />
+        </h2>
+        <div class="text-md">
+            <PortableText portableText={description} />
+        </div>
+        <div class="mt-16 bg-offwhite p-3 md:p-10 md:pb-12 rounded-sm">
+            <BasicContactForm />
+        </div>
+    </Container>
+</section>

@@ -16,14 +16,14 @@
   --text-md: 1.125rem;
   --text-lg: 1.25rem;
   --text-xl: 1.75rem;
- 
 
-  --text-display-xs:1rem;
-  --text-display-sm:1.125rem;
-  --text-display-md:1.375rem;
-  --text-display-lg:2rem;
-  --text-display-xl:3rem;
-  --text-display-2xl:3.25rem;
+
+  --text-display-xs: 1rem;
+  --text-display-sm: 1.125rem;
+  --text-display-md: 1.375rem;
+  --text-display-lg: 2rem;
+  --text-display-xl: 3rem;
+  --text-display-2xl: 3.25rem;
 
   --color-dark-1: #050006;
   --color-dark-2: #240727;
@@ -33,6 +33,8 @@
   --color-purple: #743089;
   --color-yellow: #f4ca51;
   --color-lavander: #edeaf9;
+
+  --color-gray-1: #828082;
 
   --list-style-image-star: url('/icons/star.svg');
 
@@ -50,14 +52,17 @@
     from {
       height: 0;
     }
+
     to {
       height: var(--radix-accordion-content-height);
     }
   }
+
   @keyframes accordion-up {
     from {
       height: var(--radix-accordion-content-height);
     }
+
     to {
       height: 0;
     }
@@ -73,6 +78,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -85,7 +91,7 @@
 @layer utilities {
   html {
     scroll-behavior: smooth;
-    @apply font-body ;
+    @apply font-body;
   }
 
   h1,
@@ -110,6 +116,7 @@
   h3 {
     @apply text-display-lg;
   }
+
   :root {
     --radius: 0.5rem
   }
