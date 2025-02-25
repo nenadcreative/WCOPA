@@ -84,6 +84,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
 (_type=='judges')=>{...},
 (_type=='industryTestimonials')=>{...},
 (_type=='auditionForm')=>{...},
+(_type=='imageCards')=>{...},
 },
 }`;
 export const settingsQuery = groq`*[_type == "settings"][0]`;

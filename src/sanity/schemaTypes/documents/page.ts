@@ -84,7 +84,8 @@ export const pageType = defineType({
         { type: 'contactForm' },
         { type: 'judges' },
         { type: 'industryTestimonials' },
-        { type: 'auditionForm' }
+        { type: 'auditionForm' },
+        { type: 'imageCards' }
       ],
       options: {
         insertMenu: {
@@ -134,7 +135,8 @@ export const pageType = defineType({
                 'steps2',
                 'steps3',
                 'contactForm',
-                'auditionForm'
+                'auditionForm',
+                'imageCards'
               ],
             },
           ],

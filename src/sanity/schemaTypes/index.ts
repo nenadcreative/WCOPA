@@ -38,6 +38,7 @@ import { winnerCardType } from "./objects/winnerCard";
 import { socialLinkType } from "./objects/socialLink";
 import { judgeCardType } from "./objects/judgeCard";
 import { industryTestimonialType } from './objects/industryTestimonial'
+import { imageCardType } from './objects/imageCard';
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -74,6 +75,7 @@ import { contactFormType } from "./sections/contactForm";
 import { judgesType } from "./sections/judges";
 import { industryTestimonialsType } from "./sections/industryTestimonials";
 import { auditionFormType } from "./sections/auditionForm";
+import { imageCardsType } from "./sections/imageCards";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -119,6 +121,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     judgeCardType,
     socialLinkType,
     industryTestimonialType,
+    imageCardType,
 
     //sections
     mediaSectionType,
@@ -152,6 +155,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactFormType,
     judgesType,
     industryTestimonialsType,
-    auditionFormType
+    auditionFormType,
+    imageCardsType,
   ],
 };
