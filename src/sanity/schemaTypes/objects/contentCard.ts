@@ -1,9 +1,11 @@
 import { defineType, defineField } from "sanity";
+import { IdCard } from 'lucide-react';
 
 export default defineType({
   name: "contentCard",
   title: "Content Card",
   type: "object",
+  icon: IdCard,
   fields: [
     defineField({
       name: "title",
@@ -36,4 +38,10 @@ export default defineType({
       type: "link",
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "titleSize",
+    },
+  },
 });

@@ -7,6 +7,8 @@ import { media } from "sanity-plugin-media";
 import { schema } from "./src/sanity/schemaTypes";
 import { CogIcon } from "@sanity/icons";
 import { HomeIcon } from "@sanity/icons";
+import { Flag } from 'lucide-react';
+import { UsersRound } from 'lucide-react';
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
@@ -66,6 +68,9 @@ export default defineConfig({
                   .schemaType("settings")
                   .documentId("65e93031-3a43-4907-8bf9-1bd2ff2d9b08")
               ),
+            S.divider(),
+            S.documentTypeListItem("director").title("Directors").icon(UsersRound),
+            S.documentTypeListItem("country").title("Country").icon(Flag),
           ]),
     }),
     visionTool(),

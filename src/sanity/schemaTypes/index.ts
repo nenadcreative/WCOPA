@@ -3,6 +3,8 @@ import { pageType } from "./documents/page";
 import eventType from "./documents/event";
 import { homeType } from "./singletons/home";
 import { settingsType } from "./singletons/settings";
+import { countryType } from "./documents/country";
+import { directorType } from "./documents/director";
 
 // objects
 import { blockContentType } from "./objects/blockContent";
@@ -39,6 +41,10 @@ import { socialLinkType } from "./objects/socialLink";
 import { judgeCardType } from "./objects/judgeCard";
 import { industryTestimonialType } from './objects/industryTestimonial'
 import { imageCardType } from './objects/imageCard';
+import { regionType } from "./objects/region";
+import { ageCardType } from './objects/ageCard';
+import { tableColumnType } from './objects/tableColumn';
+import { tableType } from './objects/table';
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -76,6 +82,9 @@ import { judgesType } from "./sections/judges";
 import { industryTestimonialsType } from "./sections/industryTestimonials";
 import { auditionFormType } from "./sections/auditionForm";
 import { imageCardsType } from "./sections/imageCards";
+import { nationalDirectorsType } from "./sections/nationalDirectors";
+import { ageDivisionsType } from './sections/ageDivisions';
+import { tableSectionType } from './sections/tableSection';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -85,6 +94,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     settingsType,
     homeType,
     faqType,
+    countryType,
+    directorType,
 
     //objects
     blockContentType,
@@ -122,6 +133,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     socialLinkType,
     industryTestimonialType,
     imageCardType,
+    regionType,
+    ageCardType,
+    tableType,
+    tableColumnType,
 
     //sections
     mediaSectionType,
@@ -157,5 +172,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     industryTestimonialsType,
     auditionFormType,
     imageCardsType,
+    nationalDirectorsType,
+    ageDivisionsType,
+    tableSectionType,
   ],
 };
