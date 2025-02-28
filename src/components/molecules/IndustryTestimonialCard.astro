@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
+import PortableTextTitle from "../atoms/PortableTextTitle.astro";
+import PortableText from "../atoms/PortableText.astro";
+
+const { industryTestimonial, variation } = Astro.props;
+const { image, name, occupation, quote, comment } = industryTestimonial;
+
+const imageUrl = image ? urlForImage(image).width(56).height(56).url() : null;
+---
+
+<article class="py-8 px-6 rounded-sm bg-white">
+    <div class="pb-4 border-b border-gray-1 flex gap-3">
+        <Image
+            src={imageUrl}
+            width={56}
+            height={56}
+            alt={name ? name : ""}
+            class="w-14 h-14 rounded-full"
+        />
+        <div>
+            <h3
+                class:list={[
+                    "font-display text-display-md font-bold mb-1",
+                    variation === "dark" && "text-indigo",
+                    variation !== "dark" && "text-purple",
+                ]}
+            >
+                {name}
+            </h3>
+            <span>{occupation}</span>
+        </div>
+    </div>
+    <div class="py-6 text-md sm:text-lg font-semibold">
+        <PortableTextTitle portableText={quote} />
+    </div>
+    <div
+        class:list={[
+            "p-4 text-sm bg-lavander",
+            variation === "dark" && "text-indigo",
+            variation === "lavander" && " text-purple",
+        ]}
+    >
+        <PortableText portableText={comment} />
+    </div>
+</article>

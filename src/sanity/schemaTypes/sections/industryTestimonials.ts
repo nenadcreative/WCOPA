@@ -19,6 +19,18 @@ export const industryTestimonialsType = defineType({
             type: "array",
             of: [{ type: "industryTestimonial" }],
         }),
+        defineField({
+            name: "variation",
+            title: "Variation",
+            type: "string",
+            options: {
+                list: [
+                    { title: 'Lavander', value: 'lavander' },
+                    { title: 'Dark', value: 'dark' },
+                ],
+            },
+            initialValue: 'lavander'
+        }),
     ],
     preview: {
         select: {

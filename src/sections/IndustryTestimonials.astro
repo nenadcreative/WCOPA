@@ -1,20 +1,48 @@
 ---
 import Container from "@/components/global/Container.astro";
 import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import IndustryTestimonialCard from "@components/molecules/IndustryTestimonialCard.astro";
+import { Image } from "astro:assets";
+import patternImage from "@assets/pattern.svg";
 const { section } = Astro.props;
-const { title, testimonials } = section;
+const { title, testimonials, variation } = section;
 ---
 
-<section>
-    <Container>
-        <h2>
+<section
+    class:list={[
+        "py-14 relative",
+        variation === "dark" && "bg-dark-2 text-white",
+        variation === "lavander" && "bg-lavander text-dark-2",
+    ]}
+>
+    <Image
+        src={patternImage}
+        alt="Pattern"
+        class:list={[
+            "absolute inset-0 object-cover object-top w-full h-full ",
+            variation === "dark" && "opacity-80 invert",
+        ]}
+    />
+    <Container classes="relative z-10">
+        <h2
+            class:list={[
+                "mb-6 text-center",
+                variation === "dark" && "text-yellow",
+                variation === "lavander" && "text-indigo",
+            ]}
+        >
             <PortableTextTitle portableText={title} />
         </h2>
         {
             testimonials && (
-                <div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
                     {testimonials.map((testimonial) => {
-                        return <div>{testimonial.name}</div>;
+                        return (
+                            <IndustryTestimonialCard
+                                industryTestimonial={testimonial}
+                                variation={variation}
+                            />
+                        );
                     })}
                 </div>
             )
