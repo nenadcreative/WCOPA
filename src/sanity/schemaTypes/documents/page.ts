@@ -14,6 +14,7 @@ export const pageType = defineType({
       title: "Title",
       type: "string",
       group: "content",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "slug",
@@ -24,6 +25,7 @@ export const pageType = defineType({
         maxLength: 96,
       },
       group: "content",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "seo",
@@ -90,6 +92,7 @@ export const pageType = defineType({
         { type: 'ageDivisions' },
         { type: 'tableSection' }
       ],
+      validation: (rule) => rule.required(),
       options: {
         insertMenu: {
           groups: [
