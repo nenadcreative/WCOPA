@@ -6,7 +6,7 @@ import PortableTextTitle from "../atoms/PortableTextTitle.astro";
 import star from "@assets/icons/star.svg";
 
 const { card, variation, layout } = Astro.props;
-const { image, title, body } = card;
+const { image, title, body, imageMask } = card;
 const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
 ---
 
@@ -17,20 +17,50 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
         layout === "text-image" && "flex col sm:flex-row",
     ]}
 >
-    <Image
-        src={star}
-        alt=""
-        width={100}
-        height={100}
-        class="absolute -top-10 w-25 h-25 right-1/2 translate-x-1/2 z-10"
-    />
-    <Image
-        src={imageUrl}
-        alt={title ? title : ""}
-        height={200}
-        width={364}
-        class="sm:w-1/2 h-auto rounded-sm"
-    />
+    {
+        !imageMask && (
+            <Image
+                src={star}
+                alt=""
+                width={100}
+                height={100}
+                class="absolute -top-10 w-25 h-25 right-1/2 translate-x-1/2 z-10"
+            />
+        )
+    }
+
+    {
+        imageMask ? (
+            <div class="sm:w-1/2 h-auto">
+                {" "}
+                <div class="w-[300px] h-[458px] lg:w-[486px] lg:h-[660px]  relative">
+                    <Image
+                        class="mask w-[300px] h-[458px] lg:w-[486px] lg:h-[660px] object-cover "
+                        src={imageUrl}
+                        width={486}
+                        height={660}
+                        alt={title ? title : ""}
+                    />
+                    <Image
+                        src="/mask-1.png"
+                        class="absolute -top-2 -right-4 sm:-right-10 -z-10 w-[300px] h-[408px] lg:w-[486px] lg:h-[660px] "
+                        width={486}
+                        height={660}
+                        alt=""
+                    />
+                </div>
+            </div>
+        ) : (
+            <Image
+                src={imageUrl}
+                alt={title ? title : ""}
+                height={200}
+                width={364}
+                class="sm:w-1/2 h-auto rounded-sm"
+            />
+        )
+    }
+
     <div
         class:list={[
             "sm:w-1/2 px-8 py-12  flex flex-col justify-center rounded-sm",
@@ -52,3 +82,19 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
         </div>
     </div>
 </article>
+<style>
+    .mask {
+        mask-image: url("/mask-1.png");
+        mask-size: 300px 458px;
+        mask-position: center;
+        mask-repeat: no-repeat;
+    }
+    @media screen and (min-width: 1024px) {
+        .mask {
+            mask-image: url("/mask-1.png");
+            mask-size: 486px 660px;
+            mask-position: center;
+            mask-repeat: no-repeat;
+        }
+    }
+</style>
