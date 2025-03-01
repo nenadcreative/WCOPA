@@ -13,8 +13,8 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
 <article
     class:list={[
         "flex gap-10 items-stretch relative",
-        layout === "image-text" && "flex col sm:flex-row-reverse",
-        layout === "text-image" && "flex col sm:flex-row",
+        layout === "image-text" && "flex flex-col sm:flex-row-reverse",
+        layout === "text-image" && "flex flex-col sm:flex-row",
     ]}
 >
     {

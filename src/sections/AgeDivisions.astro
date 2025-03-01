@@ -1,1 +1,55 @@
-<section>Age Divisions</section>
+---
+import Container from "@components/global/Container.astro";
+import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
+import AgeCard from "@/components/molecules/AgeCard.astro";
+import { Image } from "astro:assets";
+import patternImage from "@assets/pattern-big-alt.png";
+const { section } = Astro.props;
+const { title, cards, variation } = section;
+---
+
+<section
+    class:list={[
+        "py-14 xl:py-24",
+        variation === "white" && "bg-white",
+        variation === "offwhite" && "bg-offwhite",
+        variation === "lavander" && "bg-lavander",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] text-dark-2",
+        variation === "dark" && "bg-dark-2  text-white",
+        variation === "pattern" && "bg-offwhite relative",
+    ]}
+>
+    <Image
+        src={patternImage}
+        alt="pattern"
+        class:list={[
+            "absolute inset-0 w-full h-full object-cover object-top z-0 ",
+            variation !== "pattern" && "hidden",
+        ]}
+    />
+    <Container classes="relative z-10">
+        <h2
+            class:list={[
+                "[&>strong]:font-bold text-center max-w-[800px] mx-auto",
+            ]}
+        >
+            <PortableTextTitle portableText={title} />
+        </h2>
+        {
+            cards && (
+                <div class="flex flex-col gap-20 mt-20">
+                    {cards.map((card, index) => (
+                        <AgeCard
+                            card={card}
+                            variation={variation}
+                            layout={
+                                index % 2 === 0 ? "cards-text" : "text-cards"
+                            }
+                        />
+                    ))}
+                </div>
+            )
+        }
+    </Container>
+</section>

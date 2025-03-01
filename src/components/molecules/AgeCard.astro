@@ -1,0 +1,73 @@
+---
+import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
+import PortableText from "../atoms/PortableText.astro";
+import star from "@assets/icons/star.svg";
+import { Image } from "astro:assets";
+const { card, variation, layout } = Astro.props;
+const { title, description, ageCards } = card;
+---
+
+<article
+    class:list={[
+        "flex gap-8 sm:gap-16 items-center relative px-6 py-8 sm:px-12 sm:py-16 rounded-sm",
+        layout === "cards-text" && "flex flex-col sm:flex-row-reverse",
+        layout === "text-cards" && "flex flex-col sm:flex-row",
+        variation === "white" && "bg-offwhite",
+        variation === "offwhite" && "bg-white",
+        variation === "lavander" && "bg-white",
+        variation === "gradient" && "bg-lavander",
+        variation === "dark" && "bg-lavander text-dark-1",
+        variation === "pattern" && "bg-lavander",
+    ]}
+>
+    <Image
+        src={star}
+        alt=""
+        width={100}
+        height={100}
+        class:list={[
+            "hidden xl:block absolute -top-10 w-25 h-25  z-10",
+            layout === "text-cards" && "-left-8",
+            layout === "cards-text" && "-right-8",
+        ]}
+    />
+
+    <div class="sm:w-2/5">
+        <h3 class="text-display-lg font-bold mb-4 text-indigo">{title}</h3>
+        <div class="text-md">
+            <PortableText portableText={description} />
+        </div>
+    </div>
+    {
+        ageCards && (
+            <div class="w-full sm:w-3/5 flex flex-col sm:flex-row justify-between gap-4 sm:gap-8 ">
+                {ageCards.map((card, index) => (
+                    <div
+                        class:list={[
+                            "mb-4 w-full px-6 pt-8 pb-10 rounded-sm",
+                            variation === "white" && "bg-white",
+                            variation === "offwhite" && "bg-offwhite",
+                            variation === "lavander" && "bg-lavander",
+                            variation === "gradient" && "bg-white",
+                            variation === "dark" && "bg-white text-dark-1",
+                            variation === "pattern" && "bg-white",
+                        ]}
+                    >
+                        <h4
+                            class:list={[
+                                "text-display-sm font-bold mb-4 ",
+                                index % 2 === 0 && "text-indigo",
+                                index % 2 !== 0 && "text-purple",
+                            ]}
+                        >
+                            <PortableTextTitle portableText={card.title} />
+                        </h4>
+                        <div class="text-md [&>ul]:my-2 [&>ul]:list-image-star [&>ul]:ml-4 [&>ul>li]:py-2 [&>ul>li]:border-b [&>ul>li]:border-indigo">
+                            <PortableText portableText={card.body} />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        )
+    }
+</article>
