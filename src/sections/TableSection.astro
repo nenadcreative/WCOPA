@@ -1,3 +1,188 @@
-<section>
-    Table Section
+---
+import Container from "@components/global/Container.astro";
+import PortableText from "@/components/atoms/PortableText.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+
+const { section } = Astro.props;
+const { title, description, table, cards, variation } = section;
+---
+
+<section
+    class:list={[
+        "py-14 lg:py-24",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-28% to-lavander to-100% text-dark-1",
+        variation === "dark" && "bg-dark-2 text-white",
+    ]}
+>
+    <Container>
+        <div class="max-w-[800px] mx-auto text-center mb-20">
+            <h2
+                class:list={[
+                    "mb-6 [&>strong]:font-bold",
+                    variation === "dark" && "text-yellow",
+                    variation !== "dark" && "text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div class="text-md">
+                <PortableText portableText={description} />
+            </div>
+        </div>
+
+        {
+            table && table.columns == "2 Columns" && (
+                <table class="max-w-[930px] mx-auto w-full text-left">
+                    <tr class="">
+                        {table.rows2[0].rowValues.map((row, index) => (
+                            <th
+                                class:list={[
+                                    "p-2 sm:p-4 font-display font-bold text-display-md ",
+                                    index === 0 && "bg-indigo text-white w-1/2",
+                                    index === 1 &&
+                                        variation !== "dark" &&
+                                        "bg-dark-2 text-white w-1/2",
+                                    index === 1 &&
+                                        variation === "dark" &&
+                                        "bg-yellow text-dark-1",
+                                ]}
+                            >
+                                <PortableTextTitle portableText={row.text} />
+                            </th>
+                        ))}
+                    </tr>
+                    {table.rows2.slice(1).map((row, index) => (
+                        <tr
+                            class:list={[
+                                "",
+                                index % 2 === 0 && "bg-white  w-1/2",
+                                index % 2 !== 0 && "bg-lavander  w-1/2",
+                            ]}
+                        >
+                            {row.rowValues.map((cell, index) => (
+                                <td
+                                    class:list={[
+                                        "p-2 sm:p-4 ",
+                                        index === 0 &&
+                                            "border-r border-indigo w-1/2 text-indigo font-semibold text-md",
+                                        index === 1 &&
+                                            "border-l border-indigo text-dark-2 w-1/2 text-md",
+                                    ]}
+                                >
+                                    <PortableTextTitle
+                                        portableText={cell.text}
+                                    />
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+
+                    <tbody />
+                </table>
+            )
+        }
+
+        {
+            table && table.columns == "3 Columns" && (
+                <table class="max-w-[930px] mx-auto w-full text-left">
+                    <tr class="">
+                        {table.rows3[0].rowValues.map((row, index) => (
+                            <th
+                                class:list={[
+                                    "p-2 sm:p-4 font-display font-bold text-display-md ",
+                                    index !== 1 && "bg-indigo text-white w-1/3",
+                                    index === 1 &&
+                                        variation !== "dark" &&
+                                        "bg-dark-2 text-white w-1/3",
+                                    index === 1 &&
+                                        variation === "dark" &&
+                                        "bg-yellow text-dark-1 w-1/3",
+                                ]}
+                            >
+                                <PortableTextTitle portableText={row.text} />
+                            </th>
+                        ))}
+                    </tr>
+                    {table.rows3.slice(1).map((row, index) => (
+                        <tr
+                            class:list={[
+                                "",
+                                index % 2 === 0 && "bg-white  w-1/3",
+                                index % 2 !== 0 && "bg-lavander  w-1/3",
+                            ]}
+                        >
+                            {row.rowValues.map((cell, index) => (
+                                <td
+                                    class:list={[
+                                        "p-2 sm:p-4 ",
+                                        index === 0 &&
+                                            "border-r border-indigo w-1/3 text-indigo font-semibold text-md",
+                                        index === 1 &&
+                                            "border-x border-indigo text-dark-2 w-1/3 text-md",
+                                        index === 2 &&
+                                            "border-l border-indigo text-dark-2 w-1/3 text-md",
+                                    ]}
+                                >
+                                    <PortableTextTitle
+                                        portableText={cell.text}
+                                    />
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+
+                    <tbody />
+                </table>
+            )
+        }
+
+        {
+            cards && (
+                <div class:list={["mt-20", cards.length > 1 && "flex gap-8"]}>
+                    {cards.map((card, index) => (
+                        <div
+                            class:list={[
+                                "w-full px-8 py-10 rounded-sm relative",
+                                variation === "gradient" && "bg-white",
+                                variation === "dark" &&
+                                    "bg-offwhite text-dark-2",
+                                cards.length === 1 && "max-w-[930px] mx-auto ",
+                            ]}
+                        >
+                            <Image
+                                src={star}
+                                alt=""
+                                width={80}
+                                height={80}
+                                class:list={[
+                                    "absolute w-20 h-20  z-10",
+                                    cards.length === 1 && "top-6 right-6 ",
+                                    cards.length > 1 && "-top-10 right-0 ",
+                                ]}
+                            />
+                            <h3
+                                class:list={[
+                                    "text-indigo text-display-md font-bold mb-4",
+                                ]}
+                            >
+                                <PortableTextTitle portableText={card.title} />
+                            </h3>
+                            <div
+                                class:list={[
+                                    "",
+                                    cards.length > 1 &&
+                                        "[&>ul]:list-image-star [&>ul]:list-outside [&>ul]:py-2 [&>ul]:ml-5 [&>ul>li]:py-2   text-md",
+                                ]}
+                            >
+                                <PortableText portableText={card.body} />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+    </Container>
 </section>

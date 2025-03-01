@@ -45,6 +45,8 @@ import { regionType } from "./objects/region";
 import { ageCardType } from './objects/ageCard';
 import { tableColumnType } from './objects/tableColumn';
 import { tableType } from './objects/table';
+import { tableRow2Type } from './objects/tableRow2';
+import { tableRow3Type } from './objects/tableRow3';
 
 // sections
 import mediaSectionType from "./sections/mediaSection";
@@ -137,6 +139,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ageCardType,
     tableType,
     tableColumnType,
+    tableRow2Type,
+    tableRow3Type,
 
     //sections
     mediaSectionType,

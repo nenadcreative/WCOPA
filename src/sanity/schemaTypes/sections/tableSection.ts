@@ -28,6 +28,19 @@ export const tableSectionType = defineType({
             title: 'Cards',
             type: 'array',
             of: [{ type: 'contentCard' }],
+        }),
+
+        defineField({
+            name: 'variation',
+            title: 'Variation',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Gradient', value: 'gradient' },
+                    { title: 'Dark', value: 'dark' },
+                ]
+            },
+            initialValue: 'gradient'
         })
     ],
     preview: {
