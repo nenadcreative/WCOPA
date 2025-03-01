@@ -1,0 +1,54 @@
+---
+import { urlForImage } from "@sanity/lib/urlForImage";
+import { Image } from "astro:assets";
+import PortableText from "../atoms/PortableText.astro";
+import PortableTextTitle from "../atoms/PortableTextTitle.astro";
+import star from "@assets/icons/star.svg";
+
+const { card, variation, layout } = Astro.props;
+const { image, title, body } = card;
+const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
+---
+
+<article
+    class:list={[
+        "flex gap-10 items-stretch relative",
+        layout === "image-text" && "flex col sm:flex-row-reverse",
+        layout === "text-image" && "flex col sm:flex-row",
+    ]}
+>
+    <Image
+        src={star}
+        alt=""
+        width={100}
+        height={100}
+        class="absolute -top-10 w-25 h-25 right-1/2 translate-x-1/2 z-10"
+    />
+    <Image
+        src={imageUrl}
+        alt={title ? title : ""}
+        height={200}
+        width={364}
+        class="sm:w-1/2 h-auto rounded-sm"
+    />
+    <div
+        class:list={[
+            "sm:w-1/2 px-8 py-12  flex flex-col justify-center rounded-sm",
+            variation === "white" && "bg-offwhite",
+            variation === "offwhite" && "bg-white",
+            variation === "lavander" && "bg-white",
+            variation === "gradient" && "bg-offwhite",
+            variation === "dark" && "bg-white text-dark-2",
+            variation === "pattern" && "bg-lavander",
+        ]}
+    >
+        <h3 class="text-indigo text-display-lg font-semibold mb-4">
+            <PortableTextTitle portableText={title} />
+        </h3>
+        <div
+            class="[&>ul]:list-image-star [&>ul]:list-outside [&>ul>li]:mb-2 [&>ul]:my-2 [&>ul]:ml-4 text-md"
+        >
+            <PortableText portableText={body} />
+        </div>
+    </div>
+</article>

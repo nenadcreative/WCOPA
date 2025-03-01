@@ -2,22 +2,110 @@
 import PortableText from "@/components/atoms/PortableText.astro";
 import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import Container from "@/components/global/Container.astro";
+import ImageCard from "@/components/molecules/ImageCard.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import patternImage from "@assets/pattern-big-alt.png";
+import { Image } from "astro:assets";
 
 const { section } = Astro.props;
-const { tagline, title, description, cards } = section;
+const { tagline, title, description, cards, variation, ctaText, ctaLinks } =
+    section;
 ---
 
-<section>
-    <Container>
-        <span>{tagline}</span>
-        <h2><PortableTextTitle portableText={title} /></h2>
-        <div><PortableText portableText={description} /></div>
+<section
+    class:list={[
+        "py-14 lg:py-28",
+        variation === "white" && "bg-white",
+        variation === "offwhite" && "bg-offwhite",
+        variation === "lavander" && "bg-lavander",
+        variation === "gradient" &&
+            "bg-gradient-to-b from-white from-[28%] to-lavander to-[100%] ",
+        variation === "dark" && "bg-dark-2 text-white",
+        variation === "pattern" && "relative bg-offwhite",
+    ]}
+>
+    <Image
+        src={patternImage}
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+
+    <Container classes="relative z-10">
+        <div class="text-center max-w-[800px] mx-auto">
+            <span
+                class:list={[
+                    "uppercase font-medium text-indigo mb-1",
+                    variation === "dark" && "text-yellow",
+                ]}>{tagline}</span
+            >
+            <h2
+                class:list={[
+                    "mb-6 [&>strong]:font-bold",
+                    variation !== "dark" && "[&>strong]:text-indigo",
+                    variation === "dark" &&
+                        " text-white  [&>strong]:text-yellow",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div class:list={["text-md mb-16"]}>
+                <PortableText portableText={description} />
+            </div>
+        </div>
 
         {
             cards && (
-                <div>
-                    {cards.map((card) => {
-                        return <div>{card.title}</div>;
+                <div class="flex flex-col gap-16">
+                    {cards.map((card, index) => {
+                        return (
+                            <ImageCard
+                                variation={variation}
+                                card={card}
+                                layout={
+                                    index % 2 === 0
+                                        ? "image-text"
+                                        : "text-image"
+                                }
+                            />
+                        );
+                    })}
+                </div>
+            )
+        }
+        {
+            ctaText && (
+                <div
+                    class:list={[
+                        "text-center max-w-3xl mx-auto text-sm font-bold mb-6  mt-20",
+                        variation !== "dark" && "text-dark-1",
+                        variation === "dark" && "text-white",
+                    ]}
+                >
+                    <PortableText portableText={ctaText} />
+                </div>
+            )
+        }
+
+        {
+            ctaLinks && (
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-10">
+                    {ctaLinks.map((link, index) => {
+                        return (
+                            <ButtonLink
+                                buttonLink={link}
+                                variation={
+                                    index === 0
+                                        ? variation === "dark"
+                                            ? "primary-light-yellow"
+                                            : "primary-dark"
+                                        : index === 1
+                                          ? variation === "dark"
+                                              ? "secondary-light"
+                                              : "secondary-dark"
+                                          : "primary-dark" // default value
+                                }
+                            />
+                        );
                     })}
                 </div>
             )

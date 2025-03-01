@@ -202,11 +202,29 @@ let states = [
     },
 ];
 
-const response = await fetch("https://restcountries.com/v3.1/all");
-const data = await response.json();
-const countries = data.sort((a, b) =>
-    a.name.common.localeCompare(b.name.common),
-);
+let countries = [];
+try {
+    const response = await fetch("https://restcountries.com/v3.1/all");
+    const data = await response.json();
+    countries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+} catch (error) {
+    // Fallback to a basic list of common countries if API fails
+    countries = [
+        { name: { common: "Canada" } },
+        { name: { common: "Mexico" } },
+        { name: { common: "United Kingdom" } },
+        { name: { common: "France" } },
+        { name: { common: "Germany" } },
+        { name: { common: "Italy" } },
+        { name: { common: "Spain" } },
+        { name: { common: "Australia" } },
+        { name: { common: "Japan" } },
+        { name: { common: "China" } },
+        { name: { common: "Brazil" } },
+        { name: { common: "India" } },
+    ];
+}
+
 import { Image } from "astro:assets";
 import star from "@assets/icons/star.svg";
 ---
