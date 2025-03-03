@@ -41,8 +41,11 @@ export const pageType = defineType({
       options: {
         list: [
           { title: "How To Enter", value: "how-to-enter" },
-          { title: "Event", value: "event" },
-          { title: "Resources", value: "resources" },
+          { title: 'Event/Competitions', value: 'competitions' },
+          { title: "Event/Schedule Of Events", value: "schedule-of-events" },
+          { title: "Event/Venues", value: "venues" },
+          { title: "Resources/Testimonials", value: "testimonials" },
+          { title: 'Resources/Comunity & Support', value: 'comunity-&-support' },
           { title: "About", value: "about" },
           { title: "Contact", value: "contact" },
           { title: "Legal", value: "legal" },
@@ -162,4 +165,17 @@ export const pageType = defineType({
       },
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      category: "category",
+    },
+    prepare(selection) {
+      const { title, category } = selection
+      return {
+        title,
+        subtitle: `Page Category: ${category}`,
+      }
+    }
+  },
 });

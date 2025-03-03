@@ -59,6 +59,86 @@ export const settingsType = defineType({
       ],
       fieldset: "mainNav",
     }),
+    defineField({
+      name: "mainCompetitions",
+      title: "Event/Competitions",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "competitions" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
+    defineField({
+      name: "mainScheduleOfEvents",
+      title: "Event/Schedule Of Events",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "schedule-of-events" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
+    defineField({
+      name: "mainVenues",
+      title: "Event/Venues",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "venues" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
+    defineField({
+      name: "mainTestimonials",
+      title: "Resources/Testimonials",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "testimonials" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
+    defineField({
+      name: "mainComunitySupport",
+      title: "Resources/Comunity & Support",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "comunity-&-support" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
 
 
     defineField({

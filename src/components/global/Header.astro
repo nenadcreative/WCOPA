@@ -21,7 +21,14 @@ const buttonLinkContact = {
   hide: false,
 };
 
-const { mainHowToEnter } = settings;
+const {
+  mainHowToEnter,
+  mainCompetitions,
+  mainScheduleOfEvents,
+  mainVenues,
+  mainTestimonials,
+  mainComunitySupport,
+} = settings;
 ---
 
 <header class="py-1.5">
@@ -34,7 +41,15 @@ const { mainHowToEnter } = settings;
       <a href="/qa-2">QA 2</a>
       <a href="/qa-3">QA 3</a> -->
     <div class="flex justify-end">
-      <Navigation howToEnter={mainHowToEnter} client:load />
+      <Navigation
+        howToEnter={mainHowToEnter}
+        competitions={mainCompetitions}
+        scheduleOfEvents={mainScheduleOfEvents}
+        venues={mainVenues}
+        testimonials={mainTestimonials}
+        comunitySupport={mainComunitySupport}
+        client:load
+      />
 
       <ButtonLink buttonLink={buttonLinkContact} variation="nav" />
     </div>

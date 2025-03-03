@@ -147,4 +147,11 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
 },
 }`;
 
-export const settingsQuery = groq`*[_type == "settings"][0]{..., 'mainHowToEnter':mainHowToEnter[]->{title, 'slug':slug.current, _id}, 'footerNav':footerNav[]}`;
+export const settingsQuery = groq`*[_type == "settings"][0]{..., 
+'mainHowToEnter':mainHowToEnter[]->{title, 'slug':slug.current, _id},
+'mainCompetitions':mainCompetitions[]->{title, 'slug':slug.current, _id},
+'mainScheduleOfEvents':mainScheduleOfEvents[]->{title, 'slug':slug.current, _id},
+'mainVenues':mainVenues[]->{title, 'slug':slug.current, _id},
+'mainTestimonials':mainTestimonials[]->{title, 'slug':slug.current, _id},
+'mainComunitySupport':mainComunitySupport[]->{title, 'slug':slug.current, _id},
+'footerNav':footerNav[]}`;
