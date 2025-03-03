@@ -105,7 +105,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
                                         {link.title}</a>
                                 })}</div>
                             <div>
-                                <span>Venues</span>
+                                <span>Media</span>
                                 {venues && venues.map((link) => {
                                     return <a key={link._id} href={`/event/venues/${link.slug}`} className="hover:underline group flex gap-2 w-full py-1">
                                         <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:rotate-360 transition-all duration-400">
