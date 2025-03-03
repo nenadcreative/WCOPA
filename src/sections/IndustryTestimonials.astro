@@ -4,8 +4,9 @@ import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import IndustryTestimonialCard from "@components/molecules/IndustryTestimonialCard.astro";
 import { Image } from "astro:assets";
 import patternImage from "@assets/pattern.svg";
+import PortableText from "@components/atoms/PortableText.astro";
 const { section } = Astro.props;
-const { title, testimonials, variation } = section;
+const { title, description, testimonials, variation } = section;
 ---
 
 <section
@@ -24,15 +25,25 @@ const { title, testimonials, variation } = section;
         ]}
     />
     <Container classes="relative z-10">
-        <h2
-            class:list={[
-                "mb-6 text-center",
-                variation === "dark" && "text-yellow",
-                variation === "lavander" && "text-indigo",
-            ]}
-        >
-            <PortableTextTitle portableText={title} />
-        </h2>
+        <div class="max-w-[800px] mx-auto text-center">
+            <h2
+                class:list={[
+                    "mb-6 text-center",
+                    variation === "dark" && "text-yellow",
+                    variation === "lavander" && "text-indigo",
+                ]}
+            >
+                <PortableTextTitle portableText={title} />
+            </h2>
+            {
+                description && (
+                    <div class="text-md">
+                        <PortableText portableText={description} />
+                    </div>
+                )
+            }
+        </div>
+
         {
             testimonials && (
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">

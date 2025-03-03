@@ -1,9 +1,26 @@
 ---
 import Container from "@components/global/Container.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+import PortableText from "@/components/atoms/PortableText.astro";
+import DirectorsAccordion from "@components/molecules/DirectorsAccordion.jsx";
+
+const { section } = Astro.props;
+const { title, description, regions } = section;
+console.log(regions[0].directors);
 ---
 
-<section>
+<section class="py-14 lg:py-20 bg-dark-2 text-white">
     <Container>
-        <h2>National Directors</h2>
+        <div class="max-w-[800px] mx-auto text-center">
+            <h2 class="mb-5 [&>strong]:font-bold text-yellow">
+                <PortableTextTitle portableText={title} />
+            </h2>
+            <div class="text-md">
+                <PortableText portableText={description} />
+            </div>
+        </div>
+        <div class="mt-14">
+            <DirectorsAccordion client:load regions={regions} />
+        </div>
     </Container>
 </section>

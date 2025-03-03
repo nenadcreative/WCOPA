@@ -1,0 +1,29 @@
+---
+import { urlForImage } from "@sanity/lib/urlForImage";
+import { Image } from "astro:assets";
+const { director } = Astro.props;
+const { image, name, jobTitle, country, bio } = director;
+const imageUrl = image ? urlForImage(image).height(64).width(64).url() : null;
+---
+
+<article>
+    <div class="flex items-center">
+        {
+            imageUrl ? (
+                <Image
+                    src={imageUrl}
+                    alt={name ? name : ""}
+                    width={64}
+                    height={64}
+                    class="w-16 h-16 rounded-full"
+                />
+            ) : (
+                <div class="w-full h-full bg-indigo/70 absolute top-0 left-0" />
+            )
+        }
+        <div>
+            <h3>{name}</h3>
+            <p>{jobTitle}</p>
+        </div>
+    </div>
+</article>

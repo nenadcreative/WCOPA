@@ -14,6 +14,11 @@ export const industryTestimonialsType = defineType({
             type: "blockSimple",
         }),
         defineField({
+            name: "description",
+            title: "Description",
+            type: "blockSimple",
+        }),
+        defineField({
             name: "testimonials",
             title: "Testimonials",
             type: "array",

@@ -85,7 +85,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug][0]{...,con
 (_type=='industryTestimonials')=>{...},
 (_type=='auditionForm')=>{...},
 (_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
-(_type=='nationalDirectors')=>{...},
+(_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{...}}},
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
 },

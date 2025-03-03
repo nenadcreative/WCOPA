@@ -13,6 +13,7 @@ export const nationalDirectorsType = defineType({
             title: 'Title',
             type: 'blockSimple',
         }),
+
         defineField({
             name: 'description',
             title: 'Description',
