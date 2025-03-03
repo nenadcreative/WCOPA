@@ -1,14 +1,42 @@
 ---
+import ButtonLink from "../ui/ButtonLink.astro";
 import Container from "./Container.astro";
+import { Image } from "astro:assets";
+import logo from "@assets/logo.png";
+import Navigation from "./Navigation.jsx";
+import { settingsQuery } from "@/sanity/lib/queries";
+import { loadQuery } from "@/sanity/lib/load-query";
+import { type SanityDocument } from "@sanity/client";
+
+const { data: settings } = await loadQuery<SanityDocument>({
+  query: settingsQuery,
+});
+
+const buttonLinkContact = {
+  linkText: "Contact",
+  linkType: "external",
+  internalLink: "/contact-us",
+  url: "/contact-us",
+  blank: false,
+  hide: false,
+};
+
+const { mainHowToEnter } = settings;
 ---
 
-<header class="bg-green-500 py-6">
-  <Container
-    ><a href="/">Home</a>
-    <a href="/example">Example</a>
-    <a href="/example2">Example 2</a>
-    <a href="/qa">QA</a>
-    <a href="/qa-2">QA 2</a>
-    <a href="/qa-3">QA 3</a>
+<header class="py-1.5">
+  <Container classes="flex justify-between items-center">
+    <a href="/"> <Image src={logo} alt="Logo" class="h-20 w-auto" /></a>
+
+    <!-- <a href="/example">Example</a>
+      <a href="/example2">Example 2</a>
+      <a href="/qa">QA</a>
+      <a href="/qa-2">QA 2</a>
+      <a href="/qa-3">QA 3</a> -->
+    <div class="flex justify-end">
+      <Navigation howToEnter={mainHowToEnter} client:load />
+
+      <ButtonLink buttonLink={buttonLinkContact} variation="nav" />
+    </div>
   </Container>
 </header>

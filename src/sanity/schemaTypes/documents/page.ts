@@ -46,6 +46,7 @@ export const pageType = defineType({
           { title: "About", value: "about" },
           { title: "Contact", value: "contact" },
           { title: "Legal", value: "legal" },
+          { title: "none", value: "none" },
         ],
       },
     }),

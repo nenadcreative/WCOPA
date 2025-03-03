@@ -6,6 +6,15 @@ export const settingsType = defineType({
   type: "document",
   fieldsets: [
     {
+      name: "mainNav",
+      title: "Main Navigation",
+      options: {
+        collapsible: true,
+        collapsed: false,
+
+      },
+    },
+    {
       name: "footerNav",
       title: "Footer Navigation",
       options: {
@@ -34,6 +43,24 @@ export const settingsType = defineType({
       description: 'Text after "Copyright" and "Year" in footer',
       type: "string",
     }),
+    defineField({
+      name: "mainHowToEnter",
+      title: "How To Enter",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "how-to-enter" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
+
+
     defineField({
       name: "footerHowToEnter",
       title: "How To Enter Menu",
