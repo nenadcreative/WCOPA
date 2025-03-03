@@ -23,15 +23,16 @@ const { tagline, title, description, cards, variation, ctaText, ctaLinks } =
         variation === "dark" && "bg-dark-2 text-white",
         variation === "pattern" && "relative bg-offwhite",
     ]}
->   
-    {variation === "pattern" && (
-        <Image
-        src={patternImage}
-        alt=""
-        class="absolute inset-0 w-full h-full object-cover object-center"
-    />
-    )}
-    
+>
+    {
+        variation === "pattern" && (
+            <Image
+                src={patternImage}
+                alt=""
+                class="absolute inset-0 w-full h-full object-cover object-center"
+            />
+        )
+    }
 
     <Container classes="relative z-10">
         <div class="text-center max-w-[800px] mx-auto">
