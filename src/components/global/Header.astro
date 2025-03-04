@@ -7,6 +7,7 @@ import Navigation from "./Navigation.jsx";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { loadQuery } from "@/sanity/lib/load-query";
 import { type SanityDocument } from "@sanity/client";
+import AccordionMobile from "@/components/atoms/AccordionMobile.jsx";
 
 const { data: settings } = await loadQuery<SanityDocument>({
   query: settingsQuery,
@@ -39,7 +40,9 @@ const {
   class="py-1.5 sticky top-0 z-50 bg-white/50 transition-all duration-100"
 >
   <Container classes="flex justify-between items-center">
-    <a href="/"> <Image src={logo} alt="Logo" class="h-20 w-auto" /></a>
+    <a href="/">
+      <Image src={logo} priority alt="Logo" class="h-20 w-auto" /></a
+    >
 
     <!-- <a href="/example">Example</a>
       <a href="/example2">Example 2</a>
@@ -65,13 +68,181 @@ const {
       <ButtonLink buttonLink={buttonLinkContact} variation="nav" />
     </div>
     <div class="lg:hidden flex items-center justify-center">
-      <div id="open-menu">hamburger</div>
+      <button id="open-menu"
+        ><svg
+          width="32"
+          height="24"
+          viewBox="0 0 32 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.33398 6H26.6673V8H5.33398V6ZM5.33398 11H26.6673V13H5.33398V11ZM5.33398 16H26.6673V18H5.33398V16Z"
+            fill="black"></path>
+        </svg>
+      </button>
+
       <div
-        id="mobile-menu"
-        class="fixed w-screen top-0 translate-x-[-100%] right-0 h-screen bg-white z-100"
+        class="sidebar lg:hidden text-white bg-indigo z-50 w-full h-screen fixed right-[-100%] top-0 flex justify-center flex-col items-center transition-all duration-300"
       >
-        <div id="close-menu">Close</div>
+        <div class="overflow-y-scroll w-full">
+          <nav class="flex flex-col text-center mb-4 text-white">
+            <a class="text-lg py-2" href="/">Home</a>
+            <AccordionMobile text="How To Enter" client:load>
+              <nav class="flex flex-col">
+                {
+                  mainHowToEnter &&
+                    mainHowToEnter.map((link) => {
+                      return (
+                        <a
+                          href={`/how-to-enter/${link.slug}`}
+                          class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                        >
+                          <svg
+                            width="24"
+                            height="22"
+                            viewBox="0 0 24 22"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="group-hover:rotate-360 transition-all duration-200"
+                          >
+                            <path
+                              d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
+                              fill="#F4CA51"
+                            />
+                            <path
+                              d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
+                              fill="#A57D24"
+                            />
+                          </svg>
+                          {link.title}
+                        </a>
+                      );
+                    })
+                }
+              </nav>
+            </AccordionMobile>
+            <!-- 
+
+              <AccordionMobile text="Vacuum" client:load>
+                <nav class="flex flex-col">
+                  {
+                    vacuumPages.map((page) => {
+                      const link = `/custom-tanks/vacuum/${page.slug.current}`;
+                      return (
+                        <a class="text-lg py-2" href={link}>
+                          {page.title}
+                        </a>
+                      );
+                    })
+                  }
+                </nav>
+              </AccordionMobile>
+              <AccordionMobile text="Portable Toilet" client:load>
+                <nav class="flex flex-col">
+                  {
+                    portableRestroomTanksPages.map((page) => {
+                      const link = `/custom-tanks/vacuum/portable-toilet/${page.slug.current}`;
+                      return (
+                        <a class="text-lg py-2" href={link}>
+                          {page.title}
+                        </a>
+                      );
+                    })
+                  }
+                </nav>
+              </AccordionMobile>
+              <AccordionMobile text="Water" client:load>
+                <nav class="flex flex-col">
+                  {
+                    water.map((page) => {
+                      const link = `/custom-tanks/water/${page.slug.current}`;
+                      return (
+                        <a class="text-lg py-2" href={link}>
+                          {page.title}
+                        </a>
+                      );
+                    })
+                  }
+                </nav>
+              </AccordionMobile>
+            </AccordionMobile>
+            <a class="text-lg py-2" href="/stock-inventory">Stock Inventory</a>
+            <a class="text-lg py-2" href="/financing">Financing</a>
+            <AccordionMobile text="Quality & Innovation" client:load>
+              <nav class="flex flex-col">
+                {
+                  quality.map((page) => {
+                    const link = `/quality-and-innovation/${page.slug.current}`;
+                    return (
+                      <a class="text-lg py-2" href={link}>
+                        {page.title}
+                      </a>
+                    );
+                  })
+                }
+                <a
+                  class="text-lg py-2"
+                  href="/quality-and-innovation/case-studies">Case Studies</a
+                >
+              </nav>
+            </AccordionMobile>
+            <AccordionMobile text="About Us" client:load>
+              <a class="text-lg py-2" href="/about/our-history">Our History</a>
+              <a class="text-lg py-2" href="/about/our-team">Our Team</a>
+              <nav class="flex flex-col">
+                {
+                  about.map((page) => {
+                    const link = `/about/${page.slug.current}`;
+                    return (
+                      <a class="text-lg py-2" href={link}>
+                        {page.title}
+                      </a>
+                    );
+                  })
+                }
+                <a class="text-lg py-2" href="/about/code-of-conduct"
+                  >Code of Conduct</a
+                >
+                <a class="text-lg py-2" href="/about/press-releases"
+                  >Press Release</a
+                >
+              </nav>
+            </AccordionMobile>
+            <AccordionMobile text="Resources" client:load>
+              <nav class="flex flex-col">
+                {
+                  resources.map((page) => {
+                    const link = `/resources/${page.slug.current}`;
+                    return (
+                      <a class="text-lg py-2" href={link}>
+                        {page.title}
+                      </a>
+                    );
+                  })
+                }
+                <a class="text-lg py-2" href="/resources/gallery">Gallery</a>
+              </nav>
+            </AccordionMobile> -->
+            <a class="text-lg py-2" href="/contact">Contact</a>
+          </nav>
+
+          <button class="absolute top-8 right-4" id="close-menu">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.192 6.34424L11.949 10.5862L7.70697 6.34424L6.29297 7.75824L10.535 12.0002L6.29297 16.2422L7.70697 17.6562L11.949 13.4142L16.192 17.6562L17.606 16.2422L13.364 12.0002L17.606 7.75824L16.192 6.34424Z"
+                fill="white"></path>
+            </svg>
+          </button>
+        </div>
       </div>
+      <!-- Mobile Menu Dropdown End -->
     </div>
   </Container>
 </header>
@@ -84,15 +255,14 @@ const {
 </style>
 
 <script>
-  const openMenu = document.getElementById("open-menu");
+  const burger = document.getElementById("open-menu");
   const closeMenu = document.getElementById("close-menu");
-  const mobileMenu = document.getElementById("mobile-menu");
-  openMenu.addEventListener("click", () => {
-    mobileMenu.classList.remove("translate-x-[-100%]");
+  const sidebar = document.querySelector(".sidebar");
+  burger.addEventListener("click", function () {
+    sidebar.classList.toggle("visible");
   });
-
-  closeMenu.addEventListener("click", () => {
-    mobileMenu.classList.add("translate-x-[-100%]");
+  closeMenu.addEventListener("click", function () {
+    sidebar.classList.toggle("visible");
   });
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -107,3 +277,9 @@ const {
     });
   });
 </script>
+
+<style>
+  .sidebar.visible {
+    right: 0;
+  }
+</style>

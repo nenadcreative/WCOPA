@@ -19,7 +19,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>How To Enter</NavigationMenuTrigger>
-                    <NavigationMenuContent className="min-w-120 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
+                    <NavigationMenuContent className="min-w-136 w-120 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
 
                         <div className="w-full grid grid-cols-2 p-4">
                             {howToEnter && howToEnter.map((link) => {
@@ -36,6 +36,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
 
 
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Event</NavigationMenuTrigger>
                     <NavigationMenuContent className="min-w-146 bg-purple text-white font-semibold rounded-md  shadow-md">
@@ -133,7 +134,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>About</NavigationMenuTrigger>
-                    <NavigationMenuContent className="min-w-146 right-0 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
+                    <NavigationMenuContent className="min-w-136 w-120 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
 
                         <div className="w-full grid grid-cols-2 p-4">
                             {about && about.map((link) => {
@@ -150,6 +151,8 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
 
 
                 </NavigationMenuItem>
+
+
 
             </NavigationMenuList>
         </NavigationMenu>
