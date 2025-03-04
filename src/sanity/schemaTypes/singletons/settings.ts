@@ -139,6 +139,54 @@ export const settingsType = defineType({
       ],
       fieldset: "mainNav",
     }),
+    defineField({
+      name: "mainMedia",
+      title: "Resources/Media",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "media" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
+    defineField({
+      name: "mainPrizes",
+      title: "Resources/Media/Prizes & Awards",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "prizes-and-awards" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
+    defineField({
+      name: "mainAbout",
+      title: "About",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "page" },
+          options: {
+            filter: "category == $category",
+            filterParams: { category: "about" },
+          },
+        },
+      ],
+      fieldset: "mainNav",
+    }),
 
 
     defineField({

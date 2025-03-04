@@ -28,6 +28,9 @@ const {
   mainVenues,
   mainTestimonials,
   mainComunitySupport,
+  mainMedia,
+  mainPrizes,
+  mainAbout,
 } = settings;
 ---
 
@@ -41,15 +44,20 @@ const {
       <a href="/qa-2">QA 2</a>
       <a href="/qa-3">QA 3</a> -->
     <div class="flex justify-end">
-      <Navigation
-        howToEnter={mainHowToEnter}
-        competitions={mainCompetitions}
-        scheduleOfEvents={mainScheduleOfEvents}
-        venues={mainVenues}
-        testimonials={mainTestimonials}
-        comunitySupport={mainComunitySupport}
-        client:load
-      />
+      <div class="hidden lg:block">
+        <Navigation
+          howToEnter={mainHowToEnter}
+          competitions={mainCompetitions}
+          scheduleOfEvents={mainScheduleOfEvents}
+          venues={mainVenues}
+          testimonials={mainTestimonials}
+          comunitySupport={mainComunitySupport}
+          media={mainMedia}
+          prizes={mainPrizes}
+          about={mainAbout}
+          client:load
+        />
+      </div>
 
       <ButtonLink buttonLink={buttonLinkContact} variation="nav" />
     </div>
