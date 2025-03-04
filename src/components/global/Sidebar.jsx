@@ -24,7 +24,7 @@ const Sidebar = () => {
                     />
                 </svg>
             </SheetTrigger>
-            <SheetContent className=" grid items-center bg-purple sm:w-[540px]">
+            <SheetContent className=" grid items-center bg-purple w-full">
                 <nav className="flex flex-col h-full justify-center text-lg text-white  gap-4">
                     <a href="/#partners">Samarbeidspartnere</a>
                     <a href="/#introduksjon">Introduksjon</a>
