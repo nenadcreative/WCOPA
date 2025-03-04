@@ -38,7 +38,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Event</NavigationMenuTrigger>
-                    <NavigationMenuContent className="min-w-90 bg-purple text-white font-semibold rounded-md  shadow-md">
+                    <NavigationMenuContent className="min-w-120 bg-purple text-white font-semibold rounded-md  shadow-md">
 
                         <div className="w-full grid grid-cols-3 gap-4 p-4">
                             <div>
@@ -80,7 +80,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                    <NavigationMenuContent className="min-w-90 bg-purple text-white font-semibold rounded-md  shadow-md">
+                    <NavigationMenuContent className="min-w-120 bg-purple text-white font-semibold rounded-md  shadow-md">
 
                         <div className="w-full grid grid-cols-3 gap-4 p-4">
                             <div>
@@ -133,7 +133,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>About</NavigationMenuTrigger>
-                    <NavigationMenuContent className=" right-0 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
+                    <NavigationMenuContent className="min-w-120 right-0 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
 
                         <div className="w-full grid grid-cols-2 p-4">
                             {about && about.map((link) => {

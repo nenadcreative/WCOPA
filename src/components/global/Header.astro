@@ -7,7 +7,6 @@ import Navigation from "./Navigation.jsx";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { loadQuery } from "@/sanity/lib/load-query";
 import { type SanityDocument } from "@sanity/client";
-import Sidebar from "./Sidebar.jsx";
 
 const { data: settings } = await loadQuery<SanityDocument>({
   query: settingsQuery,
@@ -66,7 +65,13 @@ const {
       <ButtonLink buttonLink={buttonLinkContact} variation="nav" />
     </div>
     <div class="lg:hidden flex items-center justify-center">
-      <Sidebar client:load />
+      <div id="open-menu">hamburger</div>
+      <div
+        id="mobile-menu"
+        class="fixed w-screen top-0 translate-x-[-100%] right-0 h-screen bg-white z-100"
+      >
+        <div id="close-menu">Close</div>
+      </div>
     </div>
   </Container>
 </header>
@@ -79,6 +84,17 @@ const {
 </style>
 
 <script>
+  const openMenu = document.getElementById("open-menu");
+  const closeMenu = document.getElementById("close-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+  openMenu.addEventListener("click", () => {
+    mobileMenu.classList.remove("translate-x-[-100%]");
+  });
+
+  closeMenu.addEventListener("click", () => {
+    mobileMenu.classList.add("translate-x-[-100%]");
+  });
+
   document.addEventListener("DOMContentLoaded", () => {
     const header = document.getElementById("header");
     window.addEventListener("scroll", () => {
