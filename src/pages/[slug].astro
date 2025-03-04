@@ -4,6 +4,7 @@ import { loadQuery } from "../sanity/lib/load-query";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { pageQuery, pagesQuery } from "../sanity/lib/queries";
 import RenderSections from "@components/RenderSections.astro";
+import { urlForImage } from "../sanity/lib/urlForImage";
 
 export async function getStaticPaths() {
   const { data: pages } = await loadQuery<SanityDocument[]>({
@@ -29,6 +30,10 @@ const { data: page } = await loadQuery<SanityDocument>({
 if (!page) return Astro.redirect("/404");
 ---
 
-<BaseLayout title={page?.title}>
+<BaseLayout
+  title={page?.seo?.title || ""}
+  description={page?.seo?.description || ""}
+  ogImageUrl={page?.seo?.ogImage ? urlForImage(page?.seo?.ogImage).url() : ""}
+>
   <RenderSections sections={page?.content} />
 </BaseLayout>

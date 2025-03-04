@@ -40,21 +40,16 @@ export default defineConfig({
                   .schemaType("home")
                   .documentId("132f2662-58c6-4916-886d-d1a517f675f9")
               ),
-            S.divider(),
             S.documentTypeListItem("page").title("All Pages"),
             S.documentTypeListItem("event").title("Events"),
             S.documentTypeListItem("faq").title("FAQ's"),
-            // Regular document types
-            S.listItem()
-              .title("About Pages")
-              .child(
-                S.documentList()
-                  .id("about-pages")
-                  .title("About Pages")
-                  .schemaType("page")
-                  .filter('category == "about"')
-              ),
 
+
+
+
+            S.divider(),
+            S.documentTypeListItem("director").title("Directors").icon(UsersRound),
+            S.documentTypeListItem("country").title("Country").icon(Flag),
             S.divider(),
             S.listItem()
               .title("Website Settings")
@@ -68,9 +63,6 @@ export default defineConfig({
                   .schemaType("settings")
                   .documentId("65e93031-3a43-4907-8bf9-1bd2ff2d9b08")
               ),
-            S.divider(),
-            S.documentTypeListItem("director").title("Directors").icon(UsersRound),
-            S.documentTypeListItem("country").title("Country").icon(Flag),
           ]),
     }),
     visionTool(),

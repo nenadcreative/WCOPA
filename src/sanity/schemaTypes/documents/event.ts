@@ -1,9 +1,11 @@
 import { defineType, defineField } from "sanity";
+import { CalendarDays } from 'lucide-react';
 
 export default defineType({
   name: "event",
   title: "Event",
   type: "document",
+  icon: CalendarDays,
   fields: [
     defineField({
       name: "title",

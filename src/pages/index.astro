@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReactPlayer from "react-player";
+import { urlForImage } from "@/sanity/lib/urlForImage";
 
 import type { SanityDocument } from "@sanity/client";
 import { loadQuery } from "../sanity/lib/load-query";
@@ -12,6 +13,10 @@ const { data: home } = await loadQuery<SanityDocument>({
 });
 ---
 
-<BaseLayout title="Welcome to Astro.">
+<BaseLayout
+  title={home?.seo?.title || ""}
+  description={home?.seo?.description || ""}
+  ogImageUrl={home?.seo?.ogImage ? urlForImage(home?.seo?.ogImage).url() : ""}
+>
   <RenderSections sections={home.content} />
 </BaseLayout>
