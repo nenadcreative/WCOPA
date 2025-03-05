@@ -4,17 +4,19 @@ import NewsletterForm from "./NewsletterForm.astro";
 import logo from "@assets/logo.png";
 import { Image } from "astro:assets";
 const { footerData } = Astro.props;
-const { footerText, footerHowToEnter } = footerData;
-console.log(footerHowToEnter);
+const { footerText, footerHowToEnter, footerEvents, footerResources } =
+  footerData;
+
+console.log(footerResources);
 ---
 
 <footer class="bg-dark-1 text-white pb-14 min-h-96">
   <NewsletterForm />
   <Container>
-    <div class="pt-8 pb-20 grid grid-cols-7 gap-4">
+    <div class="pt-8 pb-20 grid xl:grid-cols-7 gap-4">
       <div>
         <a href="/">
-          <Image src={logo} alt="Logo" class="h-20 w-auto" />
+          <Image src={logo} alt="Logo" class="h-28 w-auto" />
         </a>
       </div>
       <div>
@@ -29,8 +31,32 @@ console.log(footerHowToEnter);
           }
         </nav>
       </div>
-      <div class="col-span-2">Event</div>
-      <div>Resources</div>
+      <div class="col-span-2">
+        <h2 class="text-sm font-bold mb-4">Event</h2>
+        <nav class="columns-2">
+          {
+            footerEvents &&
+              footerEvents.map((link) => (
+                <a class="block py-2 text-xs" href={link.slug}>
+                  {link.title}
+                </a>
+              ))
+          }
+        </nav>
+      </div>
+      <div>
+        <h2 class="text-sm font-bold mb-4">Resources</h2>
+        <nav>
+          {
+            footerResources &&
+              footerResources.map((link) => (
+                <a class="block py-2 text-xs" href={link.slug}>
+                  {link.title}
+                </a>
+              ))
+          }
+        </nav>
+      </div>
       <div>About</div>
       <div>Contact</div>
     </div>

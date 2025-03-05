@@ -20,7 +20,7 @@ export const settingsType = defineType({
       options: {
         collapsible: true,
         collapsed: false,
-        columns: 2,
+
       },
     },
   ],
@@ -206,7 +206,7 @@ export const settingsType = defineType({
       fieldset: "footerNav",
     }),
     defineField({
-      name: "footerEvent",
+      name: "footerEvents",
       title: "Event Menu",
       type: "array",
       of: [
@@ -214,10 +214,11 @@ export const settingsType = defineType({
           type: "reference",
           to: { type: "page" },
           options: {
-            filter: "category == $category",
-            filterParams: { category: "event" },
+            filter: "category == $category1 || category == $category2 || category == $category3",
+            filterParams: { category1: "competitions", category2: "schedule-of-events", category3: "venues" },
           },
         },
+
       ],
       fieldset: "footerNav",
     }),
@@ -230,8 +231,8 @@ export const settingsType = defineType({
           type: "reference",
           to: { type: "page" },
           options: {
-            filter: "category == $category",
-            filterParams: { category: "resources" },
+            filter: "category == $category1 || category == $category2 || category == $category3 || category == $category4",
+            filterParams: { category1: "testimonials", category2: "comunity-&-support", category3: "media", category4: "prizes-and-awards" },
           },
         },
       ],

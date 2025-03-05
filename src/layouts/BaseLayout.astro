@@ -29,6 +29,8 @@ const { data: settings } = await loadQuery<SanityDocument>({
 const footerData = {
   footerText: settings?.footerText,
   footerHowToEnter: settings?.footerHowToEnter,
+  footerEvents: settings?.footerEvents,
+  footerResources: settings?.footerResources,
   footerAbout: settings?.footerAbout,
   footerContact: settings?.footerContact,
 };
@@ -82,7 +84,7 @@ const ogImageDefaultUrl = settings?.seo?.ogImage
       content={ogImageUrl === "" ? ogImageDefaultUrl : ogImageUrl}
     />
   </head>
-  <body>
+  <body class="">
     <Header />
     <main class="min-h-[80vh]">
       <slot />
