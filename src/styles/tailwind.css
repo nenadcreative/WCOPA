@@ -122,6 +122,9 @@
 }
 
 @layer base {
+
+
+
   h1 {
     @apply text-display-lg sm:text-display-xl lg:text-display-2xl font-bold;
   }
