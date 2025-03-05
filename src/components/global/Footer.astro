@@ -196,8 +196,29 @@ const {
     </div>
     <div class="">
       <div class="w-full h-px bg-yellow mb-8"></div>
-      © {new Date().getFullYear()}
-      {footerText}
+      <div
+        class="flex flex-col-reverse gap-4 md:flex-row justify-between items-center"
+      >
+        <div class="flex flex-col-reverse md:flex-row gap-2 sm:gap-8 text-xs">
+          <div>
+            © {new Date().getFullYear()}
+            {footerText}
+          </div>
+          <nav class="flex justify-center gap-4 sm:gap-6">
+            {
+              footerLegal &&
+                footerLegal.map((link) => (
+                  <a class="" href={link.slug}>
+                    {link.title}
+                  </a>
+                ))
+            }
+          </nav>
+        </div>
+        <a href="https://www.thecreativelabs.io/" target="_blank"
+          >Site designed with ❤️ by Creative Labs LLC</a
+        >
+      </div>
     </div>
   </Container>
 </footer>

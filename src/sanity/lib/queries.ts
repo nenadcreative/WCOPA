@@ -166,5 +166,6 @@ export const settingsQuery = groq`*[_type == "settings"][0]{...,
 'footerResources':footerResources[]->{title, 'slug':slug.current, _id},
 'footerAbout':footerAbout[]->{title, 'slug':slug.current, _id},
 'footerContact':footerContact[]->{title, 'slug':slug.current, _id},
+'footerLegal':footerLegal[]->{title, 'slug':slug.current, _id},
 
-'footerNav':footerNav[]}`;
+}`;
