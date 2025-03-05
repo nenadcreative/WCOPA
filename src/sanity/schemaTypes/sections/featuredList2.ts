@@ -86,7 +86,7 @@ export default defineType({
       type: "boolean",
       group: "design",
       hidden: ({ parent }) =>
-        parent?.variation === "image" ,
+        parent?.variation === "image",
     }),
     defineField({
       name: "layout",
@@ -132,6 +132,18 @@ export default defineType({
       title: "Card CTA",
       type: "blockSimple",
       hidden: ({ parent }) => parent?.cardVariation === "card2" || parent?.cardVariation === "card5",
+      group: "card",
+    }),
+    defineField({
+      name: 'hideLink',
+      title: "Hide Link",
+      type: "boolean",
+      group: "card",
+    }),
+    defineField({
+      name: "cardLink",
+      title: "Link",
+      type: "link",
       group: "card",
     }),
 

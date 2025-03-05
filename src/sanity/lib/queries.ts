@@ -104,6 +104,8 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
   (_type == 'featuredList2')=>{
   ...,
     'ctaLink':ctaLink{..., 
+    'internalLink':internalLink->{slug}},
+    'cardLink':cardLink{..., 
     'internalLink':internalLink->{slug}}
   },
   (_type == 'steps')=>{...},
@@ -160,4 +162,7 @@ export const settingsQuery = groq`*[_type == "settings"][0]{...,
 'footerHowToEnter':footerHowToEnter[]->{title, 'slug':slug.current, _id},
 'footerEvents':footerEvents[]->{title, 'slug':slug.current, _id},
 'footerResources':footerResources[]->{title, 'slug':slug.current, _id},
+'footerAbout':footerAbout[]->{title, 'slug':slug.current, _id},
+'footerContact':footerContact[]->{title, 'slug':slug.current, _id},
+
 'footerNav':footerNav[]}`;

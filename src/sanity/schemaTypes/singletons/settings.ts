@@ -264,8 +264,20 @@ export const settingsType = defineType({
           to: { type: "page" },
           options: {
             filter: "category == $category",
-            filterParams: { category: "contact" },
+            filterParams: { category: "none" },
           },
+        },
+      ],
+      fieldset: "footerNav",
+    }),
+    defineField({
+      name: "socialLinks",
+      title: "Social Links",
+      type: "array",
+      of: [
+        {
+          type: "socialLink",
+
         },
       ],
       fieldset: "footerNav",
