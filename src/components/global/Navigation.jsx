@@ -134,7 +134,7 @@ export default function Navigation({ howToEnter, competitions, scheduleOfEvents,
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>About</NavigationMenuTrigger>
-                    <NavigationMenuContent className="min-w-136 w-120 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
+                    <NavigationMenuContent className="min-w-138 w-120 mx-auto bg-purple text-white font-semibold rounded-md  shadow-md">
 
                         <div className="w-full grid grid-cols-2 p-4">
                             {about && about.map((link) => {

@@ -112,6 +112,16 @@
   h5 {
     @apply font-display leading-tight;
   }
+
+  .scrolled {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
+
+  }
+
+  .sidebar.visible {
+    right: 0;
+  }
 }
 
 @layer base {
@@ -130,4 +140,6 @@
   :root {
     --radius: 0.5rem
   }
+
+
 }

@@ -2,9 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import * as Accordion from "@radix-ui/react-accordion";
 
-const AccordionMobile = ({ text, children }) => (
-    <Accordion.Root className="text-white " type="single" collapsible>
-        <AccordionItem value="item-1">
+const AccordionMobile = ({ text, children, classes = "" }) => (
+    <Accordion.Root className={`text-white `} type="single" collapsible>
+        <AccordionItem value="item-1" className={`text-white ${classes}`}>
             <AccordionTrigger>{text}</AccordionTrigger>
             <AccordionContent>{children}</AccordionContent>
         </AccordionItem>

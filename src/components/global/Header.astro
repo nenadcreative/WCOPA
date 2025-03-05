@@ -37,7 +37,7 @@ const {
 
 <header
   id="header"
-  class="py-1.5 sticky top-0 z-50 bg-white/50 transition-all duration-100"
+  class="sticky shadow-xs top-0 z-50 bg-white/50 transition-all duration-100"
 >
   <Container classes="flex justify-between items-center">
     <a href="/">
@@ -122,47 +122,91 @@ const {
                 }
               </nav>
             </AccordionMobile>
-            <AccordionMobile text="Vacuum" client:load>
-              <nav class="flex flex-col">
-                {
-                  mainHowToEnter &&
-                    mainHowToEnter.map((link) => {
-                      return (
-                        <a
-                          href={`/how-to-enter/${link.slug}`}
-                          class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
-                        >
-                          <svg
-                            width="24"
-                            height="22"
-                            viewBox="0 0 24 22"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="group-hover:rotate-360 transition-all duration-200"
-                          >
-                            <path
-                              d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
-                              fill="#F4CA51"
-                            />
-                            <path
-                              d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
-                              fill="#A57D24"
-                            />
-                          </svg>
-                          {link.title}
-                        </a>
-                      );
-                    })
-                }
-              </nav>
-              <AccordionMobile text="How To Enter" client:load>
+            <AccordionMobile text="Event" client:load>
+              <AccordionMobile
+                text="Competitions"
+                classes="bg-red-500"
+                client:load
+              >
                 <nav class="flex flex-col">
                   {
-                    mainHowToEnter &&
-                      mainHowToEnter.map((link) => {
+                    mainCompetitions &&
+                      mainCompetitions.map((link) => {
                         return (
                           <a
-                            href={`/how-to-enter/${link.slug}`}
+                            href={`/event/competitions/${link.slug}`}
+                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                          >
+                            <svg
+                              width="24"
+                              height="22"
+                              viewBox="0 0 24 22"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="group-hover:rotate-360 transition-all duration-200"
+                            >
+                              <path
+                                d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
+                                fill="#F4CA51"
+                              />
+                              <path
+                                d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
+                                fill="#A57D24"
+                              />
+                            </svg>
+                            {link.title}
+                          </a>
+                        );
+                      })
+                  }
+                </nav>
+              </AccordionMobile>
+              <AccordionMobile
+                text="Schedule Of Events"
+                classes="bg-orange-500"
+                client:load
+              >
+                <nav class="flex flex-col">
+                  {
+                    mainScheduleOfEvents &&
+                      mainScheduleOfEvents.map((link) => {
+                        return (
+                          <a
+                            href={`/event/schedule-of-events/${link.slug}`}
+                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                          >
+                            <svg
+                              width="24"
+                              height="22"
+                              viewBox="0 0 24 22"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="group-hover:rotate-360 transition-all duration-200"
+                            >
+                              <path
+                                d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
+                                fill="#F4CA51"
+                              />
+                              <path
+                                d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
+                                fill="#A57D24"
+                              />
+                            </svg>
+                            {link.title}
+                          </a>
+                        );
+                      })
+                  }
+                </nav>
+              </AccordionMobile>
+              <AccordionMobile text="Venues" classes="bg-teal-500" client:load>
+                <nav class="flex flex-col">
+                  {
+                    mainVenues &&
+                      mainVenues.map((link) => {
+                        return (
+                          <a
+                            href={`/event/venues/${link.slug}`}
                             class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
                           >
                             <svg
@@ -190,109 +234,155 @@ const {
                 </nav>
               </AccordionMobile>
             </AccordionMobile>
-            <!-- 
 
-              <AccordionMobile text="Vacuum" client:load>
-                <nav class="flex flex-col">
-                  {
-                    vacuumPages.map((page) => {
-                      const link = `/custom-tanks/vacuum/${page.slug.current}`;
-                      return (
-                        <a class="text-lg py-2" href={link}>
-                          {page.title}
-                        </a>
-                      );
-                    })
-                  }
-                </nav>
-              </AccordionMobile>
-              <AccordionMobile text="Portable Toilet" client:load>
-                <nav class="flex flex-col">
-                  {
-                    portableRestroomTanksPages.map((page) => {
-                      const link = `/custom-tanks/vacuum/portable-toilet/${page.slug.current}`;
-                      return (
-                        <a class="text-lg py-2" href={link}>
-                          {page.title}
-                        </a>
-                      );
-                    })
-                  }
-                </nav>
-              </AccordionMobile>
-              <AccordionMobile text="Water" client:load>
-                <nav class="flex flex-col">
-                  {
-                    water.map((page) => {
-                      const link = `/custom-tanks/water/${page.slug.current}`;
-                      return (
-                        <a class="text-lg py-2" href={link}>
-                          {page.title}
-                        </a>
-                      );
-                    })
-                  }
-                </nav>
-              </AccordionMobile>
-            </AccordionMobile>
-            <a class="text-lg py-2" href="/stock-inventory">Stock Inventory</a>
-            <a class="text-lg py-2" href="/financing">Financing</a>
-            <AccordionMobile text="Quality & Innovation" client:load>
-              <nav class="flex flex-col">
-                {
-                  quality.map((page) => {
-                    const link = `/quality-and-innovation/${page.slug.current}`;
-                    return (
-                      <a class="text-lg py-2" href={link}>
-                        {page.title}
-                      </a>
-                    );
-                  })
-                }
-                <a
-                  class="text-lg py-2"
-                  href="/quality-and-innovation/case-studies">Case Studies</a
-                >
-              </nav>
-            </AccordionMobile>
-            <AccordionMobile text="About Us" client:load>
-              <a class="text-lg py-2" href="/about/our-history">Our History</a>
-              <a class="text-lg py-2" href="/about/our-team">Our Team</a>
-              <nav class="flex flex-col">
-                {
-                  about.map((page) => {
-                    const link = `/about/${page.slug.current}`;
-                    return (
-                      <a class="text-lg py-2" href={link}>
-                        {page.title}
-                      </a>
-                    );
-                  })
-                }
-                <a class="text-lg py-2" href="/about/code-of-conduct"
-                  >Code of Conduct</a
-                >
-                <a class="text-lg py-2" href="/about/press-releases"
-                  >Press Release</a
-                >
-              </nav>
-            </AccordionMobile>
             <AccordionMobile text="Resources" client:load>
+              <AccordionMobile
+                text="Testimonials"
+                classes="bg-yellow-500"
+                client:load
+              >
+                <nav class="flex flex-col">
+                  {
+                    mainTestimonials &&
+                      mainTestimonials.map((link) => {
+                        return (
+                          <a
+                            href={`/resources/testimonials/${link.slug}`}
+                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                          >
+                            <svg
+                              width="24"
+                              height="22"
+                              viewBox="0 0 24 22"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="group-hover:rotate-360 transition-all duration-200"
+                            >
+                              <path
+                                d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
+                                fill="#F4CA51"
+                              />
+                              <path
+                                d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
+                                fill="#A57D24"
+                              />
+                            </svg>
+                            {link.title}
+                          </a>
+                        );
+                      })
+                  }
+                </nav>
+              </AccordionMobile>
+              <AccordionMobile
+                text="Comunity & Support"
+                classes="bg-orange-500"
+                client:load
+              >
+                <nav class="flex flex-col">
+                  {
+                    mainComunitySupport &&
+                      mainComunitySupport.map((link) => {
+                        return (
+                          <a
+                            href={`/resources/comunity-and-support/${link.slug}`}
+                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                          >
+                            <svg
+                              width="24"
+                              height="22"
+                              viewBox="0 0 24 22"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="group-hover:rotate-360 transition-all duration-200"
+                            >
+                              <path
+                                d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
+                                fill="#F4CA51"
+                              />
+                              <path
+                                d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
+                                fill="#A57D24"
+                              />
+                            </svg>
+                            {link.title}
+                          </a>
+                        );
+                      })
+                  }
+                </nav>
+              </AccordionMobile>
+              <AccordionMobile text="Media" classes="bg-teal-500" client:load>
+                <nav class="flex flex-col">
+                  {
+                    mainMedia &&
+                      mainMedia.map((link) => {
+                        return (
+                          <a
+                            href={`/resources/media/${link.slug}`}
+                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                          >
+                            <svg
+                              width="24"
+                              height="22"
+                              viewBox="0 0 24 22"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="group-hover:rotate-360 transition-all duration-200"
+                            >
+                              <path
+                                d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
+                                fill="#F4CA51"
+                              />
+                              <path
+                                d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
+                                fill="#A57D24"
+                              />
+                            </svg>
+                            {link.title}
+                          </a>
+                        );
+                      })
+                  }
+                </nav>
+              </AccordionMobile>
+            </AccordionMobile>
+            <AccordionMobile text="About" client:load>
               <nav class="flex flex-col">
                 {
-                  resources.map((page) => {
-                    const link = `/resources/${page.slug.current}`;
-                    return (
-                      <a class="text-lg py-2" href={link}>
-                        {page.title}
-                      </a>
-                    );
-                  })
+                  mainAbout &&
+                    mainAbout.map((link) => {
+                      return (
+                        <a
+                          href={`/about/${link.slug}`}
+                          class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                        >
+                          <svg
+                            width="24"
+                            height="22"
+                            viewBox="0 0 24 22"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="group-hover:rotate-360 transition-all duration-200"
+                          >
+                            <path
+                              d="M11.566 0L14.4349 8.21275L23.132 8.40321L16.208 13.6695L18.7141 22L11.566 17.042L4.4179 22L6.92397 13.6695L0 8.40321L8.69702 8.21275L11.566 0Z"
+                              fill="#F4CA51"
+                            />
+                            <path
+                              d="M23.132 8.40321L11.566 12.1614L14.4349 8.21275L23.132 8.40321ZM11.566 17.042V12.1614L4.4179 22L11.566 17.042ZM11.566 12.1614L18.7141 22L16.208 13.6695L11.566 12.1614ZM8.69702 8.21275L11.566 12.1614V0L8.69702 8.21275ZM6.92397 13.6695L11.566 12.1614L0 8.40321L6.92397 13.6695Z"
+                              fill="#A57D24"
+                            />
+                          </svg>
+                          {link.title}
+                        </a>
+                      );
+                    })
                 }
-                <a class="text-lg py-2" href="/resources/gallery">Gallery</a>
               </nav>
-            </AccordionMobile> -->
-            <a class="text-lg py-2" href="/contact">Contact</a>
+            </AccordionMobile>
+
+            <a class="text-lg py-2" href="/contact-us">Contact</a>
           </nav>
 
           <button class="absolute top-8 right-4" id="close-menu">
@@ -313,41 +403,28 @@ const {
       <!-- Mobile Menu Dropdown End -->
     </div>
   </Container>
-</header>
 
-<style>
-  .scrolled {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example: add shadow */
-    backdrop-filter: blur(12px);
-  }
-</style>
-
-<script>
-  const burger = document.getElementById("open-menu");
-  const closeMenu = document.getElementById("close-menu");
-  const sidebar = document.querySelector(".sidebar");
-  burger.addEventListener("click", function () {
-    sidebar.classList.toggle("visible");
-  });
-  closeMenu.addEventListener("click", function () {
-    sidebar.classList.toggle("visible");
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const header = document.getElementById("header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        // Adjust the scroll position as needed
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
+  <script>
+    const burger = document.getElementById("open-menu");
+    const closeMenu = document.getElementById("close-menu");
+    const sidebar = document.querySelector(".sidebar");
+    burger.addEventListener("click", function () {
+      sidebar.classList.toggle("visible");
     });
-  });
-</script>
+    closeMenu.addEventListener("click", function () {
+      sidebar.classList.toggle("visible");
+    });
 
-<style>
-  .sidebar.visible {
-    right: 0;
-  }
-</style>
+    document.addEventListener("DOMContentLoaded", () => {
+      const header = document.getElementById("header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 0) {
+          // Adjust the scroll position as needed
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    });
+  </script>
+</header>

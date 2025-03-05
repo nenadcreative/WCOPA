@@ -63,7 +63,9 @@ const ogImageDefaultUrl = settings?.seo?.ogImage
   </head>
   <body>
     <Header />
-    <main class="min-h-[80vh]"><slot /></main>
+    <main class="min-h-[80vh]">
+      <slot />
+    </main>
     <Footer footerData={footerData} />
   </body>
 </html>
