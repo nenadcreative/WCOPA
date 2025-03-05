@@ -1,11 +1,43 @@
 ---
 import Container from "@globals/Container.astro";
 import NewsletterForm from "./NewsletterForm.astro";
+import logo from "@assets/logo.png";
+import { Image } from "astro:assets";
 const { footerData } = Astro.props;
-const { footerText } = footerData;
+const { footerText, footerHowToEnter } = footerData;
+console.log(footerHowToEnter);
 ---
 
-<footer class="bg-green-200 h-96">
+<footer class="bg-dark-1 text-white pb-14 min-h-96">
   <NewsletterForm />
-  <Container> I'm Footer {footerText}</Container>
+  <Container>
+    <div class="pt-8 pb-20 grid grid-cols-7 gap-4">
+      <div>
+        <a href="/">
+          <Image src={logo} alt="Logo" class="h-20 w-auto" />
+        </a>
+      </div>
+      <div>
+        <h2 class="text-sm font-bold mb-4">How to Enter</h2>
+        <nav>
+          {
+            footerHowToEnter.map((link) => (
+              <a class="block py-2 text-xs" href={link.slug}>
+                {link.title}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+      <div class="col-span-2">Event</div>
+      <div>Resources</div>
+      <div>About</div>
+      <div>Contact</div>
+    </div>
+    <div class="">
+      <div class="w-full h-px bg-yellow mb-8"></div>
+      © {new Date().getFullYear()}
+      {footerText}
+    </div>
+  </Container>
 </footer>

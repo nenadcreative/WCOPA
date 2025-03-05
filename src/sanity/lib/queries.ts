@@ -157,4 +157,5 @@ export const settingsQuery = groq`*[_type == "settings"][0]{...,
 'mainMedia':mainMedia[]->{title, 'slug':slug.current, _id},
 'mainPrizes':mainPrizes[]->{title, 'slug':slug.current, _id},
 'mainAbout':mainAbout[]->{title, 'slug':slug.current, _id},
+'footerHowToEnter':footerHowToEnter[]->{title, 'slug':slug.current, _id},
 'footerNav':footerNav[]}`;

@@ -37,7 +37,7 @@ const {
 
 <header
   id="header"
-  class="sticky shadow-xs top-0 z-50 bg-white/50 transition-all duration-100"
+  class="sticky overflow-clip shadow-xs top-0 z-50 bg-white/50 transition-all duration-100"
 >
   <Container classes="flex justify-between items-center">
     <a href="/">
@@ -403,28 +403,34 @@ const {
       <!-- Mobile Menu Dropdown End -->
     </div>
   </Container>
-
-  <script>
-    const burger = document.getElementById("open-menu");
-    const closeMenu = document.getElementById("close-menu");
-    const sidebar = document.querySelector(".sidebar");
-    burger.addEventListener("click", function () {
-      sidebar.classList.toggle("visible");
-    });
-    closeMenu.addEventListener("click", function () {
-      sidebar.classList.toggle("visible");
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const header = document.getElementById("header");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 0) {
-          // Adjust the scroll position as needed
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
-    });
-  </script>
 </header>
+
+<style>
+  .sidebar.visible {
+    right: 0;
+  }
+</style>
+
+<script>
+  const burger = document.getElementById("open-menu");
+  const closeMenu = document.getElementById("close-menu");
+  const sidebar = document.querySelector(".sidebar");
+  burger.addEventListener("click", function () {
+    sidebar.classList.toggle("visible");
+  });
+  closeMenu.addEventListener("click", function () {
+    sidebar.classList.toggle("visible");
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 0) {
+        // Adjust the scroll position as needed
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+  });
+</script>
