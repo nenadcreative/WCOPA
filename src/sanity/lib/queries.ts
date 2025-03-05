@@ -35,7 +35,7 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
 
 }}`;
 export const pagesQuery = groq`*[_type == "page"]`;
-export const pageQuery = groq`*[_type=='page' && slug.current==$slug && category == 'none'][0]{...,content[]{
+export const pageQuery = groq`*[_type=='page' && slug.current==$slug && category == 'none' || category == 'legal'][0]{...,content[]{
   (_type == 'hero')=>{
   ...
   },  
@@ -88,6 +88,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug && category
 (_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},},
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
+(_type=='fullContent')=>{...},
 },
 }`;
 
@@ -146,6 +147,7 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
 (_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},},
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
+(_type=='fullContent')=>{...},
 },
 }`;
 

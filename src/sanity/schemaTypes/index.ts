@@ -87,6 +87,7 @@ import { imageCardsType } from "./sections/imageCards";
 import { nationalDirectorsType } from "./sections/nationalDirectors";
 import { ageDivisionsType } from './sections/ageDivisions';
 import { tableSectionType } from './sections/tableSection';
+import { fullContentType } from './sections/fullContent';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -179,5 +180,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     nationalDirectorsType,
     ageDivisionsType,
     tableSectionType,
+    fullContentType
   ],
 };

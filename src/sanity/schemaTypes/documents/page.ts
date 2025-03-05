@@ -95,7 +95,8 @@ export const pageType = defineType({
         { type: 'imageCards' },
         { type: 'nationalDirectors' },
         { type: 'ageDivisions' },
-        { type: 'tableSection' }
+        { type: 'tableSection' },
+        { type: 'fullContent' },
       ],
       validation: (rule) => rule.required(),
       options: {
