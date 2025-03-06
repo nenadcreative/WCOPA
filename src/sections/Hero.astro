@@ -8,6 +8,7 @@ import { urlForImage } from "@sanity/lib/urlForImage";
 import decoration from "@assets/decoration4.png";
 import patternImage from "@assets/pattern.png";
 import logo from "@assets/logo.png";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 
 interface Section {
   tagline: string;
@@ -106,19 +107,20 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
           title && (
             <h1
               class:list={[
+                "[&>strong]:font-bold",
                 variation === "gradient" &&
-                  "text-dark-1  mb-5 [&>p>strong]:text-indigo",
+                  "text-dark-1  mb-5 [&>strong]:text-indigo",
                 variation === "dark" &&
-                  "text-white mb-5 [&>p>strong]:text-yellow",
+                  "text-white mb-5 [&>strong]:text-yellow",
                 variation === "pattern" &&
-                  "text-dark-1 mb-5 [&>p>strong]:text-indigo",
+                  "text-dark-1 mb-5 [&>strong]:text-indigo",
                 variation === "logo" &&
-                  "text-dark-1 mb-7 [&>p>strong]:text-yellow",
+                  "text-dark-1 mb-7 [&>strong]:text-yellow",
                 variation === "image" &&
-                  "text-dark-1 mb-7 [&>p>strong]:text-yellow",
+                  "text-dark-1 mb-7 [&>strong]:text-yellow",
               ]}
             >
-              <PortableText portableText={title} />
+              <PortableTextTitle portableText={title} />
             </h1>
           )
         }
