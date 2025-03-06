@@ -37,7 +37,7 @@ const {
 
 <header
   id="header"
-  class="sticky overflow-x-clip shadow-xs top-0 z-50 bg-white/50 transition-all duration-100"
+  class="sticky py-2 overflow-x-clip shadow-xs top-0 z-50 bg-white/50 transition-all duration-100"
 >
   <Container classes="flex justify-between items-center">
     <a href="/">
@@ -66,7 +66,9 @@ const {
         />
       </div>
 
-      <ButtonLink buttonLink={buttonLinkContact} variation="nav" />
+      <div class="hidden md:block">
+        <ButtonLink buttonLink={buttonLinkContact} variation="nav" />
+      </div>
     </div>
     <div class="lg:hidden flex items-center justify-center">
       <button id="open-menu"

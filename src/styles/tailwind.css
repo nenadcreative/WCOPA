@@ -118,7 +118,9 @@
     backdrop-filter: blur(12px);
   }
 
-
+  .goog-te-gadget {
+    @apply flex flex-col-reverse;
+  }
 }
 
 @layer base {
