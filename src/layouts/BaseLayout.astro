@@ -85,6 +85,10 @@ const ogImageDefaultUrl = settings?.seo?.ogImage
       name="twitter:image"
       content={ogImageUrl === "" ? ogImageDefaultUrl : ogImageUrl}
     />
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
   </head>
   <body class="">
     <Header />
@@ -94,6 +98,14 @@ const ogImageDefaultUrl = settings?.seo?.ogImage
     <Footer footerData={footerData} />
   </body>
 </html>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      { pageLanguage: "en" }, // Set your website's default language here
+      "google_translate_element",
+    );
+  }
+</script>
 
 <script>
   import { initGlobalAnimations } from "@/sections/animations/sectionAnimations";
