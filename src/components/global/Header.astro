@@ -71,32 +71,33 @@ const {
       <button id="open-menu"
         ><svg
           width="32"
-          height="24"
-          viewBox="0 0 32 24"
+          height="32"
+          viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M5.33398 6H26.6673V8H5.33398V6ZM5.33398 11H26.6673V13H5.33398V11ZM5.33398 16H26.6673V18H5.33398V16Z"
-            fill="black"></path>
+          <rect width="32" height="32" rx="2" fill="#743089"></rect>
+          <rect x="6" y="8" width="20" height="2" rx="1" fill="white"></rect>
+          <rect x="14" y="15" width="12" height="2" rx="1" fill="white"></rect>
+          <rect x="6" y="22" width="20" height="2" rx="1" fill="white"></rect>
         </svg>
       </button>
 
       <div
-        class="sidebar lg:hidden text-white bg-indigo z-1000 w-full h-screen fixed right-[-100%] top-0 flex justify-center flex-col items-center transition-all duration-300"
+        class="sidebar lg:hidden text-dark-1 bg-lavander z-1000 w-full h-screen fixed right-[-100%] top-0 flex justify-center flex-col items-center transition-all duration-300"
       >
         <div class="overflow-y-scroll w-full">
-          <nav class="flex flex-col text-center mb-4 text-white">
+          <nav class="flex flex-col max-w-2xs mx-auto mb-4 text-dark-1">
             <a class="text-lg py-2" href="/">Home</a>
             <AccordionMobile text="How To Enter" client:load>
-              <nav class="flex flex-col">
+              <nav class="flex flex-col rounded-sm bg-white px-3 pt-2 pb-4">
                 {
                   mainHowToEnter &&
                     mainHowToEnter.map((link) => {
                       return (
                         <a
                           href={`/how-to-enter/${link.slug}`}
-                          class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                          class="hover:underline group flex justify-start gap-2 border-b border-gray-1 w-full  py-2"
                         >
                           <svg
                             width="24"
@@ -125,17 +126,17 @@ const {
             <AccordionMobile text="Event" client:load>
               <AccordionMobile
                 text="Competitions"
-                classes="bg-red-500"
+                classes="bg-white px-3 mb-2"
                 client:load
               >
-                <nav class="flex flex-col">
+                <nav class="flex flex-col pb-3">
                   {
                     mainCompetitions &&
                       mainCompetitions.map((link) => {
                         return (
                           <a
                             href={`/event/competitions/${link.slug}`}
-                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                            class="hover:underline group flex justify-start gap-2 w-full border-b border-gray-1 py-2"
                           >
                             <svg
                               width="24"
@@ -163,17 +164,17 @@ const {
               </AccordionMobile>
               <AccordionMobile
                 text="Schedule Of Events"
-                classes="bg-orange-500"
+                classes="bg-offwhite px-3 mb-2"
                 client:load
               >
-                <nav class="flex flex-col">
+                <nav class="flex flex-col pb-3">
                   {
                     mainScheduleOfEvents &&
                       mainScheduleOfEvents.map((link) => {
                         return (
                           <a
                             href={`/event/schedule-of-events/${link.slug}`}
-                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                            class="hover:underline group flex justify-start gap-2 w-full  border-b border-gray-1 py-2"
                           >
                             <svg
                               width="24"
@@ -199,15 +200,19 @@ const {
                   }
                 </nav>
               </AccordionMobile>
-              <AccordionMobile text="Venues" classes="bg-teal-500" client:load>
-                <nav class="flex flex-col">
+              <AccordionMobile
+                text="Venues"
+                classes="bg-white px-3 "
+                client:load
+              >
+                <nav class="flex flex-col pb-3">
                   {
                     mainVenues &&
                       mainVenues.map((link) => {
                         return (
                           <a
                             href={`/event/venues/${link.slug}`}
-                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                            class="hover:underline group flex justify-start gap-2 w-full  border-b border-gray-1 py-2"
                           >
                             <svg
                               width="24"
@@ -238,17 +243,17 @@ const {
             <AccordionMobile text="Resources" client:load>
               <AccordionMobile
                 text="Testimonials"
-                classes="bg-yellow-500"
+                classes="bg-white px-3 mb-2"
                 client:load
               >
-                <nav class="flex flex-col">
+                <nav class="flex flex-col pb-3">
                   {
                     mainTestimonials &&
                       mainTestimonials.map((link) => {
                         return (
                           <a
                             href={`/resources/testimonials/${link.slug}`}
-                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                            class="hover:underline group flex justify-start gap-2 w-full border-b border-gray-1 py-2"
                           >
                             <svg
                               width="24"
@@ -276,17 +281,17 @@ const {
               </AccordionMobile>
               <AccordionMobile
                 text="Comunity & Support"
-                classes="bg-orange-500"
+                classes="bg-offwhite px-3 mb-2"
                 client:load
               >
-                <nav class="flex flex-col">
+                <nav class="flex flex-col pb-3">
                   {
                     mainComunitySupport &&
                       mainComunitySupport.map((link) => {
                         return (
                           <a
                             href={`/resources/comunity-and-support/${link.slug}`}
-                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                            class="hover:underline group flex justify-start gap-2 w-full border-b border-gray-1 py-2"
                           >
                             <svg
                               width="24"
@@ -312,15 +317,19 @@ const {
                   }
                 </nav>
               </AccordionMobile>
-              <AccordionMobile text="Media" classes="bg-teal-500" client:load>
-                <nav class="flex flex-col">
+              <AccordionMobile
+                text="Media"
+                classes="bg-white px-3 "
+                client:load
+              >
+                <nav class="flex flex-col pb-3">
                   {
                     mainMedia &&
                       mainMedia.map((link) => {
                         return (
                           <a
                             href={`/resources/media/${link.slug}`}
-                            class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                            class="hover:underline group flex justify-start gap-2 w-full border-b border-gray-1 py-2"
                           >
                             <svg
                               width="24"
@@ -348,14 +357,14 @@ const {
               </AccordionMobile>
             </AccordionMobile>
             <AccordionMobile text="About" client:load>
-              <nav class="flex flex-col">
+              <nav class="flex flex-col rounded-sm bg-white px-3 pt-2 pb-4">
                 {
                   mainAbout &&
                     mainAbout.map((link) => {
                       return (
                         <a
                           href={`/about/${link.slug}`}
-                          class="hover:underline group flex justify-center gap-2 w-full text-center py-1"
+                          class="hover:underline group flex justify-start gap-2 w-full border-b border-gray-1 py-2"
                         >
                           <svg
                             width="24"
@@ -387,15 +396,27 @@ const {
 
           <button class="absolute top-8 right-4" id="close-menu">
             <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                d="M16.192 6.34424L11.949 10.5862L7.70697 6.34424L6.29297 7.75824L10.535 12.0002L6.29297 16.2422L7.70697 17.6562L11.949 13.4142L16.192 17.6562L17.606 16.2422L13.364 12.0002L17.606 7.75824L16.192 6.34424Z"
-                fill="white"></path>
+              <rect width="32" height="32" rx="2" fill="#743089"></rect>
+              <rect
+                x="9"
+                y="8"
+                width="21"
+                height="2"
+                rx="1"
+                transform="rotate(45 9 8)"
+                fill="white"></rect>
+              <rect
+                width="21"
+                height="2"
+                rx="1"
+                transform="matrix(-0.707107 0.707107 0.707107 0.707107 23 8)"
+                fill="white"></rect>
             </svg>
           </button>
         </div>
