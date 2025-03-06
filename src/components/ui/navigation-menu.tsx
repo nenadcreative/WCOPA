@@ -74,10 +74,15 @@ function NavigationMenuTrigger({
       {...props}
     >
       {children}{""}
-      <ChevronDownIcon
-        className="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
-        aria-hidden="true"
-      />
+
+
+      <svg width="14" height="14" viewBox="0 0 14 14" className="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+        aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="7" r="7" fill="#F4CA51" />
+        <path fillRule="evenodd" clipRule="evenodd" d="M7.22105 9.11845C7.09895 9.24055 6.90104 9.24055 6.77894 9.11845L3.59157 5.93107C3.46948 5.80897 3.46948 5.61106 3.59157 5.48897L3.73895 5.34157C3.86103 5.21948 4.05898 5.21948 4.18107 5.34157L6.99999 8.16051L9.81893 5.34157C9.94102 5.21948 10.1389 5.21948 10.261 5.34157L10.4084 5.48897C10.5305 5.61106 10.5305 5.80897 10.4084 5.93107L7.22105 9.11845Z" fill="#050006" />
+      </svg>
+
+
     </NavigationMenuPrimitive.Trigger>
   )
 }
@@ -90,7 +95,7 @@ function NavigationMenuContent({
     <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
       className={cn(
-        "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 top-0 left-0 w-full p-2 pr-2.5 md:absolute md:w-auto",
+        "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 top-0 left-0 w-full   md:absolute md:w-auto",
         "group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:data-[state=open]:animate-in group-data-[viewport=false]/navigation-menu:data-[state=closed]:animate-out group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:zoom-in-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0 group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0 group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-md group-data-[viewport=false]/navigation-menu:border group-data-[viewport=false]/navigation-menu:shadow group-data-[viewport=false]/navigation-menu:duration-100 **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none",
         className
       )}
@@ -129,7 +134,7 @@ function NavigationMenuLink({
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "data-[active=true]:focus:bg-neutral-100 data-[active=true]:hover:bg-neutral-100 data-[active=true]:bg-neutral-100/50 data-[active=true]:text-neutral-900 hover:bg-neutral-100 hover:text-neutral-900 focus:bg-neutral-100 focus:text-neutral-900 ring-neutral-950/10 dark:ring-neutral-950/20 dark:outline-ring/40 outline-ring/50 [&_svg:not([class*='text-'])]:text-neutral-500 flex flex-col gap-1 rounded-sm p-2 text-sm transition-[color,box-shadow] focus-visible:ring-4 focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 dark:data-[active=true]:focus:bg-neutral-800 dark:data-[active=true]:hover:bg-neutral-800 dark:data-[active=true]:bg-neutral-800/50 dark:data-[active=true]:text-neutral-50 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 dark:focus:bg-neutral-800 dark:focus:text-neutral-50 dark:ring-neutral-300/10 dark:dark:ring-neutral-300/20 dark:[&_svg:not([class*='text-'])]:text-neutral-400",
+        "data-[active=true]:focus:bg-neutral-100 data-[active=true]:hover:bg-neutral-100 data-[active=true]:bg-neutral-100/50 data-[active=true]:text-neutral-900 hover:bg-neutral-100 hover:text-neutral-900 focus:bg-neutral-100 focus:text-neutral-900 ring-neutral-950/10 dark:ring-neutral-950/20 dark:outline-ring/40 outline-ring/50 [&_svg:not([class*='text-'])]:text-neutral-500 flex flex-col gap-1 rounded-sm  text-sm transition-[color,box-shadow] focus-visible:ring-4 focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 dark:data-[active=true]:focus:bg-neutral-800 dark:data-[active=true]:hover:bg-neutral-800 dark:data-[active=true]:bg-neutral-800/50 dark:data-[active=true]:text-neutral-50 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 dark:focus:bg-neutral-800 dark:focus:text-neutral-50 dark:ring-neutral-300/10 dark:dark:ring-neutral-300/20 dark:[&_svg:not([class*='text-'])]:text-neutral-400",
         className
       )}
       {...props}
