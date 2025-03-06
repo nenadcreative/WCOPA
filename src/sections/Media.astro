@@ -20,7 +20,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
       title && (
         <h2
           class:list={[
-            " mb-6",
+            "h2 mb-6 ",
             variation === "light" && "[&>p>strong]:text-indigo",
             variation === "dark" && "[&>p>strong]:text-yellow",
           ]}
@@ -67,3 +67,10 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
     }
   </Container>
 </section>
+<!-- <script>
+  import { initHeaderAnimations } from "./animations/mediaAnimations";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initHeaderAnimations();
+  });
+</script> -->

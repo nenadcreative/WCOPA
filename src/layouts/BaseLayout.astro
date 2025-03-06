@@ -94,3 +94,12 @@ const ogImageDefaultUrl = settings?.seo?.ogImage
     <Footer footerData={footerData} />
   </body>
 </html>
+
+<script>
+  import { initGlobalAnimations } from "@/sections/animations/sectionAnimations";
+
+  // Initialize global animations
+  document.addEventListener("DOMContentLoaded", () => {
+    initGlobalAnimations();
+  });
+</script>

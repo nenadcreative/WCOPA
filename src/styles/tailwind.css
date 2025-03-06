@@ -130,7 +130,7 @@
   }
 
   h2 {
-    @apply text-display-lg lg:text-display-xl font-bold;
+    @apply will-change-auto opacity-100 text-display-lg lg:text-display-xl font-bold;
   }
 
   h3 {
