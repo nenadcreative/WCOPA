@@ -159,7 +159,7 @@ export const pageType = defineType({
             {
               name: "grid",
               previewImageUrl: (schemaTypeName) =>
-                `/static/preview-${schemaTypeName}.png`,
+                `/sections/preview-${schemaTypeName}.png`,
             },
             { name: "list" },
           ],

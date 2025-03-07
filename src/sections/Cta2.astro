@@ -76,7 +76,7 @@ const imageUrl = image ? urlForImage(image).url() : null;
         <div class:list={["", layout === "title-text" && "md:w-1/2"]}>
           <div
             class:list={[
-              "prose-lg  prose-p:mb-3 prose-p:mt-0 prose-p:leading-6 mb-8",
+              "prose-lg [&>ul]:list-image-star [&>ul]:list-inside [&>ul>li]:mb-2   prose-p:mb-3 prose-p:mt-0 prose-p:leading-6 mb-8",
             ]}
           >
             <PortableText portableText={description} />
