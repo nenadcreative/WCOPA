@@ -32,6 +32,8 @@ const { title, cards, variation } = section;
         <h2
             class:list={[
                 "[&>strong]:font-bold text-center max-w-[800px] mx-auto",
+                variation === "dark" && "[&>strong]:text-yellow",
+                variation !== "dark" && "[&>strong]:text-indigo",
             ]}
         >
             <PortableTextTitle portableText={title} />
