@@ -96,6 +96,22 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
+  h1 {
+    @apply text-display-lg sm:text-display-xl lg:text-display-2xl font-bold;
+  }
+
+  h2 {
+    @apply will-change-auto opacity-100 text-display-lg lg:text-display-xl font-bold;
+  }
+
+  h3 {
+    @apply text-display-lg;
+  }
+
+  :root {
+    --radius: 0.5rem
+  }
 }
 
 @layer utilities {
@@ -118,30 +134,15 @@
     backdrop-filter: blur(12px);
   }
 
-  .goog-te-gadget {
-    @apply flex flex-col-reverse;
-  }
-}
-
-@layer base {
-
-
-
-  h1 {
-    @apply text-display-lg sm:text-display-xl lg:text-display-2xl font-bold;
-  }
-
   h2 {
-    @apply will-change-auto opacity-100 text-display-lg lg:text-display-xl font-bold;
+    @apply opacity-0 will-change-auto
   }
 
-  h3 {
-    @apply text-display-lg;
+  p {
+    @apply opacity-0 will-change-auto
   }
-
-  :root {
-    --radius: 0.5rem
-  }
-
-
 }
+
+
+
+@layer base {}

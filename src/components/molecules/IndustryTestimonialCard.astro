@@ -10,7 +10,7 @@ const { image, name, occupation, quote, comment } = industryTestimonial;
 const imageUrl = image ? urlForImage(image).width(56).height(56).url() : null;
 ---
 
-<article class="py-8 px-6 rounded-sm bg-white">
+<article class="py-8 flex flex-col px-6 rounded-sm bg-white">
     <div class="pb-4 border-b border-gray-1 flex gap-3">
         <Image
             src={imageUrl}
@@ -32,7 +32,12 @@ const imageUrl = image ? urlForImage(image).width(56).height(56).url() : null;
             <span>{occupation}</span>
         </div>
     </div>
-    <div class="py-6 text-md sm:text-lg font-semibold">
+    <div
+        class:list={[
+            "py-6 grow text-md sm:text-lg font-semibold",
+            variation === "dark" && "text-dark-2",
+        ]}
+    >
         <PortableTextTitle portableText={quote} />
     </div>
     <div

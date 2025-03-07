@@ -28,9 +28,9 @@ const { title, description, testimonials, variation } = section;
         <div class="max-w-[800px] mx-auto text-center">
             <h2
                 class:list={[
-                    "mb-6 text-center",
-                    variation === "dark" && "text-yellow",
-                    variation === "lavander" && "text-indigo",
+                    "mb-6 text-center [&>strong]:font-bold",
+                    variation === "dark" && "[&>strong]:text-yellow",
+                    variation === "lavander" && "[&>strong]:text-indigo",
                 ]}
             >
                 <PortableTextTitle portableText={title} />
@@ -46,7 +46,7 @@ const { title, description, testimonials, variation } = section;
 
         {
             testimonials && (
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 mt-10">
                     {testimonials.map((testimonial) => {
                         return (
                             <IndustryTestimonialCard
