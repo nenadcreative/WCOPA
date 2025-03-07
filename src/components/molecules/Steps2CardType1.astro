@@ -8,9 +8,9 @@ const { step, index } = Astro.props;
 
 <article
     class:list={[
-        "md:py-16 px-4 py-4 rounded-sm text-dark-2 relative",
-        index % 2 !== 0 && "bg-lavander ",
-        index % 2 === 0 && "bg-white",
+        "lg:py-16 px-4 py-4 rounded-sm text-dark-2 relative",
+        index % 2 !== 0 && "bg-white ",
+        index % 2 === 0 && "bg-lavander",
     ]}
 >
     <Image
@@ -20,9 +20,9 @@ const { step, index } = Astro.props;
     />
     <div
         class:list={[
-            "max-w-[1000px] mx-auto pt-4 px-6 pb-6 md:pt-24 md:px-28 md:pb-25",
-            index % 2 !== 0 && "bg-white",
-            index % 2 === 0 && "bg-lavander",
+            "max-w-[1000px] rounded-sm mx-auto pt-4 px-6 pb-6 lg:pt-24 lg:px-28 lg:pb-25",
+            index % 2 === 0 && "bg-white",
+            index % 2 !== 0 && "bg-lavander",
         ]}
     >
         <span class="uppercase text-dark-1 mb-2">Step {index + 1}</span>

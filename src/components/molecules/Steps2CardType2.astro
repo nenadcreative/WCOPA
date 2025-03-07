@@ -9,7 +9,7 @@ const { step, index, variation } = Astro.props;
 
 <article
     class:list={[
-        "xl:py-16 py-6 px-4 xl:px-12 text-dark-2 flex flex-col md:flex-row gap-6 md:gap-0 rounded-sm relative",
+        "xl:py-16 py-6 px-4 xl:px-12 text-dark-2 flex flex-col lg:flex-row gap-6 lg:gap-0 rounded-sm relative",
         variation === "gradient" && "bg-lavander ",
         variation === "dark" && "bg-white",
     ]}
@@ -19,7 +19,7 @@ const { step, index, variation } = Astro.props;
         alt=""
         class="w-20 h-20 hidden xl:block absolute -top-10 -right-10"
     />
-    <div class="md:w-1/2 md:pr-16">
+    <div class="lg:w-1/2 lg:pr-16">
         <span class="uppercase text-dark-1 mb-2">Step {index + 1}</span>
         <h3 class="text-display-lg font-bold mb-4 text-indigo">
             {step?.title}
@@ -30,7 +30,7 @@ const { step, index, variation } = Astro.props;
     </div>
     <div
         class:list={[
-            " md:w-1/2 p-4 py-6 rounded-sm",
+            " lg:w-1/2 p-4 py-6 rounded-sm",
             variation === "gradient" && "bg-white",
             variation === "dark" && "bg-lavander",
         ]}

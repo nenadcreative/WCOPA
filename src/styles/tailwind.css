@@ -102,11 +102,11 @@
   }
 
   h2 {
-    @apply will-change-auto opacity-100 text-display-lg lg:text-display-xl font-bold;
+    @apply will-change-auto opacity-0 text-display-lg lg:text-display-xl font-bold;
   }
 
   h3 {
-    @apply text-display-lg;
+    @apply text-display-md lg:text-display-lg font-bold;
   }
 
   :root {
@@ -134,9 +134,7 @@
     backdrop-filter: blur(12px);
   }
 
-  h2 {
-    @apply opacity-0 will-change-auto
-  }
+
 
   p {
     @apply opacity-0 will-change-auto
