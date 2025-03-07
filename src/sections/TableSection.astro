@@ -18,7 +18,7 @@ const { title, description, table, cards, variation } = section;
     ]}
 >
     <Container>
-        <div class="max-w-[800px] mx-auto text-center mb-20">
+        <div class="max-w-[800px] mx-auto text-center mb-12 xl:mb-20">
             <h2
                 class:list={[
                     "mb-6 [&>strong]:font-bold",
@@ -141,7 +141,12 @@ const { title, description, table, cards, variation } = section;
 
         {
             cards && (
-                <div class:list={["mt-20", cards.length > 1 && "flex gap-8"]}>
+                <div
+                    class:list={[
+                        "mt-20 flex flex-col md:flex-row",
+                        cards.length > 1 && "flex gap-8",
+                    ]}
+                >
                     {cards.map((card, index) => (
                         <div
                             class:list={[
@@ -158,7 +163,7 @@ const { title, description, table, cards, variation } = section;
                                 width={80}
                                 height={80}
                                 class:list={[
-                                    "absolute w-20 h-20  z-10",
+                                    "hidden lg:block absolute w-20 h-20  z-10",
                                     cards.length === 1 && "top-6 right-6 ",
                                     cards.length > 1 && "-top-10 right-0 ",
                                 ]}
@@ -173,8 +178,8 @@ const { title, description, table, cards, variation } = section;
                             <div
                                 class:list={[
                                     "",
-                                    cards.length > 1 &&
-                                        "[&>ul]:list-image-star [&>ul]:list-outside [&>ul]:py-2 [&>ul]:ml-5 [&>ul>li]:py-2   text-md",
+                                    cards.length > 0 &&
+                                        "[&>ul]:list-image-star [&>p]:mb-3 [&>ul]:list-outside [&>ul]:py-2 [&>ul]:ml-5 [&>ul>li]:py-1   text-md",
                                 ]}
                             >
                                 <PortableText portableText={card.body} />
