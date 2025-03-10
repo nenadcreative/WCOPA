@@ -112,6 +112,10 @@
   :root {
     --radius: 0.5rem
   }
+
+  a {
+    @apply break-all;
+  }
 }
 
 @layer utilities {

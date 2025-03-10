@@ -80,15 +80,18 @@ const {
             subtitle && (
                 <div
                     class:list={[
-                        "p-8 rounded-sm flex justify-between items-center mb-14",
+                        "rounded-sm flex justify-between items-center mb-14",
                         variation === "lavander" && "bg-offwhite text-dark-2",
                         variation !== "lavander" && "bg-lavander text-dark-2",
+                        subDescription && "p-8",
+                        !subDescription && "p-4",
                     ]}
                 >
                     <div>
                         <h3
                             class:list={[
-                                "text-indigo text-display-md font-semibold mb-3",
+                                "text-indigo text-display-md font-semibold ",
+                                subDescription && "mb-3",
                             ]}
                         >
                             <PortableText portableText={subtitle} />
@@ -102,7 +105,15 @@ const {
                         )}
                     </div>
 
-                    <Image src={star} alt="" class="w-16 h-16" />
+                    <Image
+                        src={star}
+                        alt=""
+                        class:list={[
+                            "",
+                            subDescription && "w-16 h-16",
+                            !subDescription && "w-12 h-12",
+                        ]}
+                    />
                 </div>
             )
         }
@@ -111,7 +122,7 @@ const {
             cards && (
                 <div
                     class:list={[
-                        "grid sm:grid-cols-2 xl:grid-cols-4 gap-4 gap-y-12 sm:gap-y-14",
+                        "grid sm:grid-cols-2 xl:grid-cols-3 gap-4 gap-y-12 sm:gap-y-14",
                         variation === "dark" && "text-dark-2",
                     ]}
                 >
@@ -126,7 +137,7 @@ const {
                                 <h4 class="text-indigo text-display-xs font-semibold mb-3">
                                     {card.title}
                                 </h4>
-                                <div class="text-sm mb-8">
+                                <div class="text-sm mb-8 [&>a]:break-all">
                                     <PortableText
                                         portableText={card.description}
                                     />
