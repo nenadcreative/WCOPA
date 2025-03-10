@@ -13,25 +13,13 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
 <article
     class:list={[
         "flex gap-10 items-stretch relative",
-        layout === "image-text" && "flex flex-col sm:flex-row-reverse",
-        layout === "text-image" && "flex flex-col sm:flex-row",
+        layout === "image-text" && "flex flex-col md:flex-row-reverse",
+        layout === "text-image" && "flex flex-col md:flex-row",
     ]}
 >
     {
-        !imageMask && (
-            <Image
-                src={star}
-                alt=""
-                width={100}
-                height={100}
-                class="absolute -top-10 w-25 h-25 right-1/2 translate-x-1/2 z-10"
-            />
-        )
-    }
-
-    {
         imageMask ? (
-            <div class="sm:w-1/2 h-auto">
+            <div class="md:w-1/2 h-auto flex justify-center">
                 {" "}
                 <div class="w-[300px] h-[458px] lg:w-[486px] lg:h-[660px]  relative">
                     <Image
@@ -51,19 +39,28 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
                 </div>
             </div>
         ) : (
-            <Image
-                src={imageUrl}
-                alt={title ? title : ""}
-                height={200}
-                width={364}
-                class="sm:w-1/2 h-auto rounded-sm"
-            />
+            <div class="relative w-full md:w-1/2 h-auto rounded-sm ">
+                <Image
+                    src={imageUrl}
+                    alt={title ? title : ""}
+                    height={200}
+                    width={364}
+                    class="w-full h-full object-cover rounded-sm"
+                />{" "}
+                <Image
+                    src={star}
+                    alt=""
+                    width={100}
+                    height={100}
+                    class="absolute bottom-0 translate-y-2/3 md:-translate-y-1/2 md:top-0 w-25 h-25 right-1/2 translate-x-1/2 z-10"
+                />
+            </div>
         )
     }
 
     <div
         class:list={[
-            "sm:w-1/2 px-8 py-12  flex flex-col justify-center rounded-sm",
+            "md:w-1/2 px-8 py-12  flex flex-col justify-center rounded-sm",
             variation === "white" && "bg-offwhite",
             variation === "offwhite" && "bg-white",
             variation === "lavander" && "bg-white",
