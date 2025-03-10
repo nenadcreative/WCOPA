@@ -12,7 +12,7 @@ const { title, description, testimonials, ctaText, variation } = section;
 
 <section
     class:list={[
-        "py-14 lg:py-28",
+        "py-14 lg:py-24",
         variation === "white" && "bg-white",
         variation === "offwhite" && "bg-offwhite",
         variation === "lavander" && "bg-lavander",
@@ -42,7 +42,7 @@ const { title, description, testimonials, ctaText, variation } = section;
             >
                 <PortableTextTitle portableText={title} />
             </h2>
-            <div class:list={["text-md mb-16"]}>
+            <div class:list={["text-md mb-10"]}>
                 <PortableText portableText={description} />
             </div>
         </div>
@@ -52,14 +52,22 @@ const { title, description, testimonials, ctaText, variation } = section;
                 <div>
                     <h3
                         class:list={[
-                            "text-center font-display text-display-lg font-semibold mb-10",
+                            "text-center font-display  font-semibold mb-10",
                             variation === "dark" && "text-yellow",
                             variation !== "dark" && "text-indigo",
                         ]}
                     >
                         Notable Success Stories:
                     </h3>
-                    <div class="grid sm:grid-cols-2 gap-4 lg:gap-20 mb-24">
+                    <div
+                        class:list={[
+                            "grid sm:grid-cols-2 gap-8  ",
+                            testimonials[0]?.layout === "vertical" &&
+                                "xl:grid-cols-3 ",
+                            testimonials[0]?.layout !== "vertical" &&
+                                "lg:gap-20",
+                        ]}
+                    >
                         {testimonials.map((testimonial, index) => {
                             const image = testimonial?.image
                                 ? urlForImage(testimonial.image).url()
@@ -128,7 +136,7 @@ const { title, description, testimonials, ctaText, variation } = section;
                                     </div>
                                     <div
                                         class:list={[
-                                            "py-2 flex justify-center",
+                                            "py-2 flex justify-center rounded-b-sm",
                                             index % 2 === 0
                                                 ? "bg-indigo"
                                                 : "bg-purple",
@@ -192,7 +200,7 @@ const { title, description, testimonials, ctaText, variation } = section;
         }
         {
             ctaText && (
-                <div class="text-center text-md max-w-[800px] mx-auto">
+                <div class="text-center mt-10 text-md max-w-[800px] mx-auto">
                     <PortableText portableText={ctaText} />
                 </div>
             )
