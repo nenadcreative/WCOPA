@@ -9,7 +9,7 @@ const imageUrl = image ? urlForImage(image).url() : null;
 
 <article
     class:list={[
-        "rounded-sm overflow-clip",
+        "rounded-sm overflow-clip flex flex-col h-full",
         variation === "dark" && "text-dark-2",
     ]}
 >
@@ -18,11 +18,11 @@ const imageUrl = image ? urlForImage(image).url() : null;
         alt={title ? title : ""}
         width={400}
         height={240}
-        class="w-full h-full object-cover"
+        class="w-full h-full max-h-60 object-cover"
     />
     <div
         class:list={[
-            "py-3 text-center font-bold bg-indigo text-white flex items-center justify-center gap-2 leading-none",
+            "py-3 text-center font-bold bg-indigo text-white flex items-center justify-center gap-2 leading-none ",
         ]}
     >
         <svg
@@ -80,7 +80,7 @@ const imageUrl = image ? urlForImage(image).url() : null;
     </div>
     <div
         class:list={[
-            " px-5 pt-3 pb-4 text-center text-md",
+            " px-5 pt-3 pb-4 text-center text-md grow",
             variation === "white" && "bg-offwhite",
             variation === "pattern" && "bg-lavander",
             variation !== "white" && variation !== "pattern" && "bg-white",
@@ -90,7 +90,7 @@ const imageUrl = image ? urlForImage(image).url() : null;
         <span class="block text-md font-semibold">{country}</span>
         {
             bio && (
-                <div class="mt-1 text-sm">
+                <div class="mt-1  text-sm">
                     <PortableText portableText={bio} />
                 </div>
             )
