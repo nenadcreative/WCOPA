@@ -28,7 +28,7 @@ const { title, description, schedule, note, variation } = section;
   />
 
   <Container classes="relative z-10">
-    <div class="text-center max-w-[800px] mx-auto mb-16">
+    <div class="text-center max-w-[800px] mx-auto mb-8 xl:mb-16">
       <h2
         class:list={[
           "mb-5 [&>strong]:font-bold",
@@ -60,11 +60,11 @@ const { title, description, schedule, note, variation } = section;
         {
           schedule.map((scheduleItem) => {
             return (
-              <div class="flex  pb-4 mb-4">
-                <span class="block pt-3 w-1/3 font-display text-display-md font-semibold text-indigo">
+              <div class="flex flex-col sm:flex-row pb-4 mb-4">
+                <span class="block pt-3 sm:w-1/4 font-display text-display-md font-semibold text-indigo">
                   {scheduleItem?.time}
                 </span>
-                <ul class="divide-y divide-y-indigo w-2/3">
+                <ul class="divide-y divide-y-indigo sm:w-3/4">
                   {scheduleItem?.eventList.map((listItem, index) => {
                     return (
                       <li class="flex items-center text-md gap-2 py-3">
@@ -73,6 +73,7 @@ const { title, description, schedule, note, variation } = section;
                             width="24"
                             height="25"
                             viewBox="0 0 24 25"
+                            class="shrink-0"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                           >
@@ -91,6 +92,7 @@ const { title, description, schedule, note, variation } = section;
                             height="25"
                             viewBox="0 0 24 25"
                             fill="none"
+                            class="shrink-0"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
