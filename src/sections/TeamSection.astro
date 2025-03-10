@@ -4,7 +4,7 @@ import PortableText from "@/components/atoms/PortableText.astro";
 import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import { Image } from "astro:assets";
 import { urlForImage } from "@/sanity/lib/urlForImage";
-import decorationOffwhite from "@assets/decorationOffwhite.png";
+import decoration from "@assets/decorationLavander.png";
 import pattern from "@assets/pattern.png";
 import star from "@assets/icons/star.svg";
 
@@ -27,9 +27,9 @@ const { title, description, members, variation, layout } = section;
     {
         variation === "dark" && (
             <Image
-                src={decorationOffwhite}
+                src={decoration}
                 alt=""
-                class="absolute top-0 right-0 w-64 xl:w-[591px]"
+                class="absolute hidden md:block top-0 right-0 w-64 xl:w-[591px]"
             />
         )
     }
@@ -77,17 +77,27 @@ const { title, description, members, variation, layout } = section;
                     {members.map((member) => {
                         const imageUrl = urlForImage(member?.image).url();
                         return (
-                            <div>
-                                <Image
-                                    src={imageUrl}
-                                    width={394}
-                                    height={372}
-                                    alt={member?.name}
-                                    class="w-full h-auto rounded-sm mb-4"
-                                />
+                            <div class="flex flex-col">
+                                <div class="w-full h-auto rounded-sm overflow-hidden mb-4 relative">
+                                    <Image
+                                        src={imageUrl}
+                                        width={394}
+                                        height={372}
+                                        alt={member?.name}
+                                        class="w-full h-full"
+                                    />
+                                    {member?.occupation && (
+                                        <div class="absolute bottom-0 left-0 py-1 px-2  bg-indigo">
+                                            <span class="text-sm font-semibold">
+                                                {member?.occupation}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+
                                 <div
                                     class:list={[
-                                        "px-4 py-5 relative rounded-sm",
+                                        "px-4 py-5 relative rounded-sm grow",
                                         variation === "white" && "bg-offwhite",
                                         variation === "offwhite" && "bg-white",
                                         variation === "lavander" && "bg-white",
@@ -102,7 +112,7 @@ const { title, description, members, variation, layout } = section;
                                         src={star}
                                         alt="Star icon"
                                         class:list={[
-                                            "absolute -top-4 left-4",
+                                            "absolute -top-8 right-4 w-16 h-16",
                                             variation === "pattern" &&
                                                 "text-indigo",
                                         ]}
@@ -118,7 +128,7 @@ const { title, description, members, variation, layout } = section;
                                     {member?.responsibilities && (
                                         <div
                                             class:list={[
-                                                "pt-4 px-3 pb-5 mt-4",
+                                                "pt-4 px-3 pb-5 mt-4 ",
                                                 variation === "white" &&
                                                     "bg-lavander",
                                                 variation === "offwhite" &&
@@ -148,6 +158,7 @@ const { title, description, members, variation, layout } = section;
                                                                         height="25"
                                                                         viewBox="0 0 24 25"
                                                                         fill="none"
+                                                                        class="shrink-0"
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                     >
                                                                         <path
@@ -165,6 +176,7 @@ const { title, description, members, variation, layout } = section;
                                                                         height="25"
                                                                         viewBox="0 0 24 25"
                                                                         fill="none"
+                                                                        class="shrink-0"
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                     >
                                                                         <path
