@@ -2,6 +2,7 @@
 import Container from "@globals/Container.astro";
 import { Image } from "astro:assets";
 import patternImage from "@assets/pattern.svg";
+import patternImageAlt from "@assets/pattern-alt.png";
 import decoration1 from "@assets/decoration1.svg";
 import decoration2 from "@assets/decoration2.svg";
 import { urlForImage } from "@sanity/lib/urlForImage";
@@ -9,6 +10,7 @@ import PortableText from "@components/atoms/PortableText.astro";
 import ButtonLink from "@components/ui/ButtonLink.astro";
 import star from "@assets/icons/star.svg";
 import starPurple from "@assets/icons/list-icon-purple.svg";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 const { section } = Astro.props;
 const {
   variation,
@@ -36,7 +38,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
   class:list={[
     "py-14 lg:py-24 relative",
     variation === "white" && " text-dark-1",
-    variation === "offwhite" && "bg-offwhite text-dark-1",
+    variation === "offwhite" && "bg-offwhite text-dark-1 ",
     variation === "lavander" && "bg-lavander text-dark-1",
     variation === "gradient" &&
       "bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-1",
@@ -58,6 +60,18 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
       variation === "image" && "hidden",
     ]}
   />
+
+  {
+    variation === "offwhite" && pattern && (
+      <Image
+        src={patternImageAlt}
+        alt=""
+        class:list={[
+          "absolute top-0 left-0 w-full h-full object-cover object-center z-10",
+        ]}
+      />
+    )
+  }
 
   {
     variation === "dark" && layout === "cardText" && (
@@ -97,14 +111,14 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
   <Container>
     <div
       class:list={[
-        "flex flex-col justify-center items-center gap-8 xl:gap-24 relative z-10",
+        "flex flex-col justify-center items-top gap-8 xl:gap-24 relative z-10",
         layout === "cardText" && "flex-col-reverse md:flex-row",
         layout === "textCard" && "flex-col-reverse md:flex-row-reverse",
       ]}
     >
       <div
         class:list={[
-          "p-5 md:8 pb-6 md:pb-10 w-full md:w-1/2 rounded-sm",
+          "p-5 md:p-8   w-full md:w-1/2 rounded-sm",
           variation === "white" && !pattern && "bg-offwhite",
           variation === "white" && pattern && "bg-lavander",
           variation === "offwhite" && "bg-white",
@@ -124,7 +138,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                       <div class="mb-4">
                         <h3
                           class:list={[
-                            "font-bold text-sm mb-4",
+                            "font-bold mb-4",
                             index === 0 && "text-lg",
                             index === 1 && "text-indigo",
                             index === 2 && "text-purple",
@@ -176,7 +190,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                     <h3
                       class:list={[
                         "font-bold text-indigo mb-6",
-                        cardVariation === "card1" && "text-sm",
+                        cardVariation === "card1" && "text-md",
                         cardVariation === "card3" && "text-lg",
                         cardVariation === "card4" && "text-3xl",
                       ]}
@@ -186,15 +200,17 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                     {list && list.length > 0 && (
                       <ul class="mb-8">
                         {list.map((item, index) => (
-                          <li class="mb-3 flex gap-2 items-start">
+                          <li class="mb-3 flex gap-2 items-center justify-start">
                             <Image
                               src={index % 2 === 0 ? star : starPurple}
                               width={24}
                               height={24}
                               alt=""
-                              class="mt-0.5 flex-1 h-6 w-6"
+                              class=" shrink-0 h-6 w-6"
                             />
-                            <PortableText portableText={item?.text} />
+                            <div class="[&>a]:text-indigo">
+                              <PortableTextTitle portableText={item?.text} />
+                            </div>
                           </li>
                         ))}
                       </ul>
@@ -254,7 +270,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
 
         {
           paragraph && (
-            <div class="mb-4 lg:mb-12 [&>ul]:list-image-star [&>ul]:list-inside [&>ul]:my-2 [&>ul>li]:my-2">
+            <div class="mb-4 lg:mb-12 [&>ul]:list-image-star [&>ul]:list-inside [&>ul]:my-2 [&>ul>li]:my-2 [&>a]:text-indigo">
               <PortableText portableText={paragraph} />
             </div>
           )
