@@ -27,7 +27,7 @@ const { title, description, subtitle, variation, consultates, ctaText } =
         ]}
     />
     <Container classes="relative z-10">
-        <div class="text-center max-w-[800px] mx-auto mb-14 xl:mb-22">
+        <div class="text-center max-w-[800px] mx-auto mb-6 xl:mb-12">
             <h2
                 class:list={[
                     "mb-6 [&>strong]:font-bold",
@@ -44,7 +44,7 @@ const { title, description, subtitle, variation, consultates, ctaText } =
                 "p-6 rounded-sm flex justify-between items-center mb-14 bg-lavander text-dark-2",
             ]}
         >
-            <h3 class:list={["text-indigo text-display-lg font-semibold "]}>
+            <h3 class:list={["text-indigo  font-semibold "]}>
                 <PortableText portableText={subtitle} />
             </h3>
 
@@ -52,12 +52,12 @@ const { title, description, subtitle, variation, consultates, ctaText } =
         </div>
         {
             consultates && (
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                     {consultates.map((consultate) => {
                         const { image, name } = consultate;
                         const imageUrl = urlForImage(image).url() || null;
                         return (
-                            <div>
+                            <div class="flex flex-col">
                                 <Image
                                     src={imageUrl}
                                     width={400}
@@ -67,7 +67,7 @@ const { title, description, subtitle, variation, consultates, ctaText } =
                                 />
                                 <div
                                     class:list={[
-                                        "px-4 py-5 relative rounded-sm bg-lavander",
+                                        "px-4 py-5 relative rounded-sm bg-lavander grow",
                                     ]}
                                 >
                                     <Image
