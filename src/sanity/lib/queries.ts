@@ -26,7 +26,8 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
      'ctaLink': ctaLink{
      ...,'internalLink': internalLink->{slug} }},
   (_type=='videoTestimonials')=>{...},
-  (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}},
+  (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
+     ...,'internalLink': internalLink->{slug} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 (_type=='cardsFeature2')=>{..., },
@@ -62,7 +63,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug && category
      'ctaLink': ctaLink{
      ...,'internalLink': internalLink->{slug} }},
   (_type=='videoTestimonials')=>{...},
-  (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}},
+  (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
+     ...,'internalLink': internalLink->{slug} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 (_type=='cardsFeature2')=>{..., },
@@ -121,7 +123,8 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
      'ctaLink': ctaLink{
      ...,'internalLink': internalLink->{slug} }},
   (_type=='videoTestimonials')=>{...},
-  (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}},
+  (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
+     ...,'internalLink': internalLink->{slug} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 (_type=='cardsFeature2')=>{..., },
