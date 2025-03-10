@@ -17,7 +17,7 @@ const { title, description, cards, variation } = section;
     ]}
 >
     <Container>
-        <div class="text-center mx-auto max-w-[800px] mb-24">
+        <div class="text-center mx-auto max-w-[800px] mb-8 xl:mb-16">
             <h2
                 class:list={[
                     "[&>strong]:font-bold mb-4",
@@ -32,18 +32,18 @@ const { title, description, cards, variation } = section;
 
         {
             cards && (
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-8">
                     {cards.map((card) => {
                         return (
                             <div
                                 class:list={[
-                                    "relative rounded-sm overflow-hidden",
+                                    "relative flex flex-col rounded-sm overflow-hidden",
                                     variation === "dark" && "text-dark-2",
                                 ]}
                             >
                                 <div
                                     class:list={[
-                                        "p-4 text-center flex items-center justify-center",
+                                        "p-4 text-center  flex items-center justify-center",
                                         variation !== "dark" &&
                                             "bg-indigo text-white",
                                         variation === "dark" &&
@@ -146,8 +146,8 @@ const { title, description, cards, variation } = section;
                                         </svg>
                                     )}
                                 </div>
-                                <div class="bg-white px-5 pt-8 pb-10 text-center relative mb-5 rounded-b-sm">
-                                    <div class="mb-3 text-sm">
+                                <div class="bg-white grow px-5 flex flex-col pt-8 pb-10 text-center relative mb-5 rounded-b-sm">
+                                    <div class="mb-3 text-sm grow">
                                         <PortableText
                                             portableText={card?.quote}
                                         />
