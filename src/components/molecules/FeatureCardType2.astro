@@ -11,7 +11,7 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
 
 <article
     class:list={[
-        " w-full min-w-[280px] max-w-[400px] mx-auto ",
+        " w-full min-w-[280px] max-w-[400px] mx-auto flex flex-col",
         // cardVariation === "white" && "bg-offwhite text-dark-2",
         // cardVariation === "offwhite" && "bg-white text-dark-2",
         // cardVariation === "lavander" && "bg-white text-dark-2",
@@ -33,7 +33,7 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
 
     <div
         class:list={[
-            "mt-6 px-6 pt-8 pb-10 rounded-sm relative",
+            "mt-6 px-6 pt-8 pb-10 rounded-sm relative grow ",
             cardVariation === "white" && "bg-offwhite text-dark-2",
             cardVariation === "offwhite" && "bg-white text-dark-2",
             cardVariation === "lavander" && "bg-white text-dark-2",
@@ -46,7 +46,7 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
         <Image src={star} alt="" class="absolute right-2 -top-14 w-18 h-18" />
         <h3
             class:list={[
-                " text-indigo font-display font-semibold mb-5",
+                " text-indigo font-display font-semibold mb-5 ",
                 titleSize === "sm" && "text-display-xs",
                 titleSize === "md" && "text-display-md",
                 titleSize === "lg" && "text-display-lg",

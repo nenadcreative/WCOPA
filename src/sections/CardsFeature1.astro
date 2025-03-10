@@ -85,6 +85,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                 class:list={[
                     "mb-6 [&>strong]:font-bold",
                     variation !== "dark" && "[&>strong]:text-indigo",
+                    variation === "image" && "[&>strong]:text-yellow",
                     variation === "dark" &&
                         " text-white  [&>strong]:text-yellow",
                 ]}
