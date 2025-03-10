@@ -1,4 +1,5 @@
 ---
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import PortableText from "@components/atoms/PortableText.astro";
 import MediaCard from "@components/molecules/MediaCard.astro";
 import Container from "@globals/Container.astro";
@@ -20,12 +21,12 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
       title && (
         <h2
           class:list={[
-            "h2 mb-6 ",
-            variation === "light" && "[&>p>strong]:text-indigo",
-            variation === "dark" && "[&>p>strong]:text-yellow",
+            "h2 mb-8 [&>strong]:font-bold",
+            variation === "light" && "[&>strong]:text-indigo",
+            variation === "dark" && "[&>strong]:text-yellow",
           ]}
         >
-          <PortableText portableText={title} />
+          <PortableTextTitle portableText={title} />
         </h2>
       )
     }
@@ -40,7 +41,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
     {
       cards && (
-        <div class="mb-16 grid md:grid-cols-3 gap-8">
+        <div class=" grid md:grid-cols-3 gap-8">
           {cards.map((card) => (
             <MediaCard variation={variation} card={card} />
           ))}
@@ -50,7 +51,7 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
 
     {
       ctaText && (
-        <div class="text-sm mb-6">
+        <div class="text-sm mt-16 mb-6">
           <PortableText portableText={ctaText} />
         </div>
       )
@@ -67,10 +68,3 @@ const { title, subtitle, variation, cards, ctaText, ctaLink } = section;
     }
   </Container>
 </section>
-<!-- <script>
-  import { initHeaderAnimations } from "./animations/mediaAnimations";
-
-  document.addEventListener("DOMContentLoaded", () => {
-    initHeaderAnimations();
-  });
-</script> -->

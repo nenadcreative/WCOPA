@@ -10,15 +10,15 @@ const logoUrl = urlForImage(logo).url();
 
 <div
   class:list={[
-    "py-8 px-6 text-center text-dark-2",
+    "py-8 px-6 text-center flex flex-col text-dark-2",
     variation === "light" && "bg-offwhite ",
     variation === "dark" && "bg-white ",
   ]}
 >
   <div class="flex justify-center items-center py-2 px-1 mb-6">
-    <Image src={logoUrl} inferSize alt={company ? company:''} />
+    <Image src={logoUrl} inferSize alt={company ? company : ""} />
   </div>
-  <div class="mb-4">
+  <div class="mb-4 grow">
     <PortableText portableText={quote} />
   </div>
 
