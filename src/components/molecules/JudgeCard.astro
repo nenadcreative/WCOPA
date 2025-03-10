@@ -22,7 +22,7 @@ const imageUrl = image ? urlForImage(image).url() : null;
                     alt={name}
                     width={338}
                     height={332}
-                    class="absolute inset-0 w-full h-full object-cover"
+                    class="absolute inset-0 w-full h-full object-cover object-top"
                 />
             )
         }
@@ -134,7 +134,10 @@ const imageUrl = image ? urlForImage(image).url() : null;
     <div class="rounded-sm bg-white text-dark-2 px-5 py-5 pb-3 relative">
         <Image src={star} alt="" class="absolute top-6 right-4 w-10 h-10" />
         <h3 class="text-display-md font-bold mb-1 text-indigo">{name}</h3>
-        <span class="text-sm font-semibold">{title}</span>
+        <span
+            class="text-sm font-semibold min-h-11.25 flex flex-col justify-center"
+            >{title}</span
+        >
         <div class="line-clamp-4 mt-3 judge-bio">
             <PortableTextTitle portableText={bio} />
         </div>
