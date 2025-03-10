@@ -26,35 +26,37 @@ const { title, description, link, steps, variation } = section;
         ]}
     />
     <Container classes="relative z-10 flex flex-col md:flex-row gap-8">
-        <div class="w-full md:w-1/2 md:pr-24">
-            <h2
-                class:list={[
-                    "[&>strong]:font-bold mb-4",
-                    variation === "offwhite" && "[&>strong]:text-indigo",
-                    variation === "dark" && "[&>strong]:text-yellow",
-                ]}
-            >
-                <PortableTextTitle portableText={title} />
-            </h2>
-            {
-                description && (
-                    <div class="[&>p>strong]:block [&>p>strong]:font-bold [&>p>strong]:font-display [&>p>strong]:text-display-md [&>p]:mb-4 mb-8">
-                        <PortableText portableText={description} />
-                    </div>
-                )
-            }
-            {
-                link && (
-                    <ButtonLink
-                        buttonLink={link}
-                        variation={
-                            variation === "dark"
-                                ? "primary-light-yellow"
-                                : "primary-dark"
-                        }
-                    />
-                )
-            }
+        <div class="w-full md:w-1/2 xl:pr-24">
+            <div class="sticky top-36">
+                <h2
+                    class:list={[
+                        "[&>strong]:font-bold mb-4 ",
+                        variation === "offwhite" && "[&>strong]:text-indigo",
+                        variation === "dark" && "[&>strong]:text-yellow",
+                    ]}
+                >
+                    <PortableTextTitle portableText={title} />
+                </h2>
+                {
+                    description && (
+                        <div class=" [&>p>strong]:font-bold [&>p>strong]:font-display  [&>p]:mb-4 mb-8">
+                            <PortableText portableText={description} />
+                        </div>
+                    )
+                }
+                {
+                    link && (
+                        <ButtonLink
+                            buttonLink={link}
+                            variation={
+                                variation === "dark"
+                                    ? "primary-light-yellow"
+                                    : "primary-dark"
+                            }
+                        />
+                    )
+                }
+            </div>
         </div>
         <div class="w-full md:w-1/2 flex flex-col gap-10">
             {
@@ -93,7 +95,7 @@ const { title, description, link, steps, variation } = section;
                                         </h3>
                                     )}
                                     {step?.description && (
-                                        <div>
+                                        <div class="[&>p]:mb-3">
                                             <PortableText
                                                 portableText={step?.description}
                                             />
