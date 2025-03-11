@@ -2,6 +2,7 @@
 import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
 import PortableText from "../atoms/PortableText.astro";
 import star from "@assets/icons/star.svg";
+import patternSmall from "@assets/pattern.png";
 import { Image } from "astro:assets";
 const { card, variation, layout } = Astro.props;
 const { title, description, ageCards } = card;
@@ -9,7 +10,7 @@ const { title, description, ageCards } = card;
 
 <article
     class:list={[
-        "flex gap-8 sm:gap-16 items-center relative px-6 py-8 sm:px-12 sm:py-16 rounded-sm",
+        "flex gap-8 lg:gap-16 items-center relative px-6 py-8 sm:px-12 sm:py-16 rounded-sm",
         layout === "cards-text" && "flex flex-col sm:flex-row-reverse",
         layout === "text-cards" && "flex flex-col sm:flex-row",
         variation === "white" && "bg-offwhite",
@@ -29,18 +30,40 @@ const { title, description, ageCards } = card;
             "hidden xl:block absolute -top-10 w-25 h-25  z-10",
             layout === "text-cards" && "-left-8",
             layout === "cards-text" && "-right-8",
+            !ageCards && "hidden xl:hidden",
         ]}
     />
+    {
+        !ageCards && (
+            <Image
+                src={patternSmall}
+                alt="pattern"
+                class="absolute inset-0 w-full h-full object-cover opacity-50 object-top z-0"
+            />
+        )
+    }
 
-    <div class="sm:w-2/5">
-        <h3 class="text-display-lg font-bold mb-4 text-indigo">{title}</h3>
-        <div class="text-md">
+    <div
+        class:list={[
+            "sm:w-2/5",
+            !ageCards && "sm:w-full max-w-[800px] mx-auto relative z-10",
+        ]}
+    >
+        <h3
+            class:list={[
+                " font-bold mb-4 text-indigo",
+                !ageCards && "text-center",
+            ]}
+        >
+            {title}
+        </h3>
+        <div class:list={["text-md", !ageCards && "text-center"]}>
             <PortableText portableText={description} />
         </div>
     </div>
     {
         ageCards && (
-            <div class="w-full sm:w-3/5 flex flex-col sm:flex-row justify-between gap-4 sm:gap-8 ">
+            <div class="w-full sm:w-3/5 flex flex-col lg:flex-row justify-between gap-4 sm:gap-8 min-h-46">
                 {ageCards.map((card, index) => (
                     <div
                         class:list={[
