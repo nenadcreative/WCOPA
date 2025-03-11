@@ -63,7 +63,7 @@ export const pageType = defineType({
         { type: "mediaSection" },
         { type: "featuredList1" },
         { type: "featuredList2" },
-        { type: "steps" },
+
         { type: "centeredText" },
         { type: "centeredCard" },
         { type: "hero" },
@@ -84,6 +84,7 @@ export const pageType = defineType({
         { type: 'teamSection' },
         { type: "sponsorTestimonials" },
         { type: 'consultatesSection' },
+        { type: "steps" },
         { type: 'steps2' },
         { type: 'steps3' },
         { type: 'winners' },
