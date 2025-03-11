@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { stringFromPortableText } from "@/utils/stringFromPT";
 
 export default defineType({
    name: 'videos',
@@ -23,5 +24,16 @@ export default defineType({
          type: 'array',
          of: [{ type: 'video', title: 'Video' }]
       })
-   ]
+   ],
+   preview: {
+      select: {
+         title: "title",
+      },
+      prepare(selection) {
+         const { title } = selection;
+         return {
+            title: stringFromPortableText(title) || "Videos",
+         };
+      },
+   },
 })

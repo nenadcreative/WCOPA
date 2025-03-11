@@ -8,12 +8,7 @@ export const videoType = defineType({
         defineField({
             name: "title",
             title: "Title",
-            type: "blockSimple",
-        }),
-        defineField({
-            name: "description",
-            title: "Description",
-            type: "blockSimple",
+            type: "string",
         }),
         defineField({
             name: "videoThumbnail",

@@ -46,7 +46,14 @@ export default defineType({
     defineField({
       name: 'videoHighligths',
       title: 'Video Highlights',
-      type: 'videos',
+      type: 'array',
+      of: [{ type: 'videos' }],
+      group: 'content'
+    }),
+    defineField({
+      name: 'ctaText',
+      title: 'CTA Text',
+      type: 'blockSimple',
       group: 'content'
     }),
     defineField({

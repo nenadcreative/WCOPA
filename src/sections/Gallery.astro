@@ -10,30 +10,63 @@ import LightboxImage from "@atoms/LightboxImage.jsx";
 import VideoDialog from "@/components/atoms/VideoDialog";
 
 const { section } = Astro.props;
-const { tagline, title, variation, description, galleries, videoHighligths } =
-    section;
+const {
+    tagline,
+    title,
+    variation,
+    description,
+    galleries,
+    videoHighligths,
+    ctaText,
+} = section;
 
 const getBackgroundClass = (index: number, variation: string) => {
     switch (variation) {
         case "white":
-            return index % 2 === 0
+            return index % 2 !== 0
                 ? "bg-indigo text-white"
-                : "bg-lavander text-white";
+                : "bg-lavander text-dark-2";
         case "offwhite":
-            return index % 2 === 0
+            return index % 2 !== 0
                 ? "bg-indigo text-white"
-                : "bg-lavander text-white";
+                : "bg-lavander text-dark-2";
         case "lavander":
-            return index % 2 === 0
+            return index % 2 !== 0
                 ? "bg-indigo text-white"
                 : "bg-white text-dark-2";
         case "gradient":
-            return index % 2 === 0
+            return index % 2 !== 0
                 ? "bg-indigo text-white"
                 : "bg-white text-dark-2";
         case "dark":
-            return index % 2 === 0
+            return index % 2 !== 0
                 ? "bg-indigo text-white"
+                : "bg-white text-dark-2";
+        default:
+            return "bg-gray-500 text-white";
+    }
+};
+const getVideoBackgroundClass = (index: number, variation: string) => {
+    switch (variation) {
+        case "white":
+            return index % 2 === 0
+                ? "bg-purple text-white"
+                : "bg-lavander text-dark-2";
+        case "offwhite":
+            return index % 2 === 0
+                ? "bg-purple text-white"
+                : "bg-lavander text-dark-2";
+        case "lavander":
+            return index % 2 === 0
+                ? "bg-purple text-white"
+                : "bg-white text-dark-2";
+        case "gradient":
+            return index % 2 === 0
+                ? "bg-purple text-white"
+                : "bg-white text-dark-2";
+        case "dark":
+            return index % 2 === 0
+                ? "bg-purple text-white"
                 : "bg-white text-dark-2";
         default:
             return "bg-gray-500 text-white";
@@ -98,10 +131,10 @@ const getBackgroundClass = (index: number, variation: string) => {
             galleries &&
                 galleries.map((gallery, index) => {
                     return (
-                        <div class="mb-20">
+                        <div class="mb-10 xl:mb-20">
                             <div
                                 class:list={[
-                                    "rounded-sm text-display-lg font-display flex justify-between items-center  mb-6 py-3 px-3",
+                                    "rounded-sm text-display-lg font-display flex justify-between items-center  mb-6 py-6 px-6 md:py-3 md:px-8",
                                     getBackgroundClass(index, variation),
                                 ]}
                             >
@@ -112,23 +145,23 @@ const getBackgroundClass = (index: number, variation: string) => {
                                             gallery.description &&
                                                 "text-display-md mb-2",
                                             variation === "white" &&
-                                            index % 2 === 0
+                                            index % 2 !== 0
                                                 ? " text-white"
                                                 : " text-indigo",
                                             variation === "offwhite" &&
-                                            index % 2 === 0
+                                            index % 2 !== 0
                                                 ? " text-white"
                                                 : " text-indigo",
                                             variation === "lavander" &&
-                                            index % 2 === 0
+                                            index % 2 !== 0
                                                 ? " text-white"
                                                 : " text-indigo",
                                             variation === "gradient" &&
-                                            index % 2 === 0
+                                            index % 2 !== 0
                                                 ? " text-white"
                                                 : " text-indigo",
                                             variation === "dark" &&
-                                            index % 2 === 0
+                                            index % 2 !== 0
                                                 ? " text-white"
                                                 : " text-indigo",
                                         ]}
@@ -153,6 +186,7 @@ const getBackgroundClass = (index: number, variation: string) => {
                                     height="80"
                                     viewBox="0 0 80 80"
                                     fill="none"
+                                    class="hidden md:block"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
@@ -186,91 +220,109 @@ const getBackgroundClass = (index: number, variation: string) => {
         }
 
         {
-            videoHighligths && (
-                <div class="mb-20">
-                    <div
-                        class:list={[
-                            "rounded-sm text-display-lg font-display flex justify-between items-center bg-lavander text-indigo mb-6 py-3 px-3",
-                        ]}
-                    >
-                        <div>
-                            <span
+            videoHighligths &&
+                videoHighligths.map((videoGallery, index) => {
+                    return (
+                        <div class="mb-10 xl:mb-20">
+                            <div
                                 class:list={[
-                                    "font-semibold",
-                                    videoHighligths.description &&
-                                        "text-display-md",
-                                    variation === "white" && " text-indigo",
+                                    "rounded-sm text-display-lg font-display flex justify-between items-center mb-6 py-3 px-8",
+                                    getVideoBackgroundClass(index, variation),
                                 ]}
                             >
-                                <PortableTextTitle
-                                    portableText={videoHighligths.title}
-                                />
-                            </span>
-
-                            {videoHighligths.description && (
-                                <span class="block text-sm font-regular max-w-[800px]">
-                                    <PortableTextTitle
-                                        portableText={
-                                            videoHighligths?.description
-                                        }
-                                    />
-                                </span>
-                            )}
-                        </div>
-                        <svg
-                            width="80"
-                            height="80"
-                            viewBox="0 0 80 80"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M40 2.22266L49.9221 30.6258L80 31.2845L56.054 49.4975L64.721 78.3078L40 61.1608L15.279 78.3078L23.946 49.4975L0 31.2845L30.0779 30.6258L40 2.22266Z"
-                                fill="#F4CA51"
-                            />
-                            <path
-                                d="M80 31.2845L40 44.2819L49.9221 30.6258L80 31.2845ZM40 61.1608V44.2819L15.279 78.3078L40 61.1608ZM40 44.2819L64.721 78.3078L56.054 49.4975L40 44.2819ZM30.0779 30.6258L40 44.2819V2.22266L30.0779 30.6258ZM23.946 49.4975L40 44.2819L0 31.2845L23.946 49.4975Z"
-                                fill="#A57D24"
-                            />
-                        </svg>
-                    </div>
-                    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4  ">
-                        {videoHighligths.videos.map((video) => {
-                            return (
-                                <div class="min-h-56 relative flex justify-center items-center">
-                                    <VideoDialog
-                                        videoUrl={video?.video}
-                                        client:load
+                                <div>
+                                    <span
+                                        class:list={[
+                                            "font-semibold leading-none py-0 block",
+                                            videoGallery.description &&
+                                                "text-display-md",
+                                            variation === "white" &&
+                                                " text-indigo",
+                                        ]}
                                     >
-                                        <div class="absolute w-full h-full bg-dark-2/56" />
-                                        <svg
-                                            width="94"
-                                            height="94"
-                                            viewBox="0 0 94 94"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="absolute z-10 w-16 h-16 lg:w-20 lg:h-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
-                                                d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
-                                                fill="#F4CA51"
-                                            />
-                                        </svg>
-                                        <Image
-                                            src={urlForImage(
-                                                video?.videoThumbnail,
-                                            ).url()}
-                                            alt={video?.title}
-                                            inferSize
-                                            class="w-full h-full object-cover"
+                                        <PortableTextTitle
+                                            portableText={videoGallery.title}
                                         />
-                                    </VideoDialog>
+                                    </span>
+
+                                    {videoGallery.description && (
+                                        <span class="block text-sm font-regular max-w-[800px]">
+                                            <PortableTextTitle
+                                                portableText={
+                                                    videoGallery?.description
+                                                }
+                                            />
+                                        </span>
+                                    )}
                                 </div>
-                            );
-                        })}
-                    </div>
+                                <svg
+                                    width="80"
+                                    height="80"
+                                    viewBox="0 0 80 80"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M40 2.22266L49.9221 30.6258L80 31.2845L56.054 49.4975L64.721 78.3078L40 61.1608L15.279 78.3078L23.946 49.4975L0 31.2845L30.0779 30.6258L40 2.22266Z"
+                                        fill="#F4CA51"
+                                    />
+                                    <path
+                                        d="M80 31.2845L40 44.2819L49.9221 30.6258L80 31.2845ZM40 61.1608V44.2819L15.279 78.3078L40 61.1608ZM40 44.2819L64.721 78.3078L56.054 49.4975L40 44.2819ZM30.0779 30.6258L40 44.2819V2.22266L30.0779 30.6258ZM23.946 49.4975L40 44.2819L0 31.2845L23.946 49.4975Z"
+                                        fill="#A57D24"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4  ">
+                                {videoGallery.videos.map((video) => {
+                                    return (
+                                        <div class="md:min-h-56 aspect-video rounded-sm overflow-hidden relative flex justify-center items-center">
+                                            <VideoDialog
+                                                videoUrl={video?.video}
+                                                client:load
+                                            >
+                                                <div class="absolute w-full h-full bg-dark-2/56" />
+                                                <svg
+                                                    width="94"
+                                                    height="94"
+                                                    viewBox="0 0 94 94"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="absolute z-10 w-16 h-16 lg:w-20 lg:h-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
+                                                        fill="#F4CA51"
+                                                    />
+                                                </svg>
+                                                <div>
+                                                    {" "}
+                                                    <Image
+                                                        src={urlForImage(
+                                                            video?.videoThumbnail,
+                                                        ).url()}
+                                                        alt=""
+                                                        inferSize
+                                                        class="w-full h-full  object-cover"
+                                                    />
+                                                    <div class="text-white relative z-10">
+                                                        Video Title
+                                                    </div>
+                                                </div>
+                                            </VideoDialog>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    );
+                })
+        }
+        {
+            ctaText && (
+                <div class="max-w-[800px] mt-10 mx-auto text-md font-semibold text-center">
+                    <PortableText portableText={ctaText} />
                 </div>
             )
         }
