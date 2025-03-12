@@ -15,6 +15,11 @@ export default defineType({
       type: "url",
     }),
     defineField({
+      name: 'videoPreview',
+      title: 'Video Preview',
+      type: 'image'
+    }),
+    defineField({
       name: "tagline",
       title: "Tagline",
       type: "string",

@@ -1,20 +1,34 @@
 ---
+import VideoDialog from "@/components/atoms/VideoDialog";
 import PortableText from "@components/atoms/PortableText.astro";
 import Container from "@components/global/Container.astro";
 import ButtonLink from "@components/ui/ButtonLink.astro";
+import { Image } from "astro:assets";
+import { urlForImage } from "@sanity/lib/urlForImage";
 const { section } = Astro.props;
-const { videoLink, tagline, title, description, ctaText, links } = section;
+const { videoLink, videoPreview, tagline, title, description, ctaText, links } =
+  section;
+
+const videoPreviewUrl = videoPreview ? urlForImage(videoPreview).url() : null;
 ---
 
 <section>
-  <div style="padding:56.25% 0 0 0;position:relative;">
-    <iframe
+  <!-- <iframe
       src="https://player.vimeo.com/video/1046713357?badge=0&autopause=0&player_id=0&app_id=58479"
       frameborder="0"
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
       style="position:absolute;top:0;left:0;width:100%;height:100%;"
       title="hero-video"></iframe>
-  </div><script src="https://player.vimeo.com/api/player.js"></script>
+  </div><script src="https://player.vimeo.com/api/player.js"></script> -->
+  <VideoDialog videoUrl={videoLink} client:load>
+    <Image
+      src={videoPreviewUrl}
+      alt="Video Preview"
+      priority
+      inferSize
+      class="w-full h-[80vh] object-cover"
+    />
+  </VideoDialog>
   <Container classes="pt-6 pb-12">
     <div class="grid lg:grid-cols-2 gap-4">
       <div>
