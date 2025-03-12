@@ -1,7 +1,7 @@
 import groq from "groq";
 
 export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
-(_type == 'homeHero')=>{...},
+(_type == 'homeHero')=>{..., 'links':links[]{...,'internalLink': internalLink->{slug} }},
  (_type == 'featuredList1')=>{
   ...,
     'ctaLink':ctaLink{..., 

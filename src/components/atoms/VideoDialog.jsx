@@ -19,7 +19,7 @@ const VideoDialog = ({ videoUrl, children }) => {
         <div className="aspect-video w-full h-full flex justify-center items-center">
 
           {/* @ts-ignore */}
-          {videoUrl ? <ReactPlayer width={1000} controls url={videoUrl} /> : <p>No video available</p>}
+          {videoUrl ? <ReactPlayer width={1000} height={562.5} controls url={videoUrl} /> : <p>No video available</p>}
         </div>
       </DialogContent>
     </Dialog>

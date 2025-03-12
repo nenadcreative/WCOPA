@@ -101,7 +101,7 @@ const { title, subtitle, description, link, testimonials, variation, layout } =
                   >
                     <div
                       class:list={[
-                        "min-h-[344px] lg:w-1/2  flex flex-col justify-between pt-10 px-12 pb-12 rounded-sm",
+                        "min-h-[344px] lg:w-1/2  flex flex-col justify-between pt-10 px-6 sm:px-12 pb-12 rounded-sm",
                         variation === "lavander" || variation === "dark"
                           ? "bg-white text-dark-1"
                           : "bg-indigo text-white",
@@ -202,7 +202,7 @@ const { title, subtitle, description, link, testimonials, variation, layout } =
                             alt={testimonial?.name ? testimonial.name : ""}
                             width={56}
                             height={56}
-                            class=" w-[56px] h-[56px]"
+                            class=" w-[56px] h-[56px] rounded-full"
                           />
                         )}
                       </div>
