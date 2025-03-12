@@ -8,14 +8,17 @@ import sanity from "@sanity/astro";
 
 import vercel from "@astrojs/vercel";
 
+
 import robotsTxt from "astro-robots-txt";
 
 import sitemap from "@astrojs/sitemap";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    
+
     react(),
     sanity({
       projectId: "s0esc5z3",
@@ -31,5 +34,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   output: "server",
-  adapter: vercel(),
+  adapter: node({
+    mode: "standalone",
+  }),
 });
