@@ -1,10 +1,12 @@
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
+import { Monitor } from "lucide-react";
 
 export default defineType({
   name: "homeHero",
   title: "Home Hero",
   type: "object",
+  icon: Monitor,
 
   fields: [
     defineField({

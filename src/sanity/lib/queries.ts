@@ -2,7 +2,6 @@ import groq from "groq";
 
 export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
 (_type == 'homeHero')=>{...},
-
  (_type == 'featuredList1')=>{
   ...,
     'ctaLink':ctaLink{..., 
@@ -31,8 +30,28 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 (_type=='cardsFeature2')=>{..., },
+(_type=='cardsFeature1')=>{..., },
 (_type=='insights')=>{...},
 (_type=='successStories')=>{...},
+(_type=='gallery')=>{...},
+(_type=='sponsors')=>{...},
+(_type=='featuresSection')=>{...},
+(_type=='teamSection')=>{...},
+(_type=='sponsorTestimonials')=>{...},
+(_type=='consultatesSection')=>{...},
+(_type=='steps2')=>{...},
+(_type=='steps3')=>{...},
+(_type=='winners')=>{...},
+(_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='contactInfo')=>{...},
+(_type=='contactForm')=>{...},
+(_type=='judges')=>{...},
+(_type=='industryTestimonials')=>{...},
+(_type=='auditionForm')=>{...},
+(_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},},
+(_type=='ageDivisions')=>{...},
+(_type=='tableSection')=>{...},
 
 }}`;
 export const pagesQuery = groq`*[_type == "page"]`;
