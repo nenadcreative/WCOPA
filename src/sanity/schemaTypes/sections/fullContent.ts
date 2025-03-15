@@ -1,5 +1,6 @@
 import { defineType, defineField } from 'sanity'
 import { FileText } from 'lucide-react';
+import { stringFromPortableText } from 'src/utils/stringFromPT';
 
 export const fullContentType = defineType({
     name: 'fullContent',
@@ -23,5 +24,18 @@ export const fullContentType = defineType({
             type: 'blockContent',
 
         }),
-    ]
+    ],
+    preview: {
+        select: {
+            title: "title",
+            subtitle: "subtitle",
+        },
+        prepare(selection) {
+            const { title } = selection;
+            return {
+                title: stringFromPortableText(title) || "Text Content ",
+                subtitle: "Full Content",
+            };
+        },
+    },
 })
