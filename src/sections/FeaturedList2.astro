@@ -146,7 +146,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                         >
                           {item?.title}
                         </h3>
-                        <div class="flex gap-2 items-start">
+                        <div class="flex gap-2 items-start justify-start ">
                           <Image
                             src={star}
                             width={24}
@@ -200,7 +200,7 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
                     {list && list.length > 0 && (
                       <ul class="mb-8">
                         {list.map((item, index) => (
-                          <li class="mb-3 flex gap-2 items-center justify-start">
+                          <li class="mb-3 flex gap-2 items-start justify-start">
                             <Image
                               src={index % 2 === 0 ? star : starPurple}
                               width={24}

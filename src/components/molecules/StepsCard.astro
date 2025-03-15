@@ -16,7 +16,12 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
   {
     imageUrl && (
       <div class="w-full  mb-8 relative">
-        <Image src={imageUrl} inferSize alt="" class="w-full object-cover" />
+        <Image
+          src={imageUrl}
+          inferSize
+          alt=""
+          class="w-full object-cover rounded-sm"
+        />
         {index === 0 && (
           <Image
             src={star1}
@@ -45,11 +50,17 @@ const imageUrl = image ? urlForImage(image)?.url() : null;
     class:list={[
       "text-indigo text-sm font-bold mb-3",
       variation === "dark" && "text-yellow",
-      
     ]}
   >
     {title}
   </h3>
-  <div class:list={['', variation === "dark" && 'text-white', variation !== "dark" && 'text-dark-2']}><PortableText portableText={description} /></div>
-  
+  <div
+    class:list={[
+      "",
+      variation === "dark" && "text-white",
+      variation !== "dark" && "text-dark-2",
+    ]}
+  >
+    <PortableText portableText={description} />
+  </div>
 </div>

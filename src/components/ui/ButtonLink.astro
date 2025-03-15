@@ -11,6 +11,35 @@ const {
   blank,
   hide,
 } = buttonLink;
+
+const homeType = internalLink?._type === "home";
+
+const categoryUrl = (() => {
+  switch (internalLink?.category) {
+    case "how-to-enter":
+      return `/how-to-enter/${internalLink?.slug?.current}`;
+    case "competitions":
+      return `/event/competitions/${internalLink?.slug?.current}`;
+    case "schedule-of-events":
+      return `/event/schedule-of-events/${internalLink?.slug?.current}`;
+    case "venues":
+      return `/event/venues/${internalLink?.slug?.current}`;
+    case "testimonials":
+      return `/resources/testimonials/${internalLink?.slug?.current}`;
+    case "comunity-&-support":
+      return `/resources/comunity-&-support/${internalLink?.slug?.current}`;
+    case "media":
+      return `/resources/media/${internalLink?.slug?.current}`;
+    case "prizes-and-awards":
+      return `/resources/media/prizes-and-awards/${internalLink?.slug?.current}`;
+    case "about":
+      return `/about/${internalLink?.slug?.current}`;
+    case "legal":
+      return `/legal/${internalLink?.slug?.current}`;
+    default:
+      return `/${internalLink?.slug?.current}`;
+  }
+})();
 ---
 
 {
@@ -79,7 +108,7 @@ const {
       </a>
     ) : linkType === "internal" ? (
       <a
-        href={internalLink?.slug?.current}
+        href={homeType ? "/" : categoryUrl}
         target="_self"
         class:list={[
           "relative overflow-hidden  group button font-body font-semibold capitalize inline-flex",

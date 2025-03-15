@@ -1,4 +1,5 @@
 ---
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
 import PortableText from "@components/atoms/PortableText.astro";
 import StepsCard from "@components/molecules/StepsCard.astro";
 import ButtonLink from "@components/ui/ButtonLink.astro";
@@ -52,8 +53,8 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
       <div class="relative z-20 text-white">
         {
           title && (
-            <h2 class="font-bold [&>p>strong]:text-yellow text-center mb-4 lg:mb-6">
-              <PortableText portableText={title} />
+            <h2 class="font-bold [&>strong]:font-bold [&>strong]:text-yellow text-center mb-4 lg:mb-6">
+              <PortableTextTitle portableText={title} />
             </h2>
           )
         }
@@ -80,7 +81,13 @@ const bgImageUrl = bgImage ? urlForImage(bgImage)?.url() : null;
 
         {
           ctaText && (
-            <div class:list={["text-center max-w-3xl mx-auto text-sm font-bold mb-6 ", variation !=='dark' && 'text-dark-1', variation ==='dark' && 'text-white']}>
+            <div
+              class:list={[
+                "text-center max-w-3xl mx-auto text-sm font-bold mb-6 ",
+                variation !== "dark" && "text-dark-1",
+                variation === "dark" && "text-white",
+              ]}
+            >
               <PortableText portableText={ctaText} />
             </div>
           )

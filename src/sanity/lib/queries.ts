@@ -1,36 +1,36 @@
 import groq from "groq";
 
 export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
-(_type == 'homeHero')=>{..., 'links':links[]{...,'internalLink': internalLink->{slug} }},
+(_type == 'homeHero')=>{..., 'links':links[]{...,'internalLink': internalLink->{slug, _type, category} }},
  (_type == 'featuredList1')=>{
   ...,
     'ctaLink':ctaLink{..., 
-    'internalLink':internalLink->{slug}}
+    'internalLink':internalLink->{slug, _type, category}}
   },
   
   (_type == 'featuredList2')=>{
   ...,
     'ctaLink':ctaLink{..., 
-    'internalLink':internalLink->{slug}}
+    'internalLink':internalLink->{slug, _type, category}}
   },
   (_type == 'steps')=>{...},
   (_type == 'centeredText')=>{...},
   (_type == 'centeredCard')=>{...},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'cta1')=>{...,
-    'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'internalLink':internalLink->{slug,title}}}
+    'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'internalLink':internalLink->{slug, _type, category}}}
   },
   (_type == 'mediaSection')=>{
      ...,
      'ctaLink': ctaLink{
-     ...,'internalLink': internalLink->{slug} }},
+     ...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='videoTestimonials')=>{...},
   (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
-     ...,'internalLink': internalLink->{slug} }},
-  (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+     ...,'internalLink': internalLink->{slug, _type, category} }},
+  (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 (_type=='cardsFeature2')=>{..., },
-(_type=='cardsFeature1')=>{..., },
+(_type=='cardsFeature1')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} } },
 (_type=='insights')=>{...},
 (_type=='successStories')=>{...},
 (_type=='gallery')=>{...},
@@ -42,13 +42,13 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
 (_type=='steps2')=>{...},
 (_type=='steps3')=>{...},
 (_type=='winners')=>{...},
-(_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='contactInfo')=>{...},
 (_type=='contactForm')=>{...},
 (_type=='judges')=>{...},
 (_type=='industryTestimonials')=>{...},
 (_type=='auditionForm')=>{...},
-(_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},},
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
@@ -62,32 +62,32 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug && category
   (_type == 'featuredList1')=>{
   ...,
     'ctaLink':ctaLink{..., 
-    'internalLink':internalLink->{slug}}
+    'internalLink':internalLink->{slug, _type, category}}
   },
   
   (_type == 'featuredList2')=>{
   ...,
     'ctaLink':ctaLink{..., 
-    'internalLink':internalLink->{slug}}
+    'internalLink':internalLink->{slug, _type, category}}
   },
   (_type == 'steps')=>{...},
   (_type == 'centeredText')=>{...},
   (_type == 'centeredCard')=>{...},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'cta1')=>{...,
-    'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'internalLink':internalLink->{slug,title}}}
+    'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'internalLink':internalLink->{slug, _type, category}}}
   },
   (_type == 'mediaSection')=>{
      ...,
      'ctaLink': ctaLink{
-     ...,'internalLink': internalLink->{slug} }},
+     ...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='videoTestimonials')=>{...},
   (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
-     ...,'internalLink': internalLink->{slug} }},
-  (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+     ...,'internalLink': internalLink->{slug, _type, category} }},
+  (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 (_type=='cardsFeature2')=>{..., },
-(_type=='cardsFeature1')=>{..., },
+(_type=='cardsFeature1')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} } },
 (_type=='insights')=>{...},
 (_type=='successStories')=>{...},
 (_type=='gallery')=>{...},
@@ -99,13 +99,13 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug && category
 (_type=='steps2')=>{...},
 (_type=='steps3')=>{...},
 (_type=='winners')=>{...},
-(_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='contactInfo')=>{...},
 (_type=='contactForm')=>{...},
 (_type=='judges')=>{...},
 (_type=='industryTestimonials')=>{...},
 (_type=='auditionForm')=>{...},
-(_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},},
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
@@ -120,34 +120,34 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
   (_type == 'featuredList1')=>{
   ...,
     'ctaLink':ctaLink{..., 
-    'internalLink':internalLink->{slug}}
+    'internalLink':internalLink->{slug, _type, category}}
   },
   
   (_type == 'featuredList2')=>{
   ...,
     'ctaLink':ctaLink{..., 
-    'internalLink':internalLink->{slug}},
+    'internalLink':internalLink->{slug, _type, category}},
     'cardLink':cardLink{..., 
-    'internalLink':internalLink->{slug}}
+    'internalLink':internalLink->{slug, _type, category}}
   },
   (_type == 'steps')=>{...},
   (_type == 'centeredText')=>{...},
   (_type == 'centeredCard')=>{...},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'cta1')=>{...,
-    'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'internalLink':internalLink->{slug,title}}}
+    'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'internalLink':internalLink->{slug, _type, category}}}
   },
   (_type == 'mediaSection')=>{
      ...,
      'ctaLink': ctaLink{
-     ...,'internalLink': internalLink->{slug} }},
+     ...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='videoTestimonials')=>{...},
   (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
-     ...,'internalLink': internalLink->{slug} }},
-  (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+     ...,'internalLink': internalLink->{slug, _type, category} }},
+  (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
 (_type=='cardsFeature2')=>{..., },
-(_type=='cardsFeature1')=>{..., },
+(_type=='cardsFeature1')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} } },
 (_type=='insights')=>{...},
 (_type=='successStories')=>{...},
 (_type=='gallery')=>{...},
@@ -159,13 +159,13 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
 (_type=='steps2')=>{...},
 (_type=='steps3')=>{...},
 (_type=='winners')=>{...},
-(_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='contactInfo')=>{...},
 (_type=='contactForm')=>{...},
 (_type=='judges')=>{...},
 (_type=='industryTestimonials')=>{...},
 (_type=='auditionForm')=>{...},
-(_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug} }},
+(_type=='imageCards')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},},
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
