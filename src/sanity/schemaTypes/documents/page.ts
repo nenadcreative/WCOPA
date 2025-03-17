@@ -107,7 +107,7 @@ export const pageType = defineType({
             {
               name: "intro",
               title: "Intro",
-              of: ["hero",],
+              of: ["hero"],
             },
             {
               name: "storytelling",
