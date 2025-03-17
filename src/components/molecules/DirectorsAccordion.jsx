@@ -22,10 +22,10 @@ const DirectorsAccordion = ({ regions }) => {
 
                         )}
                     >
-                        <AccordionTrigger className="flex-row-reverse justify-between items-center rounded-sm px-8 py-6 bg-lavander text-sm cursor-pointer font-semibold text-left  text-indigo">
+                        <AccordionTrigger className="flex-row-reverse justify-between items-center rounded-sm px-8 py-6 bg-lavander text-sm cursor-pointer font-semibold text-left  text-indigo [&>svg]:w-10 [&>svg]:h-10">
                             {/* <PortableText value={faq.question}></PortableText> */}
 
-                            <div className="flex gap-8 items-center">
+                            <div className="flex flex-col sm:flex-row gap-8 items-center">
                                 <span className="font-display text-display-lg font-semibold leading-none block">{region.title}</span>
                                 <div className="flex flex-wrap gap-2 max-w-3xl">
                                     {region.countries && region.countries.map((country, countryIndex) => {
@@ -38,12 +38,12 @@ const DirectorsAccordion = ({ regions }) => {
                             {/* <PortableText value={faq.answer}></PortableText> */}
                             {region.directors &&
 
-                                <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                                     {region.directors.map((director, directorIndex) => {
                                         const { image, name, jobTitle, country, bio, _id, representing, email } = director;
 
                                         const imageUrl = image ? urlForImage(image).height(64).width(64).url() : null;
-                                        return <article key={`director-${_id || director._key}-${regionIndex}-${directorIndex}`} className=" bg-white text-dark-2 rounded-sm overflow-hidden">
+                                        return <article key={`director-${_id || director._key}-${regionIndex}-${directorIndex}`} className=" bg-white text-dark-2 rounded-sm overflow-hidden flex flex-col">
                                             <div className="px-4 py-6">
                                                 <div className="flex items-center gap-4 mb-5">
                                                     {
@@ -61,10 +61,10 @@ const DirectorsAccordion = ({ regions }) => {
                                                     }
                                                     <div>
                                                         <h3 className="font-semibold text-display-sm text-indigo">{name}</h3>
-                                                        <p className="text-sm">{jobTitle}</p>
+                                                        <span className="text-sm text-dark-2">{jobTitle}</span>
                                                     </div>
                                                 </div>
-                                                <div className="bg-lavander p-4 pb-5 flex flex-col gap-5">
+                                                <div className="bg-lavander p-4 pb-5 flex flex-col gap-5 grow">
                                                     <div className="flex gap-2">
                                                         <svg width="24" height="25" className="shrink-0" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <circle cx="12" cy="12.5" r="12" fill="#4E30C5" />
@@ -85,7 +85,7 @@ const DirectorsAccordion = ({ regions }) => {
                                                         </div>
                                                     </div>
                                                     <div className="flex gap-2">
-                                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <svg width="24" height="25" viewBox="0 0 24 25" className="shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <circle cx="12" cy="12.5" r="12" fill="#4E30C5" />
                                                             <g clipPath="url(#clip0_2409_16514)">
                                                                 <path d="M12 5.5C9.28608 5.5 7.07812 7.70795 7.07812 10.4219C7.07812 11.3388 7.33212 12.2337 7.81282 13.01L11.7198 19.3061C11.7947 19.4267 11.9265 19.5 12.0683 19.5C12.0694 19.5 12.0705 19.5 12.0716 19.5C12.2146 19.4989 12.3467 19.4233 12.4202 19.3006L16.2276 12.9435C16.6818 12.1836 16.9219 11.3116 16.9219 10.4219C16.9219 7.70795 14.7139 5.5 12 5.5ZM15.5237 12.5224L12.0621 18.302L8.51004 12.5778C8.10991 11.9316 7.89297 11.1861 7.89297 10.4219C7.89297 8.16027 9.7384 6.31484 12 6.31484C14.2616 6.31484 16.1043 8.16027 16.1043 10.4219C16.1043 11.1635 15.9017 11.8899 15.5237 12.5224Z" fill="white" />
@@ -113,8 +113,8 @@ const DirectorsAccordion = ({ regions }) => {
                                                 </div>
 
                                             </div>
-                                            <div className="flex flex-wrap gap-2 p-5 bg-lavander">{representing.map((country, repIndex) => {
-                                                return <img key={`representing-flag-${country._id || country._key}-${regionIndex}-${directorIndex}-${repIndex}`} src={urlForImage(country.flag).url()} alt={country.name} />
+                                            <div className="flex flex-wrap gap-2 p-5 bg-lavander mt-auto">{representing.map((country, repIndex) => {
+                                                return <img className="w-7.5 h-5" key={`representing-flag-${country._id || country._key}-${regionIndex}-${directorIndex}-${repIndex}`} src={urlForImage(country.flag).width(30).height(20).url()} alt={country.name} />
                                             })}</div>
                                         </article>
                                     })}
