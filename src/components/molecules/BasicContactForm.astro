@@ -229,7 +229,7 @@ import { Image } from "astro:assets";
 import star from "@assets/icons/star.svg";
 ---
 
-<form class="w-full text-sm font-medium" action="" method="POST">
+<form class="w-full text-sm font-medium" action="/api/contact" method="POST">
     <div class="mb-4 flex flex-col">
         <label for="fullName" class="mb-2 pl-3 text-sm">Full Name: </label>
         <input
@@ -373,8 +373,13 @@ import star from "@assets/icons/star.svg";
 <script>
     const countrySelector = document.getElementById("location");
     const sourceSelector = document.getElementById("source");
-    countrySelector.addEventListener("change", showCountryChoise);
-    sourceSelector.addEventListener("change", showSourceChoise);
+    if (countrySelector) {
+        countrySelector.addEventListener("change", showCountryChoise);
+    }
+
+    if (sourceSelector) {
+        sourceSelector.addEventListener("change", showSourceChoise);
+    }
 
     function showCountryChoise(e) {
         switch (e.target.value) {

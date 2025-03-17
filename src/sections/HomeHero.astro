@@ -5,6 +5,7 @@ import Container from "@components/global/Container.astro";
 import ButtonLink from "@components/ui/ButtonLink.astro";
 import { Image } from "astro:assets";
 import { urlForImage } from "@sanity/lib/urlForImage";
+import decor from "@assets/hero video decoration.svg";
 const { section } = Astro.props;
 const { videoLink, videoPreview, tagline, title, description, ctaText, links } =
   section;
@@ -13,40 +14,50 @@ const videoPreviewUrl = videoPreview ? urlForImage(videoPreview).url() : null;
 ---
 
 <section>
-  <!-- <iframe
-      src="https://player.vimeo.com/video/1046713357?badge=0&autopause=0&player_id=0&app_id=58479"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-      style="position:absolute;top:0;left:0;width:100%;height:100%;"
-      title="hero-video"></iframe>
-  </div><script src="https://player.vimeo.com/api/player.js"></script> -->
   <VideoDialog videoUrl={videoLink} client:load>
-    <div class="w-full h-[80dvh]">
-      <Image
-        src={videoPreviewUrl}
-        alt="Video Preview"
-        priority
-        inferSize
-        class="object-center object-cover w-full h-full"
-      />
-      <div
-        class="p-4 rounded-full bg-white/20 backdrop-blur-sm absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2"
-      >
-        <svg
-          width="94"
-          height="94"
-          viewBox="0 0 94 94"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-16 h-16"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
-            fill="#fff"></path>
-        </svg>
+    <div class="w-full h-[80vh] xl:h-screen relative overflow-hidden">
+      <!--Vimeo embed with responsive wrapper -->
+      <div class="relative w-full h-full pt-[56.25%] md:pt-0">
+        <iframe
+          src="https://player.vimeo.com/video/1046713357?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&background=1&loop=1"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;"
+          title="hero-video"
+          class="w-full h-full object-cover"
+          loading="lazy"></iframe>
       </div>
+      <script src="https://player.vimeo.com/api/player.js"></script>
+
+      <!-- Play button overlay -->
+      <div class="absolute inset-0 flex items-center justify-center z-10">
+        <div
+          class="p-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
+        >
+          <svg
+            width="94"
+            height="94"
+            viewBox="0 0 94 94"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-16 h-16"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
+              fill="#fff"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Decorative element at the bottom -->
+      <Image
+        src={decor}
+        alt=""
+        quality={100}
+        class="w-full max-h-30 absolute bottom-0 left-0 z-10"
+      />
     </div>
   </VideoDialog>
   <Container classes="pt-6 pb-18">
