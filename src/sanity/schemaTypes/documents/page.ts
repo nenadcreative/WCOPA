@@ -98,6 +98,7 @@ export const pageType = defineType({
         { type: 'ageDivisions' },
         { type: 'tableSection' },
         { type: 'fullContent' },
+
       ],
       validation: (rule) => rule.required(),
       options: {
@@ -106,7 +107,7 @@ export const pageType = defineType({
             {
               name: "intro",
               title: "Intro",
-              of: ["hero"],
+              of: ["hero",],
             },
             {
               name: "storytelling",

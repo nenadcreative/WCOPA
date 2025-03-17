@@ -6,7 +6,7 @@ import { urlForImage } from "@sanity/lib/urlForImage";
 
 
 
-export default function LightboxImage({ images, imageUrl }) {
+export default function LightboxImage({ images, imageUrl, aspectRatio }) {
     const [open, setOpen] = React.useState(false);
 
     return (
@@ -16,7 +16,7 @@ export default function LightboxImage({ images, imageUrl }) {
                 className="flex h-full w-full  "
                 onClick={() => setOpen(true)}
             >
-                <img className="w-full h-full object-cover aspect-video object-top rounded-sm cursor-pointer" src={imageUrl}></img>
+                <img className={`w-full h-full object-cover ${aspectRatio === 'video' ? 'aspect-video' : ''} object-top rounded-sm cursor-pointer`} src={imageUrl}></img>
             </button>
 
             <Lightbox

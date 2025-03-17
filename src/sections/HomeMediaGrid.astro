@@ -1,0 +1,117 @@
+---
+import Container from "@/components/global/Container.astro";
+import { Image } from "astro:assets";
+import { urlForImage } from "@/sanity/lib/urlForImage";
+import patternImage from "@assets/pattern-big.png";
+import patternImageAlt from "@assets/pattern-big-alt.png";
+import VideoDialog from "@/components/atoms/VideoDialog";
+import LightboxImage from "@atoms/LightboxImage.jsx";
+
+const { section } = Astro.props;
+const { list } = section;
+---
+
+<section class:list={["py-14 lg:py-28 relative"]}>
+    <!-- Masonry-style grid with different sized images -->
+    <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-2 xl:px-0 xl:grid-cols-5 xl:grid-rows-5 gap-2 xl:gap-6"
+    >
+        {
+            list &&
+                list.length > 0 &&
+                list.map((media, index) => {
+                    const images = list.filter(
+                        (item) => item?._type === "image",
+                    );
+                    // Determine grid span based on index for visual variety
+                    return (
+                        <div
+                            class:list={[
+                                `relative overflow-hidden  transition-all duration-300 hover:scale-[1.02] `,
+                                index === 0 &&
+                                    " xl:col-span-1 xl:row-start-2 xl:row-span-2",
+                                index === 1 &&
+                                    " xl:col-start-2 xl:col-span-1 xl:row-start-1 xl:row-span-2 xl:mt-8",
+                                index === 2 &&
+                                    " xl:col-start-2 xl:col-span-1 xl:row-start-3 xl:row-span-2 xl:mb-8",
+                                index === 3 &&
+                                    "xl:col-start-3 xl:col-span-1  xl:row-start-1 xl:row-span-2",
+                                index === 4 &&
+                                    " xl:col-start-3 xl:col-span-1  xl:row-start-3 xl:row-span-2",
+                                index === 5 &&
+                                    " xl:col-start-4 xl:col-span-1 xl:row-start-1 xl:row-span-2 xl:mt-8",
+                                index === 6 &&
+                                    " xl:col-start-4 xl:col-span-1 xl:row-start-3 xl:row-span-2 xl:mb-8",
+                                index === 7 &&
+                                    " xl:col-start-5 xl:col-span-1 xl:row-start-2 xl:row-span-2",
+                            ]}
+                        >
+                            {media && media?._type === "image" ? (
+                                <LightboxImage
+                                    client:load
+                                    images={images}
+                                    aspectRatio=""
+                                    imageUrl={urlForImage(media).url()}
+                                />
+                            ) : (
+                                // <img
+                                //     src={urlForImage(media)
+                                //         .width(800)
+                                //         .height(800)
+                                //         .fit("crop")
+                                //         .auto("format")
+                                //         .url()}
+                                //     alt={media.alt || "WCOPA event image"}
+                                //     class="rounded-sm w-full h-full object-cover"
+                                //     loading="lazy"
+                                // />
+                                <VideoDialog
+                                    videoUrl={media?.videoLink}
+                                    client:load
+                                >
+                                    <div class="relative w-full h-full aspect-video rounded-sm overflow-hidden">
+                                        {/* Video thumbnail/preview */}
+                                        {media?.videoThumbnail && (
+                                            <img
+                                                src={urlForImage(
+                                                    media.videoThumbnail,
+                                                )
+                                                    .width(800)
+                                                    .height(450)
+                                                    .fit("crop")
+                                                    .auto("format")
+                                                    .url()}
+                                                alt="Video thumbnail"
+                                                class="w-full h-full object-cover"
+                                            />
+                                        )}
+
+                                        {/* Play button overlay */}
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <div class="p-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all">
+                                                <svg
+                                                    width="54"
+                                                    height="54"
+                                                    viewBox="0 0 94 94"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="w-12 h-12"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
+                                                        fill="#fff"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </VideoDialog>
+                            )}
+                        </div>
+                    );
+                })
+        }
+    </div>
+</section>

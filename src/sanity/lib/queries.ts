@@ -52,6 +52,7 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
 (_type=='nationalDirectors')=>{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},},
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
+(_type=='homeMediaGrid')=>{...},
 
 }}`;
 export const pagesQuery = groq`*[_type == "page"]`;

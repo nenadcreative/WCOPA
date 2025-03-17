@@ -63,6 +63,7 @@ export const homeType = defineType({
         { type: 'nationalDirectors' },
         { type: 'ageDivisions' },
         { type: 'tableSection' },
+        { type: 'homeMediaGrid' },
 
       ],
       options: {
@@ -71,7 +72,7 @@ export const homeType = defineType({
             {
               name: "intro",
               title: "Intro",
-              of: ["homeHero"],
+              of: ["homeHero", 'homeMediaGrid'],
             },
             {
               name: "storytelling",

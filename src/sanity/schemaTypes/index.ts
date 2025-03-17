@@ -88,6 +88,7 @@ import { nationalDirectorsType } from "./sections/nationalDirectors";
 import { ageDivisionsType } from './sections/ageDivisions';
 import { tableSectionType } from './sections/tableSection';
 import { fullContentType } from './sections/fullContent';
+import { homeMediaGridType } from './sections/homeMediaGrid';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -180,6 +181,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     nationalDirectorsType,
     ageDivisionsType,
     tableSectionType,
-    fullContentType
+    fullContentType,
+    homeMediaGridType
   ],
 };
