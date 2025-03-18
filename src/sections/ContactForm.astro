@@ -12,10 +12,12 @@ const { title, description } = section;
     class="py-14 lg:py-20 bg-linear-to-b from-white from-28% to-lavander to-100% text-dark-2"
 >
     <Container classes="max-w-[800px] mx-auto">
-        <h2 class="[&>strong]:font-bold [&>strong]:text-indigo mb-6">
+        <h2
+            class="[&>strong]:font-bold [&>strong]:text-indigo mb-6 text-center"
+        >
             <PortableTextTitle portableText={title} />
         </h2>
-        <div class="text-md">
+        <div class="text-md text-center">
             <PortableText portableText={description} />
         </div>
         <div class="mt-16 bg-offwhite p-3 md:p-10 md:pb-12 rounded-sm">

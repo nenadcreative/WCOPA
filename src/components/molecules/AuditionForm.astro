@@ -1,207 +1,63 @@
 ---
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+import { loadQuery } from "../../sanity/lib/load-query";
+import type { SanityDocument } from "@sanity/client";
+
 let states = [
-    {
-        id: 1,
-        state: "Alabama",
-    },
-    {
-        id: 2,
-        state: "Alaska",
-    },
-    {
-        id: 3,
-        state: "Arizona",
-    },
-    {
-        id: 4,
-        state: "Arkansas",
-    },
-    {
-        id: 5,
-        state: "California",
-    },
-    {
-        id: 6,
-        state: "Colorado",
-    },
-    {
-        id: 7,
-        state: "Connecticut",
-    },
-    {
-        id: 8,
-        state: "Delaware",
-    },
-    {
-        id: 9,
-        state: "Florida",
-    },
-    {
-        id: 10,
-        state: "Georgia",
-    },
-    {
-        id: 11,
-        state: "Hawaii",
-    },
-    {
-        id: 12,
-        state: "Idaho",
-    },
-    {
-        id: 13,
-        state: "Illinois",
-    },
-    {
-        id: 14,
-        state: "Indiana",
-    },
-    {
-        id: 15,
-        state: "Iowa",
-    },
-    {
-        id: 16,
-        state: "Kansas",
-    },
-    {
-        id: 17,
-        state: "Kentucky",
-    },
-    {
-        id: 18,
-        state: "Louisiana",
-    },
-    {
-        id: 19,
-        state: "Maine",
-    },
-    {
-        id: 20,
-        state: "Maryland",
-    },
-    {
-        id: 21,
-        state: "Massachusetts",
-    },
-    {
-        id: 22,
-        state: "Michigan",
-    },
-    {
-        id: 23,
-        state: "Minnesota",
-    },
-    {
-        id: 24,
-        state: "Mississippi",
-    },
-    {
-        id: 25,
-        state: "Missouri",
-    },
-    {
-        id: 26,
-        state: "Montana",
-    },
-    {
-        id: 27,
-        state: "Nebraska",
-    },
-    {
-        id: 28,
-        state: "Nevada",
-    },
-    {
-        id: 29,
-        state: "New Hampshire",
-    },
-    {
-        id: 30,
-        state: "New Jersey",
-    },
-    {
-        id: 31,
-        state: "New Mexico",
-    },
-    {
-        id: 32,
-        state: "New York",
-    },
-    {
-        id: 33,
-        state: "North Carolina",
-    },
-    {
-        id: 34,
-        state: "North Dakota",
-    },
-    {
-        id: 35,
-        state: "Ohio",
-    },
-    {
-        id: 36,
-        state: "Oklahoma",
-    },
-    {
-        id: 37,
-        state: "Oregon",
-    },
-    {
-        id: 38,
-        state: "Pennsylvania",
-    },
-    {
-        id: 39,
-        state: "Rhode Island",
-    },
-    {
-        id: 40,
-        state: "South Carolina",
-    },
-    {
-        id: 41,
-        state: "South Dakota",
-    },
-    {
-        id: 42,
-        state: "Tennessee",
-    },
-    {
-        id: 43,
-        state: "Texas",
-    },
-    {
-        id: 44,
-        state: "Utah",
-    },
-    {
-        id: 45,
-        state: "Vermont",
-    },
-    {
-        id: 46,
-        state: "Virginia",
-    },
-    {
-        id: 47,
-        state: "Washington",
-    },
-    {
-        id: 48,
-        state: "West Virginia",
-    },
-    {
-        id: 49,
-        state: "Wisconsin",
-    },
-    {
-        id: 50,
-        state: "Wyoming",
-    },
+    { id: 1, state: "Alabama" },
+    { id: 2, state: "Alaska" },
+    { id: 3, state: "Arizona" },
+    { id: 4, state: "Arkansas" },
+    { id: 5, state: "California" },
+    { id: 6, state: "Colorado" },
+    { id: 7, state: "Connecticut" },
+    { id: 8, state: "Delaware" },
+    { id: 9, state: "Florida" },
+    { id: 10, state: "Georgia" },
+    { id: 11, state: "Hawaii" },
+    { id: 12, state: "Idaho" },
+    { id: 13, state: "Illinois" },
+    { id: 14, state: "Indiana" },
+    { id: 15, state: "Iowa" },
+    { id: 16, state: "Kansas" },
+    { id: 17, state: "Kentucky" },
+    { id: 18, state: "Louisiana" },
+    { id: 19, state: "Maine" },
+    { id: 20, state: "Maryland" },
+    { id: 21, state: "Massachusetts" },
+    { id: 22, state: "Michigan" },
+    { id: 23, state: "Minnesota" },
+    { id: 24, state: "Mississippi" },
+    { id: 25, state: "Missouri" },
+    { id: 26, state: "Montana" },
+    { id: 27, state: "Nebraska" },
+    { id: 28, state: "Nevada" },
+    { id: 29, state: "New Hampshire" },
+    { id: 30, state: "New Jersey" },
+    { id: 31, state: "New Mexico" },
+    { id: 32, state: "New York" },
+    { id: 33, state: "North Carolina" },
+    { id: 34, state: "North Dakota" },
+    { id: 35, state: "Ohio" },
+    { id: 36, state: "Oklahoma" },
+    { id: 37, state: "Oregon" },
+    { id: 38, state: "Pennsylvania" },
+    { id: 39, state: "Rhode Island" },
+    { id: 40, state: "South Carolina" },
+    { id: 41, state: "South Dakota" },
+    { id: 42, state: "Tennessee" },
+    { id: 43, state: "Texas" },
+    { id: 44, state: "Utah" },
+    { id: 45, state: "Vermont" },
+    { id: 46, state: "Virginia" },
+    { id: 47, state: "Washington" },
+    { id: 48, state: "West Virginia" },
+    { id: 49, state: "Wisconsin" },
+    { id: 50, state: "Wyoming" },
 ];
 
+// Fetch countries from a JSON file or API
 let countries = [];
 try {
     const response = await fetch("https://restcountries.com/v3.1/all");
@@ -225,13 +81,49 @@ try {
     ];
 }
 
-import { Image } from "astro:assets";
-import star from "@assets/icons/star.svg";
+const talentCategories = [
+    "Vocal Solo",
+    "Vocal Group",
+    "Dance Solo",
+    "Dance Group",
+    "Instrumental Solo",
+    "Instrumental Group",
+    "Modeling",
+    "Acting",
+    "Original Song",
+    "Other",
+];
+
+// Fetch national directors from Sanity
+const { data: directors } = await loadQuery<SanityDocument[]>({
+    query: `*[_type == "director"] {
+    _id,
+    name,
+    jobTitle,
+    email,
+    "countries": representing[]->name
+  }`,
+});
+
+// Sort directors by name
+const sortedDirectors = directors
+    ? [...directors].sort((a, b) => a.name.localeCompare(b.name))
+    : [];
 ---
 
-<form class="w-full text-sm font-medium" action="" method="POST">
+<form
+    id="audition-form"
+    class="w-full text-sm font-medium"
+    action="/api/audition"
+    method="POST"
+>
+    <!-- Personal Information Section -->
+    <h3 class="text-xl font-bold mb-4 text-indigo">Personal Information:</h3>
+
     <div class="mb-4 flex flex-col">
-        <label for="fullName" class="mb-2 pl-3 text-sm">Full Name: </label>
+        <label for="fullName" class="mb-2 pl-3 text-sm"
+            >Full Legal Name (As it appears on your birth records)</label
+        >
         <input
             id="fullName"
             required
@@ -241,120 +133,312 @@ import star from "@assets/icons/star.svg";
             name="Full Name"
         />
     </div>
+
     <div class="mb-4 flex flex-col">
-        <label for="fullName" class="mb-2 pl-3 text-sm">Email:</label>
+        <label for="dob" class="mb-2 pl-3 text-sm">Date of Birth</label>
         <input
-            type="email"
-            placeholder="example@email.com"
+            id="dob"
             required
-            name="Email"
-            id="email"
+            type="date"
             class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Date of Birth"
         />
     </div>
 
-    <fieldset class="flex flex-col">
-        <legend class="mb-2 text-sm pl-3 hidden">Address: </legend>
-
-        <div class="mb-4 flex flex-col">
-            <label for="location" class="mb-2 pl-3 text-sm">Location:</label>
-            <select
-                id="location"
-                name="location"
-                class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
-                required
-            >
-                <option value="-1">Select Country</option>
-                <option value="usa">USA</option>
-                <option value="international">International</option>
-            </select>
-        </div>
-        {/*USA Options */}
-        <div id="usa div" class="hidden">
-            <div class="w-full flex flex-col mb-4">
-                <label class="mb-2 pl-3 text-sm" for="state">State</label>
-
-                <select
-                    name="State"
-                    class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
-                >
-                    <option value="-1">Select State</option>
-                    {
-                        states.map((state) => {
-                            return (
-                                <option value={state.state}>
-                                    {state.state}
-                                </option>
-                            );
-                        })
-                    }
-                    <option value="Other">Other</option></select
-                >
-            </div>
-        </div>
-
-        {/*International Options */}
-        <div id="international div" class="hidden">
-            <div class="w-full flex flex-col mb-4">
-                <label class="mb-2 pl-3 text-sm" for="country">Country</label>
-
-                <select
-                    id="country"
-                    name="Country"
-                    class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
-                >
-                    <option value="-1">Select Country</option>
-                    {
-                        countries.map((country) => {
-                            return (
-                                <option value={country.name.common}>
-                                    {country.name.common}
-                                </option>
-                            );
-                        })
-                    }
-                    <option value="Other">Other</option></select
-                >
-            </div>
-        </div>
-    </fieldset>
-    <div class="w-full flex flex-col mb-4">
-        <label class="mb-2 pl-3 text-sm" for="country">Inquiry Type</label>
-
+    <div class="mb-4 flex flex-col">
+        <label for="gender" class="mb-2 pl-3 text-sm">Gender</label>
         <select
-            id="country"
-            name="Country"
+            id="gender"
+            name="Gender"
+            required
             class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
         >
-            <option value="-1">Select one...</option>
-            <option value="Inquiry">Inquiry</option>
-            <option value="Other">Other</option></select
-        >
+            <option value="">Select one...</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Non-binary">Non-binary</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+        </select>
     </div>
 
     <div class="mb-4 flex flex-col">
-        <label for="message" class="mb-2 pl-3 text-sm">Your message:</label>
-        <textarea
-            name="message"
-            id="message"
-            placeholder="I'm interested in..."
-            class="rounded-3xl h-40 py-3 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
-        ></textarea>
+        <label for="nationality" class="mb-2 pl-3 text-sm"
+            >Nationality/Citizenship</label
+        >
+        <input
+            id="nationality"
+            type="text"
+            placeholder="e.g., American"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Nationality"
+        />
     </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="address" class="mb-2 pl-3 text-sm">Current Address</label>
+        <input
+            id="address"
+            type="text"
+            placeholder="123 Main St, City, State, Zip"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Address"
+        />
+    </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="phone" class="mb-2 pl-3 text-sm">Phone Number</label>
+        <input
+            id="phone"
+            type="tel"
+            placeholder="000-000-0000"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Phone"
+            required
+        />
+    </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="email" class="mb-2 pl-3 text-sm"
+            >Email Address (valid email address where we can reach you)</label
+        >
+        <input
+            id="email"
+            type="email"
+            placeholder="example@email.com"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Email"
+            required
+        />
+    </div>
+
+    <!-- Talent Information Section -->
+    <h3 class="text-xl font-bold mb-4 mt-8 text-indigo">Talent Information:</h3>
+
+    <div class="mb-4 flex flex-col">
+        <label for="talentCategory" class="mb-2 pl-3 text-sm"
+            >Category of Talent (Please select the category you are auditioning
+            for)</label
+        >
+        <select
+            id="talentCategory"
+            name="Talent Category"
+            required
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+        >
+            <option value="">Select one...</option>
+            {
+                talentCategories.map((category) => (
+                    <option value={category}>{category}</option>
+                ))
+            }
+        </select>
+    </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="performanceTitle" class="mb-2 pl-3 text-sm"
+            >Performance Title (Optional)</label
+        >
+        <input
+            id="performanceTitle"
+            type="text"
+            placeholder="Title of your performance"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Performance Title"
+        />
+    </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="videoLink" class="mb-2 pl-3 text-sm"
+            >Talent Video Link (YouTube, Vimeo, or other video platform)</label
+        >
+        <input
+            id="videoLink"
+            type="url"
+            placeholder="https://www.youtube.com/watch?v=..."
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Video Link"
+        />
+    </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="talentDescription" class="mb-2 pl-3 text-sm"
+            >Brief Description of Your Talent Performance (limited, up to 150
+            words)</label
+        >
+        <textarea
+            id="talentDescription"
+            name="Talent Description"
+            placeholder="Type your message..."
+            class="rounded-3xl h-40 py-3 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            maxlength="1000"></textarea>
+    </div>
+
+    <!-- Additional Information Section -->
+    <h3 class="text-xl font-bold mb-4 mt-8 text-indigo">
+        Additional Information:
+    </h3>
+
+    <div class="mb-4 flex flex-col">
+        <label for="previousParticipation" class="mb-2 pl-3 text-sm"
+            >Have You Previously Participated in WCOPA?</label
+        >
+        <select
+            id="previousParticipation"
+            name="Previous Participation"
+            required
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+        >
+            <option value="">Select one...</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="assistanceNeeded" class="mb-2 pl-3 text-sm"
+            >Do You Need Assistance with the Audition Process? (e.g., Uploading
+            video, filling out the form)</label
+        >
+        <select
+            id="assistanceNeeded"
+            name="Assistance Needed"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+        >
+            <option value="">Select one...</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div class="mb-4 flex flex-col">
+        <label for="nationalDirector" class="mb-2 pl-3 text-sm"
+            >Country National Director (If known)</label
+        >
+        <select
+            id="nationalDirector"
+            name="National Director"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+        >
+            <option value="">Select one...</option>
+            <option value="Unknown">Unknown/Not Listed</option>
+            {
+                sortedDirectors.map((director) => (
+                    <option value={director.name}>{director.name}</option>
+                ))
+            }
+        </select>
+    </div>
+
+    <!-- Parent/Guardian Information Section (if under 18) -->
+    <div id="guardianSection">
+        <h3 class="text-xl font-bold mb-4 mt-8 text-indigo">
+            Parent/Guardian Information (If under 18):
+        </h3>
+
+        <div class="mb-4 flex flex-col">
+            <label for="guardianName" class="mb-2 pl-3 text-sm"
+                >Full Name of Parent/Guardian</label
+            >
+            <input
+                id="guardianName"
+                type="text"
+                placeholder="Parent/Guardian Name"
+                class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+                name="Guardian Name"
+            />
+        </div>
+
+        <div class="mb-4 flex flex-col">
+            <label for="guardianEmail" class="mb-2 pl-3 text-sm"
+                >Parent/Guardian Email Address</label
+            >
+            <input
+                id="guardianEmail"
+                type="email"
+                placeholder="parent@example.com"
+                class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+                name="Guardian Email"
+            />
+        </div>
+
+        <div class="mb-4 flex flex-col">
+            <label for="guardianPhone" class="mb-2 pl-3 text-sm"
+                >Parent/Guardian Phone Number</label
+            >
+            <input
+                id="guardianPhone"
+                type="tel"
+                placeholder="000-000-0000"
+                class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+                name="Guardian Phone"
+            />
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Section -->
+    <div class="mt-8 mb-4">
+        <h3 class="text-xl font-bold mb-4 text-indigo">Terms & Conditions</h3>
+
+        <p class="mb-4">
+            I understand that by submitting this form, my video will be reviewed
+            by WCOPA's selection committee and/or National Director. I confirm
+            that all the information provided is accurate and complete.
+        </p>
+
+        <div class="flex items-start mb-4">
+            <input
+                type="checkbox"
+                id="termsAgree"
+                name="Terms Agreement"
+                required
+                class="mt-1 mr-2"
+            />
+            <label for="termsAgree" class="text-sm">
+                I agree to the Terms of Submission.
+            </label>
+        </div>
+    </div>
+
+    <!-- Consent for Minors Section -->
+    <div id="consentSection" class="mb-6">
+        <h3 class="text-xl font-bold mb-4 text-indigo">
+            Consent for Minors (If under 18)
+        </h3>
+
+        <p class="mb-4">
+            By checking this box, the parent or guardian listed above provides
+            consent for the minor to participate in WCOPA and agrees to the
+            terms listed above.
+        </p>
+
+        <div class="flex items-start mb-4">
+            <input
+                type="checkbox"
+                id="parentConsent"
+                name="Parent Consent"
+                class="mt-1 mr-2"
+            />
+            <label for="parentConsent" class="text-sm">
+                I, the parent/guardian, consent to the participation of my
+                child.
+            </label>
+        </div>
+    </div>
+
+    <p class="mb-6 text-sm italic">
+        Once submitted, your audition will be reviewed by the WCOPA selection
+        committee and you will be notified of your acceptance via email.
+    </p>
 
     <button
         type="submit"
-        class:list={[
-            "relative overflow-hidden mt-6  group button font-body font-semibold capitalize inline-flex bg-dark-1 text-white hover:text-dark-1",
-        ]}
+        class="relative overflow-hidden mt-6 group button font-body font-semibold capitalize inline-flex bg-dark-1 text-white hover:text-dark-1"
     >
-        <span class:list={["button-decor bg-yellow"]}></span>
+        <span class="button-decor bg-yellow"></span>
         <div class="button-content">
-            <div class:list={[" py-2.5 bg-yellow px-3"]}>
+            <div class="py-2.5 bg-yellow px-3">
                 <div
-                    class:list={[
-                        " h-6 w-6 bg-dark-1 relative group-hover:rotate-90 transition-transform duration-300 rounded-full",
-                    ]}
+                    class="h-6 w-6 bg-dark-1 relative group-hover:rotate-90 transition-transform duration-300 rounded-full"
                 >
                     <Image
                         src={star}
@@ -364,45 +448,91 @@ import star from "@assets/icons/star.svg";
                 </div>
             </div>
             <div class="flex justify-center items-center">
-                <span class="button__text">Submit Form</span>
+                <span class="button__text">Submit Audition</span>
             </div>
         </div>
     </button>
 </form>
 
 <script>
-    const countrySelector = document.getElementById("location");
-    const sourceSelector = document.getElementById("source");
-    countrySelector.addEventListener("change", showCountryChoise);
-    sourceSelector.addEventListener("change", showSourceChoise);
+    const form = document.querySelector("#audition-form") as HTMLFormElement;
 
-    function showCountryChoise(e) {
-        switch (e.target.value) {
-            case "usa":
-                document.getElementById("usa div").classList.remove("hidden");
-                document
-                    .getElementById("international div")
-                    .classList.add("hidden");
+    // Check if user is under 18 to show/hide guardian and consent sections
+    const dobInput = document.getElementById("dob") as HTMLInputElement;
+    if (dobInput) {
+        dobInput.addEventListener("change", function (this: HTMLInputElement) {
+            const birthDate = new Date(this.value);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
 
-                break;
-            case "international":
-                document
-                    .getElementById("international div")
-                    .classList.remove("hidden");
-                document.getElementById("usa div").classList.add("hidden");
+            if (
+                monthDiff < 0 ||
+                (monthDiff === 0 && today.getDate() < birthDate.getDate())
+            ) {
+                age--;
+            }
 
-                break;
-            default:
-                break;
-        }
+            const guardianSection = document.getElementById(
+                "guardianSection",
+            ) as HTMLElement;
+            const consentSection = document.getElementById(
+                "consentSection",
+            ) as HTMLElement;
+            const parentConsent = document.getElementById(
+                "parentConsent",
+            ) as HTMLInputElement;
+
+            if (age < 18) {
+                guardianSection.classList.remove("hidden");
+                consentSection.classList.remove("hidden");
+                parentConsent.required = true;
+            } else {
+                guardianSection.classList.add("hidden");
+                consentSection.classList.add("hidden");
+                parentConsent.required = false;
+            }
+        });
     }
 
-    function showSourceChoise(e) {
-        if (e.target.value === "Other") {
-            document.getElementById("otherText").classList.remove("hidden");
-        } else {
-            document.getElementById("otherText").classList.add("hidden");
-        }
+    // Add form submission handler
+    if (form) {
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            console.log("Audition form submission started");
+
+            try {
+                const formData = new FormData(form);
+                console.log("FormData created", [...formData.entries()]);
+
+                const response = await fetch("/api/audition", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                console.log(
+                    "Response received:",
+                    response.status,
+                    response.statusText,
+                );
+
+                if (response.ok) {
+                    console.log("Redirecting to thank-you page");
+                    form.reset();
+                    window.location.href = "/thank-you";
+                } else {
+                    const data = await response.json();
+                    console.error("Error response:", data);
+                    alert(
+                        data.message ||
+                            "Failed to submit audition. Please try again.",
+                    );
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred. Please try again later.");
+            }
+        });
     }
 </script>
 
@@ -414,7 +544,6 @@ import star from "@assets/icons/star.svg";
         border-radius: 1.5rem;
         overflow: hidden;
         position: relative;
-
         border: none;
         cursor: pointer;
     }
@@ -422,7 +551,6 @@ import star from "@assets/icons/star.svg";
     .button-decor {
         position: absolute;
         inset: 0;
-
         transform: translateX(-85%);
         transition: transform 0.3s;
         z-index: 0;
@@ -436,25 +564,21 @@ import star from "@assets/icons/star.svg";
         overflow: hidden;
     }
 
-    .button__icon {
-        width: 48px;
-        height: 40px;
-        background-color: var(--clr);
-        display: grid;
-        place-items: center;
-    }
-
     .button__text {
-        display: inline-block;
-        transition: color 0.2s;
-        padding: 2px 1.5rem 2px;
-        padding-left: 0.75rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        display: block;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        text-align: center;
+        transition: transform 0.3s ease;
     }
 
     .button:hover .button-decor {
-        transform: translate(0);
+        transform: translateX(0);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .button:hover .button__text {
+        transform: translateX(0);
+        color: #1a1a1a;
     }
 </style>

@@ -192,3 +192,5 @@ export const settingsQuery = groq`*[_type == "settings"][0]{...,
 'footerLegal':footerLegal[]->{title, 'slug':slug.current, _id},
 
 }`;
+
+export const nationalDirectorsQuery = groq`*[_type == "nationalDirectors"][0]{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},}`;
