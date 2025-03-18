@@ -3,17 +3,24 @@ import Container from "./Container.astro";
 import { Image } from "astro:assets";
 import bg from "@assets/newsletter-bg.png";
 import decor from "@assets/newsletter-decoration.png";
+import star from "@assets/icons/star.svg";
 ---
 
-<section id="newsletter" class="py-10 pb-64 bg-indigo relative text-white">
+<section id="newsletter" class="py-10 pb-64 bg-indigo relative">
   <Image
     src={bg}
     alt=""
     quality={100}
     class="absolute w-full h-full inset-0 object-cover object-bottom/20"
   />
-  <Container classes="grid sm:grid-cols-2 gap-8 items-center relative z-10">
-    <div>
+  <Image
+    src={decor}
+    alt=""
+    quality={100}
+    class="w-full max-h-30 absolute bottom-0 left-0 z-10"
+  />
+  <Container classes="grid sm:grid-cols-2 gap-8  relative z-10">
+    <div class="text-white">
       <span
         class="block font-display font-bold leading-none mb-1 text-display-lg"
         >Join our newsletter</span
@@ -22,12 +29,145 @@ import decor from "@assets/newsletter-decoration.png";
         >Stay connected with WCOPA through our monthly newsletter.</span
       >
     </div>
-    <div class="bg-blue-700 w-full h-40">Form</div>
+    <div class="w-full h-40">
+      <form
+        action="https://wcopa.us12.list-manage.com/subscribe/post?u=8bde7173a1f21b3e9d5de3d25&id=08ab6df5ee&f_id=00d5f4e6f0"
+        method="post"
+        id="mc-embedded-subscribe-form"
+        name="mc-embedded-subscribe-form"
+        target="_blank"
+        class="validate"
+      >
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label for="mce-FNAME" class="mb-2 pl-3 block text-sm"
+              >First Name
+            </label>
+            <input
+              type="text"
+              name="FNAME"
+              required
+              placeholder="John Smith"
+              class="rounded-full w-full h-12 px-3 border-1 text-dark-2 bg-offwhite border-gray-1 focus:border-2 focus:border-indigo"
+              id="mce-FNAME"
+              value=""
+            />
+          </div>
+
+          <div class="mc-field-group">
+            <label for="mce-EMAIL" class="mb-2 pl-3 block text-sm"
+              >Email Address <span class="asterisk">*</span></label
+            ><input
+              type="email"
+              name="EMAIL"
+              class="rounded-full w-full h-12 px-3 bg-offwhite border-1 text-dark-2 border-gray-1 focus:border-2 focus:border-indigo"
+              id="mce-EMAIL"
+              value=""
+              required=""
+              placeholder="john.smith@example.com"
+            />
+          </div>
+
+          <div aria-hidden="true" style="position: absolute; left: -5000px;">
+            <input
+              type="text"
+              name="b_8bde7173a1f21b3e9d5de3d25_08ab6df5ee"
+              tabindex="-1"
+              value=""
+            />
+          </div>
+          <div aria-hidden="true" style="position: absolute; left: -5000px;">
+            <input
+              type="text"
+              name="b_8bde7173a1f21b3e9d5de3d25_08ab6df5ee"
+              tabindex="-1"
+              value=""
+            />
+          </div>
+        </div>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display: none;">
+          </div>
+          <div
+            class="response"
+            id="mce-success-response"
+            style="display: none;"
+          >
+          </div>
+        </div>
+        <div class="clear">
+          <button
+            type="submit"
+            id="mc-embedded-subscribe"
+            class="relative overflow-hidden mt-6 group button font-body font-semibold capitalize inline-flex bg-dark-1 text-white hover:text-dark-1"
+          >
+            <span class="button-decor bg-yellow"></span>
+            <div class="button-content">
+              <div class="py-2.5 bg-yellow px-3">
+                <div
+                  class="h-6 w-6 bg-dark-1 relative group-hover:rotate-90 transition-transform duration-300 rounded-full"
+                >
+                  <Image
+                    src={star}
+                    alt="star-icon"
+                    class="w-4 h-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  />
+                </div>
+              </div>
+              <div class="flex justify-center items-center">
+                <span class="button__text">Submit</span>
+              </div>
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
   </Container>
-  <Image
-    src={decor}
-    alt=""
-    quality={100}
-    class="w-full max-h-30 absolute bottom-0 left-0 z-10"
-  />
 </section>
+
+<style>
+  /* From Uiverse.io by Creatlydev */
+  .button {
+    text-decoration: none;
+    line-height: 1;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    cursor: pointer;
+  }
+
+  .button-decor {
+    position: absolute;
+    inset: 0;
+    transform: translateX(-85%);
+    transition: transform 0.3s;
+    z-index: 0;
+  }
+
+  .button-content {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .button__text {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .button:hover .button-decor {
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .button:hover .button__text {
+    transform: translateX(0);
+    color: #1a1a1a;
+  }
+</style>
