@@ -1,4 +1,8 @@
 import nodemailer from 'nodemailer';
+import { loadEnv } from 'vite';
+
+// Load environment variables
+const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 export async function POST({ request }) {
     try {
@@ -15,12 +19,13 @@ export async function POST({ request }) {
         const country = data.get('Country');
 
         // Create a transporter using Mailtrap credentials
-        const transporter = nodemailer.createTransport({
-            host: "live.smtp.mailtrap.io",
-            port: 587,
+        var transporter = nodemailer.createTransport({
+            host: import.meta.env.SMTP_HOST || 'live.smtp.mailtrap.io',
+            port: import.meta.env.SMTP_PORT || 587,
+            secure: false, // upgrade later with STARTTLS
             auth: {
-                user: "api",
-                pass: "01365fdd022b9a296d8b9367470dc3a3"
+                user: import.meta.env.SMTP_USER || 'api',
+                pass: import.meta.env.SMTP_PASS
             }
         });
 
@@ -34,8 +39,8 @@ export async function POST({ request }) {
 
         // Email options
         const mailOptions = {
-            from: 'mailtrap@demomailtrap.com',
-            to: 'nenadvrtue@gmail.com',
+            from: import.meta.env.EMAIL_FROM || 'wcopa@portal.wcopa.com',
+            to: import.meta.env.EMAIL_TO || 'nenadvrtue@gmail.com, hello@vrtuedigital.com, nenad@thecreativelabs.io',
             replyTo: email,
             subject: 'New Contact Form Submission',
             text: `
@@ -59,13 +64,12 @@ export async function POST({ request }) {
         // Send email
         await transporter.sendMail(mailOptions);
 
-        return new Response(JSON.stringify({
-            success: true,
-            message: 'Email sent successfully!'
-        }), {
-            status: 200,
+        console.log('Email sent successfully, returning response');
+
+        return new Response(null, {
+            status: 303, // See Other - best status code for POST-redirect-GET pattern
             headers: {
-                'Content-Type': 'application/json'
+                'Location': '/thank-you'
             }
         });
 
@@ -74,7 +78,8 @@ export async function POST({ request }) {
 
         return new Response(JSON.stringify({
             success: false,
-            message: 'Failed to send email'
+            message: 'Failed to send email',
+            alert: 'Failed to send email'
         }), {
             status: 500,
             headers: {

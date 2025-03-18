@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+---
+
+<BaseLayout title="Thank You | WCOPA">
+    <div class="container mx-auto py-20 px-4 h-[80vh] md:px-0">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="mb-8 inline-block">
+                <div
+                    class="relative overflow-hidden group button font-body font-semibold capitalize inline-flex bg-dark-1 text-white"
+                >
+                    <span class="button-decor bg-yellow"></span>
+                </div>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Thank You!</h1>
+            <p class="text-lg xl:text-xl mb-8">
+                Your message has been sent successfully. We appreciate your
+                interest and will get back to you shortly.
+            </p>
+
+            <a
+                href="/"
+                class="inline-block relative overflow-hidden group button font-body font-semibold capitalize bg-dark-1 text-white hover:text-dark-1"
+            >
+                <span class="button-decor bg-yellow"></span>
+                <div class="button-content">
+                    <div class="py-2.5 bg-yellow px-3">
+                        <div
+                            class="h-6 w-6 bg-dark-1 relative group-hover:rotate-90 transition-transform duration-300 rounded-full"
+                        >
+                            <Image
+                                src={star}
+                                alt="star-icon"
+                                class="w-4 h-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                            />
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <span class="button__text">Return to Home</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    /* From Uiverse.io by Creatlydev */
+    .button {
+        text-decoration: none;
+        line-height: 1;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        position: relative;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button-decor {
+        position: absolute;
+        inset: 0;
+        transform: translateX(-85%);
+    }
+
+    .button-content {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .button__text {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .button:hover .button-decor {
+        transform: translateX(0);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .button:hover .button__text {
+        transform: translateX(0);
+        color: #1a1a1a;
+    }
+</style>

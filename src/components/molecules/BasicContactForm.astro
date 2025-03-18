@@ -229,7 +229,12 @@ import { Image } from "astro:assets";
 import star from "@assets/icons/star.svg";
 ---
 
-<form class="w-full text-sm font-medium" action="/api/contact" method="POST">
+<form
+    id="contact-form"
+    class="w-full text-sm font-medium"
+    action="/api/contact"
+    method="POST"
+>
     <div class="mb-4 flex flex-col">
         <label for="fullName" class="mb-2 pl-3 text-sm">Full Name: </label>
         <input
@@ -371,6 +376,7 @@ import star from "@assets/icons/star.svg";
 </form>
 
 <script>
+    const form = document.querySelector("#contact-form") as HTMLFormElement;
     const countrySelector = document.getElementById("location");
     const sourceSelector = document.getElementById("source");
     if (countrySelector) {
@@ -408,6 +414,46 @@ import star from "@assets/icons/star.svg";
         } else {
             document.getElementById("otherText").classList.add("hidden");
         }
+    }
+
+    // Add form submission handler
+    if (form) {
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            console.log("Form submission started");
+
+            try {
+                const formData = new FormData(form);
+                console.log("FormData created", [...formData.entries()]);
+
+                const response = await fetch("/api/contact", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                console.log(
+                    "Response received:",
+                    response.status,
+                    response.statusText,
+                );
+
+                if (response.ok) {
+                    console.log("Redirecting to thank-you page");
+                    form.reset();
+                    window.location.href = "/thank-you";
+                } else {
+                    const data = await response.json();
+                    console.error("Error response:", data);
+                    alert(
+                        data.message ||
+                            "Failed to send email. Please try again.",
+                    );
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred. Please try again later.");
+            }
+        });
     }
 </script>
 
