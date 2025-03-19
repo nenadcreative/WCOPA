@@ -113,9 +113,9 @@ const DirectorsAccordion = ({ regions }) => {
                                                 </div>
 
                                             </div>
-                                            <div className="flex flex-wrap gap-2 p-5 bg-lavander mt-auto">{representing && representing.map((country, repIndex) => {
-                                                return <img className="w-7.5 h-5" key={`representing-flag-${country._id || country._key}-${regionIndex}-${directorIndex}-${repIndex}`} src={country.flag && urlForImage(country.flag).width(30).height(20).url()} alt={country.name} />
-                                            })}</div>
+                                            <div className="flex flex-wrap gap-2 p-5 bg-lavander mt-auto">{representing && representing.map((country, repIndex) => (
+                                                country.flag ? (<img className="w-7.5 h-5" key={`representing-flag-${country._id || country._key}-${regionIndex}-${directorIndex}-${repIndex}`} src={urlForImage(country.flag).width(30).height(20).url()} alt={country.name} />) : null
+                                            ))}</div>
                                         </article>
                                     })}
                                 </div>
