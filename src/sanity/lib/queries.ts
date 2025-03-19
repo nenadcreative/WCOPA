@@ -55,8 +55,8 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
 (_type=='homeMediaGrid')=>{...},
 
 }}`;
-export const pagesQuery = groq`*[_type == "page"]`;
-export const pageQuery = groq`*[_type=='page' && slug.current==$slug && category == 'none' || category == 'legal'][0]{...,content[]{
+export const pagesQuery = groq`*[_type == "page" && category == 'none' || category == 'legal' ]`;
+export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,content[]{
   (_type == 'hero')=>{
   ...
   },  

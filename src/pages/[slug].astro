@@ -20,14 +20,13 @@ export async function getStaticPaths() {
   });
 }
 
-const { params } = Astro;
-
 const { data: page } = await loadQuery<SanityDocument>({
   query: pageQuery,
-  params,
+  params: { slug: Astro.params.slug },
 });
 
-if (!page) return Astro.redirect("/404");
+console.log(page);
+if (!page || Object.keys(page).length === 0) return Astro.redirect("/404");
 ---
 
 <BaseLayout
