@@ -19,7 +19,7 @@ const { title, description, regions } = section;
             </div>
         </div>
         <div class="mt-6 xl:mt-14">
-            <DirectorsAccordion client:load regions={regions} />
+            {regions && <DirectorsAccordion client:load regions={regions} />}
         </div>
     </Container>
 </section>
