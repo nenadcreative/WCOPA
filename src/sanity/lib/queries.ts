@@ -13,7 +13,7 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
     'ctaLink':ctaLink{..., 
     'internalLink':internalLink->{slug, _type, category}}
   },
-  (_type == 'steps')=>{...},
+  (_type == 'steps')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category}}},
   (_type == 'centeredText')=>{...},
   (_type == 'centeredCard')=>{...},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
@@ -24,7 +24,8 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
      ...,
      'ctaLink': ctaLink{
      ...,'internalLink': internalLink->{slug, _type, category} }},
-  (_type=='videoTestimonials')=>{...},
+ (_type=='videoTestimonials')=>{...,'link': link{
+     ...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
      ...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
@@ -71,7 +72,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,co
     'ctaLink':ctaLink{..., 
     'internalLink':internalLink->{slug, _type, category}}
   },
-  (_type == 'steps')=>{...},
+  (_type == 'steps')=>{...,'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
   (_type == 'centeredText')=>{...},
   (_type == 'centeredCard')=>{...},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
@@ -82,7 +83,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,co
      ...,
      'ctaLink': ctaLink{
      ...,'internalLink': internalLink->{slug, _type, category} }},
-  (_type=='videoTestimonials')=>{...},
+  (_type=='videoTestimonials')=>{...,'link': link{
+     ...,'internalLink': internalLink->{slug, _type, category}} },
   (_type=='faqSection')=>{..., 'faqs':faqs[]->{...}, 'ctaLink': ctaLink{
      ...,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'internalLink': internalLink->{slug, _type, category} }},
