@@ -52,12 +52,13 @@ const CalendlyDialog = ({ buttonText = "Book Now", children }) => {
                     {children || buttonText}
                 </span>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[90vw] min-h-[50vh]">
+            <DialogContent className="max-w-[95vw] overflow-y-auto max-h-[70vh] px-0 sm:max-w-[90vw] min-h-[50vh]">
                 <div
                     ref={embedRef}
-                    className="tidycal-embed"
+                    className="tidycal-embed "
                     data-path="gwenwilson/30-minute-meeting"
                 ></div>
+
             </DialogContent>
         </Dialog>
     );
