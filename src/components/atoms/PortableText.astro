@@ -2,9 +2,14 @@
 import { PortableText as PortableTextInternal } from "astro-portabletext";
 const { portableText } = Astro.props;
 import PortableTextImage from "./PortableTextImage.astro";
+import PortableCalendar from "./PortableCalendar.astro";
+
 const components = {
   type: {
     image: PortableTextImage,
+  },
+  mark: {
+    calendlyPopUp: PortableCalendar,
   },
 };
 ---

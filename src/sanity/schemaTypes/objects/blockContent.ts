@@ -1,5 +1,6 @@
 // ./src/sanity/schemaTypes/blockContent.ts
 import { defineType, defineArrayMember } from "sanity";
+import { CalendarIcon } from '@sanity/icons'
 
 /**
  * This is the schema type for block content used in the post document type
@@ -56,7 +57,22 @@ export const blockContentType = defineType({
                     scheme: ["https", "http", "mailto", "tel"],
                   }),
               },
-
+            ],
+          },
+          {
+            title: "Calendly",
+            description: 'Select text to add a Calendly pop up. Make sure you also write text in Button Text field',
+            name: "calendlyPopUp",
+            type: "object",
+            icon: CalendarIcon,
+            fields: [
+              {
+                name: "buttonText",
+                title: "Button Text",
+                type: "string",
+                description: "Text to display for the Calendly link",
+                initialValue: "Schedule a Meeting",
+              },
             ],
           },
         ],
