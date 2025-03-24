@@ -227,7 +227,7 @@ const getVideoBackgroundClass = (index: number, variation: string) => {
                         <div class="mb-10 xl:mb-20">
                             <div
                                 class:list={[
-                                    "rounded-sm text-display-lg font-display flex justify-between items-center mb-6 py-3 px-8",
+                                    "rounded-sm text-display-lg font-display flex justify-between items-center mb-6 py-5 px-8",
                                     getVideoBackgroundClass(index, variation),
                                 ]}
                             >
@@ -236,9 +236,8 @@ const getVideoBackgroundClass = (index: number, variation: string) => {
                                         class:list={[
                                             "font-semibold leading-none py-0 block",
                                             videoGallery.description &&
-                                                "text-display-md",
-                                            variation === "white" &&
-                                                " text-indigo",
+                                                "text-display-md mb-2",
+                                            
                                         ]}
                                     >
                                         <PortableTextTitle
@@ -307,9 +306,21 @@ const getVideoBackgroundClass = (index: number, variation: string) => {
                                                         inferSize
                                                         class="w-full h-full  object-cover"
                                                     />
-                                                    <div class="text-white relative z-10">
-                                                        Video Title
-                                                    </div>
+                                                </div>
+                                                <div
+                                                    class:list={[
+                                                        "text-white px-3 py-2 w-full absolute bottom-0 left-0 z-10 text-left",
+                                                        index % 2 === 0 &&
+                                                            "bg-purple ",
+                                                        index % 2 !== 0 &&
+                                                            "bg-indigo",
+                                                    ]}
+                                                >
+                                                    <PortableTextTitle
+                                                        portableText={
+                                                            videoGallery?.title
+                                                        }
+                                                    />
                                                 </div>
                                             </VideoDialog>
                                         </div>
