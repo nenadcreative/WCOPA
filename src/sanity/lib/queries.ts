@@ -31,7 +31,8 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
      ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
-(_type=='cardsFeature2')=>{..., },
+(_type=='cardsFeature2')=>{..., 'cards':cards[]{...,'ctaLink': ctaLink{
+     ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } } },
 (_type=='cardsFeature1')=>{...,'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } },
 (_type=='insights')=>{...},
 (_type=='successStories')=>{...},
@@ -89,7 +90,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,co
      ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
-(_type=='cardsFeature2')=>{..., },
+(_type=='cardsFeature2')=>{..., 'cards':cards[]{...,'ctaLink': ctaLink{
+     ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } } },
 (_type=='cardsFeature1')=>{...,'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } },
 (_type=='insights')=>{...},
 (_type=='successStories')=>{...},
@@ -148,7 +150,8 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
      ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='cta2')=>{..., 'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type=='scheduleSection')=>{..., 'scheduleItems':scheduleItems[]->{...}},
-(_type=='cardsFeature2')=>{..., },
+(_type=='cardsFeature2')=>{..., 'cards':cards[]{...,'ctaLink': ctaLink{
+     ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } } },
 (_type=='cardsFeature1')=>{...,'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } },
 (_type=='insights')=>{...},
 (_type=='successStories')=>{...},
