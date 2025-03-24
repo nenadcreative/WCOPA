@@ -10,6 +10,7 @@ const {
   url,
   blank,
   hide,
+  fileUrl,
 } = buttonLink;
 
 const homeType = internalLink?._type === "home";
@@ -110,6 +111,65 @@ const categoryUrl = (() => {
       <a
         href={homeType ? "/" : categoryUrl}
         target="_self"
+        class:list={[
+          "relative overflow-hidden  group button font-body font-semibold capitalize inline-flex",
+          variation === "primary-dark" &&
+            "bg-dark-1 text-white hover:text-dark-1",
+          variation === "primary-light-indigo" &&
+            "bg-white text-dark-1 hover:text-white",
+          variation === "primary-light-yellow" && "bg-white text-dark-1 ",
+          variation === "secondary-dark" && " text-dark-1 hover:text-indigo",
+          variation === "secondary-light" && "text-white hover:text-yellow",
+          variation === "nav" && "text-white bg-dark-1 hover:text-yellow",
+        ]}
+      >
+        <span
+          class:list={[
+            "button-decor ",
+            variation === "primary-dark" && "bg-yellow",
+            variation === "primary-light-indigo" && "bg-indigo",
+            variation === "primary-light-yellow" && "bg-yellow",
+            variation === "nav" && "bg-indigo",
+          ]}
+        />
+        <div class="button-content">
+          <div
+            class:list={[
+              " py-2.5",
+              variation === "primary-dark" && "bg-yellow px-3",
+              variation === "primary-light-indigo" && "bg-indigo px-3",
+              variation === "primary-light-yellow" && "bg-yellow px-3",
+              variation === "secondary-dark" && "px-0",
+              variation === "secondary-light" && "px-0",
+              variation === "nav" && "px-3 bg-indigo",
+            ]}
+          >
+            <div
+              class:list={[
+                " h-6 w-6 relative flex justify-center items-center group-hover:rotate-360 transition-transform duration-300 rounded-full",
+                variation === "primary-dark" && "bg-dark-1",
+                variation === "primary-light-indigo" && "bg-white",
+                variation === "primary-light-yellow" && "bg-dark-1",
+                variation === "secondary-dark" && "bg-indigo",
+                variation === "secondary-light" && "bg-white",
+                variation === "nav" && "bg-dark-1",
+              ]}
+            >
+              <Image
+                src={star}
+                alt="star-icon"
+                class="w-4 h-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              />
+            </div>
+          </div>
+          <div class="flex justify-center items-center">
+            <span class="button__text">{linkText ? linkText : "Button"}</span>
+          </div>
+        </div>
+      </a>
+    ) : linkType === "file" ? (
+      <a
+        href={`${fileUrl}?dl=`}
         class:list={[
           "relative overflow-hidden  group button font-body font-semibold capitalize inline-flex",
           variation === "primary-dark" &&

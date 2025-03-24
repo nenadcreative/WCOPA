@@ -30,10 +30,11 @@ export const linkType = defineType({
           { title: "None", value: "none" },
           { title: "External", value: "external" },
           { title: "Internal", value: "internal" },
+          { title: "File", value: "file" },
         ],
         layout: "radio",
       },
-      initialValue:'none'
+      initialValue: 'none'
     }),
     defineField({
       title: "URL",
@@ -45,6 +46,12 @@ export const linkType = defineType({
           allowRelative: true,
           scheme: ["https", "http", "mailto", "tel"],
         }),
+    }),
+    defineField({
+      title: "File",
+      name: "file",
+      type: "file",
+      hidden: ({ parent }) => parent?.linkType !== "file", // hidden if link type is not file
     }),
     defineField({
       title: "Open in new tab?",
