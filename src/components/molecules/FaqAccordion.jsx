@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { PortableText } from "@portabletext/react";
 import { cn } from "@/lib/utils";
+import PortableTextTitle from "@components/atoms/PortableTextTitle.astro";
 
 const FaqAccordion = ({ faqs, variation }) => {
   return (
@@ -28,7 +29,8 @@ const FaqAccordion = ({ faqs, variation }) => {
             <AccordionTrigger className="text-sm cursor-pointer font-semibold text-left items-start data-[state=open]:text-indigo">
               <PortableText value={faq.question}></PortableText>
             </AccordionTrigger>
-            <AccordionContent className="text-dark-2 pl-7">
+            <AccordionContent className="text-dark-2 [&>p]:opacity-100 pl-7">
+
               <PortableText value={faq.answer}></PortableText>
             </AccordionContent>
           </AccordionItem>
