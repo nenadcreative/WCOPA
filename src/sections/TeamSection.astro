@@ -87,7 +87,7 @@ const { title, description, members, variation, layout } = section;
                                         class="w-full h-full"
                                     />
                                     {member?.occupation && (
-                                        <div class="absolute bottom-0 left-0 py-1 px-2  bg-indigo">
+                                        <div class="absolute bottom-0 left-0 py-1 px-2  bg-indigo text-white">
                                             <span class="text-sm font-semibold">
                                                 {member?.occupation}
                                             </span>
@@ -97,7 +97,7 @@ const { title, description, members, variation, layout } = section;
 
                                 <div
                                     class:list={[
-                                        "px-4 py-5 relative rounded-sm grow",
+                                        "px-4 py-5 relative rounded-sm flex flex-col grow",
                                         variation === "white" && "bg-offwhite",
                                         variation === "offwhite" && "bg-white",
                                         variation === "lavander" && "bg-white",
@@ -120,7 +120,7 @@ const { title, description, members, variation, layout } = section;
                                     <h3 class="text-indigo text-display-md font-semibold mb-2">
                                         {member?.name}
                                     </h3>
-                                    <div>
+                                    <div class="grow">
                                         <PortableText
                                             portableText={member?.bio}
                                         />

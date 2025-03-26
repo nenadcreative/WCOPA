@@ -8,7 +8,10 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
     'ctaLink':ctaLink{..., 'fileUrl': file.asset->url,
     'internalLink':internalLink->{slug, _type, category}}
   },
-  
+  (_type == 'homeMediaGrid')=>{
+    ...,
+    'list':list[]
+  },
   (_type == 'featuredList2')=>{
   ...,
     'ctaLink':ctaLink{..., 'fileUrl': file.asset->url,
@@ -16,7 +19,8 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
   },
   (_type == 'steps')=>{...,'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type == 'centeredText')=>{...},
-  (_type == 'centeredCard')=>{...},
+  (_type == 'centeredCard')=>{...,'card':card{...,'ctaLink': ctaLink{
+     ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } }},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'cta1')=>{...,
     'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'fileUrl': file.asset->url,'internalLink':internalLink->{slug, _type, category}}}
@@ -43,7 +47,8 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
 (_type=='sponsorTestimonials')=>{...},
 (_type=='consultatesSection')=>{...},
 (_type=='steps2')=>{...},
-(_type=='steps3')=>{...},
+(_type=='steps3')=>{..., 'link':link{..., 'fileUrl': file.asset->url,
+    'internalLink':internalLink->{slug, _type, category}}},
 (_type=='winners')=>{...},
 (_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='contactInfo')=>{...},
@@ -75,7 +80,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,co
   },
   (_type == 'steps')=>{...,'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type == 'centeredText')=>{...},
-  (_type == 'centeredCard')=>{...},
+  (_type == 'centeredCard')=>{...,'card':card{...,'ctaLink': ctaLink{
+     ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } }},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'cta1')=>{...,
     'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'fileUrl': file.asset->url,'internalLink':internalLink->{slug, _type, category}}}
@@ -102,7 +108,8 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,co
 (_type=='sponsorTestimonials')=>{...},
 (_type=='consultatesSection')=>{...},
 (_type=='steps2')=>{...},
-(_type=='steps3')=>{...},
+(_type=='steps3')=>{..., 'link':link{..., 'fileUrl': file.asset->url,
+    'internalLink':internalLink->{slug, _type, category}}},
 (_type=='winners')=>{...},
 (_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='contactInfo')=>{...},
@@ -135,7 +142,8 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
   },
   (_type == 'steps')=>{...,'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
   (_type == 'centeredText')=>{...},
-  (_type == 'centeredCard')=>{...},
+  (_type == 'centeredCard')=>{...,'card':card{...,'ctaLink': ctaLink{
+     ...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} } }},
   (_type == 'featuredEvents')=>{..., 'events':events[]->{...}},
   (_type == 'cta1')=>{...,
     'ctaCards':ctaCards[]{..., 'ctaLink':ctaLink{...,'fileUrl': file.asset->url,'internalLink':internalLink->{slug, _type, category}}}
@@ -162,7 +170,8 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
 (_type=='sponsorTestimonials')=>{...},
 (_type=='consultatesSection')=>{...},
 (_type=='steps2')=>{...},
-(_type=='steps3')=>{...},
+(_type=='steps3')=>{..., 'link':link{..., 'fileUrl': file.asset->url,
+    'internalLink':internalLink->{slug, _type, category}}},
 (_type=='winners')=>{...},
 (_type=='winners2')=>{..., 'ctaLinks':ctaLinks[]{...,'fileUrl': file.asset->url,'internalLink': internalLink->{slug, _type, category} }},
 (_type=='contactInfo')=>{...},

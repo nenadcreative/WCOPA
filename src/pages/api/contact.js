@@ -12,6 +12,7 @@ export async function POST({ request }) {
         const name = data.get('Full Name');
         const email = data.get('Email');
         const location = data.get('location');
+        const inquiryType = data.get('Inquiry Type');
         const message = data.get('message');
 
         // Additional fields based on location selection
@@ -56,6 +57,7 @@ export async function POST({ request }) {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>${locationInfo}</strong></p>
+        <p><strong>Inquiry Type:</strong> ${inquiryType}</p>
         <h3>Message:</h3>
         <p>${message}</p>
       `
