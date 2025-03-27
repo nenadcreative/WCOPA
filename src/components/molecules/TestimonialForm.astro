@@ -1,0 +1,261 @@
+---
+import { Image } from "astro:assets";
+import star from "@assets/icons/star.svg";
+---
+
+<h2
+    class="opacity-100 text-display-xl font-bold text-indigo mb-16 max-w-[800px] mx-auto"
+>
+    Testimonial submission form
+</h2>
+<form
+    id="testimonial-form"
+    class="w-full text-sm font-medium max-w-[800px] mx-auto"
+    action="/api/testimonial"
+    method="POST"
+    enctype="multipart/form-data"
+>
+    <div class="mb-4 flex flex-col">
+        <label for="fullName" class="mb-2 pl-3 text-sm"
+            >Full Legal Name (As it appears on your birth records):</label
+        >
+        <input
+            id="fullName"
+            required
+            type="text"
+            placeholder="John Smith"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Full Name"
+        />
+    </div>
+    <div class="mb-4 flex flex-col">
+        <label for="phoneNumber" class="mb-2 pl-3 text-sm">Phone Number:</label>
+        <input
+            id="phoneNumber"
+            required
+            type="text"
+            placeholder="000-000-0000"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+            name="Phone Number"
+        />
+    </div>
+    <div class="mb-4 flex flex-col">
+        <label for="fullName" class="mb-2 pl-3 text-sm"
+            >Email Address (A valid email address where we can reach you):</label
+        >
+        <input
+            type="email"
+            placeholder="example@email.com"
+            required
+            name="Email"
+            id="email"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+        />
+    </div>
+
+    <div class="w-full flex flex-col mb-4">
+        <label class="mb-2 pl-3 text-sm" for="Testimonial Type"
+            >Testimonial Type</label
+        >
+
+        <select
+            id="Testimonial Type"
+            name="Testimonial Type"
+            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+        >
+            <option value="-1">Select one...</option>
+            <option value="Hollywood professional"
+                >Hollywood professional</option
+            >
+            <option value="Participant">Participant</option>
+            <option value="Family member">Family member</option>
+            <option value="Other">Other</option></select
+        >
+    </div>
+    <!-- Add this file upload field before the submit button -->
+    <div class="mb-4 flex flex-col">
+        <label for="fileUpload" class="mb-2 pl-3 text-sm"
+            >Upload Photo or Video (optional):</label
+        >
+        <div class="relative">
+            <input
+                type="file"
+                id="fileUpload"
+                name="fileUpload"
+                accept="image/*,video/*"
+                class="opacity-0 absolute inset-0 w-full h-full cursor-pointer z-10"
+            />
+            <div
+                class="flex items-center border-1 border-gray-1 rounded-full h-12 px-3 overflow-hidden"
+            >
+                <button
+                    type="button"
+                    class="ml-auto bg-indigo text-white px-4 py-1 rounded-full text-xs"
+                    >Browse</button
+                >
+            </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-1 pl-3">
+            Maximum file size: 10MB. Supported formats: JPG, PNG, MP4, MOV
+        </p>
+    </div>
+
+    <button
+        type="submit"
+        class:list={[
+            "relative overflow-hidden mt-6  group button font-body font-semibold capitalize inline-flex bg-dark-1 text-white hover:text-dark-1",
+        ]}
+    >
+        <span class:list={["button-decor bg-yellow"]}></span>
+        <div class="button-content">
+            <div class:list={[" py-2.5 bg-yellow px-3"]}>
+                <div
+                    class:list={[
+                        " h-6 w-6 bg-dark-1 relative group-hover:rotate-90 transition-transform duration-300 rounded-full",
+                    ]}
+                >
+                    <Image
+                        src={star}
+                        alt="star-icon"
+                        class="w-4 h-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    />
+                </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <span class="button__text">Submit Testimonial</span>
+            </div>
+        </div>
+    </button>
+</form>
+
+<script>
+    const form = document.querySelector("#testimonial-form") as HTMLFormElement;
+
+    // Add file upload handling
+    const fileUpload = document.getElementById(
+        "fileUpload",
+    ) as HTMLInputElement;
+
+    const fileName = document.getElementById("fileName");
+
+    if (fileUpload && fileName) {
+        fileUpload.addEventListener("change", function () {
+            console.log("File selected:", fileUpload.files[0]);
+            if (fileUpload.files && fileUpload.files[0]) {
+                fileName.textContent =
+                    fileUpload.files[0].name +
+                    " (" +
+                    fileUpload.files[0].size +
+                    " bytes)";
+
+                // Check file size (limit to 10MB)
+                const fileSize = fileUpload.files[0].size;
+                const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+
+                if (fileSize > maxSize) {
+                    alert("File is too large. Maximum size is 10MB.");
+                    fileUpload.value = "";
+                    fileName.textContent = "No file selected";
+                }
+            } else {
+                fileName.textContent = "No file selected";
+            }
+        });
+    }
+
+    // Update form submission handler to use /api/testimonial endpoint
+    if (form) {
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            console.log("Form submission started");
+
+            try {
+                const formData = new FormData(form);
+                console.log("FormData created", [...formData.entries()]);
+
+                const response = await fetch("/api/testimonial", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                console.log(
+                    "Response received:",
+                    response.status,
+                    response.statusText,
+                );
+
+                if (response.ok) {
+                    console.log("Redirecting to thank-you page");
+                    form.reset();
+                    if (fileName) {
+                        fileName.textContent = "No file selected";
+                    }
+                    window.location.href = "/thank-you";
+                } else {
+                    const data = await response.json();
+                    console.error("Error response:", data);
+                    alert(
+                        data.message ||
+                            "Failed to send testimonial. Please try again.",
+                    );
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred. Please try again later.");
+            }
+        });
+    }
+</script>
+
+<style>
+    /* From Uiverse.io by Creatlydev */
+    .button {
+        text-decoration: none;
+        line-height: 1;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        position: relative;
+
+        border: none;
+        cursor: pointer;
+    }
+
+    .button-decor {
+        position: absolute;
+        inset: 0;
+
+        transform: translateX(-85%);
+        transition: transform 0.3s;
+        z-index: 0;
+    }
+
+    .button-content {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .button__icon {
+        width: 48px;
+        height: 40px;
+        background-color: var(--clr);
+        display: grid;
+        place-items: center;
+    }
+
+    .button__text {
+        display: inline-block;
+        transition: color 0.2s;
+        padding: 2px 1.5rem 2px;
+        padding-left: 0.75rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .button:hover .button-decor {
+        transform: translate(0);
+    }
+</style>

@@ -31,6 +31,7 @@ export const linkType = defineType({
           { title: "External", value: "external" },
           { title: "Internal", value: "internal" },
           { title: "File", value: "file" },
+          { title: "Form Pop Up", value: "popup" },
         ],
         layout: "radio",
       },
@@ -52,6 +53,19 @@ export const linkType = defineType({
       name: "file",
       type: "file",
       hidden: ({ parent }) => parent?.linkType !== "file", // hidden if link type is not file
+    }),
+    defineField({
+      title: "Pick Form",
+      name: "pickForm",
+      type: "string",
+      options: {
+        list: [
+          { title: "Testimonial Submission", value: "testimonial" },
+          { title: "Nomination", value: "nomination" },
+
+        ],
+      },
+      hidden: ({ parent }) => parent?.linkType !== "popup", // hidden if link type is not file
     }),
     defineField({
       title: "Open in new tab?",

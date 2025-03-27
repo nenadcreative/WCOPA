@@ -2,10 +2,14 @@
 const { buttonLink, variation } = Astro.props;
 import star from "@assets/icons/star.svg";
 import Image from "astro/components/Image.astro";
+import FormPop from "../atoms/FormPop";
+import TestimonialForm from "../molecules/TestimonialForm.astro";
+import NominationForm from "../molecules/NominationForm.astro";
 
 const {
   linkText = "Button",
   linkType = "internal",
+  pickForm,
   internalLink,
   url,
   blank,
@@ -226,6 +230,14 @@ const categoryUrl = (() => {
           </div>
         </div>
       </a>
+    ) : linkType === "popup" && pickForm === "testimonial" ? (
+      <FormPop buttonText={linkText} variation={variation} client:load>
+        <TestimonialForm />
+      </FormPop>
+    ) : linkType === "popup" && pickForm === "nomination" ? (
+      <FormPop buttonText={linkText} variation={variation} client:load>
+        <NominationForm />
+      </FormPop>
     ) : null)
 }
 
