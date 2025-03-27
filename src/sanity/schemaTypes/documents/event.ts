@@ -42,5 +42,11 @@ export default defineType({
       type: "image",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'pdf',
+      title: 'PDF',
+      type: 'file',
+
+    })
   ],
 });

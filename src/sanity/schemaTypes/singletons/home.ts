@@ -64,6 +64,7 @@ export const homeType = defineType({
         { type: 'ageDivisions' },
         { type: 'tableSection' },
         { type: 'homeMediaGrid' },
+        { type: 'instagram' }
 
       ],
       options: {
@@ -101,6 +102,7 @@ export const homeType = defineType({
                 "mediaSection",
                 "scheduleSection",
                 "gallery",
+                "instagram"
               ],
             },
           ],

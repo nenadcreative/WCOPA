@@ -61,6 +61,7 @@ export const homeQuery = groq`*[_type == "home"][0]{..., content[]{
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
 (_type=='fullContent')=>{...},
+(_type=='instagram')=>{...},
 },}`;
 export const pagesQuery = groq`*[_type == "page" && category == 'none' || category == 'legal' ]`;
 export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,content[]{
@@ -122,6 +123,7 @@ export const pageQuery = groq`*[_type=='page' && slug.current==$slug ][0]{...,co
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
 (_type=='fullContent')=>{...},
+(_type=='instagram')=>{...},
 },
 }`;
 
@@ -134,7 +136,7 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
     'ctaLink':ctaLink{..., 'fileUrl': file.asset->url,
     'internalLink':internalLink->{slug, _type, category}}
   },
-  
+  (_type == 'allEvents')=>{...},
   (_type == 'featuredList2')=>{
   ...,
     'ctaLink':ctaLink{..., 'fileUrl': file.asset->url,
@@ -184,6 +186,7 @@ export const categoryPageQuery = groq`*[_type=='page' && slug.current==$slug && 
 (_type=='ageDivisions')=>{...},
 (_type=='tableSection')=>{...},
 (_type=='fullContent')=>{...},
+(_type=='instagram')=>{...},
 },
 }`;
 
@@ -207,3 +210,4 @@ export const settingsQuery = groq`*[_type == "settings"][0]{...,
 }`;
 
 export const nationalDirectorsQuery = groq`*[_type == "nationalDirectors"][0]{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},}`;
+export const eventsQuery = groq`*[_type == "event"]{..., "pdfURL": pdf.asset->url}`;

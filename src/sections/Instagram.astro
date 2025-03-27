@@ -1,0 +1,26 @@
+---
+import Container from "@/components/global/Container.astro";
+import PortableTextTitle from "@/components/atoms/PortableTextTitle.astro";
+const { section } = Astro.props;
+const { title } = section;
+---
+
+<section class="py-16">
+    <Container>
+        <h2
+            class="text-center max-w-[800px] mx-auto [&>strong]:font-bold [&>strong]:text-indigo mb-8"
+        >
+            <PortableTextTitle portableText={title} />
+        </h2>
+        <behold-widget feed-id="sjPeQesh87u1olben0d8"></behold-widget>
+        <script>
+            (() => {
+                const d = document,
+                    s = d.createElement("script");
+                s.type = "module";
+                s.src = "https://w.behold.so/widget.js";
+                d.head.append(s);
+            })();
+        </script>
+    </Container>
+</section>

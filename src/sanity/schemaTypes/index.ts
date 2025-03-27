@@ -89,6 +89,8 @@ import { ageDivisionsType } from './sections/ageDivisions';
 import { tableSectionType } from './sections/tableSection';
 import { fullContentType } from './sections/fullContent';
 import { homeMediaGridType } from './sections/homeMediaGrid';
+import { allEventsType } from './sections/allEvents';
+import { instagramType } from './sections/instagram'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -182,6 +184,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ageDivisionsType,
     tableSectionType,
     fullContentType,
-    homeMediaGridType
+    homeMediaGridType,
+    allEventsType,
+    instagramType
   ],
 };

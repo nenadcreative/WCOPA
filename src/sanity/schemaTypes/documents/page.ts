@@ -98,6 +98,8 @@ export const pageType = defineType({
         { type: 'ageDivisions' },
         { type: 'tableSection' },
         { type: 'fullContent' },
+        { type: 'allEvents' },
+        { type: 'instagram' }
 
       ],
       validation: (rule) => rule.required(),
@@ -153,7 +155,8 @@ export const pageType = defineType({
                 'imageCards',
                 'nationalDirectors',
                 'ageDivisions',
-                'tableSection'
+                'tableSection',
+                'instagram'
               ],
             },
           ],

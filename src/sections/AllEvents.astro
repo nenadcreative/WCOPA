@@ -1,0 +1,49 @@
+---
+import PortableText from "@components/atoms/PortableText.astro";
+import Container from "@components/global/Container.astro";
+import EventCard from "@components/molecules/EventCard.astro";
+import type { SanityDocument } from "@sanity/client";
+import { loadQuery } from "../sanity/lib/load-query";
+import { eventsQuery } from "../sanity/lib/queries";
+
+const { data: eventsData } = await loadQuery<SanityDocument>({
+    query: eventsQuery,
+});
+
+const { section } = Astro.props;
+const { title, subtitle, variation, events, ctaText, ctaLink } = section;
+---
+
+<section
+    class:list={[
+        "py-14 lg:pt-24 lg:pb-28 relative",
+        variation === "whiteDefault" && "bg-white",
+        variation === "whiteOffwhite" && "bg-white",
+        variation === "darkLavander" && "bg-dark-2 text-white",
+        variation === "darkOffwhite" && "bg-dark-2 text-white",
+    ]}
+>
+    <Container>
+        <div class="xl:ml-0 mx-auto text-center xl:text-left">
+            {
+                eventsData && (
+                    <div class="flex flex-col items-top md:grid md:grid-cols-2  xl:grid-cols-3 justify-center gap-8 mb-16">
+                        {eventsData.map((event) => {
+                            return (
+                                <EventCard
+                                    card={event}
+                                    variation={
+                                        variation === "whiteDefault" ||
+                                        variation === "whiteOffwhite"
+                                            ? "lavander"
+                                            : "white"
+                                    }
+                                />
+                            );
+                        })}
+                    </div>
+                )
+            }
+        </div>
+    </Container>
+</section>

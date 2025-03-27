@@ -4,11 +4,11 @@ import { Image } from "astro:assets";
 import { compareAsc, format } from "date-fns";
 
 const { card, variation } = Astro.props;
-const { title, shortDescription, image, date } = card;
+const { title, shortDescription, image, date, pdfURL } = card;
 const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
 ---
 
-<article class="max-w-96 rounded-sm overflow-clip">
+<article class="max-w-96 rounded-sm h-auto flex flex-col overflow-clip">
   {
     imageUrl && (
       <div class="h-[200px] w-full bg-dark-2 relative">
@@ -29,12 +29,22 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
   }
   <div
     class:list={[
-      "py-6 px-4",
+      "py-6 px-4 grow",
       variation === "lavander" && "bg-lavander",
       variation === "white" && "bg-white text-dark-1",
     ]}
   >
     <h3 class="text-lg font-bold mb-3">{title}</h3>
     <span>{shortDescription}</span>
+    {
+      pdfURL && (
+        <a
+          href={`${pdfURL}?dl=`}
+          class="inline-block text-indigo text-sm font-semibold mt-4"
+        >
+          Download PDF File
+        </a>
+      )
+    }
   </div>
 </article>
