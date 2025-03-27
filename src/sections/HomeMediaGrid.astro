@@ -55,7 +55,7 @@ const { list } = section;
                                 />
                             ) : (
                                 <VideoDialog
-                                    videoUrl={media?.videoLink}
+                                    videoUrl={media?.video}
                                     client:load
                                 >
                                     <div class="relative w-full h-full aspect-video rounded-sm overflow-hidden">
@@ -65,9 +65,9 @@ const { list } = section;
                                                 src={urlForImage(
                                                     media.videoThumbnail,
                                                 )
-                                                    .width(800)
-                                                    .height(450)
-                                                    .fit("crop")
+                                                    .width(370)
+                                                    .height(592)
+
                                                     .auto("format")
                                                     .url()}
                                                 alt="Video thumbnail"
