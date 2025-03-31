@@ -26,7 +26,7 @@ export default defineType({
     defineField({
       name: "shortDescription",
       title: "Short Description",
-      type: "text",
+      type: "blockContent",
     }),
     defineField({
       name: "date",

@@ -2,13 +2,14 @@
 import { urlForImage } from "@sanity/lib/urlForImage";
 import { Image } from "astro:assets";
 import { compareAsc, format } from "date-fns";
+import PortableText from "@components/atoms/PortableText.astro";
 
 const { card, variation } = Astro.props;
 const { title, shortDescription, image, date, pdfURL } = card;
 const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
 ---
 
-<article class="max-w-96 rounded-sm h-auto flex flex-col overflow-clip">
+<article class="max-w-96 rounded-sm h-full flex flex-col overflow-clip">
   {
     imageUrl && (
       <div class="h-[200px] w-full bg-dark-2 relative">
@@ -35,7 +36,11 @@ const imageUrl = image ? urlForImage(image?.asset)?.url() : null;
     ]}
   >
     <h3 class="text-lg font-bold mb-3">{title}</h3>
-    <span>{shortDescription}</span>
+    <span
+      class="[&>ul>li]:mb-2 [&>ul>li]:marker:mt-4 [&>ul]:list-image-star [&>ul]:list-inside"
+    >
+      <PortableText portableText={shortDescription} /></span
+    >
     {
       pdfURL && (
         <a
