@@ -20,6 +20,7 @@ export async function POST({ request }) {
         const email = data.get('Email');
         const phoneNumber = data.get('Phone Number');
         const testimonialType = data.get('Testimonial Type');
+        const testimonial = data.get('testimonial');
         const file = data.get('fileUpload');
 
         console.log('Form data received:', {
@@ -27,6 +28,7 @@ export async function POST({ request }) {
             email,
             phoneNumber,
             testimonialType,
+            testimonial,
             file: file ? {
                 name: file.name,
                 type: file.type,
@@ -101,6 +103,7 @@ export async function POST({ request }) {
         Email: ${email}
         Phone: ${phoneNumber}
         Testimonial Type: ${testimonialType}
+        Testimonial: ${testimonial}
       `,
             html: `
         <h2>New Testimonial Submission</h2>
@@ -108,6 +111,7 @@ export async function POST({ request }) {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phoneNumber}</p>
         <p><strong>Testimonial Type:</strong> ${testimonialType}</p>
+        <p><strong>Testimonial:</strong> ${testimonial}</p>
         ${attachments.length > 0 ? '<p><strong>Attachment:</strong> File attached</p>' : '<p><strong>Attachment:</strong> No file attached</p>'}
       `,
             attachments: attachments
