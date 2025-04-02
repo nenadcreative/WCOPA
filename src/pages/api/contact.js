@@ -57,7 +57,7 @@ export async function POST({ request }) {
         }
 
         // Get default recipients
-        let recipients = import.meta.env.EMAIL_TO || 'nenadvrtue@gmail.com, hello@vrtuedigital.com, nenad@thecreativelabs.io';
+        let recipients = import.meta.env.EMAIL_TO || 'nenadvrtue@gmail.com,info@wcopa.com';
 
         // // Add location-specific recipients based on country or state
         // const additionalRecipients = [];
