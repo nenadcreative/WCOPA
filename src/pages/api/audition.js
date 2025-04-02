@@ -12,7 +12,10 @@ export async function POST({ request }) {
         const fullName = data.get('Full Name');
         const dob = data.get('Date of Birth');
         const gender = data.get('Gender');
-        const nationality = data.get('Nationality');
+
+        const residence = data.get('Residence');
+        const country = data.get('Country');
+        const state = data.get('State');
         const address = data.get('Address');
         const phone = data.get('Phone');
         const email = data.get('Email');
@@ -73,7 +76,9 @@ export async function POST({ request }) {
             Name: ${fullName}
             Date of Birth: ${dob}
             Gender: ${gender}
-            Nationality: ${nationality}
+            Resides in/Citizenship: ${residence}
+            Country: ${country}
+            State: ${state}
             Address: ${address}
             Phone: ${phone}
             Email: ${email}
@@ -104,7 +109,9 @@ export async function POST({ request }) {
             <p><strong>Name:</strong> ${fullName}</p>
             <p><strong>Date of Birth:</strong> ${dob}</p>
             <p><strong>Gender:</strong> ${gender}</p>
-            <p><strong>Nationality:</strong> ${nationality || 'N/A'}</p>
+            <p><strong>Resides in/Citizenship:</strong> ${residence || 'N/A'}</p>
+            <p><strong>Country:</strong> ${country || 'N/A'}</p>
+            <p><strong>State:</strong> ${state || 'N/A'}</p>
             <p><strong>Address:</strong> ${address || 'N/A'}</p>
             <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Email:</strong> ${email}</p>

@@ -161,18 +161,73 @@ const sortedDirectors = directors
         </select>
     </div>
 
-    <div class="mb-4 flex flex-col">
-        <label for="nationality" class="mb-2 pl-3 text-sm"
-            >Nationality/Citizenship</label
-        >
-        <input
-            id="nationality"
-            type="text"
-            placeholder="e.g., American"
-            class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
-            name="Nationality"
-        />
-    </div>
+    <fieldset class="flex flex-col">
+        <legend class="mb-2 text-sm pl-3 hidden">Address: </legend>
+
+        <div class="mb-4 flex flex-col">
+            <label for="location" class="mb-2 pl-3 text-sm"
+                >Resides in/Citizenship</label
+            >
+            <select
+                id="location"
+                name="Residence"
+                class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+                required
+            >
+                <option value="-1">Select Country</option>
+                <option value="usa">USA</option>
+                <option value="international">International</option>
+            </select>
+        </div>
+        {/*USA Options */}
+        <div id="usa div" class="hidden">
+            <div class="w-full flex flex-col mb-4">
+                <label class="mb-2 pl-3 text-sm" for="state">State</label>
+
+                <select
+                    name="State"
+                    class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+                >
+                    <option value="-1">Select State</option>
+                    {
+                        states.map((state) => {
+                            return (
+                                <option value={state.state}>
+                                    {state.state}
+                                </option>
+                            );
+                        })
+                    }
+                    <option value="Other">Other</option></select
+                >
+            </div>
+        </div>
+
+        {/*International Options */}
+        <div id="international div" class="hidden">
+            <div class="w-full flex flex-col mb-4">
+                <label class="mb-2 pl-3 text-sm" for="country">Country</label>
+
+                <select
+                    id="country"
+                    name="Country"
+                    class="rounded-full h-12 px-3 border-1 border-gray-1 focus:border-2 focus:border-indigo"
+                >
+                    <option value="-1">Select Country</option>
+                    {
+                        countries.map((country) => {
+                            return (
+                                <option value={country.name.common}>
+                                    {country.name.common}
+                                </option>
+                            );
+                        })
+                    }
+                    <option value="Other">Other</option></select
+                >
+            </div>
+        </div>
+    </fieldset>
 
     <div class="mb-4 flex flex-col">
         <label for="address" class="mb-2 pl-3 text-sm">Current Address</label>
@@ -495,6 +550,43 @@ const sortedDirectors = directors
         });
     }
 
+    const countrySelector = document.getElementById("location");
+    const sourceSelector = document.getElementById("source");
+    if (countrySelector) {
+        countrySelector.addEventListener("change", showCountryChoise);
+    }
+
+    if (sourceSelector) {
+        sourceSelector.addEventListener("change", showSourceChoise);
+    }
+    function showSourceChoise(e) {
+        if (e.target.value === "Other") {
+            document.getElementById("otherText").classList.remove("hidden");
+        } else {
+            document.getElementById("otherText").classList.add("hidden");
+        }
+    }
+
+    function showCountryChoise(e) {
+        switch (e.target.value) {
+            case "usa":
+                document.getElementById("usa div").classList.remove("hidden");
+                document
+                    .getElementById("international div")
+                    .classList.add("hidden");
+
+                break;
+            case "international":
+                document
+                    .getElementById("international div")
+                    .classList.remove("hidden");
+                document.getElementById("usa div").classList.add("hidden");
+
+                break;
+            default:
+                break;
+        }
+    }
     // Add form submission handler
     if (form) {
         form.addEventListener("submit", async function (e) {
