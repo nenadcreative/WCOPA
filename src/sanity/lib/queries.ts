@@ -210,4 +210,4 @@ export const settingsQuery = groq`*[_type == "settings"][0]{...,
 }`;
 
 export const nationalDirectorsQuery = groq`*[_type == "nationalDirectors"][0]{..., 'regions':regions[]{...,'countries':countries[]->{...}, 'directors':directors[]->{..., 'representing':representing[]->{...}}},}`;
-export const eventsQuery = groq`*[_type == "event"]| order(date desc){..., "pdfURL": pdf.asset->url}`;
+export const eventsQuery = groq`*[_type == "event"]| order(date asc){..., "pdfURL": pdf.asset->url}`;
