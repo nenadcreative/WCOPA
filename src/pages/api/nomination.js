@@ -99,7 +99,7 @@ export async function POST({ request }) {
         // Email options
         const mailOptions = {
             from: import.meta.env.EMAIL_FROM || 'wcopa@portal.wcopa.com',
-            to: import.meta.env.EMAIL_TO || 'nenadvrtue@gmail.com,info@wcopa.com',
+            to: import.meta.env.EMAIL_TO || 'info@wcopa.com',
             replyTo: nominatorEmail,
             subject: 'New Nomination Submission',
             text: `

@@ -19,10 +19,8 @@ const emailMappingQuery = `*[_type == "emailAutomation"][0]{
 // Initialize with default values
 let countryEmailMap = {
     // Default fallback emails
-    'USA': 'usa.representative@wcopa.com',
-    'Canada': 'canada.representative@wcopa.com',
-    'UK': 'uk.representative@wcopa.com',
-    'Australia': 'australia.representative@wcopa.com',
+    'usa': 'ussc@wcopa.com',
+
     // Add more countries as needed
 };
 
@@ -55,14 +53,6 @@ async function fetchEmailMappings() {
         return countryEmailMap;
     }
 }
-
-// State to email mapping for USA
-const stateEmailMap = {
-    'Florida': 'nesho991@gmail.com',
-    'New York': 'newyork.representative@wcopa.com',
-    'Texas': 'texas.representative@wcopa.com',
-    //  Add more states as needed
-};
 
 export async function POST({ request }) {
     try {
@@ -128,19 +118,14 @@ export async function POST({ request }) {
 
         // Email options
         // Initialize recipients with default value
-        let recipients = 'nenadvrtue@gmail.com,info@wcopa.com';
-        // Add location-specific recipients based on country or state
+        let recipients = 'info@wcopa.com';
+        // Add location-specific recipients based on country
         const additionalRecipients = [];
 
-        if (residence === 'usa' && state) {
-            // Check if we have a specific email for this state
-            if (stateEmailMap[state.trim()]) {
-                additionalRecipients.push(stateEmailMap[state.trim()]);
-            }
-
-            // Also add the general USA email if it exists
-            if (countryEmailMap['USA'] && !additionalRecipients.includes(countryEmailMap['USA'])) {
-                additionalRecipients.push(countryEmailMap['USA']);
+        if (residence === 'usa') {
+            // Use default USA email from countryEmailMap
+            if (countryEmailMap['usa']) {
+                additionalRecipients.push(countryEmailMap['usa']);
             }
         } else if (residence === 'international' && country) {
             // Check if we have a specific email for this country

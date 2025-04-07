@@ -41,7 +41,7 @@ export async function POST({ request }) {
         }
 
         // Get default recipients
-        let recipients = import.meta.env.EMAIL_TO || 'nenadvrtue@gmail.com,info@wcopa.com';
+        let recipients = import.meta.env.EMAIL_TO || 'info@wcopa.com';
 
 
 
