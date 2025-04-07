@@ -1,11 +1,74 @@
 import nodemailer from 'nodemailer';
 import { loadEnv } from 'vite';
+import { sanityClient } from "sanity:client";
+
 
 // Load environment variables
 const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
+// Query to fetch email mappings from Sanity
+const emailMappingQuery = `*[_type == "emailAutomation"][0]{
+  emailsMapped[]{
+    country->{
+      name
+    },
+    email
+  }
+}`;
+
+// Initialize with default values
+let countryEmailMap = {
+    // Default fallback emails
+    'USA': 'usa.representative@wcopa.com',
+    'Canada': 'canada.representative@wcopa.com',
+    'UK': 'uk.representative@wcopa.com',
+    'Australia': 'australia.representative@wcopa.com',
+    // Add more countries as needed
+};
+
+// Fetch email mappings from Sanity
+async function fetchEmailMappings() {
+    try {
+        const emailData = await sanityClient.fetch(emailMappingQuery);
+
+        if (emailData && emailData.emailsMapped && emailData.emailsMapped.length > 0) {
+            // Create a new map from the Sanity data
+            const sanityEmailMap = {};
+
+            emailData.emailsMapped.forEach(mapping => {
+                if (mapping.country && mapping.country.name && mapping.email) {
+                    sanityEmailMap[mapping.country.name] = mapping.email;
+                }
+            });
+
+            // Merge with default map, prioritizing Sanity data
+            countryEmailMap = { ...countryEmailMap, ...sanityEmailMap };
+            console.log('Email mappings loaded from Sanity:', Object.keys(sanityEmailMap).length);
+        } else {
+            console.log('No email mappings found in Sanity, using defaults');
+        }
+
+        return countryEmailMap;
+    } catch (error) {
+        console.error('Error fetching email mappings from Sanity:', error);
+        // Continue with default mappings if there's an error
+        return countryEmailMap;
+    }
+}
+
+// State to email mapping for USA
+const stateEmailMap = {
+    'Florida': 'nesho991@gmail.com',
+    'New York': 'newyork.representative@wcopa.com',
+    'Texas': 'texas.representative@wcopa.com',
+    //  Add more states as needed
+};
+
 export async function POST({ request }) {
     try {
+        // Fetch the latest email mappings from Sanity
+        countryEmailMap = await fetchEmailMappings();
+
         const data = await request.formData();
 
         // Extract personal information
@@ -64,9 +127,37 @@ export async function POST({ request }) {
         }
 
         // Email options
+        // Initialize recipients with default value
+        let recipients = 'nenadvrtue@gmail.com,info@wcopa.com';
+        // Add location-specific recipients based on country or state
+        const additionalRecipients = [];
+
+        if (residence === 'usa' && state) {
+            // Check if we have a specific email for this state
+            if (stateEmailMap[state.trim()]) {
+                additionalRecipients.push(stateEmailMap[state.trim()]);
+            }
+
+            // Also add the general USA email if it exists
+            if (countryEmailMap['USA'] && !additionalRecipients.includes(countryEmailMap['USA'])) {
+                additionalRecipients.push(countryEmailMap['USA']);
+            }
+        } else if (residence === 'international' && country) {
+            // Check if we have a specific email for this country
+            if (countryEmailMap[country.trim()]) {
+                additionalRecipients.push(countryEmailMap[country.trim()]);
+            }
+        }
+
+        // Add additional recipients to the list if any were found
+        if (additionalRecipients.length > 0) {
+            recipients += ', ' + additionalRecipients.join(', ');
+            console.log('Added location-specific recipients:', additionalRecipients);
+        }
+
         const mailOptions = {
             from: import.meta.env.EMAIL_FROM || 'wcopa@portal.wcopa.com',
-            to: import.meta.env.EMAIL_TO || 'nenadvrtue@gmail.com,info@wcopa.com',
+            to: recipients,
             replyTo: email,
             subject: 'New Audition Form Submission',
             text: `

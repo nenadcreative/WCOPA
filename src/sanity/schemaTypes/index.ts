@@ -91,6 +91,8 @@ import { fullContentType } from './sections/fullContent';
 import { homeMediaGridType } from './sections/homeMediaGrid';
 import { allEventsType } from './sections/allEvents';
 import { instagramType } from './sections/instagram'
+import { emailsMappedType } from './objects/emailsMapped';
+import { emailAutomationType } from './singletons/emailAutomation';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -102,8 +104,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faqType,
     countryType,
     directorType,
+    emailAutomationType,
 
     //objects
+    emailsMappedType,
     blockContentType,
     simpleBlockContentType,
     seoType,

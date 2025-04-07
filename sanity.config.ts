@@ -9,12 +9,13 @@ import { CogIcon } from "@sanity/icons";
 import { HomeIcon } from "@sanity/icons";
 import { Flag } from 'lucide-react';
 import { UsersRound } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 
 // Define the singleton document types
-const singletonTypes = new Set(["home", "settings"]);
+const singletonTypes = new Set(["home", "settings", "emailAutomation"]);
 
 export default defineConfig({
   name: "wcopa",
@@ -62,6 +63,19 @@ export default defineConfig({
                 S.document()
                   .schemaType("settings")
                   .documentId("65e93031-3a43-4907-8bf9-1bd2ff2d9b08")
+              ),
+
+            S.listItem()
+              .title("Email Automation")
+              .id("emails")
+              .icon(Mail)
+              .child(
+                // Instead of rendering a list of documents, we render a single
+                // document, specifying the `documentId` manually to ensure
+                // that we're editing the single instance of the document
+                S.document()
+                  .schemaType("emailAutomation")
+                  .documentId("emails")
               ),
           ]),
     }),

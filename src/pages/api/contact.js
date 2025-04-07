@@ -4,23 +4,7 @@ import { loadEnv } from 'vite';
 // Load environment variables
 const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
-// // Country to email mapping
-// const countryEmailMap = {
-//     // Add country-specific email addresses here
-//     'USA': 'usa.representative@wcopa.com',
-//     'Canada': 'canada.representative@wcopa.com',
-//     'UK': 'uk.representative@wcopa.com',
-//     'Australia': 'australia.representative@wcopa.com',
-//     // Add more countries as needed
-// };
 
-// // State to email mapping for USA
-// const stateEmailMap = {
-//     'Florida': 'nesho991@gmail.com',
-//     'New York': 'newyork.representative@wcopa.com',
-//     'Texas': 'texas.representative@wcopa.com',
-//     // Add more states as needed
-// };
 
 export async function POST({ request }) {
     try {
@@ -59,31 +43,7 @@ export async function POST({ request }) {
         // Get default recipients
         let recipients = import.meta.env.EMAIL_TO || 'nenadvrtue@gmail.com,info@wcopa.com';
 
-        // // Add location-specific recipients based on country or state
-        // const additionalRecipients = [];
 
-        // if (location === 'usa' && state) {
-        //     // Check if we have a specific email for this state
-        //     if (stateEmailMap[state.trim()]) {
-        //         additionalRecipients.push(stateEmailMap[state.trim()]);
-        //     }
-
-        //     // Also add the general USA email if it exists
-        //     if (countryEmailMap['USA'] && !additionalRecipients.includes(countryEmailMap['USA'])) {
-        //         additionalRecipients.push(countryEmailMap['USA']);
-        //     }
-        // } else if (location === 'international' && country) {
-        //     // Check if we have a specific email for this country
-        //     if (countryEmailMap[country.trim()]) {
-        //         additionalRecipients.push(countryEmailMap[country.trim()]);
-        //     }
-        // }
-
-        // // Add additional recipients to the list if any were found
-        // if (additionalRecipients.length > 0) {
-        //     recipients += ', ' + additionalRecipients.join(', ');
-        //     console.log('Added location-specific recipients:', additionalRecipients);
-        // }
 
         // Email options
         const mailOptions = {
