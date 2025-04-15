@@ -118,7 +118,7 @@ export async function POST({ request }) {
 
         // Email options
         // Initialize recipients with default value
-        let recipients = 'info@wcopa.com';
+        let recipients = 'info@wcopa.com, nenad@thecreativelabs.io';
         // Add location-specific recipients based on country
         const additionalRecipients = [];
 
