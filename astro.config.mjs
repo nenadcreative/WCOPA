@@ -13,7 +13,7 @@ import robotsTxt from "astro-robots-txt";
 
 import sitemap from "@astrojs/sitemap";
 
-import node from "@astrojs/node";
+
 
 // https://astro.build/config
 export default defineConfig({
