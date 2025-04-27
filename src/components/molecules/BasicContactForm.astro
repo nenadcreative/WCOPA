@@ -444,12 +444,19 @@ import star from "@assets/icons/star.svg";
                     form.reset();
                     window.location.href = "/thank-you";
                 } else {
-                    const data = await response.json();
-                    console.error("Error response:", data);
-                    alert(
-                        data.message ||
-                            "Failed to send email. Please try again.",
-                    );
+                    try {
+                        const data = await response.json();
+                        console.error("Error response:", data);
+                        alert(
+                            data.message ||
+                                "Failed to send email. Please try again.",
+                        );
+                    } catch (jsonError) {
+                        console.error("Error parsing response:", jsonError);
+                        alert(
+                            `Server error (${response.status}). Please try again later.`,
+                        );
+                    }
                 }
             } catch (error) {
                 console.error("Error submitting form:", error);
