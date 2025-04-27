@@ -29,7 +29,14 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
-
+    optimizeDeps: {
+      exclude: ['@sanity/client', '@sanity/image-url']
+    },
+    build: {
+      rollupOptions: {
+        external: ['@rollup/rollup-linux-x64-gnu']
+      }
+    }
   },
   output: "server",
   adapter: vercel(),
