@@ -8,18 +8,14 @@ import sanity from "@sanity/astro";
 
 import vercel from "@astrojs/vercel";
 
-
 import robotsTxt from "astro-robots-txt";
 
 import sitemap from "@astrojs/sitemap";
-
-
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.wcopa.com/',
   integrations: [
-
     react(),
     sanity({
       projectId: "s0esc5z3",
@@ -33,6 +29,14 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['@sanity/client', '@sanity/image-url']
+    },
+    build: {
+      rollupOptions: {
+        external: ['@rollup/rollup-linux-x64-gnu']
+      }
+    }
   },
   output: "server",
   adapter: vercel(),
