@@ -1,38 +1,27 @@
 import nodemailer from 'nodemailer';
-import { loadEnv } from 'vite';
-
-// Load environment variables
-const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
-
-
 
 export async function POST({ request }) {
     try {
         const data = await request.formData();
 
-        // Extract form data
         const name = data.get('Full Name');
         const email = data.get('Email');
         const location = data.get('location');
         const inquiryType = data.get('Inquiry Type');
         const message = data.get('message');
-
-        // Additional fields based on location selection
         const state = data.get('State');
         const country = data.get('Country');
 
-        // Create a transporter using Mailtrap credentials
-        var transporter = nodemailer.createTransport({
-            host: import.meta.env.SMTP_HOST || 'live.smtp.mailtrap.io',
-            port: import.meta.env.SMTP_PORT || 587,
-            secure: false, // upgrade later with STARTTLS
+        const transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST || 'live.smtp.mailtrap.io',
+            port: Number(process.env.SMTP_PORT) || 587,
+            secure: Number(process.env.SMTP_PORT) === 465, // Use secure connection if port is 465
             auth: {
-                user: import.meta.env.SMTP_USER || 'api',
-                pass: import.meta.env.SMTP_PASS
-            }
+                user: process.env.SMTP_USER || 'api',
+                pass: process.env.SMTP_PASS,
+            },
         });
 
-        // Prepare email content
         let locationInfo = '';
         if (location === 'usa') {
             locationInfo = `State: ${state}`;
@@ -40,14 +29,10 @@ export async function POST({ request }) {
             locationInfo = `Country: ${country}`;
         }
 
-        // Get default recipients
-        let recipients = import.meta.env.EMAIL_TO || 'info@wcopa.com';
+        const recipients = process.env.EMAIL_TO || 'info@wcopa.com';
 
-
-
-        // Email options
         const mailOptions = {
-            from: import.meta.env.EMAIL_FROM || 'wcopa@portal.wcopa.com',
+            from: process.env.EMAIL_FROM || 'wcopa@portal.wcopa.com',
             to: recipients,
             replyTo: email,
             subject: 'New Contact Form Submission',
@@ -70,13 +55,12 @@ export async function POST({ request }) {
       `
         };
 
-        // Send email
         await transporter.sendMail(mailOptions);
 
         console.log('Email sent successfully, returning response');
 
         return new Response(null, {
-            status: 303, // See Other - best status code for POST-redirect-GET pattern
+            status: 303,
             headers: {
                 'Location': '/thank-you'
             }
@@ -88,7 +72,6 @@ export async function POST({ request }) {
         return new Response(JSON.stringify({
             success: false,
             message: 'Failed to send email',
-            alert: 'Failed to send email'
         }), {
             status: 500,
             headers: {
