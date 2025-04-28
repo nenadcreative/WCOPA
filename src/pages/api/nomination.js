@@ -1,11 +1,10 @@
 import nodemailer from 'nodemailer';
-import { loadEnv } from 'vite';
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Load environment variables
-const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
+
 
 export async function POST({ request }) {
     try {
@@ -43,12 +42,12 @@ export async function POST({ request }) {
 
         // Create a transporter using SMTP credentials
         var transporter = nodemailer.createTransport({
-            host: import.meta.env.SMTP_HOST || 'live.smtp.mailtrap.io',
-            port: import.meta.env.SMTP_PORT || 587,
+            host: process.env.SMTP_HOST || 'live.smtp.mailtrap.io',
+            port: process.env.SMTP_PORT || 587,
             secure: false, // upgrade later with STARTTLS
             auth: {
-                user: import.meta.env.SMTP_USER || 'api',
-                pass: import.meta.env.SMTP_PASS
+                user: process.env.SMTP_USER || 'api',
+                pass: process.env.SMTP_PASS
             }
         });
 
@@ -98,8 +97,8 @@ export async function POST({ request }) {
 
         // Email options
         const mailOptions = {
-            from: import.meta.env.EMAIL_FROM || 'wcopa@portal.wcopa.com',
-            to: import.meta.env.EMAIL_TO || 'info@wcopa.com',
+            from: process.env.EMAIL_FROM || 'wcopa@portal.wcopa.com',
+            to: process.env.EMAIL_TO || 'info@wcopa.com',
             replyTo: nominatorEmail,
             subject: 'New Nomination Submission',
             text: `
