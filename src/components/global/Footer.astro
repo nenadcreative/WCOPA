@@ -30,7 +30,7 @@ const {
         <nav>
           {
             footerHowToEnter.map((link) => (
-              <a class="block py-2 text-xs" href={link.slug}>
+              <a class="block py-2 text-xs" href={`/how-to-enter/${link.slug}`}>
                 {link.title}
               </a>
             ))
@@ -42,11 +42,30 @@ const {
         <nav class="columns-2">
           {
             footerEvents &&
-              footerEvents.map((link) => (
-                <a class="block py-2 text-xs" href={link.slug}>
-                  {link.title}
-                </a>
-              ))
+              footerEvents.map((link) => {
+                let href = "";
+
+                // Handle specific URL patterns based on slug
+                switch (link.category) {
+                  case "venues":
+                    href = `/event/venues/${link.slug}`;
+                    break;
+                  case "schedule-of-events":
+                    href = `/event/schedule-of-events/${link.slug}`;
+                    break;
+                  case "competitions":
+                    href = `/event/competitions/${link.slug}`;
+                    break;
+                  default:
+                    href = `/${link.slug}`;
+                }
+
+                return (
+                  <a class="block py-2 text-xs" href={href}>
+                    {link.title}
+                  </a>
+                );
+              })
           }
         </nav>
       </div>
@@ -55,11 +74,33 @@ const {
         <nav>
           {
             footerResources &&
-              footerResources.map((link) => (
-                <a class="block py-2 text-xs" href={link.slug}>
-                  {link.title}
-                </a>
-              ))
+              footerResources.map((link) => {
+                let href = "";
+
+                // Handle specific URL patterns based on resource categories
+                switch (link.category) {
+                  case "comunity-&-support":
+                    href = `/resources/comunity-and-support/${link.slug}`;
+                    break;
+                  case "media":
+                    href = `/resources/media/${link.slug}`;
+                    break;
+                  case "prizes-and-awards":
+                    href = `/resources/media/prizes-and-awards/${link.slug}`;
+                    break;
+                  case "testimonials":
+                    href = `/resources/testimonials/${link.slug}`;
+                    break;
+                  default:
+                    href = `/resources/${link.slug}`;
+                }
+
+                return (
+                  <a class="block py-2 text-xs" href={href}>
+                    {link.title}
+                  </a>
+                );
+              })
           }
         </nav>
       </div>
@@ -69,7 +110,7 @@ const {
           {
             footerAbout &&
               footerAbout.map((link) => (
-                <a class="block py-2 text-xs" href={link.slug}>
+                <a class="block py-2 text-xs" href={`/about/${link.slug}`}>
                   {link.title}
                 </a>
               ))
@@ -82,7 +123,7 @@ const {
           {
             footerContact &&
               footerContact.map((link) => (
-                <a class="block py-2 text-xs" href={link.slug}>
+                <a class="block py-2 text-xs" href={`/${link.slug}`}>
                   {link.title}
                 </a>
               ))
