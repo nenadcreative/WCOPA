@@ -19,81 +19,85 @@ const videoPreviewUrl = videoPreview ? urlForImage(videoPreview).url() : null;
       <!--Vimeo embed with responsive wrapper -->
       <div class="relative w-full h-full pt-[56.25%] md:pt-0">
         <iframe
-          src="https://player.vimeo.com/video/1046713357?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&background=1&loop=1"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/dkBkcEZ_cgQ?si=qw-OSVm9EdiL0KrF&controls=0&autoplay=1&mute=1"
+          title="YouTube video player"
           frameborder="0"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          title="hero-video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
           class="w-full h-full object-cover"
-          loading="lazy"></iframe>
-      </div>
-      <script src="https://player.vimeo.com/api/player.js"></script>
+          style="position:absolute;top:0;left:0;width:100%;height:100%;"
+          allowfullscreen></iframe>
 
-      <!-- Play button overlay -->
-      <div class="absolute inset-0 flex items-center justify-center z-10">
-        <div
-          class="p-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
-        >
-          <svg
-            width="94"
-            height="94"
-            viewBox="0 0 94 94"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-16 h-16"
+        <!-- Play button overlay -->
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+          <div
+            class="p-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
           >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
-              fill="#fff"></path>
-          </svg>
+            <svg
+              width="94"
+              height="94"
+              viewBox="0 0 94 94"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-16 h-16"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M7.83594 46.9987C7.83594 25.3675 25.3715 7.83203 47.0026 7.83203C57.3902 7.83203 67.3525 11.9585 74.6977 19.3036C82.0428 26.6489 86.1692 36.6111 86.1692 46.9987C86.1692 68.6299 68.6338 86.1654 47.0026 86.1654C25.3715 86.1654 7.83594 68.6299 7.83594 46.9987ZM39.8353 63.7621L62.6694 49.5054C63.5239 48.9582 64.0407 48.0135 64.0407 46.9987C64.0407 45.9841 63.5239 45.0392 62.6694 44.4921L39.7569 30.2354C38.8545 29.6664 37.7144 29.6315 36.7788 30.1439C35.8432 30.6565 35.259 31.636 35.2528 32.7029V61.2946C35.2402 62.3874 35.8351 63.3968 36.7973 63.9149C37.7595 64.433 38.9298 64.3742 39.8353 63.7621Z"
+                fill="#fff"></path>
+            </svg>
+          </div>
+        </div>
+        <!-- Decorative element at the bottom -->
+        <Image
+          src={decor}
+          alt=""
+          quality={100}
+          class="w-full absolute -bottom-0.5 left-0 z-10"
+        />
+      </div>
+    </div>
+    <Container classes="pt-6 pb-18">
+      <div class="grid lg:grid-cols-2 gap-4">
+        <div>
+          <span
+            class="block text-lg uppercase lg:text-2xl font-medium text-purple mb-3"
+            >{tagline}</span
+          >
+          <h1
+            class="[&>p>strong]:text-indigo [&>p>strong]:font-bold uppercase leading-none"
+          >
+            <PortableText portableText={title} />
+          </h1>
+        </div>
+        <div class="lg:pl-28">
+          <span class="block text-md font-semibold mb-4"
+            ><PortableText portableText={description} /></span
+          >
+          <span class="text-purple block text-md mb-5 font-medium"
+            ><PortableText portableText={ctaText} /></span
+          >
+          {
+            links && (
+              <div class="flex gap-5">
+                {links.map((link, index) => {
+                  return (
+                    <ButtonLink
+                      buttonLink={link}
+                      variation={
+                        index === 0 ? "primary-dark" : "secondary-dark"
+                      }
+                    />
+                  );
+                })}
+              </div>
+            )
+          }
         </div>
       </div>
-      <!-- Decorative element at the bottom -->
-      <Image
-        src={decor}
-        alt=""
-        quality={100}
-        class="w-full absolute -bottom-0.5 left-0 z-10"
-      />
-    </div>
+    </Container>
   </VideoDialog>
-  <Container classes="pt-6 pb-18">
-    <div class="grid lg:grid-cols-2 gap-4">
-      <div>
-        <span
-          class="block text-lg uppercase lg:text-2xl font-medium text-purple mb-3"
-          >{tagline}</span
-        >
-        <h1
-          class="[&>p>strong]:text-indigo [&>p>strong]:font-bold uppercase leading-none"
-        >
-          <PortableText portableText={title} />
-        </h1>
-      </div>
-      <div class="lg:pl-28">
-        <span class="block text-md font-semibold mb-4"
-          ><PortableText portableText={description} /></span
-        >
-        <span class="text-purple block text-md mb-5 font-medium"
-          ><PortableText portableText={ctaText} /></span
-        >
-        {
-          links && (
-            <div class="flex gap-5">
-              {links.map((link, index) => {
-                return (
-                  <ButtonLink
-                    buttonLink={link}
-                    variation={index === 0 ? "primary-dark" : "secondary-dark"}
-                  />
-                );
-              })}
-            </div>
-          )
-        }
-      </div>
-    </div>
-  </Container>
 </section>
