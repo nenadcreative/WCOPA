@@ -1,5 +1,7 @@
 import { defineConfig } from "astro/config";
 
+import tailwindcss from "@tailwindcss/vite";
+
 import react from "@astrojs/react";
 
 import sanity from "@sanity/astro";
@@ -10,13 +12,10 @@ import robotsTxt from "astro-robots-txt";
 
 import sitemap from "@astrojs/sitemap";
 
-import tailwind from "@astrojs/tailwind";
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.wcopa.com/",
   integrations: [
-    tailwind(),
     react(),
     sanity({
       projectId: "s0esc5z3",
@@ -29,6 +28,7 @@ export default defineConfig({
     sitemap(),
   ],
   vite: {
+    plugins: [tailwindcss()],
     optimizeDeps: {
       exclude: ["@sanity/client", "@sanity/image-url"],
     },
