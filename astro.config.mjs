@@ -1,7 +1,5 @@
 import { defineConfig } from "astro/config";
 
-import tailwindcss from "@tailwindcss/vite";
-
 import react from "@astrojs/react";
 
 import sanity from "@sanity/astro";
@@ -12,10 +10,13 @@ import robotsTxt from "astro-robots-txt";
 
 import sitemap from "@astrojs/sitemap";
 
+import tailwind from "@astrojs/tailwind";
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.wcopa.com/',
+  site: "https://www.wcopa.com/",
   integrations: [
+    tailwind(),
     react(),
     sanity({
       projectId: "s0esc5z3",
@@ -28,15 +29,14 @@ export default defineConfig({
     sitemap(),
   ],
   vite: {
-    plugins: [tailwindcss()],
     optimizeDeps: {
-      exclude: ['@sanity/client', '@sanity/image-url']
+      exclude: ["@sanity/client", "@sanity/image-url"],
     },
     build: {
       rollupOptions: {
-        external: ['@rollup/rollup-linux-x64-gnu']
-      }
-    }
+        external: ["@rollup/rollup-linux-x64-gnu"],
+      },
+    },
   },
   output: "server",
   adapter: vercel(),
