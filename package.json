@@ -23,7 +23,6 @@
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-navigation-menu": "^1.2.5",
-    "@rollup/rollup-linux-x64-gnu": "4.40.0",
     "@sanity/astro": "^3.2.10",
     "@sanity/client": "^7.6.0",
     "@sanity/image-url": "^1.0.2",
@@ -57,7 +56,9 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15"
   },
-  "optionalDependencies": {},
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.40.0"
+  },
   "engines": {
     "node": "22.x"
   }
