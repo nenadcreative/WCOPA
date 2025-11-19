@@ -1,3 +1,4 @@
+import { CharacterCountInputPTE } from "@/sanity/components/CharacterCountInputPTE";
 import { defineType, defineField } from "sanity";
 import { stringFromPortableText } from "src/utils/stringFromPT";
 
@@ -14,7 +15,7 @@ export const listItemType = defineType({
     defineField({
       name: "text",
       title: "Text",
-      type: "pt-string",
+      type: "blockContent",
     }),
   ],
   preview: {

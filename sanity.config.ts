@@ -1,14 +1,13 @@
 import { defineConfig, isDev } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
-import { ptString } from "sanity-plugin-pt-string";
 
 import { schema } from "./src/sanity/schemaTypes";
 import { CogIcon } from "@sanity/icons";
 import { HomeIcon } from "@sanity/icons";
-import { Flag } from 'lucide-react';
-import { UsersRound } from 'lucide-react';
-import { Mail } from 'lucide-react';
+import { Flag } from "lucide-react";
+import { UsersRound } from "lucide-react";
+import { Mail } from "lucide-react";
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
@@ -44,11 +43,10 @@ export default defineConfig({
             S.documentTypeListItem("event").title("Events"),
             S.documentTypeListItem("faq").title("FAQ's"),
 
-
-
-
             S.divider(),
-            S.documentTypeListItem("director").title("Directors").icon(UsersRound),
+            S.documentTypeListItem("director")
+              .title("Directors")
+              .icon(UsersRound),
             S.documentTypeListItem("country").title("Country").icon(Flag),
             S.divider(),
             S.listItem()
@@ -72,14 +70,11 @@ export default defineConfig({
                 // Instead of rendering a list of documents, we render a single
                 // document, specifying the `documentId` manually to ensure
                 // that we're editing the single instance of the document
-                S.document()
-                  .schemaType("emailAutomation")
-                  .documentId("emails")
+                S.document().schemaType("emailAutomation").documentId("emails")
               ),
           ]),
     }),
     visionTool(),
-    ptString(),
   ],
 
   schema: {
