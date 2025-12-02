@@ -11,23 +11,33 @@ const { videoLink, videoPreview, tagline, title, description, ctaText, links } =
   section;
 
 const videoPreviewUrl = videoPreview ? urlForImage(videoPreview).url() : null;
+
+// Extract video ID from videoLink for autoplay
+const getYouTubeId = (url) => {
+  if (!url) return null;
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\?]+)/);
+  return match ? match[1] : null;
+};
+
+const videoId = getYouTubeId(videoLink);
+const autoplayUrl = videoId
+  ? `https://www.youtube.com/embed/${videoId}?controls=0&autoplay=1&mute=1&loop=1&playlist=${videoId}`
+  : "https://www.youtube.com/embed/F8re9S3_Fz4?si=PInLy2YYdpaybpes&controls=0&autoplay=1&mute=1&loop=1&playlist=F8re9S3_Fz4";
 ---
 
 <section>
   <VideoDialog videoUrl={videoLink} client:load>
     <div class="w-full sm:h-[80vh] xl:h-screen relative overflow-hidden">
-      <!--Vimeo embed with responsive wrapper -->
-      <div class="relative w-full h-full pt-[56.25%] md:pt-0">
+      <!--YouTube embed covering full screen -->
+      <div class="relative w-full h-full">
         <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/F8re9S3_Fz4?si=PInLy2YYdpaybpes&controls=0&autoplay=1&mute=1&loop=1&playlist=F8re9S3_Fz4"
+          src={autoplayUrl}
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin"
-          class="w-full h-full object-cover"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          style="width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;"
           allowfullscreen></iframe>
 
         <!-- Play button overlay -->
