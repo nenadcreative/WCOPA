@@ -59,17 +59,36 @@ const description = `Browse the official WCOPA ${year} contestant directory — 
         class="rounded-2xl overflow-hidden shadow-[0_6px_28px_rgba(0,0,0,0.08)] border border-black/5 bg-white"
       >
         <iframe
+          id="wcopa-directory-frame"
           src={embedUrl}
           title={`WCOPA ${year} Contestant Directory`}
           loading="lazy"
           allow="fullscreen; clipboard-write; web-share"
           class="w-full block border-0"
-          style="height: min(1500px, 92vh);"></iframe>
+          style="height: 1200px;"
+          scrolling="no"></iframe>
       </div>
-      <p class="text-center text-xs md:text-sm text-neutral-500 mt-4">
-        Directory data is served live from portal.wcopa.com — search, filters,
-        and downloadable per-contestant profiles all live inside the embed.
-      </p>
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  // The portal (portal.wcopa.com/directory/{year}/browse) posts its
+  // current content height whenever the layout changes (filter, resize,
+  // image load). We resize the iframe to match so the whole grid fits
+  // without an inner scrollbar — visitors just scroll the outer page.
+  (function () {
+    const frame = document.getElementById("wcopa-directory-frame");
+    if (!frame) return;
+    const ALLOWED_ORIGIN = "https://portal.wcopa.com";
+    window.addEventListener("message", function (event) {
+      if (event.origin !== ALLOWED_ORIGIN) return;
+      const data = event.data;
+      if (!data || data.type !== "wcopa-directory-height") return;
+      const h = Math.max(600, Math.min(20000, Number(data.height) || 0));
+      if (h && Math.abs(frame.clientHeight - h) > 4) {
+        frame.style.height = h + "px";
+      }
+    });
+  })();
+</script>
