@@ -1,0 +1,75 @@
+---
+// Public WCOPA Contestant Directory embed page.
+// Route: /contestants/{year}
+//
+// Embeds the interactive contestant directory hosted on
+// portal.wcopa.com (Next.js) inside an iframe on the wcopa.com
+// marketing site. The directory pulls contestant data live from
+// portal.wcopa.com's public JSON API, so this page never needs to
+// be republished when contestant profiles change.
+//
+// To add a new year (e.g. 2027), append it to KNOWN_YEARS below.
+// Old years (2024) archive automatically — the same iframe just
+// points at that year's data.
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const KNOWN_YEARS = ["2024", "2026"];
+
+export async function getStaticPaths() {
+  return ["2024", "2026"].map((year) => ({
+    params: { year },
+  }));
+}
+
+const { year } = Astro.params;
+if (!KNOWN_YEARS.includes(year ?? "")) return Astro.redirect("/404");
+
+const embedUrl =
+  `https://portal.wcopa.com/directory/${year}/browse` +
+  `?utm_source=wcopa.com&utm_medium=embed&utm_campaign=directory-${year}`;
+
+const title = `${year} Contestant Directory | WCOPA`;
+const description = `Browse the official WCOPA ${year} contestant directory — biographies, photos, events, and representation for every published contestant.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-dark-1 text-white">
+    <div class="container mx-auto px-4 md:px-0 py-16 md:py-20">
+      <div class="max-w-3xl mx-auto text-center">
+        <p
+          class="text-yellow uppercase tracking-widest text-xs md:text-sm font-semibold mb-4"
+        >
+          Directory · {year}
+        </p>
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 md:mb-6">
+          Contestant Directory
+        </h1>
+        <p class="text-base md:text-lg text-white/80 max-w-2xl mx-auto">
+          Explore every published contestant competing at WCOPA {year} — search
+          by name or country, filter by discipline, and view individual profiles
+          with photos, events, and representation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="container mx-auto px-4 md:px-6 py-8 md:py-12">
+      <div
+        class="rounded-2xl overflow-hidden shadow-[0_6px_28px_rgba(0,0,0,0.08)] border border-black/5 bg-white"
+      >
+        <iframe
+          src={embedUrl}
+          title={`WCOPA ${year} Contestant Directory`}
+          loading="lazy"
+          allow="fullscreen; clipboard-write; web-share"
+          class="w-full block border-0"
+          style="height: min(1500px, 92vh);"></iframe>
+      </div>
+      <p class="text-center text-xs md:text-sm text-neutral-500 mt-4">
+        Directory data is served live from portal.wcopa.com — search, filters,
+        and downloadable per-contestant profiles all live inside the embed.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
