@@ -81,9 +81,27 @@ const description = `Browse the official WCOPA ${year} contestant directory — 
     const frame = document.getElementById("wcopa-directory-frame");
     if (!frame) return;
     const ALLOWED_ORIGIN = "https://portal.wcopa.com";
+    // Wheel-forward fallback. Some browsers (WebKit/Safari in
+    // particular) never chain wheel events from a cross-origin iframe
+    // to the parent page, even when the iframe document itself cannot
+    // scroll — the embed feels "scroll-dead" anywhere over the frame.
+    // The portal page posts its wheel deltas up; we apply them ONLY
+    // when native scrolling isn't already happening (tracked via the
+    // scroll listener below), so browsers that DO chain don't scroll
+    // at double speed.
+    let lastNativeScroll = 0;
+    window.addEventListener("scroll", function () { lastNativeScroll = Date.now(); }, { passive: true });
     window.addEventListener("message", function (event) {
       if (event.origin !== ALLOWED_ORIGIN) return;
       const data = event.data;
+      if (data && data.type === "wcopa-directory-wheel") {
+        if (Date.now() - lastNativeScroll > 150) {
+          // behavior:'instant' sidesteps html{scroll-behavior:smooth},
+          // which would queue an animation per wheel tick and stutter.
+          window.scrollBy({ top: Number(data.deltaY) || 0, behavior: "instant" });
+        }
+        return;
+      }
       if (!data || data.type !== "wcopa-directory-height") return;
       // Ceiling is a sanity guard against a runaway postMessage, not a
       // layout constraint. It was 20000px — fine at 172 published
