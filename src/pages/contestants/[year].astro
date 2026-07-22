@@ -85,7 +85,14 @@ const description = `Browse the official WCOPA ${year} contestant directory — 
       if (event.origin !== ALLOWED_ORIGIN) return;
       const data = event.data;
       if (!data || data.type !== "wcopa-directory-height") return;
-      const h = Math.max(600, Math.min(20000, Number(data.height) || 0));
+      // Ceiling is a sanity guard against a runaway postMessage, not a
+      // layout constraint. It was 20000px — fine at 172 published
+      // contestants, but the 2026 directory now has 359 (~34000px), so
+      // the clamp froze the frame mid-list: the iframe doc became
+      // internally scrollable, scrolling="no" swallowed every wheel
+      // event over it, and the bottom 14000px of contestants were
+      // unreachable. 100000px covers any realistic roster.
+      const h = Math.max(600, Math.min(100000, Number(data.height) || 0));
       if (h && Math.abs(frame.clientHeight - h) > 4) {
         frame.style.height = h + "px";
       }
